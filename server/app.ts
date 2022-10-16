@@ -2,7 +2,6 @@ import { join } from 'path';
 import express, { Application } from 'express';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
-import cors from 'cors'
 
 const { NODE_ENV, PORT } = process.env
 const app:Application = express();
@@ -16,7 +15,7 @@ app.set('port', PORT || 8000);
 if(NODE_ENV === 'production'){
  app.use(express.static(join(__dirname, '..', 'client', 'build')));
 
- app.use('*', (req, res) => {
+ app.get('*', (req, res) => {
     res.sendFile(join(__dirname, '..', 'client', 'build'));
  })
 }

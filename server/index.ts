@@ -1,4 +1,4 @@
-import { sequelize } from "./database/connection";
+import sequelize from "./database/connection";
 import app from './app'
 
 const port = app.get('port');
@@ -6,8 +6,8 @@ const port = app.get('port');
 (async () => {
     try {
       await sequelize.authenticate()
-      app.listen(port, () => console.log(`server is listening on port ${port}`))
+      app.listen(port, () => console.log(`Server is running on http://localhost:${ port }`))
     } catch (error) {        
-      console.log(error);
+      console.log(`Error on synchronizing Database: ${error}`);
     }
 })();
