@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize  from "../database/connection";
 
-const Feedback = sequelize.define('feedback', {
+const Feedback = sequelize.define('Feedback', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

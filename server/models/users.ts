@@ -1,17 +1,17 @@
 import { DataTypes } from "sequelize";
 import  sequelize  from "../database/connection";
 
-const Users = sequelize.define('users', {
+const User = sequelize.define('User', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    firstName: {
+    first_name: {
         type: DataTypes.STRING(20),
         allowNull: false
     },
-    lastName: {
+    last_name: {
         type: DataTypes.STRING(20),
         allowNull: false
     },
@@ -21,7 +21,7 @@ const Users = sequelize.define('users', {
     },
     password: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
     },
     image: {
         type: DataTypes.TEXT,
