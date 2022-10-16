@@ -12,16 +12,16 @@ const Request = sequelize.define('Request', {
     values: ['pending', 'success', 'fail'],
     allowNull: false,
   },
-  isexchangable: {
+  is_exchangable: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
-  senderApproval: {
+  sender_approval: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: null,
   },
-  receiverApproval: {
+  receiver_approval: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: null,
