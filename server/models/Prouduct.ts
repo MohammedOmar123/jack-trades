@@ -1,9 +1,10 @@
-import { Sequelize, DataTypes } from 'sequelize';
-const sequelize = new Sequelize();
-import { Category } from './Category';
-// import sequelize from connection file
-// here import user from user model
-export const Product = sequelize.define('product', {
+import  DataTypes  from 'sequelize';
+import sequelize from '../database/connection';
+
+import  Category  from './Category';
+import User from './users';
+
+ const Product = sequelize.define('product', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -32,9 +33,10 @@ export const Product = sequelize.define('product', {
     }
 
 })
-// here create one to many relation with user model
-// User.hasMany(product);
-// Product.belongTo(User);
+User.hasMany(Product,{foreignKey:'user_id'});
+Product.belongsTo(User);
 
-Category.hasMany(Product);
+Category.hasMany(Product,{foreignKey:'category_id'});
 Product.belongsTo(Category);
+
+export default Product;
