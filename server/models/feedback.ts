@@ -1,20 +1,20 @@
-import { DataTypes } from "sequelize";
-import sequelize  from "../database/connection";
+import { DataTypes } from 'sequelize';
+import sequelize from '../database/connection';
 
 const Feedback = sequelize.define('Feedback', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    nickname: {
-        type: DataTypes.STRING(50),
-        allowNull: false
-    },
-    message: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  nickname: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
+  },
+  message: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 export default Feedback;
