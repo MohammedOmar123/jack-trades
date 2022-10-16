@@ -27,11 +27,7 @@ const Request = sequelize.define('Request', {
     defaultValue: null,
   },
   products: {
-    type: DataTypes.JSON,
-    allowNull: false,
-  },
-  updated_at: {
-    type: DataTypes.DATE,
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
     allowNull: false,
   },
 });
