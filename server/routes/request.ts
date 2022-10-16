@@ -11,5 +11,6 @@ router.post('/', addRequests);
 router.get('/checkFavReq', checkFavReq);
 router.delete('/:reqId', deleteRequest);
 router.put('/:reqId/:productId', updateRequest);
+// Note: ordering routers here is matter
 
 export default router;
