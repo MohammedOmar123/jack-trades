@@ -1,7 +1,7 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../database/connection";
+import { DataTypes } from 'sequelize';
+import sequelize from '../database/connection';
 
-const Request = sequelize.define("Request", {
+const Request = sequelize.define('Request', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -9,7 +9,7 @@ const Request = sequelize.define("Request", {
   },
   status: {
     type: DataTypes.ENUM,
-    values: ["pending", "success", "fail"],
+    values: ['pending', 'success', 'fail'],
     allowNull: false,
   },
   isexchangable: {

@@ -1,7 +1,7 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../database/connection";
+import { DataTypes } from 'sequelize';
+import sequelize from '../database/connection';
 
-const Favorite = sequelize.define("Favorite", {
+const Favorite = sequelize.define('Favorite', {
   created_at: {
     type: DataTypes.DATE,
     allowNull: false,
