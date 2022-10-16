@@ -1,13 +1,15 @@
-import sequelize from "./database/connection";
-import app from './app'
+import sequelize from './database/connection';
+import app from './app';
 
 const port = app.get('port');
 
 (async () => {
-    try {
-      await sequelize.authenticate();
-      app.listen(port, () => console.log(`Server is running on http://localhost:${ port }`))
-    } catch (error) {        
-      console.log(`Error on synchronizing Database: ${error}`);
-    }
+  try {
+    await sequelize.authenticate();
+    // eslint-disable-next-line no-console
+    app.listen(port, () => console.log(`Server is running on http://localhost:${port}`));
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(`Error on synchronizing Database: ${error}`);
+  }
 })();
