@@ -2,11 +2,16 @@ import { DataTypes } from "sequelize";
 import  sequelize  from "../database/connection";
 
 const Users = sequelize.define('users', {
-    firstName : {
-        type : DataTypes.STRING(20),
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    firstName: {
+        type: DataTypes.STRING(20),
         allowNull: false
     },
-    lastName : {
+    lastName: {
         type: DataTypes.STRING(20),
         allowNull: false
     },
@@ -14,7 +19,7 @@ const Users = sequelize.define('users', {
         type: DataTypes.STRING(40),
         allowNull: false
     },
-    password : {
+    password: {
         type: DataTypes.STRING,
         allowNull: true
     },
