@@ -1,22 +1,11 @@
-import { DataTypes } from "sequelize";import sequelize from "../database/connection";
+import { DataTypes } from "sequelize";
+import sequelize from "../database/connection";
 
 const Request = sequelize.define("Request", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-  },
-  reciever_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  sender_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  product_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
   },
   status: {
     type: DataTypes.ENUM,
@@ -27,16 +16,12 @@ const Request = sequelize.define("Request", {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
-  exchanged_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  sender_approval: {
+  senderApproval: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: null,
   },
-  receiver_approval: {
+  receiverApproval: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: null,
@@ -55,4 +40,4 @@ const Request = sequelize.define("Request", {
   },
 });
 
-// Request.belongsTo(Product);
+export default Request;
