@@ -21,6 +21,6 @@ switch (NODE_ENV) {
   default: throw new Error('invalid database url');
 }
 
-const sequelize = new Sequelize(url, { dialect: 'postgres', dialectOptions: { ssl } });
+const sequelize = new Sequelize(url, { logging: false, dialect: 'postgres', dialectOptions: { ssl } });
 
 export default sequelize;
