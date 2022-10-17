@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+/* 
+#footer div * {
+  outline: 1px solid
+} */
+
+a {
+  text-decoration: none;
+  color: #aeb3b6;
+}
+
+#footer {
+  font-family: 'Cairo', sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 3fr;
+  background-color: #1B4B66;
+  height: 18rem;
+  padding: 2rem 3rem;
+}
+#footer h3 {
+  color: #E2E8EB;
+}
+
+#footer ul {
+  list-style: none;
+  padding-top: 0.5rem;
+}
+
+#footer ul li {
+  color: #aeb3b6;
+  letter-spacing: .05rem;
+  padding-bottom: .2rem;
+}
+
+#footer .teamMembers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#footer .teamMembers h3 {
+  margin-bottom: 0.3rem;
+}
+
+#footer .teamMembers ul {
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-end; */
+}
+
+#footer .teamMembers ul li {
+  margin-bottom: .5rem;
+}
+
+#footer .teamMemberDetails {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  width: 18rem;
+}
+
+#footer i {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+#footer i:hover {
+  color: #FFF
+  
+}
