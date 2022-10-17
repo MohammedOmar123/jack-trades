@@ -1,9 +1,7 @@
-interface ButtonPropsTypes {
-  style : {
-    text: string,
-    height : number,
-    width: number,
-    marginRight:number
-  }
-}
-export { ButtonPropsTypes };
+import { IntroTypes } from './introDataTypes';
+import ButtonPropsTypes from './ButtonPropsTypes';
+
+export {
+  IntroTypes,
+  ButtonPropsTypes,
+};

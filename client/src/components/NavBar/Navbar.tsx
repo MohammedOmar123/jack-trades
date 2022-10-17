@@ -4,7 +4,7 @@ import {
   Toolbar, AppBar, Typography, Link,
 } from '@mui/material';
 import ButtonComponent from '../Button/Button';
-import { Links } from '../../StaticData';
+import { links } from '../../StaticData';
 
 const Navbar: FC = () => (
   <AppBar
@@ -27,7 +27,7 @@ const Navbar: FC = () => (
       <div className="navbar">
         <ul>
           {
-            Links.map((link) => (
+            links.map((link) => (
               <li>
                 <Link
                   sx={{
