@@ -1,4 +1,4 @@
-import { signin, signup, signout } from './account';
+import { signIn, signup, signOut } from './account';
 import { getStatistics, getFeedback, addFeedback } from './website';
 import { getUserProducts, getUserProfile, getUserWishList } from './user';
 import {
@@ -10,7 +10,7 @@ import {
 import { getAllNotifications, viewItemDetails } from './notifications';
 
 export {
-  signin, signup, signout, getStatistics, getFeedback, addFeedback,
+  signIn, signup, signOut, getStatistics, getFeedback, addFeedback,
   getUserProducts, getUserProfile, getUserWishList,
   getAllProducts, getProduct, addProduct, deleteProduct, updateProduct, filterProduct,
   getAllRequest, addRequests, checkFavReq, deleteRequest, updateRequest,

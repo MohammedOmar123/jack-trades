@@ -1,10 +1,10 @@
 import express from 'express';
-import { signin, signup, signout } from '../controllers';
+import { signIn, signup, signOut } from '../controllers';
 
 const router = express.Router();
 
 router.post('/signup', signup);
-router.post('/signin', signin);
-router.get('/signout', signout);
+router.post('/signIn', signIn);
+router.get('/signOut', signOut);
 
 export default router;

@@ -11,6 +11,5 @@ router.get('/:id', getProduct);
 router.post('/', addProduct);
 router.put('/:id', updateProduct);
 router.delete('/:id', deleteProduct);
-
-// Note: ordering routers here is matter
+// Note: the order of the routes matters
 export default router;

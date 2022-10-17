@@ -6,6 +6,6 @@ const router = express.Router();
 router.get('/products', getUserProducts);
 router.get('/favorites', getUserWishList);
 router.get('/:userId?', getUserProfile);
-// Note: ordering routers here is matter
+// Note: the order of the routes matters
 
 export default router;
