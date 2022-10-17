@@ -18,11 +18,5 @@ const Introduction:FC = () => (
   </Box>
 );
 
-// <Grid item xs={12} md={4}>
-//   <IntroductionCard />
-// </Grid>
-// <Grid item xs={12} md={4}>
-//   <IntroductionCard />
-// </Grid>
 
 export default Introduction;
