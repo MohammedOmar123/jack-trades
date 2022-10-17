@@ -2,7 +2,7 @@ export type Product = {
   title: string;
   description: string;
   gallery: string[];
-  isAvailable: boolean;
+  is_available: boolean;
   type: string;
   user_id: number;
   category_id: number;
