@@ -5,6 +5,9 @@ import {
   User, Request, Product, Category, Favorite, Feedback,
 } from '../models';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 const buildTables = async () => {
   try {
     await sequelize.sync({ force: true });
@@ -20,4 +23,8 @@ const buildTables = async () => {
   }
 };
 
-buildTables();
+if (process.env.NODE_ENV === 'development') {
+  buildTables();
+}
+
+export default buildTables;
