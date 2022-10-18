@@ -1,19 +1,16 @@
-// import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import './Header.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import HeaderImage from '../../assets/headerImage.png';
 import Button from '../Button/Button';
 
 const Header = () => (
   <Box className="div-parent">
-    <img className="img" src={HeaderImage} alt="introImage" />
     <Box className="div-intro">
       <Typography
         variant="h1"
         sx={{
-          fontSize: 40,
-          fontWeight: 800,
+          fontSize: '3.5rem',
+          fontWeight: '800 !important',
         }}
       >
         Exchange Your Items
@@ -22,12 +19,13 @@ const Header = () => (
       <Typography
         variant="subtitle2"
         sx={{
-          fontSize: 18,
-          width: 250,
-          fontWeight: 600,
+          fontSize: '20px',
+          paddingRight: '10rem',
+          fontWeight: '800 !important',
         }}
       >
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        amet consectetur adipisicing elit.
 
       </Typography>
 
@@ -35,7 +33,7 @@ const Header = () => (
         style={{
           text: 'See more',
           height: 35,
-          width: 130,
+          width: 150,
           marginRight: 0,
           icon: true,
         }}
