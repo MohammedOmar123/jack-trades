@@ -7,11 +7,11 @@ const getStatistics = async (req : Request, res : Response) => {
       [getDonationsQuery(), getExchangesQuery(), getContributionsQuery(),
       ],
     );
-    const donateTimes = response[0].length;
-    const exchangeTimes = response[1].length;
-    const contributeTimes = response[2].length;
+    const donateTimes = response[0];
+    const exchangeTimes = response[1];
+    const contributeTimes = response[2];
 
-    res.status(200).json({ donateTimes, exchangeTimes, contributeTimes });
+    res.json({ donateTimes, exchangeTimes, contributeTimes });
   } catch (error) {
     res.status(500).json({ error: error.msg });
   }
