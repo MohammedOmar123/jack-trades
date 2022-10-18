@@ -10,8 +10,9 @@ const Footer = () => (
     container
     padding={5}
     height={320}
+    mt={10}
   >
-    <Grid item md={2.5}>
+    <Grid item xs={2.6} md={2.5}>
       <div>
         <Typography variant="h6">Shop By Category</Typography>
         <List>
@@ -33,7 +34,7 @@ const Footer = () => (
         </List>
       </div>
     </Grid>
-    <Grid item md={2.5}>
+    <Grid item xs={2.6} md={2.5}>
       <div>
         <Typography variant="h6">About</Typography>
         <List>
@@ -46,7 +47,7 @@ const Footer = () => (
         </List>
       </div>
     </Grid>
-    <Grid item md={2.5}>
+    <Grid item xs={2.6} md={2.5}>
       <div>
         <Typography variant="h6">Policy</Typography>
         <List>
@@ -65,7 +66,7 @@ const Footer = () => (
         </List>
       </div>
     </Grid>
-    <Grid item md>
+    <Grid item xs md>
       <Typography variant="h6">Founders</Typography>
       <List>
         <ListItem disablePadding>
