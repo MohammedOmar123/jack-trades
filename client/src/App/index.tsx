@@ -1,11 +1,12 @@
-import Button from '@mui/material/Button';
-import './style.css';
+import { Outlet } from 'react-router-dom';
 import Navbar from '../components/NavBar/Navbar';
+import './style.css';
 
 const App = () => (
-  <div className="App">
+  <div>
     <Navbar />
-    <Button variant="contained">Hello World</Button>
+    <Outlet />
+    <h2>Footer</h2>
   </div>
 );
 
