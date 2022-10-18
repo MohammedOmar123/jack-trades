@@ -18,5 +18,4 @@ const Introduction:FC = () => (
   </Box>
 );
 
-
 export default Introduction;
