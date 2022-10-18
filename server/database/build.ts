@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import dotenv from 'dotenv';
 import sequelize from './connection';
 import fakeData from './fakeData';
 import {
   User, Request, Product, Category, Favorite, Feedback,
 } from '../models';
 
-import dotenv from 'dotenv';
 dotenv.config();
 
 const buildTables = async () => {
