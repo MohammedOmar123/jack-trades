@@ -1,11 +1,12 @@
-import './style.css';
-import Header from '../components/Header/Header';
+import { Outlet } from 'react-router-dom';
 import Navbar from '../components/NavBar/Navbar';
+import './style.css';
 
 const App = () => (
-  <div className="App">
+  <div>
     <Navbar />
-    <Header />
+    <Outlet />
+    <h2>Footer</h2>
   </div>
 );
 
