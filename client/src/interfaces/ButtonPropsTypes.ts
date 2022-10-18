@@ -3,7 +3,8 @@ interface ButtonPropsTypes {
     text: string,
     height : number,
     width: number,
-    marginRight:number
+    marginRight:number,
+    icon: boolean,
   }
 }
 export default ButtonPropsTypes;

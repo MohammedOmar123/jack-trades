@@ -52,6 +52,7 @@ const Navbar: FC = () => (
         width: 100,
         marginRight: 1,
         text: 'Join Us',
+        icon: false,
       }}
       />
     </Toolbar>

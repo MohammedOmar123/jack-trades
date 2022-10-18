@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import { Button } from '@mui/material';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { ButtonPropsTypes } from '../../interfaces/index';
-
+import './Button.css';
 // eslint-disable-next-line max-len
-const ButtonComponent:FC<ButtonPropsTypes> = ({
+const ButtonComponent: FC<ButtonPropsTypes> = ({
   style: {
-    width, height, marginRight, text,
+    width, height, marginRight, text, icon,
   },
 }) => (
   <Button
@@ -13,6 +14,7 @@ const ButtonComponent:FC<ButtonPropsTypes> = ({
     className="navButton"
     variant="contained"
     sx={{
+      textTransform: 'none',
       background: '#1B4B66',
       color: 'white',
       width,
@@ -23,8 +25,9 @@ const ButtonComponent:FC<ButtonPropsTypes> = ({
         background: 'white',
       },
     }}
+    startIcon={icon ? <ArrowForwardIcon /> : ''}
   >
-    { text }
+    {text}
   </Button>
 );
 
