@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import dotenv from 'dotenv';
 import sequelize from './connection';
 import fakeData from './fakeData';
 import {
   User, Request, Product, Category, Favorite, Feedback,
 } from '../models';
+
+dotenv.config();
 
 const buildTables = async () => {
   try {
@@ -20,4 +23,8 @@ const buildTables = async () => {
   }
 };
 
-buildTables();
+if (process.env.SEED) {
+  buildTables();
+}
+
+export default buildTables;
