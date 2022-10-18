@@ -41,7 +41,11 @@
   border-radius: 10px;
   color: var(--primary);
   padding: 1rem 1rem 1rem 2rem;
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 900 !important;
+}
+
+.div-intro h1 {
+  font-family: 'Inter', sans-serif ;
+  font-weight: 900 ;
+  font-size: 2.8rem;
 }
 

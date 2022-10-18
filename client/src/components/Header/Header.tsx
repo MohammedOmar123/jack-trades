@@ -6,20 +6,13 @@ import Button from '../Button/Button';
 const Header = () => (
   <Box className="div-parent">
     <Box className="div-intro">
-      <Typography
-        variant="h1"
-        sx={{
-          fontSize: '3.5rem',
-          fontWeight: '800 !important',
-        }}
-      >
+      <h1>
         Exchange Your Items
-
-      </Typography>
+      </h1>
       <Typography
         variant="subtitle2"
         sx={{
-          fontSize: '20px',
+          fontSize: '1.2rem',
           paddingRight: '10rem',
           fontWeight: '800 !important',
         }}
