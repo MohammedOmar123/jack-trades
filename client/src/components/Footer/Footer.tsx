@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   Grid, Typography, List, ListItem, ListItemText, Link,
 } from '@mui/material';
@@ -70,20 +71,20 @@ const Footer = () => (
       <Typography variant="h6">Founders</Typography>
       <List>
         <ListItem disablePadding>
-          <Link href="https://github.com/hkmusameh01" color="inherit">
+          <Link href="https://github.com/hkmusameh01" target="_blank" color="inherit">
             <GitHubIcon fontSize="large" />
           </Link>
           <ListItemText primary="Abdalhakim Abumusameh" />
         </ListItem>
         <ListItem disablePadding>
-          <Link href="https://github.com/hkmusameh01" color="inherit">
+          <Link href="https://github.com/hkmusameh01" target="_blank" color="inherit">
             <GitHubIcon fontSize="large" />
           </Link>
 
           <ListItemText primary="Sara Dahman" />
         </ListItem>
         <ListItem disablePadding>
-          <Link href="https://github.com/hkmusameh01" color="inherit">
+          <Link href="https://github.com/hkmusameh01" target="_blank" color="inherit">
             <GitHubIcon fontSize="large" />
           </Link>
 
