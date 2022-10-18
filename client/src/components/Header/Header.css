@@ -2,13 +2,14 @@
   --primary: #1b4b66;
 }
 .div-parent {
+  margin-top: 70px;
   position: relative;
   top: 0;
   left: 0;
 }
 .img {
- margin-top: 30px;
- filter: brightness(40%)blur(1.3px);
+  margin-top: 30px;
+  filter: brightness(50%) blur(0.5px);
   width: 1450px;
   object-fit: cover;
   height: 400px;
@@ -19,23 +20,21 @@
 }
 .div-intro {
   position: absolute;
-  top: 140px;
-  right: 24px;
-  height: 180px;
-  width: 500px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.5rem ;
+  flex-direction: column;
+  align-items: flex-start;
+  top: 100px;
+  right: 40px;
+  height: 220px;
+  width: 600px;
   background-color: rgba(222, 222, 222, 0.7);
-  border-radius: 20px;
+  border-radius: 10px;
   color: var(--primary);
+  padding: 1rem 1rem 1rem 2rem;
 }
-.desc, h1 {
-    margin-left: 20px;
-}
-.desc {
-  width: 200px;
-  font-weight: 600;
-text-align: justify;
-}
-.intro-dev h1 {
-  font-size: 40px;
+.intro-dev  {
+  font-size: 70px;
   font-weight: bolder;
 }

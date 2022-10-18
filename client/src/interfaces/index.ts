@@ -1,6 +1,7 @@
-/* eslint-disable import/prefer-default-export */
 import { IntroTypes } from './introDataTypes';
+import ButtonPropsTypes from './ButtonPropsTypes';
 
 export {
   IntroTypes,
+  ButtonPropsTypes,
 };

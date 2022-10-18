@@ -1,11 +1,10 @@
-import Button from '@mui/material/Button';
-
 import './style.css';
 import Header from '../components/Header/Header';
+import Navbar from '../components/NavBar/Navbar';
 
 const App = () => (
   <div className="App">
-    <Button variant="contained">Hello World</Button>
+    <Navbar />
     <Header />
   </div>
 );
