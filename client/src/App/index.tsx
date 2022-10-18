@@ -1,12 +1,8 @@
-import Button from '@mui/material/Button';
 import './style.css';
-import Navbar from '../components/NavBar/Navbar';
+import { router, RouterProvider } from './router';
 
 const App = () => (
-  <div className="App">
-    <Navbar />
-    <Button variant="contained">Hello World</Button>
-  </div>
+  <RouterProvider router={router} />
 );
 
 export default App;
