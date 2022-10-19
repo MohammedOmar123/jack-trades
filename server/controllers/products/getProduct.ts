@@ -6,7 +6,7 @@ import CustomError from '../../helpers/CustomError';
 const getProduct = async (req: Request, res: Response, next: NextFunction) => {
   const { productId } = req.params;
   try {
-    if (!Number(productId) || Number(productId) <= 0) {
+    if (!(Number(productId) > 0)) {
       throw new CustomError(401, 'Bad Request');
     }
     const data = await getProductQuery(productId);
