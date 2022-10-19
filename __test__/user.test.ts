@@ -26,10 +26,24 @@ describe('Testing "GET api/v1/user/:userId" to get all user profile informations
     const response = await request(app)
       .get('/api/v1/user/100')
       .expect(404)
-      .expect('Content-Type', /json/)
-      .expect({
-        msg: "Opss, User Not Found"
-      })
+      .expect('Content-Type', /html/)
+      .expect("Opss, User Not Found")
+  })
+
+  it('When userId is not a number', async () => {
+    const response = await request(app)
+      .get('/api/v1/user/anyThing')
+      .expect(401)
+      .expect('Content-Type', /html/)
+      .expect('Opss, Bad Request')
+  })
+
+  it('When userId is small than zero', async () => {
+    const response = await request(app)
+      .get('/api/v1/user/anyThing')
+      .expect(401)
+      .expect('Content-Type', /html/)
+      .expect('Opss, Bad Request')
   })
 })
 
