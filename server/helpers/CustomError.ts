@@ -1,5 +1,5 @@
 class CustomError extends Error {
-  status = 404;
+  status:number;
 
   constructor(statusCode:number, msg:string) {
     super();
