@@ -1,14 +1,18 @@
 const links = [{
-  path: '/home',
+  id: 1,
+  path: '/',
   content: 'Home',
 }, {
+  id: 2,
   path: '/about',
   content: 'About Us',
 }, {
+  id: 3,
   path: '/contact',
   content: 'contact Us',
 }, {
-  path: '/browse',
+  id: 4,
+  path: '/products',
   content: 'Browse',
 }];
 export default links;
