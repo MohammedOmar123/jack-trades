@@ -28,9 +28,8 @@ const Navbar: FC = () => (
         <ul>
           {
             links.map((link) => (
-              <li key={link.id}>
+              <li>
                 <Link
-                  pb={1}
                   sx={{
                     color: 'black',
                     ':hover': {
