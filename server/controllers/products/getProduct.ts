@@ -1,20 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 
-import getProductQuery from '../../database/queries/products/getProduct';
-import CustomError from '../../helpers/CustomError';
-
-const getProduct = async (req: Request, res: Response, next: NextFunction) => {
-  const { productId } = req.params;
-  try {
-    const data = await getProductQuery(productId);
-    if (data !== null) {
-      res.json(data);
-    } else {
-      throw new CustomError(404, 'This item doesn\'t exist anymore');
-    }
-  } catch (err) {
-    next(err);
-  }
+const getProduct = (req : Request, res : Response) => {
+  res.send('Hello from  getProduct');
 };
 
 export default getProduct;

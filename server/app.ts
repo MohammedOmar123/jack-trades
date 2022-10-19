@@ -1,11 +1,8 @@
 import { join } from 'path';
 import express, { Application } from 'express';
-
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
-
 import router from './routes';
-import ErrorHandler from './helpers/ErrorHandler';
 
 const { NODE_ENV, PORT } = process.env;
 const app:Application = express();
@@ -25,6 +22,5 @@ if (NODE_ENV === 'production') {
     res.sendFile(join(__dirname, '..', 'client', 'build'));
   });
 }
-app.use(ErrorHandler);
 
 export default app;
