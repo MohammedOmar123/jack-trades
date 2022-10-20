@@ -4,11 +4,9 @@ import app from "../server/app";
 import sequelize from "../server/database/connection";
 import buildTables from "../server/database/build";
 
-beforeAll(() => {
-  return buildTables();
-})
+beforeAll(() => buildTables())
 
-describe('Testing "GET api/v1/user/:userId" to get all user profile informations', () => {
+describe('Testing user profile informations', () => {
   it('right USERID and return profile  information successfully!', async () => {
     const response = await request(app)
       .get('/api/v1/user/5')
@@ -26,24 +24,30 @@ describe('Testing "GET api/v1/user/:userId" to get all user profile informations
     const response = await request(app)
       .get('/api/v1/user/100')
       .expect(404)
-      .expect('Content-Type', /html/)
-      .expect("Opss, User Not Found")
+      .expect('Content-Type', /json/)
+      .expect({
+        "msg": "Opss, User Not Found"
+      })
   })
 
   it('When userId is not a number', async () => {
     const response = await request(app)
       .get('/api/v1/user/anyThing')
       .expect(401)
-      .expect('Content-Type', /html/)
-      .expect('Opss, Bad Request')
+      .expect('Content-Type', /json/)
+      .expect({
+        "msg": "Opss, Bad Request"
+      })
   })
 
   it('When userId is small than zero', async () => {
     const response = await request(app)
-      .get('/api/v1/user/anyThing')
+      .get('/api/v1/user/-1')
       .expect(401)
-      .expect('Content-Type', /html/)
-      .expect('Opss, Bad Request')
+      .expect('Content-Type', /json/)
+      .expect({
+        "msg": "Opss, Bad Request"
+      })
   })
 })
 
@@ -53,9 +57,9 @@ describe('user route tests', () => {
       .expect(200)
       .expect("Content-Type", /json/)
       .expect((res) => {
-        res.body.data.length = 1;
-        res.body.data[0].id = 5;
-        res.body.data[0].title = 'Louis Vuitton';
+        expect(res.body.data.length).toBe(1)
+        expect(res.body.data[0].id).toBe(8)
+        expect(res.body.data[0].title).toBe('Louis Vuitton')
       })
   })
 
@@ -64,16 +68,18 @@ describe('user route tests', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .expect((res) => {
-        res.body.data.length == 5;
-        res.body.data[0].id == 5;
+        expect(res.body.data.length).toBe(5)
+        expect(res.body.data[0].id).toBe(1)
       })
   })
 
   it('testing getting the user products', async () => {
     await request(app).get('/api/v1/user/hello/products')
       .expect(401)
-      .expect('Content-Type', /text/)
-      .expect('Bad Request')
+      .expect('Content-Type', /json/)
+      .expect({
+        "msg": "Bad Request"
+      })
   })
 })
 
