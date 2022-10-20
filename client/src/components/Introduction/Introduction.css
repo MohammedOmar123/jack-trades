@@ -7,7 +7,7 @@
 }
 
 .introCard {
-  height: 10rem;
+  height: 12rem;
   border:solid rgb(222, 217, 217) 0.5px;
   padding: 1rem;
   border-radius: 10px;
@@ -27,5 +27,9 @@
 }
 
 .introCard p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.introCard i {
+  font-size: 1.4rem;
 }
