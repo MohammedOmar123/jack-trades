@@ -8,7 +8,7 @@ import router from './routes';
 import ErrorHandler from './helpers/ErrorHandler';
 
 const { NODE_ENV, PORT } = process.env;
-const app:Application = express();
+const app: Application = express();
 
 app.use(compression());
 app.use(cookieParser());
