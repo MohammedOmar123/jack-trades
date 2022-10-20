@@ -27,6 +27,4 @@ if (NODE_ENV === 'production') {
 }
 app.use(ErrorHandler);
 
-app.use(ErrorHandler);
-
 export default app;
