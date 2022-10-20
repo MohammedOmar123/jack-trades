@@ -8,7 +8,7 @@ const UserInfo:FC = () => (
   <Box className="user-info">
     <Image attributes={{
       src: 'https://www.nicepng.com/png/detail/780-7805650_generic-user-image-male-man-cartoon-no-eyes.png',
-      alt: 'user-img',
+      alt: 'user',
       className: 'user-img',
     }}
     />
