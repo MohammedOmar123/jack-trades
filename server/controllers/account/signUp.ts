@@ -1,7 +1,13 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
+import validateSighup from '../../helpers/signupValidation';
 
-const signup = (req : Request, res : Response) => {
-  res.send('Hello signup');
+const signup = async (req : Request, res : Response, next:NextFunction) => {
+  try {
+    const validateResult = await validateSighup(req.body);
+    res.send(validateResult);
+  } catch (err) {
+    next(err);
+  }
 };
 
 export default signup;
