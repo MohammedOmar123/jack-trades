@@ -49,7 +49,7 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
     },
     {
       title: 'Earbuds',
-      description: 'Used, perfectly working.Earbuds and charging case.Enjoy uninterrupted, crystal-clear music on the go with the Jabra Elite Active 65t True Wireless EarPods with Mic. With up to 5 hours of battery life from a single charge, and up to 15 hours in total with the pocket-friendly charging case, your needs are met from the start of the day to the end. This is an IP56-rated product that you can wear while playing a sport or exercising. Jabra Sound+ App adds additional features, and it lets you customise the way you experience music on this headset. So, you can choose a voice assistant, customise the music profile.',
+      description: 'Used, perfectly working.Earbuds and charging case.Enjoy uninterrupted, crystal-clear music on the go with the Jabra Elite Active 65t True Wireless EarPods with Mic. With up to 5 hours of battery life from a single charge, and up to 15 hours in total with the pocket-friendly charging case ',
       gallery: [
         'https://apollo-singapore.akamaized.net/v1/files/t5h1o07v3ziq2-IN/image;s=780x0;q=60',
         'https://apollo-singapore.akamaized.net/v1/files/uc39iu95kda51-IN/image;s=780x0;q=60',
@@ -85,8 +85,8 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
       category_id: 4,
     },
     {
-      title: 'Louis Vuitton',
-      description: 'Accessory in Gold',
+      title: 'Louis Vuitton Jacques Durand Sunglasses Black Sunglasses',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ',
       gallery: [
         'https://cdn.rebelle.com//cd/cdac49d320221014-9-j8pnpt.JPG?width=514&height=510',
         'https://cdn.rebelle.com//86/8651792_daa1c738578a502c5b235a1171193928.JPG?width=514&height=510',
