@@ -14,6 +14,9 @@ describe('Product route must be returned the details of product according to the
                 expect(res.body.id).toBe(8);
                 expect(res.body.title).toBe('Louis Vuitton Jacques Durand Sunglasses Black Sunglasses');
                 expect(res.body.description).toBe('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex');
+                expect(res.body['Category.name']).toBe('Accessories')
+                expect(res.body.user_id).toBe(5)           
+           
             })
     });
 
