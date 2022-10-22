@@ -1,3 +1,4 @@
+import { IUserInfo } from '../../../interfaces';
 import { User } from '../../../models';
 
 const checkUserExist = async (email:string) => User.findOne({
@@ -5,7 +6,7 @@ const checkUserExist = async (email:string) => User.findOne({
 });
 const signupQuery = async ({
   firstName, lastName, email, password,
-}) => User.create({
+}:IUserInfo) => User.create({
   first_name: firstName,
   last_name: lastName,
   email,
