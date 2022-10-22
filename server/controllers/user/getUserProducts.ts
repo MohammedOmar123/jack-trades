@@ -7,7 +7,7 @@ const getUserProducts = async (req : Request, res : Response, next:NextFunction)
   try {
     if (!(Number(userId) > 0)) throw new CustomError(401, 'Bad Request');
     const data = await getUserProductsQuery(userId);
-    res.status(200).send({ data });
+    res.status(200).json(data);
   } catch (err) {
     next(err);
   }
