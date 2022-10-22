@@ -14,5 +14,9 @@ const links = [{
   id: 4,
   path: '/products',
   content: 'Browse',
+}, {
+  id: 5,
+  path: '/product/6/details',
+  content: 'Product Details',
 }];
 export default links;
