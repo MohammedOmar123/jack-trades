@@ -178,27 +178,27 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
   categories: [
     {
       name: 'Clothes',
-      image: 'https://rb.gy/wzj1ml',
+      image: 'https://www.popsci.com/uploads/2022/03/02/aviv-rachmadian-7F7kEHj72MQ-unsplash-scaled.jpg?auto=webp',
     },
     {
       name: 'Furniture',
-      image: 'https://rb.gy/x8bl4o',
+      image: 'https://www.worldmarket.com/images/inspiration/shop-by-room/2021/home-office/inspired-workspace/article_mobile_600x492.jpg',
     },
     {
       name: 'Books',
-      image: 'https://rb.gy/fgyzkk',
+      image: 'https://images.indianexpress.com/2022/04/books_1200_pexels.jpg',
     },
     {
       name: 'Accessories',
-      image: 'https://rb.gy/gesdnz',
+      image: 'https://www.stitchfix.com/women/blog/wp-content/uploads/SummerAccessories_SQ.jpg',
     },
     {
       name: 'Electronics',
-      image: 'https://rb.gy/yap3qy',
+      image: 'https://www.easy2digital.com/wp-content/uploads/2021/08/design-278978978989-Max-Quality-1024x576.jpg',
     },
     {
-      name: 'Other',
-      image: 'https://rb.gy/hceqcz',
+      name: 'and more',
+      image: 'https://cdn.shopify.com/s/files/1/0070/7032/files/trending-products_c8d0d15c-9afc-47e3-9ba2-f7bad0505b9b.png?format=jpg&quality=90&v=1614559651',
     },
   ],
 };

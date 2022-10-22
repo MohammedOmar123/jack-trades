@@ -1,7 +1,12 @@
-import { Header } from '../components';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Header, Introduction, CategoriesSlider } from '../components';
 
 const LandingPage = () => (
-  <Header />
+  <>
+    <Header />
+    <Introduction />
+    <CategoriesSlider />
+  </>
 );
 
 export default LandingPage;
