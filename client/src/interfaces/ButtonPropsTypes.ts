@@ -1,10 +1,9 @@
 interface ButtonPropsTypes {
   style : {
     text: string,
-    height : number,
-    width: number,
-    marginRight:number,
-    icon: boolean,
+    icon?:string,
+    classes?:string,
+    handleIsFav?:() => void
   }
 }
 export default ButtonPropsTypes;
