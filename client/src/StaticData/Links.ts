@@ -16,7 +16,7 @@ const links = [{
   content: 'Browse',
 }, {
   id: 5,
-  path: '/product/6/details',
+  path: '/product/8/details',
   content: 'Product Details',
 }];
 export default links;
