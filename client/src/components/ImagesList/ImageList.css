@@ -1,0 +1,7 @@
+.ImagesContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    /* border: 2px solid; */
+    /* margin-bottom: 500px; */
+}
