@@ -3,20 +3,23 @@ import './UserInfo.css';
 import { FC } from 'react';
 import { Box, Typography } from '@mui/material';
 import { Image, Button } from '../index';
+import { UserInfoTypes } from '../../interfaces';
 
-const UserInfo:FC = () => (
+const UserInfo:FC<{ info: UserInfoTypes }> = ({ info }) => (
   <Box className="user-info">
     <Image attributes={{
-      src: 'https://www.nicepng.com/png/detail/780-7805650_generic-user-image-male-man-cartoon-no-eyes.png',
-      alt: 'user',
+      src: info.image,
+      alt: `An image of ${info.first_name} ${info.last_name}`,
       className: 'user-img',
     }}
     />
-    <Typography variant="h4"> Sarsar </Typography>
+    <Typography variant="h4">
+      {info.first_name}
+      {' '}
+      {info.last_name}
+    </Typography>
     <Typography>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Ullam quos iste eum natus tempora fuga nemo,
-      nobis, sunt qui omnis culpa quis esse cupiditate ducimus impedit sapiente vel, alias ad?
+      {info.bio}
     </Typography>
     <Button style={{
       width: 170, height: 30, marginRight: 0, text: 'Add new item', icon: false,

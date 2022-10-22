@@ -15,6 +15,9 @@
     padding: 1rem 3rem;
     width: 80%;
     margin: 5rem auto auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .user-info {
@@ -40,6 +43,7 @@
 
 .user-info h4 {
     font-weight: 600;
+    font-size: 2rem;
 }
 
 .user-info p {

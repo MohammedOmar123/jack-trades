@@ -7,3 +7,4 @@ export { default as Image } from './Image/Image';
 export { default as Footer } from './Footer/Footer';
 export { default as CategoriesSlider } from './CategoriesSlider';
 export { default as UserInfo } from './UserInfo';
+export { default as UserProducts } from './UserProducts';
