@@ -10,14 +10,19 @@ const ProductDetails = () => {
   const [product, setProduct] = useState<IProduct | null>(null);
   const [error, setError] = useState<boolean | string>(false);
   useEffect(() => {
-    axios.get(`/api/v1/products/${id}`)
-      .then((response) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/api/v1/products/${id}`);
         setProduct(response.data);
-      }).catch(() => {
-        setError(`You're all good, it's out bad.
-We're having some errors in getting the information. We're working on it.`);
-      });
+      } catch (err) {
+        setError(`You're all good, it's our bad.
+                  We're having some errors in getting the information.
+                   We're working on it.`);
+      }
+    };
+    fetchData();
   }, []);
+
   if (error) {
     return (
       <h4 style={{ margin: '260px' }}>
@@ -25,6 +30,7 @@ We're having some errors in getting the information. We're working on it.`);
       </h4>
     );
   }
+
   if (product === null) {
     return (
       <h5 style={{ margin: '200px' }}>
@@ -32,6 +38,7 @@ We're having some errors in getting the information. We're working on it.`);
       </h5>
     );
   }
+
   return (
     <div>
       <ImageContextProvider gallery={product.gallery}>
