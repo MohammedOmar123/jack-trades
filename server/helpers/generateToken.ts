@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
-const generateToken = (id, email) => new Promise((resolve, rejected) => {
-  jwt.sign({ id, email }, process.env.SECRET_KEY, (error, token) => {
+const generateToken = (id:string, email:string) => new Promise((resolve, rejected) => {
+  jwt.sign({ id, email }, process.env.SECRET_KEY, (error:Error, token:string) => {
     if (error) {
       rejected(error);
     } else {
