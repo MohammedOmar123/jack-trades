@@ -56,10 +56,10 @@ describe('user route tests', () => {
     await request(app).get('/api/v1/user/5/products')
       .expect(200)
       .expect("Content-Type", /json/)
-      .expect((res) => {
-        expect(res.body.data.length).toBe(1)
-        expect(res.body.data[0].id).toBe(8)
-        expect(res.body.data[0].title).toBe('Louis Vuitton')
+      .expect((res) => {        
+        expect(res.body.length).toBe(1)
+        expect(res.body[0].id).toBe(8)
+        expect(res.body[0].title).toBe('Louis Vuitton')
       })
   })
 
@@ -68,8 +68,8 @@ describe('user route tests', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .expect((res) => {
-        expect(res.body.data.length).toBe(5)
-        expect(res.body.data[0].id).toBe(1)
+        expect(res.body.length).toBe(5)
+        expect(res.body[0].id).toBe(1)
       })
   })
 
