@@ -17,7 +17,8 @@ describe('Validations tests should return errors messages to the user', () => {
                 .expect((res) => {
                     expect(res.body.msg).toEqual('First name is a required field so be sure to fill it on');
                 })
-        })
+        });
+
     test('when user enters empty first Name',
         async () => {
             await request(app)
@@ -30,7 +31,8 @@ describe('Validations tests should return errors messages to the user', () => {
                 .expect((res) => {
                     expect(res.body.msg).toEqual('First name is a required field so be sure to fill it on');
                 })
-        })
+        });
+
     test('returns error message when user enters invalid first name',
         async () => {
             await request(app)
@@ -84,7 +86,6 @@ describe('Validations tests should return errors messages to the user', () => {
                     expect(res.body.msg).toEqual('Last name must contains only letters and at least [2-20]');
                 })
         })
-
 
     test('returns error message when user enters invalid last name'
         , async () => {
@@ -143,6 +144,7 @@ describe('Validations tests should return errors messages to the user', () => {
                     expect(res.body.msg).toEqual("Please check your email again, this isn't valid email !");
                 })
         });
+
     test('returns error message when user enters an invalid email'
         , async () => {
             await request(app)
@@ -173,6 +175,7 @@ describe('Validations tests should return errors messages to the user', () => {
                     expect(res.body.msg).toEqual("Password is a required field so be sure to fill it on");
                 })
         });
+
     test('returns error message when user enters an empty password'
         , async () => {
             await request(app)
@@ -236,6 +239,7 @@ describe('Validations tests should return errors messages to the user', () => {
                     expect(res.body.msg).toEqual("Password must be at least 6 characters from letters,digits and special characters");
                 })
         });
+
         test('returns error message when user enters not matched confirm password'
         , async () => {
             await request(app)
@@ -269,6 +273,7 @@ describe('Validations tests should return errors messages to the user', () => {
                     expect(res.body.msg).toEqual('Passwords are\'nt matched');
                 })
         });
+
         test('returns error message when user enters not matched confirm password'
         , async () => {
             await request(app)
@@ -286,5 +291,40 @@ describe('Validations tests should return errors messages to the user', () => {
         });
 })
 
+describe('test signup when the user enters a valid inputs', () => {
+    test('returns success message when user enters a valid inputs'
+    , async () => {
+        await request(app)
+            .post('/api/v1/account/signup')
+            .send({
+                firstName: "Mohammed",
+                lastName: "Omar",
+                email: "mohammed@gmail.com",
+                password: "password13$",
+                confirmPassword:"password13$"
+            })
+            .expect(200)
+            .expect((res) => {
+                expect(res.body.msg).toEqual('Your Account Created Successfully');
+            })
+    });
+
+    test('returns error message when user an existing email'
+    , async () => {
+        await request(app)
+            .post('/api/v1/account/signup')
+            .send({
+                firstName: "Mohammed",
+                lastName: "Omar",
+                email: "mohammed@gmail.com",
+                password: "password13$",
+                confirmPassword:"password13$"
+            })
+            .expect(400)
+            .expect((res) => {
+                expect(res.body.msg).toEqual('This email is already exist,Please check your email again');
+            })
+    });
+})
 
 afterAll(() => sequelize.close());
