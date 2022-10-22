@@ -8,14 +8,14 @@ const Image: FC <IImageProps> = ({
     src, alt, className,
   },
 }) => {
-  const con = useContext(ImageContext);
+  const context = useContext(ImageContext);
   return (
     <img
       onMouseOver={() => {
-        con.setMainImage(src);
+        context.setMainImage(src);
       }}
       onFocus={() => {
-        con.setMainImage(src);
+        context.setMainImage(src);
       }}
       src={src}
       alt={alt}
