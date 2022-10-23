@@ -47,14 +47,3 @@ const UserProductCard:FC<{ product : UserProduct }> = ({ product }) => {
 };
 
 export default UserProductCard;
-
-// <Button
-// // style={{
-// //   text: 'Edit', height: 40, width: 100, marginRight: 1, icon: false,
-// // }}
-// > </Button>
-// <Button
-// // style={{
-// //   text: 'Delete', height: 40, width: 100, marginRight: 1, icon: false,
-// // }}
-// />
