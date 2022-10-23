@@ -15,7 +15,7 @@ const signinValidationSchema = ({ email, password }) => {
   try {
     return schema.validateAsync({ email, password });
   } catch (error) {
-    throw new cus
+    throw new Error('jsldkfj');
   }
 
   return schema.validateAsync({ email, password });
