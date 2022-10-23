@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { CustomError } from '../helpers';
 
 const signinValidationSchema = ({ email, password }) => {
   const schema = Joi.object({
@@ -15,10 +16,8 @@ const signinValidationSchema = ({ email, password }) => {
   try {
     return schema.validateAsync({ email, password });
   } catch (error) {
-    throw new Error('jsldkfj');
+    throw new CustomError(400, 'validation error in signin');
   }
-
-  return schema.validateAsync({ email, password });
 };
 
 export default signinValidationSchema;

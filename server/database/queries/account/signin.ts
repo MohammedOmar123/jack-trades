@@ -1,9 +1,8 @@
 import { User } from '../../../models';
 
-const signinQuery = ({ email, password }) => User.findOne({
+const signinQuery = ({ email }) => User.findOne({
   where: {
     email,
-    password,
   },
 });
 

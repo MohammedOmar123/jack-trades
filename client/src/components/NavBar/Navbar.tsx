@@ -31,20 +31,8 @@ const Navbar: FC = () => (
             links.map((link) => (
               <li>
                 <Link
-<<<<<<< HEAD
-                  sx={{
-                    color: 'black',
-                    ':hover': {
-                      color: 'rgba(27, 75, 102, 1)',
-                    },
-                  }}
-                  className="a"
-                  href={link.path}
-                  underline="none"
-=======
                   className="link"
                   to={link.path}
->>>>>>> e003d2ab7e939c06a7dfa4766ad31644c93626c1
                 >
                   {link.content}
                 </Link>
