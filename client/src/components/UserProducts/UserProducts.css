@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=Inter:wght@100;200;300;400;500&family=Nanum+Gothic:wght@400;700;800&family=Playfair+Display:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --dark-blue: #1B4B66
+}
+
+.user-products {
+    width: 70%;
+}
+
+.user-products h4 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+}
+
+.user-products .products{
+    overflow-y: auto;
+    padding: 0.7rem;
+    height: 410px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--dark-blue);
+  cursor: pointer; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #627b8b; 
+}
+
+.user-products .product-card {
+    display: flex ;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.product-card .product-img{
+    width: 25%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-card .product-details{
+    width: 70%;
+}
+
+.product-card .product-details h5 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.product-card .product-details .buttons{
+    margin: 1rem auto auto;
+    display: flex;
+    justify-content: flex-end
+}
+
+.product-card .product-details .buttons button{
+    background-color: var(--dark-blue);
+    height: 40px; 
+    width: 100px;
+    margin-right: 1rem;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product-card .product-details .buttons button:hover{
+    background-color: white;
+    border: 1px solid #1b4b66;
+    color: #1b4b66;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.5s, color 0.3s;
+}
