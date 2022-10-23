@@ -26,7 +26,7 @@ describe('Testing user profile informations', () => {
       .expect(404)
       .expect('Content-Type', /json/)
       .expect({
-        "msg": "Opss, User Not Found"
+        "message": "Opss, User Not Found"
       })
   })
 
@@ -36,7 +36,7 @@ describe('Testing user profile informations', () => {
       .expect(401)
       .expect('Content-Type', /json/)
       .expect({
-        "msg": "Opss, Bad Request"
+        "message": "Opss, Bad Request"
       })
   })
 
@@ -46,7 +46,7 @@ describe('Testing user profile informations', () => {
       .expect(401)
       .expect('Content-Type', /json/)
       .expect({
-        "msg": "Opss, Bad Request"
+        "message": "Opss, Bad Request"
       })
   })
 })
@@ -78,7 +78,7 @@ describe('user route tests', () => {
       .expect(401)
       .expect('Content-Type', /json/)
       .expect({
-        "msg": "Bad Request"
+        "message": "Bad Request"
       })
   })
 })
