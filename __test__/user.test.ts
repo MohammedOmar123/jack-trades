@@ -59,7 +59,7 @@ describe('user route tests', () => {
       .expect((res) => {
         expect(res.body.data.length).toBe(1)
         expect(res.body.data[0].id).toBe(8)
-        expect(res.body.data[0].title).toBe('Louis Vuitton')
+        expect(res.body.data[0].title).toBe('Louis Vuitton Jacques Durand Sunglasses Black Sunglasses')
       })
   })
 

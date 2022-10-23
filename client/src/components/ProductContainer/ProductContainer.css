@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    padding: 1rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 95%;
+    margin: auto;
+    padding-left: 150px;
+    margin-top: 7%;
+}
+.category-name {
+width: 100vw;
+}
