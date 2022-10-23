@@ -33,7 +33,7 @@ describe('Testing user profile informations', () => {
   it('When userId is not a number', async () => {
     const response = await request(app)
       .get('/api/v1/user/anyThing')
-      .expect(401)
+      .expect(400)
       .expect('Content-Type', /json/)
       .expect({
         "message": "Opss, Bad Request"
@@ -43,7 +43,7 @@ describe('Testing user profile informations', () => {
   it('When userId is small than zero', async () => {
     const response = await request(app)
       .get('/api/v1/user/-1')
-      .expect(401)
+      .expect(400)
       .expect('Content-Type', /json/)
       .expect({
         "message": "Opss, Bad Request"
@@ -75,7 +75,7 @@ describe('user route tests', () => {
 
   it('testing getting the user products', async () => {
     await request(app).get('/api/v1/user/hello/products')
-      .expect(401)
+      .expect(400)
       .expect('Content-Type', /json/)
       .expect({
         "message": "Bad Request"
