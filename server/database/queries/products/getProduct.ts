@@ -1,8 +1,17 @@
-import { Product } from '../../../models';
+import { Product, Category } from '../../../models';
 
-const getProductQuery = async (id : string) => Product.findOne({
-  where: { id },
-  attributes: ['id', 'title', 'description', 'gallery', 'type', ['createdAt', 'created_at']],
-});
+const getProductQuery = async (id : string) => Product.findByPk(
+  id,
+  {
+    nest: false,
+    raw: true,
+    attributes: ['id', 'title', 'description', 'gallery', 'type', 'is_available', 'createdAt', 'user_id',
+    ],
+    include: [{
+      model: Category,
+      attributes: ['name'],
+    }],
+  },
+);
 
 export default getProductQuery;

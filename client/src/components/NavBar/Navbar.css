@@ -17,9 +17,9 @@
   margin-right: 70px;
 } 
 
- .a,
- .a:after,
-.a:before {
+ .link,
+ .link:after,
+.link:before {
   transition: all .5s;
   text-decoration: none;
 }
@@ -33,23 +33,25 @@
   margin-right: 30px;
   margin-bottom: 10px;
 }
-.a,
-.a:after,
-.a:before {
+.link {
+  color: black;
+}
+.link,
+.link:after,
+.link:before {
   transition: all .5s;
 }
- .a:hover {
+ .link:hover {
   color: var(--primary);
 }
 
-
 /* stroke */
- .a,
- .a {
+ .link,
+ .link {
   position: relative;
 }
- .a:after,
- .a:after {
+ .link:after,
+ .link:after {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -61,6 +63,6 @@
   background: #aaa;
   height: 1px;
 }
- .a:hover:after {
+ .link:hover:after {
   width: 100%;
 }

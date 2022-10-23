@@ -19,7 +19,8 @@ const UserInfo:FC = () => (
       nobis, sunt qui omnis culpa quis esse cupiditate ducimus impedit sapiente vel, alias ad?
     </Typography>
     <Button style={{
-      width: 170, height: 30, marginRight: 0, text: 'Add new item', icon: false,
+      text: 'Add new item',
+      classes: 'userInfoBtn',
     }}
     />
   </Box>
