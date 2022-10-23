@@ -15,7 +15,7 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
     if (checkResultQuery) throw new CustomError(400, 'This email is already exist,Please check your email again');
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const result = await signupQuery({ ...req.body, hashedPassword });
+    const result = await signupQuery({ firstName, lastName, email, hashedPassword });
 
     const token = await generateToken(result.getDataValue('id'), email);
 
