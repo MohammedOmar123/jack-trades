@@ -11,7 +11,7 @@ import './Button.css';
 
 const ButtonComponent: FC<ButtonPropsTypes> = ({
   style: {
-    text, icon, classes, handleIsFav,
+    text, icon, classes, handleClick,
   },
 }) => {
   // All Icon
@@ -28,9 +28,7 @@ const ButtonComponent: FC<ButtonPropsTypes> = ({
       type="button"
       className={classes}
       onClick={() => {
-        if ((icon === 'FavoriteBorder' || icon === 'Favorite') && handleIsFav) {
-          handleIsFav();
-        }
+        if (handleClick) handleClick();
       }}
     >
       {icon ? iconsList[icon as keyof typeof iconsList] : ''}

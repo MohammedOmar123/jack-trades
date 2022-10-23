@@ -3,7 +3,7 @@ interface ButtonPropsTypes {
     text: string,
     icon?:string,
     classes?:string,
-    handleIsFav?:() => void
+    handleClick?:() => void
   }
 }
 export default ButtonPropsTypes;

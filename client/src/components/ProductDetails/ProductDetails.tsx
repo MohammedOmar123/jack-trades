@@ -13,6 +13,12 @@ const ProductDetailsComponent = ({
   const handleIsFav = () => {
     setFavIcon(FavIcon === 'FavoriteBorder' ? 'Favorite' : 'FavoriteBorder');
   };
+  const handleRequest = () => {
+    console.log('Hello handle Request !');
+  };
+  const handleContactSeller = () => {
+    console.log('Hello contact seller');
+  };
   return (
     <Box
       className="product-details-Container"
@@ -40,19 +46,21 @@ const ProductDetailsComponent = ({
             text: 'Request Item',
             icon: 'LocalMall',
             classes: 'btn',
+            handleClick: handleRequest,
           }}
           />
           <ButtonComponent style={{
             text: 'Add to WishList',
             icon: FavIcon,
             classes: 'btn white-btn',
-            handleIsFav,
+            handleClick: handleIsFav,
           }}
           />
           <ButtonComponent style={{
             text: 'Contact Seller',
             icon: 'LocalMall',
             classes: 'btn white-btn',
+            handleClick: handleContactSeller,
           }}
           />
         </Box>
