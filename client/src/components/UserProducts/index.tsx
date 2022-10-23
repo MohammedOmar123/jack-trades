@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState, useEffect } from 'react';
+import { FC } from 'react';
 import { Box, Typography } from '@mui/material';
 import UserProductCard from './UserProductCard';
 import { UserProduct } from '../../interfaces';

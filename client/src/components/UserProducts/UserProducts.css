@@ -72,3 +72,21 @@
     display: flex;
     justify-content: flex-end
 }
+
+.product-card .product-details .buttons button{
+    background-color: var(--dark-blue);
+    height: 40px; 
+    width: 100px;
+    margin-right: 1rem;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product-card .product-details .buttons button:hover{
+    background-color: white;
+    border: 1px solid #1b4b66;
+    color: #1b4b66;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.5s, color 0.3s;
+}

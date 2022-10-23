@@ -10,3 +10,4 @@ export { default as ProductContainer }
 export { default as CategoriesSlider } from './CategoriesSlider';
 export { default as UserInfo } from './UserInfo';
 export { default as UserProducts } from './UserProducts';
+export { default as Loading } from './Loading/Loading';
