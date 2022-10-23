@@ -7,15 +7,18 @@ import generateToken from '../../helpers/generateToken';
 
 const signup = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { email, password } = req.body;
-    await validateSighup(req.body);
+    const {
+      firstName, lastName, email, password,
+    } = await validateSighup(req.body);
 
     const checkResultQuery = await checkUserExist(email);
 
     if (checkResultQuery) throw new CustomError(400, 'This email is already exist,Please check your email again');
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const result = await signupQuery({ firstName, lastName, email, hashedPassword });
+    const result = await signupQuery({
+      firstName, lastName, email, hashedPassword,
+    });
 
     const token = await generateToken(result.getDataValue('id'), email);
 
