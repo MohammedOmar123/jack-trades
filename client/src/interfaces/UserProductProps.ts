@@ -1,14 +1,14 @@
 interface UserProduct {
-  category_id: number,
+  category_id: string,
   createdAt: string,
   description: string,
   gallery: string[],
-  id: number,
+  id: string,
   is_available: boolean,
   title:string,
   type: string,
   updatedAt: string,
-  user_id: number
+  user_id: string
 }
 
 export default UserProduct;

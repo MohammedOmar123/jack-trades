@@ -1,0 +1,43 @@
+.btn {
+  text-transform: "none";
+  background-color: #1b4b66;
+  color: white;
+  width: 200px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  transition: border-color 0.5s, background-color 0.5s, color 0.5s;
+}
+.btn:hover {
+  background-color: white;
+  border: 1px solid #1b4b66;
+  color: #1b4b66;
+  cursor: pointer;
+}
+.white-btn {
+  color: #1b4b66;
+  background-color: white;
+  border: 1px solid #1b4b66;
+}
+.white-btn:hover {
+  color: white;
+  background-color: #1b4b66;
+}
+.navbar-btn {
+  width: 100px;
+  border-radius: 5px;
+}
+.headerBtn {
+  width: 170px;
+  border-radius: 5px;
+}
+
+.userInfoBtn {
+  width: 170px;
+  height: 30px;
+
+}

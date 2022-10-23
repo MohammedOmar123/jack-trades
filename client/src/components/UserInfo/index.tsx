@@ -22,7 +22,8 @@ const UserInfo:FC<{ info: UserInfoTypes }> = ({ info }) => (
       {info.bio}
     </Typography>
     <Button style={{
-      width: 170, height: 30, marginRight: 0, text: 'Add new item', icon: false,
+      text: 'Add new item',
+      classes: 'userInfoBtn',
     }}
     />
   </Box>

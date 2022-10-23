@@ -1,0 +1,6 @@
+.productImageContainer {
+    margin-top: 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

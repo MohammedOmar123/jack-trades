@@ -5,6 +5,8 @@ export { default as Navbar } from './NavBar/Navbar';
 export { default as Introduction } from './Introduction';
 export { default as Image } from './Image/Image';
 export { default as Footer } from './Footer/Footer';
+export { default as ProductContainer }
+  from './ProductContainer/ProductContainer';
 export { default as CategoriesSlider } from './CategoriesSlider';
 export { default as UserInfo } from './UserInfo';
 export { default as UserProducts } from './UserProducts';
