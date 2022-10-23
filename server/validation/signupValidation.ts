@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 const validateSighup = ({
-  firstName, lastName, email, hashedPassword, confirmPassword,
+  firstName, lastName, email, password, confirmPassword,
 }) => {
   const schema = Joi.object({
     firstName: Joi.string().pattern(/^[a-zA-z]{2,20}$/).required().messages({
@@ -19,19 +19,19 @@ const validateSighup = ({
       'string.empty': 'Email is required',
       'string.email': 'Invalid Email',
     }),
-    hashedPassword: Joi.string().pattern(/^(?!.*[\s])(?=.*[0-9])(?=.*\W)[a-zA-Z0-9\W]{6,15}$/).required().messages({
+    password: Joi.string().pattern(/^(?!.*[\s])(?=.*[0-9])(?=.*\W)[a-zA-Z0-9\W]{6,15}$/).required().messages({
       'any.required': 'Password is required',
       'string.empty': 'Password is required',
       'string.pattern.base': 'Password must be at least 6 characters, and contain letters, digits and special characters only.',
     }),
-    confirmPassword: Joi.any().equal(Joi.ref('hashedPassword')).required().label('Confirm password')
+    confirmPassword: Joi.any().equal(Joi.ref('password')).required().label('Confirm password')
       .messages({
-        'any.required': 'confirm Password is required',
+        'any.required': 'Confirm Password is required',
         'any.only': 'Passwords are\'nt matched',
       }),
   });
   return schema.validateAsync({
-    firstName, lastName, email, hashedPassword, confirmPassword,
+    firstName, lastName, email, password, confirmPassword,
   });
 };
 

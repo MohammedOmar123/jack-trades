@@ -184,7 +184,7 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    hashedPassword: "",
+                    password: "",
                 })
                 .expect(400)
                 .expect((res) => {
@@ -200,7 +200,7 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    hashedPassword: "password",
+                    password: "password",
                 })
                 .expect(400)
                 .expect((res) => {
@@ -216,7 +216,7 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    hashedPassword: "password123",
+                    password: "password123",
                 })
                 .expect(400)
                 .expect((res) => {
@@ -232,7 +232,7 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    hashedPassword: "password$",
+                    password: "password$",
                 })
                 .expect(400)
                 .expect((res) => {
@@ -248,7 +248,7 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    hashedPassword: "password13$",
+                    password: "password13$",
                     confirmPassword:""
                 })
                 .expect(400)
@@ -265,7 +265,7 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    hashedPassword: "password13$",
+                    password: "password13$",
                     confirmPassword:"password123"
                 })
                 .expect(400)
@@ -282,11 +282,11 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    hashedPassword: "password13$",
+                    password: "password13$",
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.message).toEqual('confirm Password is required');
+                    expect(res.body.message).toEqual('Confirm Password is required');
                 })
         });
 })
@@ -300,7 +300,7 @@ describe('test signup when the user enters a valid inputs', () => {
                 firstName: "Mohammed",
                 lastName: "Omar",
                 email: "mohammed@gmail.com",
-                hashedPassword: "password13$",
+                password: "password13$",
                 confirmPassword:"password13$"
             })
             .expect((res) => {
@@ -316,7 +316,7 @@ describe('test signup when the user enters a valid inputs', () => {
                 firstName: "Mohammed",
                 lastName: "Omar",
                 email: "mohammed@gmail.com",
-                hashedPassword: "password13$",
+                password: "password13$",
                 confirmPassword:"password13$"
             })
             .expect(400)
