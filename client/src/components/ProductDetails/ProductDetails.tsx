@@ -19,6 +19,10 @@ const ProductDetailsComponent = ({
   const handleContactSeller = () => {
     console.log('Hello contact seller');
   };
+  const convertDate = (timeStamp:string) => {
+    const date = new Date(timeStamp);
+    return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+  };
   return (
     <Box
       className="product-details-Container"
@@ -38,7 +42,7 @@ const ProductDetailsComponent = ({
             {description}
           </Typography>
           <Typography className="created-at">
-            {createdAt}
+            {convertDate(createdAt)}
           </Typography>
         </Box>
         <Box className="buttonsComp-container">

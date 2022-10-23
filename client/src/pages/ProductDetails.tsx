@@ -4,17 +4,22 @@ import { useEffect, useState } from 'react';
 import { ProductContainer } from '../components';
 import { IProduct } from '../interfaces';
 import { ImageContextProvider } from '../components/Context/ImageContext';
+import Loading from '../components/Loading/Loading';
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<IProduct | null>(null);
   const [error, setError] = useState<boolean | string>(false);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`/api/v1/products/${id}`);
         setProduct(response.data);
+        setLoading(false);
       } catch (err) {
+        setLoading(false);
         setError(`You're all good, it's our bad.
                   We're having some errors in getting the information.
                    We're working on it.`);
@@ -31,19 +36,20 @@ const ProductDetails = () => {
     );
   }
 
-  if (product === null) {
+  if (!product) {
     return (
-      <h5 style={{ margin: '200px' }}>
-        Loading ..
-      </h5>
+      <Loading />
     );
   }
 
   return (
     <div>
-      <ImageContextProvider gallery={product.gallery}>
-        <ProductContainer attributes={product} />
-      </ImageContextProvider>
+      { loading ? <Loading />
+        : (
+          <ImageContextProvider gallery={product.gallery}>
+            <ProductContainer attributes={product} />
+          </ImageContextProvider>
+        )}
     </div>
   );
 };
