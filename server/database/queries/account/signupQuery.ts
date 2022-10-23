@@ -5,12 +5,12 @@ const checkUserExist = async (email:string) => User.findOne({
   where: { email },
 });
 const signupQuery = async ({
-  firstName, lastName, email, password,
+  firstName, lastName, email, hashedPassword,
 }:IUserInfo) => User.create({
   first_name: firstName,
   last_name: lastName,
   email,
-  password,
+  hashedPassword,
 });
 
 export { signupQuery, checkUserExist };

@@ -2,6 +2,6 @@ interface IUserInfo {
   firstName: string,
   lastName:string,
   email:string,
-  password:string,
+  hashedPassword:string,
 }
 export default IUserInfo;

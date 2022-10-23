@@ -25,7 +25,7 @@ describe('Product route must be returned the details of product according to the
             .expect(404)
             .expect("Content-Type", /json/)
             .expect({
-                "msg": "This item doesn't exist anymore"
+                "message": "This item doesn't exist anymore"
             });
     });
 
@@ -34,7 +34,7 @@ describe('Product route must be returned the details of product according to the
             .expect(401)
             .expect("Content-Type", /json/)
             .expect({
-                "msg": "Bad Request"
+                "message": "Bad Request"
             });
     });
 });

@@ -15,7 +15,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual('First name is a required field so be sure to fill it on');
+                    expect(res.body.message).toEqual('First name is required');
                 })
         });
 
@@ -29,7 +29,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual('First name is a required field so be sure to fill it on');
+                    expect(res.body.message).toEqual('First name is required');
                 })
         });
 
@@ -42,7 +42,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual('First name must contains only letters and at least [2-20]');
+                    expect(res.body.message).toEqual('First name must be 2-20 characters long, and contain only letters.');
                 })
         });
 
@@ -55,7 +55,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual('Last name is a required field so be sure to fill it on');
+                    expect(res.body.message).toEqual('Last name is required');
                 })
         });
 
@@ -69,7 +69,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual('Last name is a required field so be sure to fill it on');
+                    expect(res.body.message).toEqual('Last name is required');
                 })
         });
 
@@ -83,7 +83,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual('Last name must contains only letters and at least [2-20]');
+                    expect(res.body.message).toEqual('Last name must be 2-20 characters long, and contain only letters.');
                 })
         })
 
@@ -97,7 +97,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual('Last name must contains only letters and at least [2-20]');
+                    expect(res.body.message).toEqual('Last name must be 2-20 characters long, and contain only letters.');
                 })
         });
 
@@ -111,7 +111,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual('Email is a required field so be sure to fill it on');
+                    expect(res.body.message).toEqual('Email is required');
                 })
         });
 
@@ -126,7 +126,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual('Email is a required field so be sure to fill it on');
+                    expect(res.body.message).toEqual('Email is required');
                 })
         });
 
@@ -141,7 +141,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual("Please check your email again, this isn't valid email !");
+                    expect(res.body.message).toEqual("Invalid Email");
                 })
         });
 
@@ -156,7 +156,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual("Please check your email again, this isn't valid email !");
+                    expect(res.body.message).toEqual("Invalid Email");
                 })
         });
 
@@ -172,7 +172,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual("Password is a required field so be sure to fill it on");
+                    expect(res.body.message).toEqual("Password is required");
                 })
         });
 
@@ -184,11 +184,11 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    password: "",
+                    hashedPassword: "",
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual("Password is a required field so be sure to fill it on");
+                    expect(res.body.message).toEqual("Password is required");
                 })
         });
 
@@ -200,11 +200,11 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    password: "password",
+                    hashedPassword: "password",
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual("Password must be at least 6 characters from letters,digits and special characters");
+                    expect(res.body.message).toEqual("Password must be at least 6 characters, and contain letters, digits and special characters only.");
                 })
         });
 
@@ -216,11 +216,11 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    password: "password123",
+                    hashedPassword: "password123",
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual("Password must be at least 6 characters from letters,digits and special characters");
+                    expect(res.body.message).toEqual("Password must be at least 6 characters, and contain letters, digits and special characters only.");
                 })
         });
         
@@ -232,11 +232,11 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    password: "password$",
+                    hashedPassword: "password$",
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual("Password must be at least 6 characters from letters,digits and special characters");
+                    expect(res.body.message).toEqual("Password must be at least 6 characters, and contain letters, digits and special characters only.");
                 })
         });
 
@@ -248,12 +248,12 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    password: "password13$",
+                    hashedPassword: "password13$",
                     confirmPassword:""
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual('Passwords are\'nt matched');
+                    expect(res.body.message).toEqual('Passwords are\'nt matched');
                 })
         });
 
@@ -265,12 +265,12 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    password: "password13$",
+                    hashedPassword: "password13$",
                     confirmPassword:"password123"
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual('Passwords are\'nt matched');
+                    expect(res.body.message).toEqual('Passwords are\'nt matched');
                 })
         });
 
@@ -282,11 +282,11 @@ describe('Validations tests should return errors messages to the user', () => {
                     firstName: "Mohammed",
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
-                    password: "password13$",
+                    hashedPassword: "password13$",
                 })
                 .expect(400)
                 .expect((res) => {
-                    expect(res.body.msg).toEqual('confirm Password is a required field so be sure to fill it on');
+                    expect(res.body.message).toEqual('confirm Password is required');
                 })
         });
 })
@@ -300,12 +300,11 @@ describe('test signup when the user enters a valid inputs', () => {
                 firstName: "Mohammed",
                 lastName: "Omar",
                 email: "mohammed@gmail.com",
-                password: "password13$",
+                hashedPassword: "password13$",
                 confirmPassword:"password13$"
             })
-            .expect(200)
             .expect((res) => {
-                expect(res.body.msg).toEqual('Your Account Created Successfully');
+                expect(res.body.message).toEqual('Your Account Created Successfully');
             })
     });
 
@@ -317,12 +316,12 @@ describe('test signup when the user enters a valid inputs', () => {
                 firstName: "Mohammed",
                 lastName: "Omar",
                 email: "mohammed@gmail.com",
-                password: "password13$",
+                hashedPassword: "password13$",
                 confirmPassword:"password13$"
             })
             .expect(400)
             .expect((res) => {
-                expect(res.body.msg).toEqual('This email is already exist,Please check your email again');
+                expect(res.body.message).toEqual('This email is already exist,Please check your email again');
             })
     });
 })
