@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import ButtonComponent from '../Button/Button';
