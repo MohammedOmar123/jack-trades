@@ -29,7 +29,6 @@ const Product = sequelize.define<Model<IProduct>>('Product', {
     type: DataTypes.ENUM('donation', 'exchange'),
     allowNull: false,
   },
-
 });
 
 export default Product;

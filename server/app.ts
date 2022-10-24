@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import router from './routes';
 
 const { NODE_ENV, PORT } = process.env;
-const app:Application = express();
+const app: Application = express();
 
 app.use(compression());
 app.use(cookieParser());

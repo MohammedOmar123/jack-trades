@@ -21,7 +21,7 @@ interface IProduct {
   description: string;
   gallery: string[];
   is_available: boolean;
-  type: 'donation' | 'exchange';
+  type: string;
 }
 
 interface IRequest {

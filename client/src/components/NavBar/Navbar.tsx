@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import './Navbar.css';
 import {
-  Toolbar, AppBar, Typography, Link,
+  Toolbar, AppBar, Typography,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import ButtonComponent from '../Button/Button';
 import { links } from '../../StaticData';
 
@@ -30,15 +31,8 @@ const Navbar: FC = () => (
             links.map((link) => (
               <li>
                 <Link
-                  sx={{
-                    color: 'black',
-                    ':hover': {
-                      color: 'rgba(27, 75, 102, 1)',
-                    },
-                  }}
-                  className="a"
-                  href={link.path}
-                  underline="none"
+                  className="link"
+                  to={link.path}
                 >
                   {link.content}
                 </Link>
@@ -48,11 +42,9 @@ const Navbar: FC = () => (
         </ul>
       </div>
       <ButtonComponent style={{
-        height: 35,
-        width: 100,
-        marginRight: 1,
         text: 'Join Us',
-        icon: false,
+        icon: '',
+        classes: 'btn navbar-btn',
       }}
       />
     </Toolbar>
