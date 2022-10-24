@@ -7,6 +7,8 @@ import IProviderProps from './ProviderProps';
 import IProduct from './IProduct';
 import IProductProps from './IProductProps';
 import CategoriesTypes from './CategoriesPropsTypes';
+import UserProduct from './UserProductProps';
+import UserInfoTypes from './UserInfoProps';
 import IntroTypes from './introDataTypes';
 
 export {
@@ -20,4 +22,6 @@ export {
   IImageContext,
   IProviderProps,
   CategoriesTypes,
+  UserProduct,
+  UserInfoTypes,
 };
