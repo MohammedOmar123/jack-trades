@@ -21,8 +21,7 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
     });
 
     const token = await generateToken(result.getDataValue('id'), email);
-
-    res.cookie('token', token, { httpOnly: true, secure: true }).status(201).json({ message: 'Your Account Created Successfully' });
+    res.cookie('token', token, { httpOnly: true }).status(201).json({ message: 'Your Account Created Successfully' });
   } catch (err) {
     next(err);
   }
