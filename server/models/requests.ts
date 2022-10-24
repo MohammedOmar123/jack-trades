@@ -31,6 +31,6 @@ const Request = sequelize.define<IRequest>('Request', {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     allowNull: false,
   },
-});
+}, { paranoid: true });
 
 export default Request;

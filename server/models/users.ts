@@ -33,6 +33,6 @@ const User = sequelize.define<IUser>('User', {
     type: DataTypes.TEXT,
     allowNull: true,
   },
-});
+}, { paranoid: true });
 
 export default User;

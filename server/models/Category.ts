@@ -16,5 +16,5 @@ const Category = sequelize.define<ICategory>('Category', {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-});
+}, { paranoid: true });
 export default Category;

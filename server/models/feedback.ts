@@ -16,6 +16,6 @@ const Feedback = sequelize.define<IFeedback>('Feedback', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-});
+}, { paranoid: true });
 
 export default Feedback;

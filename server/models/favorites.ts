@@ -8,6 +8,6 @@ const Favorite = sequelize.define<IFavorite>('Favorite', {
     primaryKey: true,
     autoIncrement: true,
   },
-});
+}, { paranoid: true });
 
 export default Favorite;
