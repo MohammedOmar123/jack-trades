@@ -1,7 +1,8 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../database/connection';
+import { IUser } from '../interfaces/models';
 
-const User = sequelize.define('User', {
+const User = sequelize.define<Model<IUser>>('User', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
