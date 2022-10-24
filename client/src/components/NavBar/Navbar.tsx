@@ -29,7 +29,7 @@ const Navbar: FC = () => (
         <ul>
           {
             links.map((link) => (
-              <li>
+              <li key={link.id}>
                 <Link
                   className="link"
                   to={link.path}
