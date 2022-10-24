@@ -1,22 +1,22 @@
 /* eslint-disable import/prefer-default-export */
 interface ICategory {
-  id: number;
+  id: string;
   name: string;
   image: string;
 }
 
 interface IFavorite {
-  id: number;
+  id: string;
 }
 
 interface IFeedback {
-  id: number;
+  id: string;
   nickname: string;
   message: string;
 }
 
 interface IProduct {
-  id: number;
+  id: string;
   title: string;
   description: string;
   gallery: string[];
@@ -25,7 +25,7 @@ interface IProduct {
 }
 
 interface IRequest {
-  id: number;
+  id: string;
   status: 'pending' | 'success' | 'fail';
   is_exchangable: boolean;
   sender_approval: boolean;
@@ -34,7 +34,7 @@ interface IRequest {
 }
 
 interface IUser {
-  id: number;
+  id: string;
   first_name: string;
   last_name: string;
   email: string;

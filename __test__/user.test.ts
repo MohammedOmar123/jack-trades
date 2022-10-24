@@ -26,7 +26,7 @@ describe('Testing user profile informations', () => {
       .expect(404)
       .expect('Content-Type', /json/)
       .expect({
-        "message": "Opss, User Not Found"
+        message: "Opss, User Not Found"
       })
   })
 
@@ -56,10 +56,10 @@ describe('user route tests', () => {
     await request(app).get('/api/v1/user/5/products')
       .expect(200)
       .expect("Content-Type", /json/)
-      .expect((res) => {        
+      .expect((res) => {
         expect(res.body.length).toBe(1)
-        expect(res.body[0].id).toBe(8)
-        expect(res.body[0].title).toBe('Louis Vuitton Jacques Durand Sunglasses Black Sunglasses')
+        expect(res.body[0].id).toBe(5)
+        expect(res.body[0].title).toBe('Earbuds')
       })
   })
 
@@ -68,8 +68,8 @@ describe('user route tests', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .expect((res) => {
-        expect(res.body.length).toBe(5)
-        expect(res.body[0].id).toBe(1)
+        expect(res.body.length).toBe(1)
+        expect(res.body[0].id).toBe(2)
       })
   })
 
