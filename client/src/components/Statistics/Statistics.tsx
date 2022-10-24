@@ -27,7 +27,7 @@ const Statistics = () => {
 
   return (
     <Box
-      bgcolor="#3388b8"
+      bgcolor="#1B4B66"
       color="#E2E8EB"
       width="100%"
     >
