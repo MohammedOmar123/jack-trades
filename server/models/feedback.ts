@@ -1,8 +1,8 @@
-import { DataTypes, Model } from 'sequelize';
+import { DataTypes } from 'sequelize';
 import sequelize from '../database/connection';
 import { IFeedback } from '../interfaces/models';
 
-const Feedback = sequelize.define<Model<IFeedback>>('Feedback', {
+const Feedback = sequelize.define<IFeedback>('Feedback', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,

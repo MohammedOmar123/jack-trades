@@ -1,6 +1,6 @@
 import { Product, Category } from '../../../models';
 
-const getProductQuery = async (id : string) => Product.findByPk(
+const getProductQuery = async (id: string | number) => Product.findByPk(
   id,
   {
     nest: false,

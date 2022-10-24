@@ -1,8 +1,8 @@
-import { DataTypes, Model } from 'sequelize';
+import { DataTypes } from 'sequelize';
 import sequelize from '../database/connection';
 import { IRequest } from '../interfaces/models';
 
-const Request = sequelize.define<Model<IRequest>>('Request', {
+const Request = sequelize.define<IRequest>('Request', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
