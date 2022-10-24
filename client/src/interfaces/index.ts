@@ -10,6 +10,8 @@ import CategoriesTypes from './CategoriesPropsTypes';
 import UserProduct from './UserProductProps';
 import UserInfoTypes from './UserInfoProps';
 import IntroTypes from './introDataTypes';
+import IAccountProps from './IAccountProps';
+import IFormHeaderProps from './IFormHeaderProps';
 
 export {
   IProduct,
@@ -24,4 +26,6 @@ export {
   CategoriesTypes,
   UserProduct,
   UserInfoTypes,
+  IAccountProps,
+  IFormHeaderProps,
 };
