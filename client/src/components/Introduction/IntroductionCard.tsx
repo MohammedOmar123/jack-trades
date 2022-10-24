@@ -8,7 +8,7 @@ const IntroductionCard:FC< { data: IntroTypes } > = ({ data }) => (
   <div className="introCard">
     <div>
       <i className={data.icon} style={{ color: data.color }} />
-      <Typography variant="h5">{data.title}</Typography>
+      <Typography variant="h5" sx={{ fontWeight: 'bold' }}>{data.title}</Typography>
     </div>
     <Typography>
       {data.description}

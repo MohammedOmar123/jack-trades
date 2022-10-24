@@ -19,20 +19,17 @@ const Header = () => (
       >
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
         amet consectetur adipisicing elit.
-
       </Typography>
 
       <Button
         style={{
           text: 'See more',
-          height: 35,
-          width: 150,
-          marginRight: 0,
-          icon: true,
+          icon: 'ArrowForward',
+          classes: 'btn headerBtn',
         }}
       />
-    </Box>
 
+    </Box>
   </Box>
 );
 

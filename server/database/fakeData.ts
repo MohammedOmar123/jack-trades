@@ -49,7 +49,7 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
     },
     {
       title: 'Earbuds',
-      description: 'Used, perfectly working.Earbuds and charging case.Enjoy uninterrupted, crystal-clear music on the go with the Jabra Elite Active 65t True Wireless EarPods with Mic. With up to 5 hours of battery life from a single charge, and up to 15 hours in total with the pocket-friendly charging case, your needs are met from the start of the day to the end. This is an IP56-rated product that you can wear while playing a sport or exercising. Jabra Sound+ App adds additional features, and it lets you customise the way you experience music on this headset. So, you can choose a voice assistant, customise the music profile.',
+      description: 'Used, perfectly working.Earbuds and charging case.Enjoy uninterrupted, crystal-clear music on the go with the Jabra Elite Active 65t True Wireless EarPods with Mic. With up to 5 hours of battery life from a single charge, and up to 15 hours in total with the pocket-friendly charging case ',
       gallery: [
         'https://apollo-singapore.akamaized.net/v1/files/t5h1o07v3ziq2-IN/image;s=780x0;q=60',
         'https://apollo-singapore.akamaized.net/v1/files/uc39iu95kda51-IN/image;s=780x0;q=60',
@@ -85,8 +85,8 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
       category_id: 4,
     },
     {
-      title: 'Louis Vuitton',
-      description: 'Accessory in Gold',
+      title: 'Louis Vuitton Jacques Durand Sunglasses Black Sunglasses',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex',
       gallery: [
         'https://cdn.rebelle.com//cd/cdac49d320221014-9-j8pnpt.JPG?width=514&height=510',
         'https://cdn.rebelle.com//86/8651792_daa1c738578a502c5b235a1171193928.JPG?width=514&height=510',
@@ -178,27 +178,27 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
   categories: [
     {
       name: 'Clothes',
-      image: 'https://rb.gy/wzj1ml',
+      image: 'https://www.popsci.com/uploads/2022/03/02/aviv-rachmadian-7F7kEHj72MQ-unsplash-scaled.jpg?auto=webp',
     },
     {
       name: 'Furniture',
-      image: 'https://rb.gy/x8bl4o',
+      image: 'https://www.worldmarket.com/images/inspiration/shop-by-room/2021/home-office/inspired-workspace/article_mobile_600x492.jpg',
     },
     {
       name: 'Books',
-      image: 'https://rb.gy/fgyzkk',
+      image: 'https://images.indianexpress.com/2022/04/books_1200_pexels.jpg',
     },
     {
       name: 'Accessories',
-      image: 'https://rb.gy/gesdnz',
+      image: 'https://www.stitchfix.com/women/blog/wp-content/uploads/SummerAccessories_SQ.jpg',
     },
     {
       name: 'Electronics',
-      image: 'https://rb.gy/yap3qy',
+      image: 'https://www.easy2digital.com/wp-content/uploads/2021/08/design-278978978989-Max-Quality-1024x576.jpg',
     },
     {
-      name: 'Other',
-      image: 'https://rb.gy/hceqcz',
+      name: 'and more',
+      image: 'https://cdn.shopify.com/s/files/1/0070/7032/files/trending-products_c8d0d15c-9afc-47e3-9ba2-f7bad0505b9b.png?format=jpg&quality=90&v=1614559651',
     },
   ],
 };
