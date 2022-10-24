@@ -1,22 +1,24 @@
+import { CreationOptional } from 'sequelize';
+
 /* eslint-disable import/prefer-default-export */
 interface ICategory {
-  id: string;
+  id: CreationOptional<number>;
   name: string;
   image: string;
 }
 
 interface IFavorite {
-  id: string;
+  id: CreationOptional<number>;
 }
 
 interface IFeedback {
-  id: string;
+  id: CreationOptional<number>;
   nickname: string;
   message: string;
 }
 
 interface IProduct {
-  id: string;
+  id: CreationOptional<number>;
   title: string;
   description: string;
   gallery: string[];
@@ -25,7 +27,7 @@ interface IProduct {
 }
 
 interface IRequest {
-  id: string;
+  id: CreationOptional<number>;
   status: 'pending' | 'success' | 'fail';
   is_exchangable: boolean;
   sender_approval: boolean;
@@ -34,7 +36,7 @@ interface IRequest {
 }
 
 interface IUser {
-  id: string;
+  id: CreationOptional<number>;
   first_name: string;
   last_name: string;
   email: string;
