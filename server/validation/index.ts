@@ -1,6 +1,7 @@
 import validateSighup from './signupValidation';
+import validateUpdateData from './updateProduct';
 
 export {
-  // eslint-disable-next-line import/prefer-default-export
   validateSighup,
+  validateUpdateData,
 };
