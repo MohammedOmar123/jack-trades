@@ -1,6 +1,8 @@
 import IUserInfo from './IUserInfo';
+import { IUserPayload, IRequestPayload } from './IRequestPayload';
 
 export {
-  // eslint-disable-next-line import/prefer-default-export
   IUserInfo,
+  IUserPayload,
+  IRequestPayload,
 };

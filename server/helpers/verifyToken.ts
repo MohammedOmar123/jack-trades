@@ -1,12 +1,12 @@
-import jwt from 'jsonwebtoken';
+import { verify } from 'jsonwebtoken';
+import { IUserPayload } from '../interfaces';
 
 const secretKey = process.env.SECRET_KEY;
 
-const verifyToken = (token) => new Promise((resolve, reject) => {
-  jwt.verify(token, secretKey, (err, result) => {
-    if (err) return reject(err);
-    return resolve(result);
-  });
-});
-
-export default verifyToken;
+export default (token: string): Promise <IUserPayload> => (
+  new Promise((resolve, reject) => {
+    verify(token, secretKey, (err: Error, data: IUserPayload) => {
+      if (err) return reject(err);
+      return resolve(data);
+    });
+  }));
