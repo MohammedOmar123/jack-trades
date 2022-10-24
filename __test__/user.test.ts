@@ -33,7 +33,7 @@ describe('Testing user profile informations', () => {
   it('When userId is not a number', async () => {
     const response = await request(app)
       .get('/api/v1/user/anyThing')
-      .expect(401)
+      .expect(400)
       .expect('Content-Type', /json/)
       .expect({
         "message": "Opss, Bad Request"
@@ -43,7 +43,7 @@ describe('Testing user profile informations', () => {
   it('When userId is small than zero', async () => {
     const response = await request(app)
       .get('/api/v1/user/-1')
-      .expect(401)
+      .expect(400)
       .expect('Content-Type', /json/)
       .expect({
         "message": "Opss, Bad Request"
@@ -56,10 +56,10 @@ describe('user route tests', () => {
     await request(app).get('/api/v1/user/5/products')
       .expect(200)
       .expect("Content-Type", /json/)
-      .expect((res) => {
-        expect(res.body.data.length).toBe(1)
-        expect(res.body.data[0].id).toBe(8)
-        expect(res.body.data[0].title).toBe('Louis Vuitton Jacques Durand Sunglasses Black Sunglasses')
+      .expect((res) => {        
+        expect(res.body.length).toBe(1)
+        expect(res.body[0].id).toBe(8)
+        expect(res.body[0].title).toBe('Louis Vuitton Jacques Durand Sunglasses Black Sunglasses')
       })
   })
 
@@ -68,14 +68,14 @@ describe('user route tests', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .expect((res) => {
-        expect(res.body.data.length).toBe(5)
-        expect(res.body.data[0].id).toBe(1)
+        expect(res.body.length).toBe(5)
+        expect(res.body[0].id).toBe(1)
       })
   })
 
   it('testing getting the user products', async () => {
     await request(app).get('/api/v1/user/hello/products')
-      .expect(401)
+      .expect(400)
       .expect('Content-Type', /json/)
       .expect({
         "message": "Bad Request"
