@@ -26,6 +26,7 @@ interface IProduct extends Model<InferAttributes<IProduct>, InferCreationAttribu
   gallery: string[];
   is_available: boolean;
   type: string;
+  user_id?: number;
 }
 
 interface IRequest extends Model<InferAttributes<IRequest>, InferCreationAttributes<IRequest>> {

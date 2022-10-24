@@ -58,8 +58,8 @@ describe('user route tests', () => {
       .expect("Content-Type", /json/)
       .expect((res) => {
         expect(res.body.length).toBe(1)
-        expect(res.body[0].id).toBe(5)
-        expect(res.body[0].title).toBe('Earbuds')
+        expect(res.body[0].id).toBe(8)
+        expect(res.body[0].title).toBe('Louis Vuitton Jacques Durand Sunglasses Black Sunglasses')
       })
   })
 
@@ -68,8 +68,8 @@ describe('user route tests', () => {
       .expect(200)
       .expect('Content-Type', /json/)
       .expect((res) => {
-        expect(res.body.length).toBe(1)
-        expect(res.body[0].id).toBe(2)
+        expect(res.body.length).toBe(5)
+        expect(res.body[0].id).toBe(1)
       })
   })
 
