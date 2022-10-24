@@ -15,6 +15,8 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
+                    console.log(res.body);
+
                     expect(res.body.message).toEqual('First name is required');
                 })
         });
@@ -192,7 +194,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
         });
 
-        test('returns error message when user enters an invalid password'
+    test('returns error message when user enters an invalid password'
         , async () => {
             await request(app)
                 .post('/api/v1/account/signup')
@@ -208,7 +210,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
         });
 
-        test('returns error message when user enters an invalid password'
+    test('returns error message when user enters an invalid password'
         , async () => {
             await request(app)
                 .post('/api/v1/account/signup')
@@ -223,8 +225,8 @@ describe('Validations tests should return errors messages to the user', () => {
                     expect(res.body.message).toEqual("Password must be at least 6 characters, and contain letters, digits and special characters only.");
                 })
         });
-        
-        test('returns error message when user enters an invalid password'
+
+    test('returns error message when user enters an invalid password'
         , async () => {
             await request(app)
                 .post('/api/v1/account/signup')
@@ -240,7 +242,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
         });
 
-        test('returns error message when user enters not matched confirm password'
+    test('returns error message when user enters not matched confirm password'
         , async () => {
             await request(app)
                 .post('/api/v1/account/signup')
@@ -249,7 +251,7 @@ describe('Validations tests should return errors messages to the user', () => {
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
                     password: "password13$",
-                    confirmPassword:""
+                    confirmPassword: ""
                 })
                 .expect(400)
                 .expect((res) => {
@@ -257,7 +259,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
         });
 
-        test('returns error message when user enters not matched confirm password'
+    test('returns error message when user enters not matched confirm password'
         , async () => {
             await request(app)
                 .post('/api/v1/account/signup')
@@ -266,7 +268,7 @@ describe('Validations tests should return errors messages to the user', () => {
                     lastName: "Omar",
                     email: "mohammed@gmail.com",
                     password: "password13$",
-                    confirmPassword:"password123"
+                    confirmPassword: "password123"
                 })
                 .expect(400)
                 .expect((res) => {
@@ -274,7 +276,7 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
         });
 
-        test('returns error message when user enters not matched confirm password'
+    test('returns error message when user enters not matched confirm password'
         , async () => {
             await request(app)
                 .post('/api/v1/account/signup')
@@ -293,37 +295,37 @@ describe('Validations tests should return errors messages to the user', () => {
 
 describe('test signup when the user enters a valid inputs', () => {
     test('returns success message when user enters a valid inputs'
-    , async () => {
-        await request(app)
-            .post('/api/v1/account/signup')
-            .send({
-                firstName: "Mohammed",
-                lastName: "Omar",
-                email: "mohammed@gmail.com",
-                password: "password13$",
-                confirmPassword:"password13$"
-            })
-            .expect((res) => {
-                expect(res.body.message).toEqual('Your Account Created Successfully');
-            })
-    });
+        , async () => {
+            await request(app)
+                .post('/api/v1/account/signup')
+                .send({
+                    firstName: "Mohammed",
+                    lastName: "Omar",
+                    email: "mohammed@gmail.com",
+                    password: "password13$",
+                    confirmPassword: "password13$"
+                })
+                .expect((res) => {
+                    expect(res.body.message).toEqual('Your Account Created Successfully');
+                })
+        });
 
     test('returns error message when user an existing email'
-    , async () => {
-        await request(app)
-            .post('/api/v1/account/signup')
-            .send({
-                firstName: "Mohammed",
-                lastName: "Omar",
-                email: "mohammed@gmail.com",
-                password: "password13$",
-                confirmPassword:"password13$"
-            })
-            .expect(400)
-            .expect((res) => {
-                expect(res.body.message).toEqual('This email is already exist,Please check your email again');
-            })
-    });
+        , async () => {
+            await request(app)
+                .post('/api/v1/account/signup')
+                .send({
+                    firstName: "Mohammed",
+                    lastName: "Omar",
+                    email: "mohammed@gmail.com",
+                    password: "password13$",
+                    confirmPassword: "password13$"
+                })
+                .expect(400)
+                .expect((res) => {
+                    expect(res.body.message).toEqual('This email is already exist,Please check your email again');
+                })
+        });
 })
 
 afterAll(() => sequelize.close());
