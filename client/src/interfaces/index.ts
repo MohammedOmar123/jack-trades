@@ -11,6 +11,7 @@ import UserProduct from './UserProductProps';
 import UserInfoTypes from './UserInfoProps';
 import IntroTypes from './introDataTypes';
 import IStatistic from './Statistics';
+import ILoadingProps from './LoadingProps';
 
 export {
   IProduct,
@@ -26,4 +27,5 @@ export {
   IStatistic,
   UserProduct,
   UserInfoTypes,
+  ILoadingProps,
 };
