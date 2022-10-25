@@ -1,12 +1,11 @@
 /* eslint-disable max-len */
 import { Box, Stack } from '@mui/material';
+import ProductsCategory from '../components/ProductsCategory/ProductsCategoryList';
 import ProductsSearch from '../components/ProductsSearch/ProductsSearch';
 
 const ProductsPage = () => (
   <Stack
-    // bgcolor="#CCC"
-    mt="7rem"
-    height="20rem"
+    mt="10rem"
     direction="row"
     justifyContent="center"
     spacing={5}
@@ -17,6 +16,7 @@ const ProductsPage = () => (
     </Box>
     <Box sx={{ flex: '2' }}>
       <ProductsSearch />
+      <ProductsCategory />
     </Box>
   </Stack>
 );

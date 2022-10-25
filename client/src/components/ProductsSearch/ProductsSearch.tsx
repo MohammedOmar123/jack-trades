@@ -9,10 +9,13 @@ import BootstrapInput from './BootstrapInput';
 
 const ProductsSearch = () => (
   <Box sx={{
-    display: 'flex', alignItems: 'center', padding: '0.5rem', fontSize: '1.2rem',
+    display: 'flex',
+    alignItems: 'center',
+    // padding: '0.5rem',
+    fontSize: '1.2rem',
   }}
   >
-    <FormControl variant="standard" sx={{ width: '70%' }}>
+    <FormControl variant="standard" sx={{ width: '75%' }}>
       <Input
         sx={{
           fontWeight: 'bolder',
@@ -21,8 +24,8 @@ const ProductsSearch = () => (
           border: '1.5px solid #CCC',
           borderRadius: '4px 0 0 4px',
           '&::before': { borderBottom: 'none' },
-          '&::focus': { borderBottom: '0' },
-          '&:hover': { '&::after': { borderBottom: 'none' } },
+          // '&::focus': { borderBottom: '0' },
+          // '&:hover': { '&::after': { borderBottom: 'none' } },
         }}
         id="input-with-icon-adornment"
         placeholder="Search for products or brands....."
