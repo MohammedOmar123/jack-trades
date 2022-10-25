@@ -12,6 +12,7 @@ import UserInfoTypes from './UserInfoProps';
 import IntroTypes from './introDataTypes';
 import IAccountProps from './IAccountProps';
 import IFormHeaderProps from './IFormHeaderProps';
+import IUserLogin from './IUserLogin';
 
 export {
   IProduct,
@@ -28,4 +29,5 @@ export {
   UserInfoTypes,
   IAccountProps,
   IFormHeaderProps,
+  IUserLogin,
 };
