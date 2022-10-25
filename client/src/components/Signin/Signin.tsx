@@ -7,8 +7,8 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { IUserLogin } from '../../interfaces';
 import FormHeader from '../FormHeader/FormHeader';
-import './Signin.css';
 import Loading from '../Loading/Loading';
+import './Signin.css';
 
 const Signin:FC = () => {
 // handle login
@@ -96,7 +96,7 @@ const Signin:FC = () => {
               helperText={formik.touched.password
                     && formik.errors.password}
             />
-            { loading ? <Loading />
+            { loading ? <Loading className="loading" />
               : <button type="submit" className="submit-login"> Login </button>}
 
           </Box>

@@ -13,6 +13,7 @@ import IntroTypes from './introDataTypes';
 import IAccountProps from './IAccountProps';
 import IFormHeaderProps from './IFormHeaderProps';
 import IUserLogin from './IUserLogin';
+import ILoadingProps from './LoadingProps';
 
 export {
   IProduct,
@@ -30,4 +31,5 @@ export {
   IAccountProps,
   IFormHeaderProps,
   IUserLogin,
+  ILoadingProps,
 };

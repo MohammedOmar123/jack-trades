@@ -318,4 +318,138 @@ describe("test signup when the user enters a valid inputs", () => {
   });
 });
 
+describe('SIGNIN// TESTS', () => {
+  test("returns error message when user enters an empty email", async () => {
+    await request(app)
+      .post("/api/v1/account/signin")
+      .send({
+      })
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.message).toEqual("Email is required");
+      });
+  });
+
+  test("returns error message when user enters an empty email", async () => {
+    await request(app)
+      .post("/api/v1/account/signin")
+      .send({
+        email: "",
+      })
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.message).toEqual("Email is required");
+      });
+  });
+
+  test("returns error message when user enters an invalid email", async () => {
+    await request(app)
+      .post("/api/v1/account/signin")
+      .send({
+        email: "hk1@hotmailcom",
+      })
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.message).toEqual("Invalid Email");
+      });
+  });
+
+  test("returns error message when user enters an invalid email", async () => {
+    await request(app)
+      .post("/api/v1/account/signin")
+      .send({
+        email: "hk1hotmailcom",
+      })
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.message).toEqual("Invalid Email");
+      });
+  });
+
+  test("returns error message when user enters an empty password", async () => {
+    await request(app)
+      .post("/api/v1/account/signin")
+      .send({
+        email: "hk1@hotmail.com",
+        password: "",
+      })
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.message).toEqual("Password is required");
+      });
+  });
+
+  test("returns error message when user enters an invalid password", async () => {
+    await request(app)
+      .post("/api/v1/account/signin")
+      .send({
+        email: "hk1@hotmail.com",
+        password: "wrongpassword",
+      })
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.message).toEqual(
+          "Password must be at least 6 characters, and contain letters, digits and special characters only."
+        );
+      });
+  });
+
+  test("returns error message when user enters an invalid password", async () => {
+    await request(app)
+      .post("/api/v1/account/signin")
+      .send({
+        email: "hk1@hotmail.com",
+        password: "password123",
+      })
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.message).toEqual(
+          "Password must be at least 6 characters, and contain letters, digits and special characters only."
+        );
+      });
+  });
+
+  test("returns error message when user enters an invalid password", async () => {
+    await request(app)
+      .post("/api/v1/account/signin")
+      .send({
+        email: "hk1@hotmail.com",
+        password: "password$",
+      })
+      .expect(400)
+      .expect((res) => {
+        expect(res.body.message).toEqual(
+          "Password must be at least 6 characters, and contain letters, digits and special characters only."
+        );
+      });
+  });
+})
+
+describe("SIGNIN// test signin when the user enters a valid inputs ", () => {
+  test("returns success message when user enters a valid inputs", async () => {
+    await request(app)
+      .post("/api/v1/account/signin")
+      .send({
+        email: "hk1@hotmail.com",
+        password: "aa123@",
+      })
+      .expect((res) => {
+        expect(res.body.message).toEqual("logged successfully");
+      });
+  });
+});
+
+describe('LOGOUT// TESTS', () => {
+  test('Is the user logged out or not', async () => {
+    await request(app)
+      .post("/api/v1/account/logout")
+      .set("Cookie", `token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJoazJAaG90bWFpbC5jb20iLCJpYXQiOjE2NjY2OTUyNzd9.f90CqOLJLlaYZSWbBHUmJA0fJEETkQR51zfLXsQw8Ys`)
+      .expect(200)
+      .expect(res => {
+        expect(res.body.message).toEqual("Logged Out Successfully");
+      })
+  })
+})
+
+
 afterAll(() => sequelize.close());
