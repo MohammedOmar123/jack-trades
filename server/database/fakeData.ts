@@ -182,6 +182,14 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
       image: 'https://randomuser.me/api/portraits/lego/4.jpg',
       bio: 'hello from the other side',
     },
+    {
+      first_name: 'Hakim',
+      last_name: 'Yusuf',
+      email: 'hk1@hotmail.com',
+      hashedPassword: '$2b$10$fLAiXEvNH3ePZHcYeggnWe.pqactUp5xBD7NSQog27NbvsB6MF1Y6',
+      image: 'https://randomuser.me/api/portraits/lego/4.jpg',
+      bio: 'hello from the other side',
+    },
   ],
   categories: [
     {
