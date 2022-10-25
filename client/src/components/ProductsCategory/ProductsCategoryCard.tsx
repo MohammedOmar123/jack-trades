@@ -6,7 +6,7 @@ import React from 'react';
 
 const ProductsCategoryCard = () => (
   <ImageListItem sx={{
-    width: '13rem', height: '30rem', borderRadius: '0.5rem', overflow: 'hidden', marginBottom: '1rem',
+    width: '16rem', borderRadius: '0.5rem', overflow: 'hidden', marginBottom: '1rem',
   }}
   >
     <img
