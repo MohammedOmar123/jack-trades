@@ -178,7 +178,7 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
       first_name: 'Muhammad',
       last_name: 'Abdulhadi',
       email: 'mu7ammadabed@gmail.com',
-      hashedPassword: '$2b$10$3R57AUhHQ0igkKU4e5n9..U8qwDJtvGX.9jo6.ayTecQtHHRjBlTu', // sanaa123456 rounds:12
+      hashedPassword: '$2b$10$3R57AUhHQ0igkKU4e5n9..U8qwDJtvGX.9jo6.ayTecQtHHRjBlTu',
       image: 'https://randomuser.me/api/portraits/lego/4.jpg',
       bio: 'hello from the other side',
     },
