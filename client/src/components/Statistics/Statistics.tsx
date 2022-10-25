@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import {
@@ -12,16 +11,13 @@ import { IStatistic } from '../../interfaces';
 const Statistics = () => {
   const [statistics, setStatistics] = useState<IStatistic | null>(null);
 
+  const getStatistics = async () => {
+    const res = await axios.get('/api/v1/website/statistics');
+
+    setStatistics(res.data);
+  };
+
   useEffect((): void => {
-    const getStatistics = async () => {
-      const res = await axios({
-        method: 'GET',
-        url: '/api/v1/website/statistics',
-      });
-
-      setStatistics(res.data);
-    };
-
     getStatistics();
   }, []);
 
@@ -31,9 +27,20 @@ const Statistics = () => {
       color="#E2E8EB"
       width="100%"
     >
-      <Stack direction="row" justifyContent="center" textAlign="center" mt="5rem">
+      <Stack
+        direction="row"
+        justifyContent="center"
+        textAlign="center"
+        mt="5rem"
+      >
         <Box padding="4rem 0" flex={1}>
-          <Typography variant="h3" fontWeight="bolder">{statistics?.exchangeTimes}</Typography>
+          <Typography
+            variant="h3"
+            fontWeight="bolder"
+          >
+            {statistics?.exchangeTimes}
+
+          </Typography>
           <Typography
             variant="subtitle2"
             fontSize="1.3rem"
@@ -44,8 +51,19 @@ const Statistics = () => {
 
           </Typography>
         </Box>
-        <Box className="addingSelectors" position="relative" padding="4rem 0" flex={1}>
-          <Typography variant="h3" fontWeight="bolder">{statistics?.contributeTimes}</Typography>
+        <Box
+          className="addingSelectors"
+          position="relative"
+          padding="4rem 0"
+          flex={1}
+        >
+          <Typography
+            variant="h3"
+            fontWeight="bolder"
+          >
+            {statistics?.contributeTimes}
+
+          </Typography>
           <Typography
             variant="subtitle2"
             fontSize="1.3rem"
@@ -57,7 +75,13 @@ const Statistics = () => {
           </Typography>
         </Box>
         <Box padding="4rem 0" flex={1}>
-          <Typography variant="h3" fontWeight="bolder">{statistics?.donateTimes}</Typography>
+          <Typography
+            variant="h3"
+            fontWeight="bolder"
+          >
+            {statistics?.donateTimes}
+
+          </Typography>
           <Typography
             variant="subtitle2"
             fontSize="1.3rem"
