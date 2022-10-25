@@ -27,6 +27,7 @@ interface IProduct extends Model<InferAttributes<IProduct>, InferCreationAttribu
   is_available: boolean;
   type: string;
   user_id?: number;
+  deletedAt?: null | string
 }
 
 interface IRequest extends Model<InferAttributes<IRequest>, InferCreationAttributes<IRequest>> {
