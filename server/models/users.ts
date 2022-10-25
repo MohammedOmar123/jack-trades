@@ -1,7 +1,8 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../database/connection';
+import { IUser } from '../interfaces/models';
 
-const User = sequelize.define('User', {
+const User = sequelize.define<IUser>('User', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -32,6 +33,6 @@ const User = sequelize.define('User', {
     type: DataTypes.TEXT,
     allowNull: true,
   },
-});
+}, { paranoid: true });
 
 export default User;
