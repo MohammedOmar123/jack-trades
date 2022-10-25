@@ -73,6 +73,36 @@ describe("Product route must be returned the details of product according to the
       message: "Product deleted successfully"
       })
   })
+
+  test('testing deleting a product for an invalid id', async ()=>{
+      await request(app)
+      .delete('/api/v1/products/-1')
+      .set('Cookie', token)
+      .expect(400)
+      .expect({
+      message: "Bad Request"
+     })
+  })
+
+  test('testing deleting a product for an invalid id', async ()=>{
+      await request(app)
+      .delete('/api/v1/products/aa')
+      .set('Cookie', token)
+      .expect(400)
+      .expect({
+      message: "Bad Request"
+     })
+  })
+
+  test('testing deleting an already deleted product', async ()=>{
+      await request(app)
+      .delete('/api/v1/products/1')
+      .set('Cookie', token)
+      .expect(400)
+      .expect({
+      message: "Bad Request"
+     })
+  })
 });
 
 afterAll(() => sequelize.close());
