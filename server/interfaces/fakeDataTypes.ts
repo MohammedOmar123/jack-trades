@@ -12,7 +12,7 @@ export type User = {
   email: string,
   first_name: string,
   last_name: string,
-  password: string,
+  hashedPassword: string,
   image: string,
   bio: string,
 };

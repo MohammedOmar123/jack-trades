@@ -43,7 +43,7 @@ interface IUser extends Model<InferAttributes<IUser>, InferCreationAttributes<IU
   first_name: string;
   last_name: string;
   email: string;
-  password: string;
+  hashedPassword: string;
   image: string;
   bio: string;
 }
