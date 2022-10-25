@@ -1,7 +1,8 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../database/connection';
+import { IRequest } from '../interfaces/models';
 
-const Request = sequelize.define('Request', {
+const Request = sequelize.define<IRequest>('Request', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -30,6 +31,6 @@ const Request = sequelize.define('Request', {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     allowNull: false,
   },
-});
+}, { paranoid: true });
 
 export default Request;

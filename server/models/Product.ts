@@ -1,7 +1,8 @@
 import DataTypes from 'sequelize';
 import sequelize from '../database/connection';
+import { IProduct } from '../interfaces/models';
 
-const Product = sequelize.define('Product', {
+const Product = sequelize.define<IProduct>('Product', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -28,6 +29,6 @@ const Product = sequelize.define('Product', {
     type: DataTypes.ENUM('donation', 'exchange'),
     allowNull: false,
   },
-});
+}, { paranoid: true });
 
 export default Product;

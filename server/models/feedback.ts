@@ -1,7 +1,8 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../database/connection';
+import { IFeedback } from '../interfaces/models';
 
-const Feedback = sequelize.define('Feedback', {
+const Feedback = sequelize.define<IFeedback>('Feedback', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -15,6 +16,6 @@ const Feedback = sequelize.define('Feedback', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-});
+}, { paranoid: true });
 
 export default Feedback;

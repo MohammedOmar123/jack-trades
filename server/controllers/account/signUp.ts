@@ -20,7 +20,9 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
       firstName, lastName, email, hashedPassword,
     });
 
-    const token = await generateToken(result.getDataValue('id'), email);
+    const userId = result.toJSON().id.toString();
+
+    const token = await generateToken(userId, email);
 
     res.cookie('token', token, { httpOnly: true, secure: true }).status(201).json({ message: 'Your Account Created Successfully' });
   } catch (err) {
