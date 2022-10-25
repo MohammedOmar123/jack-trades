@@ -15,8 +15,6 @@ describe('Validations tests should return errors messages to the user', () => {
                 })
                 .expect(400)
                 .expect((res) => {
-                    console.log(res.body);
-
                     expect(res.body.message).toEqual('First name is required');
                 })
         });
