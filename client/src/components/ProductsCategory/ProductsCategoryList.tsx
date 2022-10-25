@@ -14,8 +14,7 @@ const ProductsCategory = () => (
   <Box
     sx={{
       boxShadow: '0px 0px 10px rgba(27, 75, 102, 0.25)',
-      marginTop: '3rem',
-      marginBottom: '3rem',
+      marginTop: '2rem',
       padding: '1rem 2rem',
     }}
   >

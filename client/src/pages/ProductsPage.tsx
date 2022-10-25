@@ -6,7 +6,7 @@ import ProductsSearch from '../components/ProductsSearch/ProductsSearch';
 
 const ProductsPage = () => (
   <Stack
-    mt="10rem"
+    mt="8rem"
     direction="row"
     justifyContent="center"
     spacing={7}
