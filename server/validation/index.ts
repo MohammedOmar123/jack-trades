@@ -1,6 +1,7 @@
+import signinValidationSchema from './signinValidation';
 import validateSighup from './signupValidation';
 
 export {
-  // eslint-disable-next-line import/prefer-default-export
   validateSighup,
+  signinValidationSchema,
 };
