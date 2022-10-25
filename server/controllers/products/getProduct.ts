@@ -9,7 +9,7 @@ const getProduct = async (req: Request, res: Response, next: NextFunction) => {
     if (!(Number(productId) > 0)) {
       throw new CustomError(401, 'Bad Request');
     }
-    const data = await getProductQuery(productId);
+    const data = await getProductQuery(+productId);
     if (data !== null) {
       res.json(data);
     } else {
