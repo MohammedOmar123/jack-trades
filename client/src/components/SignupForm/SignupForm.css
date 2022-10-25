@@ -16,7 +16,7 @@
 .content-2 {
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 30px;
   align-items: center;
   height: 90%;
   margin-top: 10px;
@@ -29,34 +29,28 @@
   font-size: 25px;
   color: rgba(51, 51, 51, 1);
 }
-/* All inputs */
-input {
-  border: 'none';
-  border-bottom: 1px solid;
-  outline: none;
-}
-
 /* names input container  */
 .inputs-names-container {
   width: 80%;
-  margin-left: 16%;
   display: flex;
   flex-direction: row;
-  gap: 65px;
-}
-
-.inputs-names-container input {
-  width: 100%;
+  justify-content: space-between;
 }
 
 /* All other inputs  */
-.inputs-mai-pass {
+.css-1x51dt5-MuiInputBase-input-MuiInput-input{
+  padding: 0px;
+}
+.inputs {
   width: 80%;
   display: flex;
   flex-direction: column;
   margin-left: 16%;
+  padding: 0px !important;
 }
-
+.lastName {
+  margin-left: 20px;
+}
 ::placeholder {
   color: rgba(204, 204, 204, 1);
 }
@@ -67,7 +61,6 @@ input {
   align-items: center;
   gap: 10px;
   width: 80%;
-  margin-left: 16%;
   margin-bottom: 2px;
 }
 .buttons-container button{
@@ -76,29 +69,27 @@ input {
 }
 
 .or {
-  color: rgba(102, 102, 102, 1);
+  color: rgb(3, 3, 3);
 }
-
 .buttons-container .google {
   display: flex;
   gap: 10px;
   background-color: #ffffff;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   justify-content: center;
-  height: 30px;
+  height: 35px;
+  padding-top: 5px;
 }
 .buttons p {
   font-size: 12px;
 }
 
-.buttons .google p {
-  margin-top: 10px;
+.p-google {
   color: rgb(102, 102, 102);
   font-family: "Poppins";
 }
-
-.buttons .google img {
-  margin-top: 3px;
+.img-google {
+  width: 30px;
 }
 
 .google:hover {
@@ -111,10 +102,4 @@ background-color:#1b4b66;
 
 .terms {
   color: rgb(102, 102, 102);
-}
-
-.errors {
-  font-size: 10px;
-  margin-top: 5px;
-  color: red;
 }
