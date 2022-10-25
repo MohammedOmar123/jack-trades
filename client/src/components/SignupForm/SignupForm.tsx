@@ -8,7 +8,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import Swal from 'sweetalert2';
 
+import { useState } from 'react';
 import Button from '../Button/Button';
+import Loading from '../Loading/Loading';
 
 import IUser from '../../interfaces/Iuser';
 import google from '../../assets/google.png';
@@ -17,7 +19,7 @@ import './SignupForm.css';
 
 const SignupForm = () => {
   // validation
-
+  const [loading, setLoading] = useState<boolean>(false);
   const validationSchema = yup.object({
     firstName: yup.string()
       .matches(/^\s*[a-zA-z]{2,20}\s*$/, 'Enter valid first name')
@@ -46,9 +48,12 @@ const SignupForm = () => {
 
   const addNewUser = async (user: IUser) => {
     try {
+      setLoading(true);
       await axios.post('/api/v1/account/signup', user);
+      setLoading(false);
       location('/');
     } catch (error: any) {
+      setLoading(false);
       Swal.fire({
         titleText: error.response.data.message,
       });
@@ -198,12 +203,14 @@ const SignupForm = () => {
             />
 
             <Box className="buttons-container">
-              <button
-                type="submit"
-                className="btn create-account-btn"
-              >
-                Create my account
-              </button>
+              {loading ? <Loading className="sign-up-loading" /> : (
+                <button
+                  type="submit"
+                  className="btn create-account-btn"
+                >
+                  Create my account
+                </button>
+              )}
               <Typography className="or">or</Typography>
               <button
                 type="submit"

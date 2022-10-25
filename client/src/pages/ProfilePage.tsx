@@ -31,7 +31,7 @@ const ProfilePage:FC = () => {
     fetchData();
   }, []);
 
-  if (isLoading || (!info || !products)) return <Loading />;
+  if (isLoading || (!info || !products)) return <Loading className="loading" />;
   return (
     <Box className="user-profile">
       <UserInfo info={info} />
