@@ -13,7 +13,6 @@ const Statistics = () => {
 
   const getStatistics = async () => {
     const res = await axios.get('/api/v1/website/statistics');
-
     setStatistics(res.data);
   };
 
