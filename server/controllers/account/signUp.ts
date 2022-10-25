@@ -20,7 +20,7 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
       firstName, lastName, email, hashedPassword,
     });
 
-    const userId = result.toJSON().id.toString();
+    const userId = result.id;
 
     const token = await generateToken(userId, email);
 

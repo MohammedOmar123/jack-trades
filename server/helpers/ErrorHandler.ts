@@ -6,6 +6,6 @@ const ErrorHandler = (error:CustomError, req: Request, res: Response, next: Next
   const { status, message } = error;
 
   if (error.name === 'ValidationError') return res.status(400).json({ message });
-  res.status(status || 500).json({ message: message || 'Internal Server Error' });
+  res.status(status || 500).json({ message: status === 500 || typeof status === 'undefined' ? 'Internal Server Error, Please Try Again Later' : message });
 };
 export default ErrorHandler;
