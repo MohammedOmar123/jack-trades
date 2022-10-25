@@ -1,18 +1,20 @@
-import './AccountIntro.css';
 import { Box, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import vector from '../../assets/homeIcon.png';
 import Image from '../Image/Image';
 import { IAccountProps } from '../../interfaces';
+import './AccountIntro.css';
 
 const AccountIntro = ({ title, text }: IAccountProps) => (
   <Box className="welcome-part">
-    <Box className="header">
+    <Link to="/" className="link-home">
       <Image attributes={{
         src: vector, alt: 'icon', className: 'signupIcon',
       }}
       />
       <Typography>Home</Typography>
-    </Box>
+    </Link>
+
     <Box className="content">
       <Typography
         variant="h1"
