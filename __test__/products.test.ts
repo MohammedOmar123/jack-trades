@@ -44,9 +44,12 @@ describe("Product route must be returned the details of product according to the
         message: "Bad Request",
       });
   });
+});
 
-  test('testing deleting a product when there\'s no token', async ()=>{
-      await request(app)
+// DELETE
+describe("deleting a product DELETE api/v1/products/:productId", () => {
+  test('testing deleting a product when there\'s no token', async () => {
+    await request(app)
       .delete('/api/v1/products/1')
       .expect(401)
       .expect({
@@ -54,8 +57,8 @@ describe("Product route must be returned the details of product according to the
       })
   })
 
-  test('testing deleting a product when the token is played with', async ()=>{
-      await request(app)
+  test('testing deleting a product when the token is played with', async () => {
+    await request(app)
       .delete('/api/v1/products/1')
       .set('Cookie', `${token}a`)
       .expect(401)
@@ -64,45 +67,121 @@ describe("Product route must be returned the details of product according to the
       })
   })
 
-  test('testing deleting a product when there\'s a token', async ()=>{
-      await request(app)
+  test('testing deleting a product when there\'s a token', async () => {
+    await request(app)
       .delete('/api/v1/products/1')
       .set('Cookie', token)
       .expect(200)
       .expect({
-      message: "Product deleted successfully"
+        message: "Product deleted successfully"
       })
   })
 
-  test('testing deleting a product for an invalid id', async ()=>{
-      await request(app)
+  test('testing deleting a product for an invalid id', async () => {
+    await request(app)
       .delete('/api/v1/products/-1')
       .set('Cookie', token)
       .expect(400)
       .expect({
-      message: "Bad Request"
-     })
+        message: "Bad Request"
+      })
   })
 
-  test('testing deleting a product for an invalid id', async ()=>{
-      await request(app)
+  test('testing deleting a product for an invalid id', async () => {
+    await request(app)
       .delete('/api/v1/products/aa')
       .set('Cookie', token)
       .expect(400)
       .expect({
-      message: "Bad Request"
-     })
+        message: "Bad Request"
+      })
   })
 
-  test('testing deleting an already deleted product', async ()=>{
-      await request(app)
+  test('testing deleting an already deleted product', async () => {
+    await request(app)
       .delete('/api/v1/products/1')
       .set('Cookie', token)
       .expect(400)
       .expect({
-      message: "Bad Request"
-     })
+        message: "Bad Request"
+      })
   })
-});
+})
+
+
+describe("deleting a product PUT api/v1/products/:productId", () => {
+
+  test('testing updating a product for an invalid id', async () => {
+    await request(app)
+      .put('/api/v1/products/-1')
+      .set('Cookie', token)
+      .send({
+        title: "lorem",
+        description: "lorem ipsum batikh"
+      })
+      .expect(400)
+      .expect({
+        message: "\"id\" must be greater than or equal to 1"
+      })
+  })
+
+  test('testing updating a product for an invalid id', async () => {
+    await request(app)
+      .put('/api/v1/products/kfh')
+      .set('Cookie', token)
+      .send({
+        title: "lorem",
+        description: "lorem ipsum batikh"
+      })
+      .expect(400)
+      .expect({
+        message: "\"id\" must be a number"
+      })
+  })
+
+  test('testing updating a product for an id that doesn\'t exist', async () => {
+    await request(app)
+      .put('/api/v1/products/200')
+      .set('Cookie', token)
+      .send({
+        title: "lorem",
+        description: "lorem ipsum batikh"
+      })
+      .expect(400)
+      .expect({
+        message: "Bad Request, id doesn't exist"
+      })
+  })
+
+  test('testing updating a product for an id that doesn\'t exist', async () => {
+    await request(app)
+      .put('/api/v1/products/1')
+      .set('Cookie', token)
+      .send({
+        title: "lorem",
+        description: "lorem ipsum batikh"
+      })
+      .expect(400)
+      .expect({
+        message: "Bad Request, id doesn't exist"
+      })
+  })
+
+
+  test('testing updating a product for a valid id', async () => {
+    await request(app)
+      .put('/api/v1/products/5')
+      .set('Cookie', token)
+      .send({
+        title: "lorem",
+        description: "lorem ipsum batikh"
+      })
+      .expect(201)
+      .expect({
+        message: "You updated your product successfully"
+      })
+  })
+})
+
 
 afterAll(() => sequelize.close());
