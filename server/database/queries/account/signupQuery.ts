@@ -10,7 +10,7 @@ const signupQuery = async ({
   first_name: firstName,
   last_name: lastName,
   email,
-  password: hashedPassword,
+  hashedPassword,
 });
 
 export { signupQuery, checkUserExist };
