@@ -41,12 +41,19 @@ const Navbar: FC = () => (
           }
         </ul>
       </div>
-      <ButtonComponent style={{
-        text: 'Join Us',
-        icon: '',
-        classes: 'btn navbar-btn',
-      }}
-      />
+      <Link
+        to="signup"
+        style={{
+          textDecoration: 'none',
+        }}
+      >
+        <ButtonComponent style={{
+          text: 'Join Us',
+          icon: '',
+          classes: 'btn navbar-btn',
+        }}
+        />
+      </Link>
     </Toolbar>
   </AppBar>
 );

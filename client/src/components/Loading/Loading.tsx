@@ -1,14 +1,8 @@
 import CircularProgress from '@mui/material/CircularProgress';
+import { ILoadingProps } from '../../interfaces';
 
-const Loading = () => (
-  <div style={{
-    height: '100vh',
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }}
-  >
+const Loading = ({ className } : ILoadingProps) => (
+  <div className={className}>
     <CircularProgress />
   </div>
 );

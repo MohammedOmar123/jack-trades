@@ -38,13 +38,13 @@ const ProductDetails = () => {
 
   if (!product) {
     return (
-      <Loading />
+      <Loading className="loading" />
     );
   }
 
   return (
     <div>
-      { loading ? <Loading />
+      { loading ? <Loading className="loading" />
         : (
           <ImageContextProvider gallery={product.gallery}>
             <ProductContainer attributes={product} />

@@ -10,6 +10,8 @@ import CategoriesTypes from './CategoriesPropsTypes';
 import UserProduct from './UserProductProps';
 import UserInfoTypes from './UserInfoProps';
 import IntroTypes from './introDataTypes';
+import IStatistic from './Statistics';
+import ILoadingProps from './LoadingProps';
 
 export {
   IProduct,
@@ -22,6 +24,8 @@ export {
   IImageContext,
   IProviderProps,
   CategoriesTypes,
+  IStatistic,
   UserProduct,
   UserInfoTypes,
+  ILoadingProps,
 };

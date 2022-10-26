@@ -9,7 +9,7 @@ const getUserProfile = async (req: Request, res: Response, next: NextFunction) =
     if (!(Number(userId) > 0)) {
       throw new CustomError(400, 'Opss, Bad Request');
     }
-    const response = await getUserProfileQuery(userId);
+    const response = await getUserProfileQuery(+userId);
     if (response != null) {
       res.json(response);
     } else {

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 const signOut = (req : Request, res : Response) => {
-  res.send('Hello out');
+  res.clearCookie('token').json({ message: 'Logged Out Successfully' });
 };
 
 export default signOut;
