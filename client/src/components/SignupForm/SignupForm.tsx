@@ -2,17 +2,20 @@ import axios from 'axios';
 import * as yup from 'yup';
 
 import {
-  Box, Typography, TextField,
+  Box, Typography,
+  TextField,
 } from '@mui/material';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import Swal from 'sweetalert2';
 
 import { useState } from 'react';
-import Button from '../Button/Button';
+import FormHeader from '../FormHeader/FormHeader';
+
 import Loading from '../Loading/Loading';
 
 import IUser from '../../interfaces/Iuser';
+
 import google from '../../assets/google.png';
 
 import './SignupForm.css';
@@ -45,7 +48,6 @@ const SignupForm = () => {
   });
 
   const location = useNavigate();
-
   const addNewUser = async (user: IUser) => {
     try {
       setLoading(true);
@@ -77,27 +79,11 @@ const SignupForm = () => {
   return (
     <Box className="account-part">
       <form onSubmit={(e) => formik.handleSubmit(e)}>
-        <Box className="header-2">
-          <Typography sx={{
-            marginTop: '10px',
-          }}
-          >
-            Already signed up?
-          </Typography>
-          <Link
-            to="/signin"
-            style={{
-              textDecoration: 'none',
-            }}
-          >
-            <Button style={{
-              text: 'login',
-              classes: 'btn btn-login',
-            }}
-            />
-          </Link>
-        </Box>
-
+        <FormHeader
+          buttonText="SignIn"
+          link="/signin"
+          title="Already have an account ?"
+        />
         {/* Form section */}
 
         <main>
