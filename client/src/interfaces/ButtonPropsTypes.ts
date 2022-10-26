@@ -1,9 +1,9 @@
 interface ButtonPropsTypes {
-  style : {
+  style: {
     text: string,
-    icon?:string,
-    classes?:string,
-    handleClick?:() => void
+    icon?: string,
+    classes?: string,
+    handleClick?: () => void
   }
 }
 export default ButtonPropsTypes;

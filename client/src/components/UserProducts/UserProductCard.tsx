@@ -1,18 +1,43 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState } from 'react';
-import { Box, Typography } from '@mui/material';
-import { Image, Button } from '../index';
+import { FC, useState, useEffect } from 'react';
+import { Box, Typography, InputBase } from '@mui/material';
+import { Image, Button, Loading } from '../index';
 import { UserProduct } from '../../interfaces';
 
 const UserProductCard:FC<{ product : UserProduct }> = ({ product }) => {
-  const handleEdit = (id:string) => {
-    console.log(id);
+  const [readOnly, setReadOnly] = useState<boolean>(true);
+  const [productObj, setProductObj] = useState<UserProduct | null>(null);
+
+  useEffect(() => {
+    setProductObj(product);
+  }, [product]);
+
+  const handleEdit = () => {
+    console.log(product.id);
+
+    setReadOnly(false);
   };
 
-  const handleDelete = (id:string) => {
-    console.log(id);
+  const handleDelete = () => {
+    console.log(product.id);
   };
 
+  const saveEdit = () => {
+    setReadOnly(true);
+  };
+
+  const handleChange = (e:any) => {
+    const key = e.target.id; // title
+    if (productObj) {
+      let newVal;
+      if (key === 'title') newVal = { ...productObj, title: e.target.value };
+      else newVal = { ...productObj, description: e.target.value };
+      setProductObj(newVal);
+    }
+  };
+
+  if (!productObj) return <p>loading ...</p>;
   return (
     <Box className="product-card">
       <Image attributes={{
@@ -22,21 +47,42 @@ const UserProductCard:FC<{ product : UserProduct }> = ({ product }) => {
       }}
       />
       <Box className="product-details">
-        <Typography variant="h5">{product.title}</Typography>
-        <Typography>
-          {product.description}
-        </Typography>
+        <InputBase
+          className="title"
+          id="title"
+          value={productObj.title}
+          readOnly={readOnly}
+          onChange={handleChange}
+        />
+        <InputBase
+          className="description"
+          id="description"
+          value={productObj.description}
+          readOnly={readOnly}
+          onChange={handleChange}
+        />
         <Box className="buttons">
-          <Button
-            style={{
-              text: 'Edit',
-              handleClick: () => { handleEdit(product.id); },
-            }}
-          />
+          {
+          readOnly ? (
+            <Button
+              style={{
+                text: 'Edit',
+                handleClick: handleEdit,
+              }}
+            />
+          ) : (
+            <Button
+              style={{
+                text: 'save',
+                handleClick: saveEdit,
+              }}
+            />
+          )
+        }
           <Button
             style={{
               text: 'Delete',
-              handleClick: () => { handleDelete(product.id); },
+              handleClick: handleDelete,
             }}
           />
 

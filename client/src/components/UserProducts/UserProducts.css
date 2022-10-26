@@ -62,9 +62,10 @@
     width: 70%;
 }
 
-.product-card .product-details h5 {
+.product-card .product-details .title {
     font-weight: 600;
     margin-bottom: 0.5rem;
+    font-size: 1.4rem;
 }
 
 .product-card .product-details .buttons{
@@ -89,4 +90,14 @@
     color: #1b4b66;
     cursor: pointer;
     transition: border-color 0.3s, background-color 0.5s, color 0.3s;
+}
+
+.product-details input{
+    color: #1b4b66;
+}
+
+.product-details input:read-write  {
+    font-size: larger;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif
 }
