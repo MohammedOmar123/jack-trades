@@ -1,4 +1,4 @@
-import { Product } from '../../../models';
+import { Product, Category } from '../../../models';
 
 const getAllProductsQuery = (limit: number, offset: number) => Product.findAll({
   limit,
@@ -7,4 +7,8 @@ const getAllProductsQuery = (limit: number, offset: number) => Product.findAll({
 
 const getProductsNumberQuery = () => Product.count();
 
-export { getAllProductsQuery, getProductsNumberQuery };
+const getAllCategoriesQuery = () => Category.findAll({
+  attributes: ['id', 'name'],
+});
+
+export { getAllProductsQuery, getProductsNumberQuery, getAllCategoriesQuery };

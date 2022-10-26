@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { getAllProductsQuery, getProductsNumberQuery } from '../../database/queries/products';
+import { getAllProductsQuery, getProductsNumberQuery, getAllCategoriesQuery } from '../../database/queries/products';
 import { CustomError } from '../../helpers';
 
 const getAllProducts = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -9,8 +9,9 @@ const getAllProducts = async (req: Request, res: Response, next: NextFunction): 
 
     const products = await getAllProductsQuery(+limit, +offset);
     const productsNumber = await getProductsNumberQuery();
+    const categories = await getAllCategoriesQuery();
 
-    res.send({ totalProducts: productsNumber, products });
+    res.send({ totalProducts: productsNumber, products, categories });
   } catch (error) {
     next(error);
   }
