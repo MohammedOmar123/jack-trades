@@ -1,7 +1,6 @@
 import { Favorite } from '../../../models';
 
-const addToWishListQuery = async (user_id : string |
-number, product_id : string | number) => Favorite.create({
+const addToWishListQuery = async (user_id : number, product_id : number) => Favorite.create({
   user_id,
   product_id,
 });

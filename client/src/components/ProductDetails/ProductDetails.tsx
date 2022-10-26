@@ -52,9 +52,9 @@ const ProductDetailsComponent = ({
     });
   };
 
-  const handleSuccessRequest = (message:string) => {
+  const handleSuccessRequest = (titleSwl:string, message:string) => {
     Swal.fire(
-      'Added successfully',
+      titleSwl,
       message,
       'success',
     );
@@ -63,7 +63,7 @@ const ProductDetailsComponent = ({
     const addToWishList = async () => {
       try {
         const res = await axios.post(`/api/v1/wishlist/${id}`);
-        handleSuccessRequest(res.data.message);
+        handleSuccessRequest('Added Successfully', res.data.message);
         setFavIcon('Favorite');
       } catch (error) {
         const { message } = error.response.data;
@@ -88,7 +88,7 @@ const ProductDetailsComponent = ({
         }).then(async (result) => {
           if (result.isConfirmed) {
             const res = await axios.delete(`/api/v1/wishlist/${id}`);
-            handleSuccessRequest(res.data.message);
+            handleSuccessRequest('Deleted Successfully', res.data.message);
             setFavIcon('FavoriteBorder');
           }
         }).catch((err) => {
