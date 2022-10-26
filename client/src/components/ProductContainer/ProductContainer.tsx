@@ -8,7 +8,7 @@ import { ImageContext } from '../Context/ImageContext';
 
 const ProductContainer: FC<IProductProps> = ({
   attributes: {
-    title, description, createdAt, 'Category.name': categoryName,
+    title, description, createdAt, 'Category.name': categoryName, user_id,
   },
 }) => {
   const context = useContext(ImageContext);
@@ -45,6 +45,7 @@ const ProductContainer: FC<IProductProps> = ({
         title={title}
         description={description}
         createdAt={createdAt}
+        userId={user_id}
       />
 
     </Box>
