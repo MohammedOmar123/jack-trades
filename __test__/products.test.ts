@@ -2,7 +2,7 @@ import request from "supertest";
 import sequelize from "../server/database/connection";
 import app from "../server/app";
 import buildTables from "../server/database/build";
-const token = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJzYXJhM0BnbWFpbC5jb20iLCJpYXQiOjE2NjY2OTk0MTZ9.gcWnqoUEY1VbhEwY5IiiXn4jioZ-HZOyEtvM-es4-lA'
+const token = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJKZW5uaWVAZ21haWwuY29tIiwiaWF0IjoxNjY2Nzg5MDg4fQ.ayqLDkuNwgfbQZGd5spE1F0KbfxuAa_wPpkt34AKHN4'
 
 beforeAll(() => buildTables());
 
