@@ -47,8 +47,9 @@ describe("Add to wishlist route", () => {
             .post("/api/v1/wishlist/5")
             .expect(201)
             .set('Cookie', token)
-            .expect((res) => {
-                expect(res.text).toEqual('You added the product to the wishlist successfully')
+            .expect("Content-Type", /json/)
+            .expect({
+                message: 'You added the product to the wishlist successfully'
             });
 
 
@@ -59,8 +60,9 @@ describe("Add to wishlist route", () => {
             .post("/api/v1/wishlist/5")
             .expect(400)
             .set('Cookie', token)
-            .expect((res) => {
-                expect(res.body).toEqual({ message: 'This item is already exist in the WishList' });
+            .expect("Content-Type", /json/)
+            .expect({
+                message: 'This item is already exist in the WishList'
             });
     });
 
@@ -69,8 +71,9 @@ describe("Add to wishlist route", () => {
             .post("/api/v1/wishlist/ss") // ss >> is invalid id 
             .expect(400)
             .set('Cookie', token)
-            .expect((res) => {
-                expect(res.body).toEqual({ message: 'Bad Request' });
+            .expect("Content-Type", /json/)
+            .expect({
+                message: 'Bad Request'
             });
 
     });
@@ -93,9 +96,8 @@ describe("delete from wishlist route", () => {
             .delete("/api/v1/wishlist/1")
             .expect(200)
             .set('Cookie', token)
-            .expect((res) => {
-                expect(res.text).toEqual('You removed the product from the wishlist successfully')
-            });
+            .expect("Content-Type", /json/)
+            .expect({ message: 'You removed the product from the wishlist successfully' })
     });
 
     it("Should return 400 and (error message) when the user try to delete the same product again", async () => {
@@ -115,7 +117,7 @@ describe("delete from wishlist route", () => {
             .expect("Content-Type", /json/)
             .expect({ message: 'Bad Request' });
     });
-    
+
     it("Should return 401 and Unauthorized if the user doesn't signIn", async () => {
         await request(app)
             .delete("/api/v1/wishlist/3")
