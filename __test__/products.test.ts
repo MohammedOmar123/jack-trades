@@ -176,7 +176,7 @@ describe("deleting a product PUT api/v1/products/:productId", () => {
         title: "lorem",
         description: "lorem ipsum batikh"
       })
-      .expect(201)
+      .expect(200)
       .expect({
         message: "You updated your product successfully"
       })
