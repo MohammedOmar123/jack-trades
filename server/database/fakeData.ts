@@ -1,6 +1,8 @@
-import { Product, User, Category } from '../interfaces/fakeDataTypes';
+import {
+  Product, User, Category, Favorite,
+} from '../interfaces/fakeDataTypes';
 
-const data: { products: Product[], users: User[], categories: Category[] } = {
+const data: { products: Product[], users: User[], categories: Category[], favorites:Favorite[] } = {
   products: [
     {
       title: 'nice sofa',
@@ -138,7 +140,7 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
       first_name: 'John',
       last_name: 'Smith',
       email: 'John@gmail.com',
-      hashedPassword: '$2a$12$/r.zmtkl2VHN/H8l2Tspe.Sipr3BSjW1XH71iyaehiK.gwLUWi81i', // 1234578 rounds:12
+      hashedPassword: '$2a$12$/r.zmtkl2VHN/H8l2Tspe.Sipr3BSjW1XH71iyaehiK.gwLUWi81i',
       image: 'https://randomuser.me/api/portraits/lego/8.jpg',
       bio: 'hello from the hell',
     },
@@ -146,7 +148,7 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
       first_name: 'Jennie',
       last_name: 'Nichols',
       email: 'Jennie@gmail.com',
-      hashedPassword: '$2a$12$ajt9EE0j6bWor63vZ6g1PepC3Y60B5ey0KqS0AHnj6Q3zRmN0/V.m', // omar123456 rounds:12
+      hashedPassword: '$2a$12$ajt9EE0j6bWor63vZ6g1PepC3Y60B5ey0KqS0AHnj6Q3zRmN0/V.m',
       image: 'https://randomuser.me/api/portraits/lego/7.jpg',
       bio: 'hello from the hell',
     },
@@ -154,7 +156,7 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
       first_name: 'Maxim',
       last_name: 'Lindhjem',
       email: 'Maxim@gmail.com',
-      hashedPassword: '$2a$12$uYVCagm1jekXMnqmpDgRQeNJz.euighyJDWBmwMDkX439OJdJg61q', // mohammad123456 rounds:12
+      hashedPassword: '$2a$12$uYVCagm1jekXMnqmpDgRQeNJz.euighyJDWBmwMDkX439OJdJg61q',
       image: 'https://randomuser.me/api/portraits/lego/6.jpg',
       bio: 'hello from the hell',
     },
@@ -162,7 +164,7 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
       first_name: 'Baljiwan',
       last_name: 'Gugale',
       email: 'Baljiwan@gmail.com',
-      hashedPassword: '$2a$12$XhsgeG0WhiddYr/5MphSWO5ykgaldvPNHQPP4CTpc3IHb3sTTfdz.', // ali123456 rounds:12
+      hashedPassword: '$2a$12$XhsgeG0WhiddYr/5MphSWO5ykgaldvPNHQPP4CTpc3IHb3sTTfdz.',
       image: 'https://randomuser.me/api/portraits/lego/5.jpg',
       bio: 'hello from the hell',
     },
@@ -170,7 +172,7 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
       first_name: 'Laurete',
       last_name: 'da Cunha',
       email: 'Laurete@gmail.com',
-      hashedPassword: '$2a$12$ES71.6GBjUY.nH9/UY.sJ.orrOfzLrX/sz8bwIsFkifQHldehClEq', // sanaa123456 rounds:12
+      hashedPassword: '$2a$12$ES71.6GBjUY.nH9/UY.sJ.orrOfzLrX/sz8bwIsFkifQHldehClEq',
       image: 'https://randomuser.me/api/portraits/lego/4.jpg',
       bio: 'hello from the hell',
     },
@@ -216,6 +218,23 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
       name: 'and more',
       image: 'https://cdn.shopify.com/s/files/1/0070/7032/files/trending-products_c8d0d15c-9afc-47e3-9ba2-f7bad0505b9b.png?format=jpg&quality=90&v=1614559651',
     },
+  ],
+  favorites: [{
+    user_id: 1,
+    product_id: 1,
+  },
+  {
+    user_id: 2,
+    product_id: 2,
+  },
+  {
+    user_id: 3,
+    product_id: 3,
+  },
+  {
+    user_id: 4,
+    product_id: 4,
+  },
   ],
 };
 

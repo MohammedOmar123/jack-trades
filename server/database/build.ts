@@ -14,7 +14,7 @@ const buildTables = async () => {
     await Category.bulkCreate(fakeData.categories);
     await User.bulkCreate(fakeData.users);
     await Product.bulkCreate(fakeData.products);
-
+    await Favorite.bulkCreate(fakeData.favorites);
     // eslint-disable-next-line no-console
     console.log('Database built successfully');
   } catch (error) {
