@@ -9,10 +9,13 @@ import {
 } from './request';
 import { getAllNotifications, viewItemDetails } from './notifications';
 
+import { deleteFromWishList, getAllWishListItems, addToWishList } from './wishList';
+
 export {
   signIn, signup, signOut, getStatistics, getFeedback, addFeedback,
   getUserProducts, getUserProfile, getUserWishList,
   getAllProducts, getProduct, addProduct, deleteProduct, updateProduct, filterProduct,
   getAllRequest, addRequests, checkFavReq, deleteRequest, updateRequest,
   getAllNotifications, viewItemDetails,
+  deleteFromWishList, getAllWishListItems, addToWishList,
 };
