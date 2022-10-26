@@ -68,6 +68,9 @@ interface IUser extends Model<InferAttributes<IUser>, InferCreationAttributes<IU
   hashedPassword: string;
   image: string;
   bio: string;
+  createdAt: CreationOptional<Date>;
+  updatedAt: CreationOptional<Date>;
+  deletedAt: CreationOptional<Date>;
 }
 
 export {
