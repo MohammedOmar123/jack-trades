@@ -1,4 +1,5 @@
-import verifyToken from './verifyToken';
+import authentication from './authentication';
 
-// eslint-disable-next-line import/prefer-default-export
-export { verifyToken };
+export {
+  authentication,
+};

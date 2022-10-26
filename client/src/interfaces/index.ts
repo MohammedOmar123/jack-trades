@@ -13,6 +13,8 @@ import IntroTypes from './introDataTypes';
 import IAccountProps from './IAccountProps';
 import IFormHeaderProps from './IFormHeaderProps';
 import IUserLogin from './IUserLogin';
+
+import IStatistic from './Statistics';
 import ILoadingProps from './LoadingProps';
 
 export {
@@ -26,6 +28,7 @@ export {
   IImageContext,
   IProviderProps,
   CategoriesTypes,
+  IStatistic,
   UserProduct,
   UserInfoTypes,
   IAccountProps,

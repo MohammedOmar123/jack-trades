@@ -54,7 +54,7 @@ const SignupForm = () => {
       await axios.post('/api/v1/account/signup', user);
       setLoading(false);
       location('/');
-    } catch (error: any) {
+    } catch (error) {
       setLoading(false);
       Swal.fire({
         titleText: error.response.data.message,
