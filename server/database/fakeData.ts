@@ -140,7 +140,7 @@ const data: { products: Product[], users: User[], categories: Category[], favori
       first_name: 'John',
       last_name: 'Smith',
       email: 'John@gmail.com',
-      hashedPassword: '$2a$12$/r.zmtkl2VHN/H8l2Tspe.Sipr3BSjW1XH71iyaehiK.gwLUWi81i',
+      hashedPassword: '$2b$10$TGS3zZF8YDhB6vH0SniF6eBwAm906T49WijFXHekE6FspVEpvv842', // password@1234 rounds:10
       image: 'https://randomuser.me/api/portraits/lego/8.jpg',
       bio: 'hello from the hell',
     },
@@ -148,7 +148,7 @@ const data: { products: Product[], users: User[], categories: Category[], favori
       first_name: 'Jennie',
       last_name: 'Nichols',
       email: 'Jennie@gmail.com',
-      hashedPassword: '$2a$12$ajt9EE0j6bWor63vZ6g1PepC3Y60B5ey0KqS0AHnj6Q3zRmN0/V.m',
+      hashedPassword: '$2b$10$TGS3zZF8YDhB6vH0SniF6eBwAm906T49WijFXHekE6FspVEpvv842', // password@1234 rounds:10
       image: 'https://randomuser.me/api/portraits/lego/7.jpg',
       bio: 'hello from the hell',
     },
@@ -156,7 +156,7 @@ const data: { products: Product[], users: User[], categories: Category[], favori
       first_name: 'Maxim',
       last_name: 'Lindhjem',
       email: 'Maxim@gmail.com',
-      hashedPassword: '$2a$12$uYVCagm1jekXMnqmpDgRQeNJz.euighyJDWBmwMDkX439OJdJg61q',
+      hashedPassword: '$2b$10$TGS3zZF8YDhB6vH0SniF6eBwAm906T49WijFXHekE6FspVEpvv842', // password@1234 rounds:10
       image: 'https://randomuser.me/api/portraits/lego/6.jpg',
       bio: 'hello from the hell',
     },
@@ -164,7 +164,7 @@ const data: { products: Product[], users: User[], categories: Category[], favori
       first_name: 'Baljiwan',
       last_name: 'Gugale',
       email: 'Baljiwan@gmail.com',
-      hashedPassword: '$2a$12$XhsgeG0WhiddYr/5MphSWO5ykgaldvPNHQPP4CTpc3IHb3sTTfdz.',
+      hashedPassword: '$2b$10$TGS3zZF8YDhB6vH0SniF6eBwAm906T49WijFXHekE6FspVEpvv842', // password@1234 rounds:10
       image: 'https://randomuser.me/api/portraits/lego/5.jpg',
       bio: 'hello from the hell',
     },
@@ -172,7 +172,7 @@ const data: { products: Product[], users: User[], categories: Category[], favori
       first_name: 'Laurete',
       last_name: 'da Cunha',
       email: 'Laurete@gmail.com',
-      hashedPassword: '$2a$12$ES71.6GBjUY.nH9/UY.sJ.orrOfzLrX/sz8bwIsFkifQHldehClEq',
+      hashedPassword: '$2b$10$TGS3zZF8YDhB6vH0SniF6eBwAm906T49WijFXHekE6FspVEpvv842', // password@1234 rounds:10
       image: 'https://randomuser.me/api/portraits/lego/4.jpg',
       bio: 'hello from the hell',
     },
