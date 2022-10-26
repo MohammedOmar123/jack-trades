@@ -11,7 +11,7 @@ const updateProduct = async (req: Request, res: Response, next: NextFunction) =>
 
     const [updated] = await updateProductQuery(data);
 
-    if (updated) res.status(201).send({ message: 'You updated your product successfully' });
+    if (updated) res.status(200).send({ message: 'You updated your product successfully' });
     else throw new CustomError(400, 'Bad Request, id doesn\'t exist');
   } catch (error) {
     next(error);
