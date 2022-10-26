@@ -1,10 +1,12 @@
 import { Box } from '@mui/material';
-import SignupIntro from '../components/SignupIntro/SignupIntro';
-import SignupForm from '../components/SignupForm/SignupForm';
+import { SignupForm, AccountIntro } from '../components';
 
 const SignUp = () => (
   <Box className="signup-container">
-    <SignupIntro />
+    <AccountIntro
+      title=" WELCOME TO Jack Trades"
+      text="Please create your free account to be proceed"
+    />
     <SignupForm />
   </Box>
 );
