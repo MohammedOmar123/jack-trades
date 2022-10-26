@@ -16,7 +16,7 @@ const addToWishList = async (req:IRequestPayload, res:Response, next: NextFuncti
       throw new CustomError(400, 'This item is already exist in the WishList');
     } else {
       await addToWishListQuery(id, productId);
-      res.status(201).send('You added the product to the wishlist successfully');
+      res.status(201).json({ message: 'You added the product to the wishlist successfully' });
     }
   } catch (err) {
     next(err);
