@@ -9,9 +9,9 @@ const deleteFromWishList = async (req : IRequestPayload, res : Response, next:Ne
   const { id } = req.user;
   try {
     if (!(Number(productId) > 0)) throw new CustomError(400, 'Bad Request');
-    const data = await checkInWishList(id, productId);
+    const data = await checkInWishList(id, +(productId));
     if (data) {
-      await deleteFromWishListQuery(id, productId);
+      await deleteFromWishListQuery(id, +(productId));
       res.status(200).json({ message: 'You removed the product from the wishlist successfully' });
     } else {
       throw new CustomError(400, 'This item is already removed from your wishlist');

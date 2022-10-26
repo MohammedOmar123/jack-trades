@@ -9,7 +9,7 @@ const checkFavReq = async (req : IRequestPayload, res : Response, next:NextFunct
   if (!(Number(productId) > 0)) throw new CustomError(400, 'Bad Request');
 
   try {
-    const data = await checkInWishList(id, productId);
+    const data = await checkInWishList(id, +(productId));
     if (data !== null) {
       res.status(200).send(true);
     } else {

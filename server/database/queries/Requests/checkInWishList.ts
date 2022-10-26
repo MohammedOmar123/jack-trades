@@ -1,8 +1,8 @@
 import { Favorite } from '../../../models';
 
 const checkInWishList = (
-  user_id : string | number,
-  product_id : string | number,
+  user_id : number,
+  product_id : number,
 ) => Favorite.findOne({
   where: {
     user_id,

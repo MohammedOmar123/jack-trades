@@ -1,8 +1,8 @@
 import { Favorite } from '../../../models';
 
 const deleteFromWishListQuery = (
-  user_id:string | number,
-  product_id:string | number,
+  user_id: number,
+  product_id: number,
 ) => Favorite.destroy({
   where: {
     user_id,
