@@ -43,34 +43,37 @@ const ProductDetailsComponent = ({
       }
     });
   };
-
-  const handleBadRequests = (message:string) => {
+  const errorMessage = 'Oops...';
+  const handleWishListRequests = (
+    titleSwl:string,
+    message:string,
+    icon:'success' | 'error',
+  ) => {
     Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
+      title: titleSwl,
       text: message,
+      icon,
+      showConfirmButton: false,
+      timer: 1500,
+      position: 'center',
     });
-  };
-
-  const handleSuccessRequest = (titleSwl:string, message:string) => {
-    Swal.fire(
-      titleSwl,
-      message,
-      'success',
-    );
   };
   const handleIsFav = () => {
     const addToWishList = async () => {
       try {
         const res = await axios.post(`/api/v1/wishlist/${id}`);
-        handleSuccessRequest('Added Successfully', res.data.message);
+        handleWishListRequests(
+          'Added Successfully',
+          res.data.message,
+          'success',
+        );
         setFavIcon('Favorite');
       } catch (error) {
         const { message } = error.response.data;
         if (message === 'Unauthorized') {
           handleUnauthorizedRequests();
         } else {
-          handleBadRequests(message);
+          handleWishListRequests(errorMessage, message, 'error');
         }
       }
     };
@@ -88,7 +91,11 @@ const ProductDetailsComponent = ({
         }).then(async (result) => {
           if (result.isConfirmed) {
             const res = await axios.delete(`/api/v1/wishlist/${id}`);
-            handleSuccessRequest('Deleted Successfully', res.data.message);
+            handleWishListRequests(
+              'Deleted Successfully',
+              res.data.message,
+              'success',
+            );
             setFavIcon('FavoriteBorder');
           }
         }).catch((err) => {
@@ -96,12 +103,12 @@ const ProductDetailsComponent = ({
           if (message === 'Unauthorized') {
             handleUnauthorizedRequests();
           } else {
-            handleBadRequests(message);
+            handleWishListRequests(errorMessage, message, 'error');
           }
         });
       } catch (error) {
         const { message } = error.response.data;
-        handleBadRequests(message);
+        handleWishListRequests(errorMessage, message, 'error');
       }
     };
     // when the user clicks on the fav button
