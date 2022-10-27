@@ -11,6 +11,7 @@ import UserProduct from './UserProductProps';
 import UserInfoTypes from './UserInfoProps';
 import IntroTypes from './introDataTypes';
 import ILoadingProps from './LoadingProps';
+import { IProducts, ICategories, IData } from './ProductsPageInterfaces';
 
 export {
   IProduct,
@@ -26,4 +27,7 @@ export {
   UserProduct,
   UserInfoTypes,
   ILoadingProps,
+  IProducts,
+  ICategories,
+  IData,
 };

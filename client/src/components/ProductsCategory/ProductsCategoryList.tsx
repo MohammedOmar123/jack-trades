@@ -1,16 +1,19 @@
-/* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FavoriteBorder } from '@mui/icons-material';
+import { FC } from 'react';
 import {
-  Box, IconButton, ImageList, ImageListItem, ImageListItemBar, ListSubheader, Pagination,
+  Box, ImageList, ImageListItem, ListSubheader, Pagination,
 } from '@mui/material';
 import ProductsCategoryCard from './ProductsCategoryCard';
+import SpinnerLoading from '../Loading/Loading';
+import { IProducts } from '../../interfaces';
 
-const names = [
-  'hakim', 'yusuf', 'yzan',
-];
-
-const ProductsCategory = () => (
+// eslint-disable-next-line max-len
+const ProductsCategory:FC <{ products: IProducts[], totalProducts: number, totalPages: number, loading: boolean, changeOffsetValue: (value: number) => void }> = ({
+  products,
+  totalProducts,
+  totalPages,
+  loading,
+  changeOffsetValue,
+}) => (
   <Box
     sx={{
       boxShadow: '0px 0px 10px rgba(27, 75, 102, 0.25)',
@@ -18,24 +21,42 @@ const ProductsCategory = () => (
       padding: '1rem 2rem',
     }}
   >
-    <ImageList>
-      <ImageListItem key="Subheader" cols={3} sx={{ marginBottom: '1rem', fontWeight: '600' }}>
-        <ListSubheader sx={{ fontWeight: '600' }} component="p">
-          {names.length === 0 ? 'No Item Found' : 'Showing 1 - 40 of 145 items'}
-        </ListSubheader>
-      </ImageListItem>
+    <ImageListItem
+      key="Subheader"
+      cols={1}
+      sx={{ marginBottom: '1rem', fontWeight: '600' }}
+    >
+      <ListSubheader sx={{ fontWeight: '600' }} component="p">
+        {products.length === 0
+          ? 'No Item Found'
+          : `Showing 6 of ${totalProducts} items`}
+      </ListSubheader>
+    </ImageListItem>
+    <ImageList
+      gap={32}
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+      }}
+    >
 
-      <ProductsCategoryCard />
-      <ProductsCategoryCard />
-      <ProductsCategoryCard />
-      <ProductsCategoryCard />
+      {!loading ? products.map((product) => (
+        <ProductsCategoryCard key={product.id} product={product} />
+      )) : (<SpinnerLoading className="" />)}
 
     </ImageList>
     <Box sx={{
       marginTop: '2rem', display: 'flex', justifyContent: 'center',
     }}
     >
-      <Pagination sx={{ textAlign: 'center' }} count={5} variant="outlined" shape="rounded" />
+      <Pagination
+        sx={{ textAlign: 'center' }}
+        count={totalPages}
+        variant="outlined"
+        shape="rounded"
+        onChange={(e, p) => changeOffsetValue(Number(p) - 1)}
+      />
     </Box>
   </Box>
 );

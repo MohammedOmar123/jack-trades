@@ -1,6 +1,7 @@
 import { Product, Category } from '../../../models';
 
 const getAllProductsQuery = (limit: number, offset: number) => Product.findAll({
+  attributes: ['id', 'title', 'gallery'],
   limit,
   offset,
 });

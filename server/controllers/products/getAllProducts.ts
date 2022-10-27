@@ -11,7 +11,12 @@ const getAllProducts = async (req: Request, res: Response, next: NextFunction): 
     const productsNumber = await getProductsNumberQuery();
     const categories = await getAllCategoriesQuery();
 
-    res.send({ totalProducts: productsNumber, products, categories });
+    res.send({
+      totalProducts: productsNumber,
+      totalPages: Math.floor(productsNumber / +limit),
+      products,
+      categories,
+    });
   } catch (error) {
     next(error);
   }
