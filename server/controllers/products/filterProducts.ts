@@ -1,17 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
-import { filterProducts } from '../../database/queries/products';
+import { Request, Response } from 'express';
 
-const filterProduct = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    console.log(req.query);
-    const response = await filterProducts(req.query.category);
-
-    res.send({ categoryIDs: response });
-  } catch (error) {
-    console.log(error.message);
-
-    next(error);
-  }
+const filterProduct = async (req: Request, res: Response) => {
+  res.send('hello from filter products');
 };
 
 export default filterProduct;

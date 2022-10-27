@@ -2,7 +2,7 @@ import { getDonationsQuery, getExchangesQuery, getContributionsQuery } from './w
 import signinQuery from './account/signin';
 import getUserProfileQuery from './user/getUserProfile';
 import getUserProductsQuery from './getUserProductsQuery';
-import { deleteProductQuery, getProductQuery } from './products';
+import { deleteProductQuery, getProductQuery, updateProductQuery } from './products';
 
 export {
   getDonationsQuery,
@@ -13,4 +13,5 @@ export {
   getUserProductsQuery,
   deleteProductQuery,
   getProductQuery,
+  updateProductQuery,
 };
