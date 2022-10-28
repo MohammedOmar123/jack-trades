@@ -1,4 +1,6 @@
-import { signIn, signup, signOut } from './account';
+import {
+  signIn, signup, signOut, checkAuth,
+} from './account';
 import { getStatistics, getFeedback, addFeedback } from './website';
 import { getUserProducts, getUserProfile, getUserWishList } from './user';
 import {
@@ -17,5 +19,5 @@ export {
   getAllProducts, getProduct, addProduct, deleteProduct, updateProduct, filterProduct,
   getAllRequest, addRequests, checkFavReq, deleteRequest, updateRequest,
   getAllNotifications, viewItemDetails,
-  deleteFromWishList, getAllWishListItems, addToWishList,
+  deleteFromWishList, getAllWishListItems, addToWishList, checkAuth,
 };
