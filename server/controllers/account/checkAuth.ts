@@ -1,7 +1,9 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
+import { IRequestPayload } from '../../interfaces';
 
-const checkAuth = (req : Request, res : Response) => {
-  res.sendStatus(200);
+const checkAuth = (req : IRequestPayload, res : Response) => {
+  const { id } = req.user;
+  res.json(id);
 };
 
 export default checkAuth;

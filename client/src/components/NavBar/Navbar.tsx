@@ -18,7 +18,7 @@ import { AuthContext } from '../Context/AuthContext';
 
 const Navbar: FC = () => {
   const navigate = useNavigate();
-  const isAuth = useContext(AuthContext);
+  const userId = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement >();
   const [open, setOpen] = useState<boolean>(false);
   const handleClose = () => {
@@ -76,7 +76,7 @@ const Navbar: FC = () => {
           }
           </ul>
         </div>
-        { isAuth
+        { userId
           ? (
             <Box sx={{
               display: 'flex',
@@ -124,16 +124,14 @@ const Navbar: FC = () => {
               >
                 <MenuItem onClick={() => {
                   handleClose();
+                  navigate(`/profile/${userId}`);
                 }}
                 >
                   Profile
 
                 </MenuItem>
-                <MenuItem onClick={() => {
-                  handleClose();
-                }}
-                >
-                  My account
+                <MenuItem onClick={handleClose}>
+                  My Requests
                 </MenuItem>
                 <MenuItem onClick={() => {
                   handleSignOut();
