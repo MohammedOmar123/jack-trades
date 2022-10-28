@@ -30,9 +30,7 @@ const ButtonComponent: FC<ButtonPropsTypes> = ({
       onClick={handleClick || (() => {})}
     >
       {icon ? iconsList[icon as keyof typeof iconsList] : ''}
-      <p>
-        {text}
-      </p>
+      {text}
     </button>
   );
 };
