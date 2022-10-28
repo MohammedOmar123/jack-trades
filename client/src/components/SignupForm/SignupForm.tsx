@@ -5,12 +5,11 @@ import {
   Box, Typography,
   TextField,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import Swal from 'sweetalert2';
 
 import { useState } from 'react';
-import FormHeader from '../FormHeader/FormHeader';
 
 import Loading from '../Loading/Loading';
 
@@ -18,10 +17,16 @@ import IUser from '../../interfaces/Iuser';
 
 import google from '../../assets/google.png';
 
+import Button from '../Button/Button';
+
 import './SignupForm.css';
 
 const SignupForm = () => {
   // validation
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state;
+
   const [loading, setLoading] = useState<boolean>(false);
   const validationSchema = yup.object({
     firstName: yup.string()
@@ -47,13 +52,12 @@ const SignupForm = () => {
       .oneOf([yup.ref('password'), null], 'Password must be match'),
   });
 
-  const location = useNavigate();
   const addNewUser = async (user: IUser) => {
     try {
       setLoading(true);
       await axios.post('/api/v1/account/signup', user);
       setLoading(false);
-      location('/');
+      navigate(from);
     } catch (error) {
       setLoading(false);
       Swal.fire({
@@ -79,11 +83,27 @@ const SignupForm = () => {
   return (
     <Box className="account-part">
       <form onSubmit={(e) => formik.handleSubmit(e)}>
-        <FormHeader
-          buttonText="SignIn"
-          link="/signin"
-          title="Already have an account ?"
-        />
+        <Box className="header-2">
+          <Typography sx={{
+            marginTop: '10px',
+          }}
+          >
+            already have an account ?
+          </Typography>
+          <Link
+            to="/signin"
+            style={{
+              textDecoration: 'none',
+            }}
+            state={from}
+          >
+            <Button style={{
+              text: 'Sign in',
+              classes: 'btn btn-login',
+            }}
+            />
+          </Link>
+        </Box>
         {/* Form section */}
 
         <main>

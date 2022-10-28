@@ -4,23 +4,25 @@ import { useFormik } from 'formik';
 import axios from 'axios';
 import * as yup from 'yup';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { IUserLogin } from '../../interfaces';
-import FormHeader from '../FormHeader/FormHeader';
 import Loading from '../Loading/Loading';
+import Button from '../Button/Button';
 import './Signin.css';
 
 const Signin:FC = () => {
 // handle login
-  const location = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || '/';
 
   const login = async (user:IUserLogin) => {
     try {
       setLoading(true);
       await axios.post('/api/v1/account/signin', user);
       setLoading(false);
-      location('/');
+      navigate(from);
     } catch (error) {
       setLoading(false);
       Swal.fire({
@@ -50,11 +52,27 @@ const Signin:FC = () => {
   });
   return (
     <Box className="signIn-container">
-      <FormHeader
-        buttonText="SignUp"
-        link="/Signup"
-        title="You don't have account yet ?"
-      />
+      <Box className="header-2">
+        <Typography sx={{
+          marginTop: '10px',
+        }}
+        >
+          You do not have an account ?
+        </Typography>
+        <Link
+          to="/Signup"
+          style={{
+            textDecoration: 'none',
+          }}
+          state={from}
+        >
+          <Button style={{
+            text: 'Sign up',
+            classes: 'btn btn-login',
+          }}
+          />
+        </Link>
+      </Box>
       <Box className="form-container-signin">
         <Typography variant="h3">
           SignIn

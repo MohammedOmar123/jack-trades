@@ -235,6 +235,10 @@ const data: { products: Product[], users: User[], categories: Category[], favori
     user_id: 4,
     product_id: 4,
   },
+  // {
+  //   user_id: 1,
+  //   product_id: 3,
+  // },
   ],
 };
 

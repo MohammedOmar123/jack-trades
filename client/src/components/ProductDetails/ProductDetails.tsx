@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import {
+  useParams, useNavigate, useLocation,
+} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import ButtonComponent from '../Button/Button';
 import { IProductDetailsProps } from '../../interfaces';
@@ -14,7 +16,8 @@ const ProductDetailsComponent = ({
 : IProductDetailsProps) => {
   const [FavIcon, setFavIcon] = useState('FavoriteBorder');
   const { id } = useParams();
-  const location = useNavigate();
+  const navigate = useNavigate();
+  const from = useLocation();
 
   const checkWishList = async () => {
     const response = await axios.get(`/api/v1/requests/checkFavReq/${id}`);
@@ -34,15 +37,19 @@ const ProductDetailsComponent = ({
       icon: 'error',
       title: errorMessage,
       // eslint-disable-next-line max-len
-      text: 'You don\'t have an account yet SignUp to add your favorites to your wishlist',
+      text: 'SignIn first to be able to add the item into the wishlist',
       showConfirmButton: true,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, SignUp',
+      confirmButtonText: 'Yes, SigIn',
+    // eslint-disable-next-line consistent-return
     }).then((result) => {
       if (result.isConfirmed) {
-        location('/Signup');
+        navigate('/signin', {
+          state: { from },
+          replace: true,
+        });
       }
     });
   };
@@ -132,7 +139,7 @@ const ProductDetailsComponent = ({
   };
 
   const handleContactSeller = () => {
-    location(`/profile/${userId}`);
+    navigate(`/profile/${userId}`);
   };
 
   const convertDate = (timeStamp:string) => {
