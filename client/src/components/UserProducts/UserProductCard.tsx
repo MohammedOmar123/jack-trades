@@ -1,34 +1,72 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useState, useEffect } from 'react';
-import { Box, Typography, InputBase } from '@mui/material';
-import { Image, Button, Loading } from '../index';
+import {
+  Box, InputBase, TextareaAutosize,
+} from '@mui/material';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { Image, Button } from '../index';
 import { UserProduct } from '../../interfaces';
 
-const UserProductCard:FC<{ product : UserProduct }> = ({ product }) => {
+const UserProductCard
+:FC<{ product : UserProduct, fetch:()=>void }> = ({ product, fetch }) => {
   const [readOnly, setReadOnly] = useState<boolean>(true);
   const [productObj, setProductObj] = useState<UserProduct | null>(null);
+  const [className, setClassName] = useState<string>('');
 
   useEffect(() => {
     setProductObj(product);
   }, [product]);
 
   const handleEdit = () => {
-    console.log(product.id);
-
     setReadOnly(false);
   };
 
-  const handleDelete = () => {
-    console.log(product.id);
+  const handleDelete = async () => {
+    try {
+      const alert = await Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        showCancelButton: true,
+        confirmButtonColor: '#1b4b66',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+      });
+
+      if (alert.isConfirmed) {
+        const response = await axios.delete(`/api/v1/products/${product.id}`);
+        fetch();
+      }
+    } catch (error) {
+      Swal.fire(error.response.data.message);
+    }
   };
 
-  const saveEdit = () => {
-    setReadOnly(true);
+  const saveEdit = async () => {
+    try {
+      const response = await axios.put(
+        `/api/v1/products/${product.id}`,
+        {
+          title: productObj?.title,
+          description: productObj?.description,
+        },
+      );
+      await Swal.fire({
+        title: response.data.message,
+        confirmButtonColor: '#1b4b66',
+      });
+      setReadOnly(true);
+    } catch (error) {
+      Swal.fire(error.response.data.message);
+    }
   };
 
   const handleChange = (e:any) => {
-    const key = e.target.id; // title
+    const key = e.target.id;
+    if (!e.target.value) setClassName('disable');
+    else setClassName('');
     if (productObj) {
       let newVal;
       if (key === 'title') newVal = { ...productObj, title: e.target.value };
@@ -37,7 +75,7 @@ const UserProductCard:FC<{ product : UserProduct }> = ({ product }) => {
     }
   };
 
-  if (!productObj) return <p>loading ...</p>;
+  if (!productObj) return <p />;
   return (
     <Box className="product-card">
       <Image attributes={{
@@ -54,13 +92,15 @@ const UserProductCard:FC<{ product : UserProduct }> = ({ product }) => {
           readOnly={readOnly}
           onChange={handleChange}
         />
-        <InputBase
+        <TextareaAutosize
           className="description"
           id="description"
           value={productObj.description}
           readOnly={readOnly}
           onChange={handleChange}
         />
+        <Link to={`/product/${productObj.id}/details`}>View details</Link>
+
         <Box className="buttons">
           {
           readOnly ? (
@@ -75,6 +115,7 @@ const UserProductCard:FC<{ product : UserProduct }> = ({ product }) => {
               style={{
                 text: 'save',
                 handleClick: saveEdit,
+                classes: className,
               }}
             />
           )
@@ -89,6 +130,7 @@ const UserProductCard:FC<{ product : UserProduct }> = ({ product }) => {
         </Box>
       </Box>
     </Box>
+
   );
 };
 
