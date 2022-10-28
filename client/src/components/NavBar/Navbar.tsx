@@ -9,12 +9,15 @@ import {
   NotificationsNone,
   PersonOutline, KeyboardArrowDown,
 } from '@mui/icons-material/';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 import ButtonComponent from '../Button/Button';
 import { links } from '../../StaticData';
 import { AuthContext } from '../Context/AuthContext';
 
 const Navbar: FC = () => {
+  const navigate = useNavigate();
   const isAuth = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement >();
   const [open, setOpen] = useState<boolean>(false);
@@ -26,7 +29,19 @@ const Navbar: FC = () => {
     setAnchorEl(event.currentTarget);
     setOpen(true);
   };
-
+  const handleSignOut = async () => {
+    try {
+      await axios.post('/api/v1/account/logout');
+      navigate('/signin');
+    } catch (error) {
+      const { message } = error.response.data;
+      Swal.fire({
+        title: 'Failed To Signout',
+        text: message,
+        icon: 'error',
+      });
+    }
+  };
   return (
     <AppBar
       sx={{
@@ -121,6 +136,7 @@ const Navbar: FC = () => {
                   My account
                 </MenuItem>
                 <MenuItem onClick={() => {
+                  handleSignOut();
                   handleClose();
                 }}
                 >
