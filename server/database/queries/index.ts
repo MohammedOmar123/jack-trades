@@ -3,7 +3,7 @@ import signinQuery from './account/signin';
 import getUserProfileQuery from './user/getUserProfile';
 import getUserProductsQuery from './getUserProductsQuery';
 import getFav from './Requests/checkInWishList';
-import { addToWishListQuery } from './wishlist';
+import { addToWishListQuery, getAllWishlistItemsQuery, deleteFromWishListQuery } from './wishlist';
 import { checkInWishList } from './Requests';
 import { deleteProductQuery, getProductQuery, updateProductQuery } from './products';
 
@@ -20,4 +20,6 @@ export {
   addToWishListQuery,
   checkInWishList,
   updateProductQuery,
+  deleteFromWishListQuery,
+  getAllWishlistItemsQuery,
 };

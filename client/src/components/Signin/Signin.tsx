@@ -73,6 +73,8 @@ const Signin:FC = () => {
           />
         </Link>
       </Box>
+
+      {/* Form section */}
       <Box className="form-container-signin">
         <Typography variant="h3">
           SignIn

@@ -1,8 +1,9 @@
 import { Response, NextFunction } from 'express';
+
 import { IRequestPayload } from '../../interfaces';
-import deleteFromWishListQuery from '../../database/queries/wishlist/deleteFromWishList';
+
+import { checkInWishList, deleteFromWishListQuery } from '../../database/queries';
 import { CustomError } from '../../helpers';
-import { checkInWishList } from '../../database/queries';
 
 const deleteFromWishList = async (req : IRequestPayload, res : Response, next:NextFunction) => {
   const { productId } = req.params;

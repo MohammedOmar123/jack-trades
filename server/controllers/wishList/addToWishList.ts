@@ -1,8 +1,8 @@
 import { Response, NextFunction } from 'express';
-import { addToWishListQuery, checkInWishList } from '../../database/queries';
 import { IRequestPayload } from '../../interfaces/IRequestPayload';
+
+import { addToWishListQuery, checkInWishList, getProductQuery } from '../../database/queries';
 import { CustomError } from '../../helpers';
-import getProductQuery from '../../database/queries/products/getProduct';
 
 const addToWishList = async (req:IRequestPayload, res:Response, next: NextFunction) => {
   const { productId } = req.params;

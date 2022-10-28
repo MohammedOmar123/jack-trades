@@ -123,10 +123,7 @@ const ProductDetailsComponent = ({
   };
 
   const handleIsFav = () => {
-    // when the user clicks on the fav button
-    //  and the state is FavoriteBorder  Which means
-    // that the user has not added the item to the wishlist yet
-    // addToWishList function will be invoked, else it will be deleted.
+    // FavoriteBorder means that the item doesn't exist in the wishlist
     if (FavIcon === 'FavoriteBorder') {
       addToWishList();
     } else {

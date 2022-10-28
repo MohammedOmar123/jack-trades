@@ -1,6 +1,6 @@
 import { Favorite, Product } from '../../../models';
 
-const getAllItemsQuery = async (user_id : number) => Favorite.findAll({
+const getAllWishlistItemsQuery = async (user_id : number) => Favorite.findAll({
   raw: true,
   attributes: ['product_id'],
   include: {
@@ -12,4 +12,4 @@ const getAllItemsQuery = async (user_id : number) => Favorite.findAll({
   },
 });
 
-export default getAllItemsQuery;
+export default getAllWishlistItemsQuery;

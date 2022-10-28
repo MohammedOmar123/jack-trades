@@ -88,7 +88,7 @@ const SignupForm = () => {
             marginTop: '10px',
           }}
           >
-            already have an account ?
+            Already have an account ?
           </Typography>
           <Link
             to="/signin"
@@ -104,8 +104,8 @@ const SignupForm = () => {
             />
           </Link>
         </Box>
-        {/* Form section */}
 
+        {/* Form section */}
         <main>
           <Box className="content-2">
             <Typography variant="h2">Create free account</Typography>

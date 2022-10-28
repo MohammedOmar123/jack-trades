@@ -8,7 +8,7 @@ const token = "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOi
 const token2 = "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJMYXVyZXRlQGdtYWlsLmNvbSIsImlhdCI6MTY2Njk0ODQzM30.4Tr-ZSgxK1R1Kd8YMmkzdgd2soIVMpGI1v08zgorOUg";
 beforeAll(() => buildTables());
 
-// this test should be at the first because the values will be changed in the next routes 
+// this test should be at the first because the values will be changed in the next tests 
 describe("get all wish list route", () => {
     it("Should return all items in the wishlist for the sigIn user", async () => {
         await request(app)
@@ -39,6 +39,7 @@ describe("get all wish list route", () => {
             .expect((res) => expect(res.body).toEqual({ message: 'There is no items in your wishlist' }
             ));
     });
+
     it("Should return 401 and Unauthorized if the user doesn't signIn", async () => {
         await request(app)
             .get("/api/v1/wishlist/")
@@ -93,6 +94,7 @@ describe("Add to wishlist route", () => {
                 message: "You added the product to the wishlist successfully",
             });
     });
+
     // test get all items route again, after the user added some product to his wishlist 
     describe("get all wish list route", () => {
         it("Should return all items in the wishlist for the sigIn user", async () => {

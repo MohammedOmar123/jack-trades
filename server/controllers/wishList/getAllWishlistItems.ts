@@ -1,11 +1,12 @@
 import { Response, NextFunction } from 'express';
 import { IRequestPayload } from '../../interfaces';
-import getAllItemsQuery from '../../database/queries/wishlist/getAllWishListItemsQuery';
+
+import { getAllWishlistItemsQuery } from '../../database/queries';
 
 const getAllWishListItems = async (req : IRequestPayload, res :Response, next:NextFunction) => {
   const { id } = req.user;
   try {
-    const data = await getAllItemsQuery(+id);
+    const data = await getAllWishlistItemsQuery(+id);
     if (data.length) {
       res.json({ message: data });
     } else {
