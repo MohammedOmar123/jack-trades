@@ -1,6 +1,8 @@
 import getProductQuery from './getProduct';
 import deleteProductQuery from './deleteProductQuery';
-import { getAllProductsQuery, getProductsNumberQuery, getAllCategoriesQuery } from './getAllProducts';
+import {
+  getAllProductsQuery, getProductsNumberQuery, getAllCategoriesQuery, getProductsTitleQuery,
+} from './getAllProducts';
 import updateProductQuery from './updateProductQuery';
 
 export {
@@ -10,4 +12,5 @@ export {
   getProductsNumberQuery,
   getAllCategoriesQuery,
   updateProductQuery,
+  getProductsTitleQuery,
 };
