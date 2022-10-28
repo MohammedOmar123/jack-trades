@@ -14,6 +14,7 @@ import IAccountProps from './IAccountProps';
 import IUserLogin from './IUserLogin';
 import IStatistic from './Statistics';
 import ILoadingProps from './LoadingProps';
+import IAuthContextProps from './IAuthContextProps';
 
 export {
   IProduct,
@@ -32,4 +33,5 @@ export {
   IAccountProps,
   IUserLogin,
   ILoadingProps,
+  IAuthContextProps,
 };

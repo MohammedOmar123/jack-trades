@@ -1,11 +1,16 @@
 import axios from 'axios';
 import { createContext, useState, useEffect } from 'react';
+import { IAuthContextProps } from '../../interfaces';
 
-export const AuthContext = createContext<number>(0);
+export const AuthContext = createContext<IAuthContextProps>({
+  userId: 0,
+  setUserId: () => {},
+});
 
 interface IChildrenProps {
   children : React.ReactNode
 }
+
 export const AuthContextProvider = ({ children } : IChildrenProps) => {
   const [userId, setUserId] = useState<number>(0);
   const checkAuth = async () => {
@@ -24,7 +29,7 @@ export const AuthContextProvider = ({ children } : IChildrenProps) => {
   }, []);
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <AuthContext.Provider value={userId}>
+    <AuthContext.Provider value={{ userId, setUserId }}>
       {children}
     </AuthContext.Provider>
   );

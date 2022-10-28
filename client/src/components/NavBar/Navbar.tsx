@@ -18,7 +18,7 @@ import { AuthContext } from '../Context/AuthContext';
 
 const Navbar: FC = () => {
   const navigate = useNavigate();
-  const userId = useContext(AuthContext);
+  const { userId, setUserId } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement >();
   const [open, setOpen] = useState<boolean>(false);
   const handleClose = () => {
@@ -32,7 +32,8 @@ const Navbar: FC = () => {
   const handleSignOut = async () => {
     try {
       await axios.post('/api/v1/account/logout');
-      navigate('/signin');
+      navigate('/');
+      setUserId(0);
     } catch (error) {
       const { message } = error.response.data;
       Swal.fire({
