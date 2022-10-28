@@ -13,19 +13,12 @@ interface IChildrenProps {
 
 export const AuthContextProvider = ({ children } : IChildrenProps) => {
   const [userId, setUserId] = useState<number>(0);
-  const checkAuth = async () => {
-    try {
-      const response = await axios.get('/api/v1/account/');
+  useEffect(() => {
+    axios.get('/api/v1/account/').then((response) => {
       if (response.status === 200) {
         setUserId(response.data);
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    checkAuth();
+    });
   }, []);
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values

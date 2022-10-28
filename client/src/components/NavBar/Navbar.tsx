@@ -21,14 +21,17 @@ const Navbar: FC = () => {
   const { userId, setUserId } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement >();
   const [open, setOpen] = useState<boolean>(false);
+
   const handleClose = () => {
     setAnchorEl(null);
     setOpen(false);
   };
+
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
     setOpen(true);
   };
+
   const handleSignOut = async () => {
     try {
       await axios.post('/api/v1/account/logout');
@@ -43,6 +46,7 @@ const Navbar: FC = () => {
       });
     }
   };
+
   return (
     <AppBar
       sx={{
@@ -77,6 +81,8 @@ const Navbar: FC = () => {
           }
           </ul>
         </div>
+        {/* if the user authorize display the menu,
+         if not display join us button */}
         { userId
           ? (
             <Box sx={{
@@ -90,14 +96,14 @@ const Navbar: FC = () => {
                 cursor: 'pointer',
               }}
               />
-              {' '}
+
               <PersonOutline sx={{
                 color: 'black',
                 fontSize: '25px',
                 cursor: 'pointer',
-
               }}
               />
+
               <div
                 onClick={handleOpen}
                 style={{
@@ -129,8 +135,8 @@ const Navbar: FC = () => {
                 }}
                 >
                   Profile
-
                 </MenuItem>
+
                 <MenuItem onClick={handleClose}>
                   My Requests
                 </MenuItem>
