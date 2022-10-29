@@ -2,10 +2,10 @@
 import {
   Box, Checkbox, FormControlLabel, FormGroup, Typography,
 } from '@mui/material';
+import { FC } from 'react';
+import { ICategories } from '../../interfaces';
 
-const cats = ['clothes', 'books', 'jewlery', 'electronics'];
-
-const ProductsFilter = () => (
+const ProductsFilter: FC<{ categories: ICategories[] }> = ({ categories }) => (
   <Box
     sx={{
       boxShadow: '0px 0px 10px rgba(27, 75, 102, 0.25)',
@@ -37,14 +37,14 @@ const ProductsFilter = () => (
       >
         Category
       </Typography>
-      {cats.map((cat) => (
+      {categories.map((category) => (
         <FormGroup
-          key={cat}
+          key={category.id}
           sx={{
             marginLeft: '1rem',
           }}
         >
-          <FormControlLabel control={<Checkbox />} label={cat} />
+          <FormControlLabel control={<Checkbox />} label={category.name} />
         </FormGroup>
       ))}
     </Box>
