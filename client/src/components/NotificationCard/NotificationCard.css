@@ -1,0 +1,89 @@
+.notifications-card {
+  margin: auto;
+  margin-top: 10px;
+   display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  height: 100px;
+  width: 80%;
+  gap: 40px;
+  padding-left: 16px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-left: 1px #1B4B66 solid;
+  align-items: center;
+}
+/* user info container */ 
+
+.user-info-card {
+  display: flex;
+  gap: 15px;
+}
+
+ /* user image  */
+.user-info-card img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.notification-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notification-info .name {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.notification-info .request {
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+  color: rgb(102, 102, 102);
+  font-size: 12px;
+}
+
+.product-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+}
+
+/* the image of the product */
+.notification-product-Image {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+}
+/* icons container  */
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/*  single icon  */
+.icons div {
+  border: 1px solid rgb(102, 102, 102);
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.5s, background-color 0.5s, color 0.5s;
+}
+
+.icons div:hover {
+  background-color: rgba(0, 0, 0, 0.905) !important;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+ /* the date */
+.notification-date {
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+  color: rgb(102, 102, 102);
+  font-size: 13px;
+}

@@ -14,3 +14,7 @@ export { default as Loading } from './Loading/Loading';
 export { default as Signin } from './Signin/Signin';
 export { default as AccountIntro } from './AccountIntro/AccountIntro';
 export { default as SignupForm } from './SignupForm/SignupForm';
+export { default as NotificationCard }
+  from './NotificationCard/NotificationCard';
+export { default as NotificationContainer }
+  from './NotificationContainer/NotificationContainer';
