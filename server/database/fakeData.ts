@@ -1,6 +1,8 @@
-import { Product, User, Category } from '../interfaces/fakeDataTypes';
+import {
+  Product, User, Category, Favorite,
+} from '../interfaces/fakeDataTypes';
 
-const data: { products: Product[], users: User[], categories: Category[] } = {
+const data: { products: Product[], users: User[], categories: Category[], favorites:Favorite[] } = {
   products: [
     {
       title: 'nice sofa',
@@ -216,6 +218,27 @@ const data: { products: Product[], users: User[], categories: Category[] } = {
       name: 'and more',
       image: 'https://cdn.shopify.com/s/files/1/0070/7032/files/trending-products_c8d0d15c-9afc-47e3-9ba2-f7bad0505b9b.png?format=jpg&quality=90&v=1614559651',
     },
+  ],
+  favorites: [{
+    user_id: 1,
+    product_id: 1,
+  },
+  {
+    user_id: 2,
+    product_id: 2,
+  },
+  {
+    user_id: 3,
+    product_id: 3,
+  },
+  {
+    user_id: 4,
+    product_id: 4,
+  },
+  // {
+  //   user_id: 1,
+  //   product_id: 3,
+  // },
   ],
 };
 

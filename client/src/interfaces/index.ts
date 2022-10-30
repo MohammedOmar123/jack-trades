@@ -11,11 +11,10 @@ import UserProduct from './UserProductProps';
 import UserInfoTypes from './UserInfoProps';
 import IntroTypes from './introDataTypes';
 import IAccountProps from './IAccountProps';
-import IFormHeaderProps from './IFormHeaderProps';
 import IUserLogin from './IUserLogin';
-
 import IStatistic from './Statistics';
 import ILoadingProps from './LoadingProps';
+import IAuthContextProps from './IAuthContextProps';
 
 export {
   IProduct,
@@ -32,7 +31,7 @@ export {
   UserProduct,
   UserInfoTypes,
   IAccountProps,
-  IFormHeaderProps,
   IUserLogin,
   ILoadingProps,
+  IAuthContextProps,
 };

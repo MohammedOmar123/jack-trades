@@ -4,6 +4,7 @@ import app from "../server/app";
 import buildTables from "../server/database/build";
 
 beforeAll(() => buildTables());
+const token = "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJKb2huQGdtYWlsLmNvbSIsImlhdCI6MTY2NjY5OTQxNn0.JczMifcbYE9z53Lmt9IL_QV7z3D7YA2wn0zZIFGwwjk";
 
 describe("Validations tests should return errors messages to the user", () => {
   test("when user enters empty first Name", async () => {
@@ -450,6 +451,23 @@ describe('LOGOUT// TESTS', () => {
       })
   })
 })
-
+describe("check Auth route tests", () => {
+  test("Should return 200 and the id of the logged user ", async () => {
+    await request(app)
+      .get("/api/v1/account/")
+      .set('Cookie', token)
+      .expect(200)
+      .expect((res) => {
+        expect(res.text).toEqual("1");
+      });
+  });
+  test("Should return 401 and the Unauthorized if the user doesn't signIn", async () => {
+    await request(app)
+      .get("/api/v1/account/")
+      .set('Cookie', token+"Mohammed")
+      .expect(401)
+      .expect({ message: "Unauthorized" })
+  });
+});
 
 afterAll(() => sequelize.close());
