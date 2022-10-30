@@ -52,6 +52,7 @@ const Navbar: FC = () => {
       sx={{
         background: 'white',
         boxShadow: '0 4px 4px -2px rgba(0,0,0,.2)',
+        position: 'sticky',
       }}
     >
       <Toolbar sx={{
@@ -90,12 +91,22 @@ const Navbar: FC = () => {
               gap: '6px',
             }}
             >
-              <NotificationsNone sx={{
-                color: 'black',
-                fontSize: '25px',
-                cursor: 'pointer',
-              }}
-              />
+              <div
+                onClick={() => {
+                  navigate('notifications');
+                }}
+                style={{
+                  cursor: 'pointer',
+                }}
+                role="button"
+                aria-hidden="true"
+              >
+                <NotificationsNone sx={{
+                  color: 'black',
+                  fontSize: '25px',
+                }}
+                />
+              </div>
 
               <PersonOutline sx={{
                 color: 'black',
