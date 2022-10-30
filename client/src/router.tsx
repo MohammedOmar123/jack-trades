@@ -9,6 +9,7 @@ import {
   ProfilePage,
   ProductsPage,
   ProductDetails,
+  AddProductPage,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       }, {
         path: 'about',
         element: <AboutPage />,
+      },
+      {
+        path: 'newProduct',
+        element: <AddProductPage />,
       },
     ],
   }, {

@@ -12,6 +12,7 @@ const Navbar: FC = () => (
     sx={{
       background: 'white',
       boxShadow: '0 4px 4px -2px rgba(0,0,0,.2)',
+      position: 'sticky',
     }}
   >
     <Toolbar sx={{
