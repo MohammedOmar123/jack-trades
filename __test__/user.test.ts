@@ -54,13 +54,13 @@ describe("Testing user profile informations", () => {
 describe("user route tests", () => {
   it("testing getting the user products", async () => {
     await request(app)
-      .get("/api/v1/user/5/products")
+      .get("/api/v1/user/5/products?offset=0")
       .expect(200)
       .expect("Content-Type", /json/)
       .expect((res) => {
-        expect(res.body.length).toBe(1);
-        expect(res.body[0].id).toBe(8);
-        expect(res.body[0].title).toBe(
+        expect(res.body.count).toBe(1);
+        expect(res.body.rows[0].id).toBe(8);
+        expect(res.body.rows[0].title).toBe(
           "Louis Vuitton Jacques Durand Sunglasses Black Sunglasses"
         );
       });
@@ -68,12 +68,12 @@ describe("user route tests", () => {
 
   it("testing getting the user products", async () => {
     await request(app)
-      .get("/api/v1/user/2/products")
+      .get("/api/v1/user/2/products?offset=0")
       .expect(200)
       .expect("Content-Type", /json/)
       .expect((res) => {
-        expect(res.body.length).toBe(5);
-        expect(res.body[0].id).toBe(1);
+        expect(res.body.count).toBe(5);
+        expect(res.body.rows[0].id).toBe(1);
       });
   });
 

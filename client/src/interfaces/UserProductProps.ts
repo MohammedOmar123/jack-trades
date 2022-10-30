@@ -5,7 +5,7 @@ interface UserProduct {
   gallery: string[],
   id: string,
   is_available: boolean,
-  title:string,
+  title: string,
   type: string,
   updatedAt: string,
   user_id: string

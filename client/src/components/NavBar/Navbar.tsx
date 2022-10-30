@@ -91,12 +91,22 @@ const Navbar: FC = () => {
               gap: '6px',
             }}
             >
-              <NotificationsNone sx={{
-                color: 'black',
-                fontSize: '25px',
-                cursor: 'pointer',
-              }}
-              />
+              <div
+                onClick={() => {
+                  navigate('notifications');
+                }}
+                style={{
+                  cursor: 'pointer',
+                }}
+                role="button"
+                aria-hidden="true"
+              >
+                <NotificationsNone sx={{
+                  color: 'black',
+                  fontSize: '25px',
+                }}
+                />
+              </div>
 
               <PersonOutline sx={{
                 color: 'black',
