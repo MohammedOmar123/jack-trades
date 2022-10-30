@@ -9,6 +9,7 @@ import {
   ProfilePage,
   ProductsPage,
   ProductDetails,
+  Notification,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -33,8 +34,10 @@ const router = createBrowserRouter([
       }, {
         path: 'about',
         element: <AboutPage />,
-      },
-    ],
+      }, {
+        path: 'notifications',
+        element: <Notification />,
+      }],
   }, {
     path: 'signin',
     element: <SignIn />,
