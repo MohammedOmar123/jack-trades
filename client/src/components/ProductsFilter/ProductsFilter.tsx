@@ -1,11 +1,11 @@
 /* eslint-disable max-len */
 import {
-  Box, Checkbox, FormControlLabel, FormGroup, Typography,
+  Box, Checkbox, FormControlLabel, FormGroup, Radio, RadioGroup, Typography,
 } from '@mui/material';
 import { FC } from 'react';
 import { ICategories } from '../../interfaces';
 
-const ProductsFilter: FC<{ categories: ICategories[] }> = ({ categories }) => (
+const ProductsFilter: FC<{ categories: ICategories[], changeTypeValue: (value: string) => void, changeDateValue: (value: string) => void }> = ({ categories, changeTypeValue, changeDateValue }) => (
   <Box
     sx={{
       boxShadow: '0px 0px 10px rgba(27, 75, 102, 0.25)',
@@ -60,20 +60,16 @@ const ProductsFilter: FC<{ categories: ICategories[] }> = ({ categories }) => (
       >
         Date
       </Typography>
-      <FormGroup
+      <RadioGroup
+        aria-labelledby="demo-radio-buttons-group-label"
+        name="radio-buttons-group"
         sx={{
           marginLeft: '1rem',
         }}
       >
-        <FormControlLabel control={<Checkbox />} label="Newest" />
-      </FormGroup>
-      <FormGroup
-        sx={{
-          marginLeft: '1rem',
-        }}
-      >
-        <FormControlLabel control={<Checkbox />} label="Oldest" />
-      </FormGroup>
+        <FormControlLabel value="newest" control={<Radio onChange={(e) => changeDateValue(e.currentTarget.value)} />} label="newest" />
+        <FormControlLabel value="oldest" control={<Radio onChange={(e) => changeDateValue(e.currentTarget.value)} />} label="oldest" />
+      </RadioGroup>
     </Box>
     <Box sx={{
       padding: '1.2rem 1.5rem',
@@ -86,20 +82,16 @@ const ProductsFilter: FC<{ categories: ICategories[] }> = ({ categories }) => (
       >
         Type
       </Typography>
-      <FormGroup
+      <RadioGroup
+        aria-labelledby="demo-radio-buttons-group-label"
+        name="radio-buttons-group"
         sx={{
           marginLeft: '1rem',
         }}
       >
-        <FormControlLabel control={<Checkbox />} label="Donation" />
-      </FormGroup>
-      <FormGroup
-        sx={{
-          marginLeft: '1rem',
-        }}
-      >
-        <FormControlLabel control={<Checkbox />} label="Exchange" />
-      </FormGroup>
+        <FormControlLabel value="donation" control={<Radio onChange={(e) => changeTypeValue(e.currentTarget.value)} />} label="donation" />
+        <FormControlLabel value="exchange" control={<Radio onChange={(e) => changeTypeValue(e.currentTarget.value)} />} label="exchange" />
+      </RadioGroup>
     </Box>
   </Box>
 );

@@ -41,8 +41,8 @@ const getAllProducts = async (req: Request, res: Response, next: NextFunction): 
 
     res.send({
       totalProducts: productsNumber,
-      totalPages: Math.floor(productsNumber / +limit),
-      products,
+      totalPages: Math.floor(products.count / +limit),
+      products: products.rows,
       categories,
     });
   } catch (error) {

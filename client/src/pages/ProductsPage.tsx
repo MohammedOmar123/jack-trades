@@ -11,13 +11,33 @@ const ProductsPage = () => {
   const [data, setData] = useState<IData | null>(null);
   const [offset, setOffset] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
+  const [type, setType] = useState<string | null>(null);
+  const [date, setDate] = useState<string | null>(null);
+  const [search, setSearch] = useState<string>('');
 
   const changeOffsetValue = (value: number): void => {
     setOffset(value);
   };
+
+  const changeTypeValue = (value: string): void => {
+    setType(value);
+  };
+
+  const changeDateValue = (value: string): void => {
+    setDate(value);
+  };
+
+  const changeSearchValue = (value: string): void => {
+    setSearch(value);
+  };
+
   const getProducts = async (offsetValue: number) => {
+    const typeQuery = type === null ? '' : `&type=${type}`;
+    const dateQuery = date === null ? '' : `&date=${date}`;
+    const searchQuery = search === '' ? '' : `&search=${search}`;
     const productsResponse = await axios
-      .get(`/api/v1/products?limit=6&offset=${offsetValue * 3}`);
+      // eslint-disable-next-line max-len
+      .get(`/api/v1/products?limit=6&offset=${offsetValue * 6}${typeQuery}${dateQuery}${searchQuery}`);
 
     setData(productsResponse.data);
   };
@@ -29,7 +49,7 @@ const ProductsPage = () => {
       setLoading(false);
     };
     asyncFuncToSetLoading();
-  }, [offset]);
+  }, [offset, type, date, search]);
 
   if (!data) return <div>Loading...</div>;
 
@@ -47,14 +67,21 @@ const ProductsPage = () => {
           width: { sm: '18rem', md: '18rem' },
         }}
       >
-        <ProductsFilter />
+        <ProductsFilter
+          categories={data.categories}
+          changeTypeValue={changeTypeValue}
+          changeDateValue={changeDateValue}
+        />
       </Box>
       <Box sx={{
         width:
         { xs: '70%' },
       }}
       >
-        <ProductsSearch />
+        <ProductsSearch
+          titles={data.products}
+          changeSearchValue={changeSearchValue}
+        />
         <ProductsCategory
           products={data.products}
           totalProducts={data.totalProducts}

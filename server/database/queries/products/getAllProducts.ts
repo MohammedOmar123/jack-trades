@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Op } from 'sequelize';
 import { Product, Category } from '../../../models';
 import { IArguments } from '../../../interfaces';
 
 const getAllProductsQuery = ({
   limit, offset, category, type, date, search,
-}: IArguments) => Product.findAll({
+}: IArguments) => Product.findAndCountAll({
   limit,
   offset,
   where: {
