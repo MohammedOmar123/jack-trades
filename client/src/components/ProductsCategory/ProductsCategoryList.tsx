@@ -2,8 +2,9 @@ import { FC } from 'react';
 import {
   Box, ImageList, ImageListItem, ListSubheader, Pagination,
 } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 import ProductsCategoryCard from './ProductsCategoryCard';
-import SpinnerLoading from '../Loading/Loading';
+// import SpinnerLoading from '../Loading/Loading';
 import { IProducts } from '../../interfaces';
 
 // eslint-disable-next-line max-len
@@ -18,6 +19,7 @@ const ProductsCategory:FC <{ products: IProducts[], totalProducts: number, total
     sx={{
       boxShadow: '0px 0px 10px rgba(27, 75, 102, 0.25)',
       marginTop: '2rem',
+      height: '90%',
       padding: '1rem 2rem',
     }}
   >
@@ -43,7 +45,21 @@ const ProductsCategory:FC <{ products: IProducts[], totalProducts: number, total
 
       {!loading ? products.map((product) => (
         <ProductsCategoryCard key={product.id} product={product} />
-      )) : (<SpinnerLoading className="" />)}
+      )) : (
+        // eslint-disable-next-line max-len
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '40rem',
+          }}
+        >
+          <CircularProgress
+            color="primary"
+          />
+        </Box>
+      )}
 
     </ImageList>
     <Box sx={{
