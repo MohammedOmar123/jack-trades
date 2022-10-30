@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Product, Category } from '../../../models';
 import { IArguments } from '../../../interfaces';
 
@@ -6,7 +5,7 @@ const getAllProductsQuery = ({
   limit, offset, category, type, date, search,
 }: IArguments) => Product.findAndCountAll({
   limit,
-  offset,
+  offset: offset * limit,
   where: {
     category_id: category,
     type,

@@ -9,7 +9,7 @@ const getAllProducts = async (req: Request, res: Response, next: NextFunction): 
   try {
     const limit = Number(req.query.limit);
     const offset = Number(req.query.offset);
-    let category: TStrOrStrArr = req.query.category as TStrOrStrArr;
+    let category: any = req.query.category as string[];
     let type: TStrOrStrArr = req.query.type as TStrOrStrArr;
     let date = req.query.date as string;
     let search: TStrOrStrArr = req.query.search as TStrOrStrArr;
@@ -24,6 +24,7 @@ const getAllProducts = async (req: Request, res: Response, next: NextFunction): 
     const productsTitles = await getProductsTitleQuery();
 
     if (!search) { search = productsTitles.map((v: { title: string }) => v.title); }
+
     if (!category) { category = categories.map((v: { id: number }) => String(v.id)); }
     if (!type) { type = ['donation', 'exchange']; }
     if (!date || date) {

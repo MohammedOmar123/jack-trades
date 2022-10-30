@@ -13,7 +13,8 @@ const ProductsPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [type, setType] = useState<string | null>(null);
   const [date, setDate] = useState<string | null>(null);
-  const [search, setSearch] = useState<string>('');
+  const [search, setSearch] = useState<string | null>(null);
+  const [category, setCategory] = useState<number[]>([]);
 
   const changeOffsetValue = (value: number): void => {
     setOffset(value);
@@ -31,13 +32,22 @@ const ProductsPage = () => {
     setSearch(value);
   };
 
+  const changeCategoryValue = (value: number, index:number): void => {
+    if (index > -1) setCategory((prev) => prev.filter((e, i) => i !== index));
+    else setCategory((prevState) => ([...prevState, value]));
+  };
+
   const getProducts = async (offsetValue: number) => {
-    const typeQuery = type === null ? '' : `&type=${type}`;
-    const dateQuery = date === null ? '' : `&date=${date}`;
-    const searchQuery = search === '' ? '' : `&search=${search}`;
-    const productsResponse = await axios
-      // eslint-disable-next-line max-len
-      .get(`/api/v1/products?limit=6&offset=${offsetValue * 6}${typeQuery}${dateQuery}${searchQuery}`);
+    const productsResponse = await axios.get('/api/v1/products', {
+      params: {
+        type,
+        date,
+        search,
+        category,
+        limit: 6,
+        offset: offsetValue,
+      },
+    });
 
     setData(productsResponse.data);
   };
@@ -49,7 +59,7 @@ const ProductsPage = () => {
       setLoading(false);
     };
     asyncFuncToSetLoading();
-  }, [offset, type, date, search]);
+  }, [offset, type, date, search, category]);
 
   if (!data) return <div>Loading...</div>;
 
@@ -69,8 +79,10 @@ const ProductsPage = () => {
       >
         <ProductsFilter
           categories={data.categories}
+          category={category}
           changeTypeValue={changeTypeValue}
           changeDateValue={changeDateValue}
+          changeCategoryValue={changeCategoryValue}
         />
       </Box>
       <Box sx={{

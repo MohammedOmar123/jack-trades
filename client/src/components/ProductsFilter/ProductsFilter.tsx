@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable max-len */
 import {
   Box, Checkbox, FormControlLabel, FormGroup, Radio, RadioGroup, Typography,
@@ -5,7 +6,9 @@ import {
 import { FC } from 'react';
 import { ICategories } from '../../interfaces';
 
-const ProductsFilter: FC<{ categories: ICategories[], changeTypeValue: (value: string) => void, changeDateValue: (value: string) => void }> = ({ categories, changeTypeValue, changeDateValue }) => (
+const ProductsFilter: FC<{ categories: ICategories[], category: number[], changeTypeValue: (value: string) => void, changeDateValue: (value: string) => void, changeCategoryValue: (value: number, index:number) => void }> = ({
+  categories, category, changeTypeValue, changeDateValue, changeCategoryValue,
+}) => (
   <Box
     sx={{
       boxShadow: '0px 0px 10px rgba(27, 75, 102, 0.25)',
@@ -37,14 +40,24 @@ const ProductsFilter: FC<{ categories: ICategories[], changeTypeValue: (value: s
       >
         Category
       </Typography>
-      {categories.map((category) => (
+      {categories.map((cat) => (
         <FormGroup
-          key={category.id}
+          key={cat.id}
           sx={{
             marginLeft: '1rem',
           }}
         >
-          <FormControlLabel control={<Checkbox />} label={category.name} />
+          <FormControlLabel
+            control={(
+              <Checkbox
+                onChange={(e) => {
+                  const index = category.indexOf(cat.id);
+                  changeCategoryValue(cat.id, index);
+                }}
+              />
+)}
+            label={cat.name}
+          />
         </FormGroup>
       ))}
     </Box>
