@@ -21,3 +21,7 @@ export type Category = {
   name: string,
   image: string,
 };
+export type Favorite = {
+  user_id: number;
+  product_id:number,
+};

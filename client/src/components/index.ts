@@ -11,7 +11,6 @@ export { default as CategoriesSlider } from './CategoriesSlider';
 export { default as UserInfo } from './UserInfo';
 export { default as UserProducts } from './UserProducts';
 export { default as Loading } from './Loading/Loading';
-export { default as FormHeader } from './FormHeader/FormHeader';
 export { default as Signin } from './Signin/Signin';
 export { default as AccountIntro } from './AccountIntro/AccountIntro';
 export { default as SignupForm } from './SignupForm/SignupForm';
