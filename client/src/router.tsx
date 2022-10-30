@@ -12,6 +12,10 @@ import {
   Notification,
 } from './pages';
 
+import Wishlist from './components/Wishlist';
+import Requests from './components/Requests';
+import { UserProducts } from './components';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -31,6 +35,20 @@ const router = createBrowserRouter([
       }, {
         path: 'profile/:userId',
         element: <ProfilePage />,
+        children: [
+          {
+            index: true,
+            element: <UserProducts />,
+          },
+          {
+            path: 'wishlist',
+            element: <Wishlist />,
+          },
+          {
+            path: 'requests',
+            element: <Requests />,
+          },
+        ],
       }, {
         path: 'about',
         element: <AboutPage />,
