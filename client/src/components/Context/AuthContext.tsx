@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createContext, useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import { IAuthContextProps } from '../../interfaces';
 
 export const AuthContext = createContext<IAuthContextProps>({
@@ -17,6 +18,14 @@ export const AuthContextProvider = ({ children } : IChildrenProps) => {
     axios.get('/api/v1/account/').then((response) => {
       if (response.status === 200) {
         setUserId(response.data);
+      }
+    }).catch((error) => {
+      if (error.response.status !== 401) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+        });
       }
     });
   }, []);
