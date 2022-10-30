@@ -6,6 +6,7 @@ import userRouter from './users';
 import productsRouter from './products';
 import requestRouter from './request';
 import notificationRouter from './notifications';
+import wishListRouter from './wishlist';
 
 const router = express.Router();
 router.use('/account', accountRouter);
@@ -14,4 +15,5 @@ router.use('/user', userRouter);
 router.use('/products', productsRouter);
 router.use('/requests', requestRouter);
 router.use('/notifications', notificationRouter);
+router.use('/wishlist', wishListRouter);
 export default router;
