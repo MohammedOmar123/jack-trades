@@ -5,4 +5,5 @@ export { default as ProductDetails } from './ProductDetails';
 export { default as ProfilePage } from './ProfilePage';
 export { default as SignUp } from './SignUp';
 export { default as SignIn } from './SignIn';
+export { default as AddProductPage } from './AddProductPage';
 export { default as Notification } from './notification';

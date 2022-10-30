@@ -9,6 +9,7 @@ import {
   ProfilePage,
   ProductsPage,
   ProductDetails,
+  AddProductPage,
   Notification,
 } from './pages';
 
@@ -52,10 +53,16 @@ const router = createBrowserRouter([
       }, {
         path: 'about',
         element: <AboutPage />,
-      }, {
+      },
+      {
+        path: 'newProduct',
+        element: <AddProductPage />,
+      },
+      {
         path: 'notifications',
         element: <Notification />,
-      }],
+      },
+    ],
   }, {
     path: 'signin',
     element: <SignIn />,
