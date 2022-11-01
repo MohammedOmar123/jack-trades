@@ -11,7 +11,7 @@ import ImagesList from '../ImagesList/ImagesList';
 import './ProductDetails.css';
 
 const ProductDetailsComponent = ({
-  title, description, createdAt, userId,
+  title, description, createdAt, userId, type, isAvailable,
 }
 : IProductDetailsProps) => {
   const [FavIcon, setFavIcon] = useState('FavoriteBorder');
@@ -20,7 +20,7 @@ const ProductDetailsComponent = ({
   const from = useLocation();
 
   const checkWishList = async () => {
-    const response = await axios.get(`/api/v1/requests/checkFavReq/${id}`);
+    const response = await axios.get(`/api/v1/wishlist/${id}`);
     if (response.data === true) {
       setFavIcon('Favorite');
     }
@@ -36,14 +36,12 @@ const ProductDetailsComponent = ({
     Swal.fire({
       icon: 'error',
       title: errorMessage,
-      // eslint-disable-next-line max-len
       text: 'SignIn first to be able to add the item into the wishlist',
       showConfirmButton: true,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, SigIn',
-    // eslint-disable-next-line consistent-return
     }).then((result) => {
       if (result.isConfirmed) {
         navigate('/signin', {
@@ -91,13 +89,12 @@ const ProductDetailsComponent = ({
   const deleteFromWishList = async () => {
     try {
       Swal.fire({
-        icon: 'question',
-        text: 'Do you really want to delete it from wishlist',
-        showConfirmButton: true,
+        title: 'Are you sure?',
+        text: 'Remove this product from your wishlist !',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#1b4b66',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes',
+        confirmButtonText: 'Yes, delete it!',
       }).then(async (result) => {
         if (result.isConfirmed) {
           const res = await axios.delete(`/api/v1/wishlist/${id}`);
@@ -148,7 +145,7 @@ const ProductDetailsComponent = ({
     <Box
       className="product-details-Container"
       sx={{
-        paddingTop: '3%',
+        paddingTop: '2%',
       }}
     >
       <Typography
@@ -165,12 +162,35 @@ const ProductDetailsComponent = ({
           <Typography className="created-at">
             {convertDate(createdAt)}
           </Typography>
+          <Box>
+            <Typography sx={{
+              color: 'black',
+              fontFamily: 'sans-serif',
+              fontWeight: 'bold',
+              marginTop: '15px',
+            }}
+            >
+              For
+              {' '}
+              {type}
+            </Typography>
+            <Typography sx={{
+              color: 'black',
+              fontFamily: 'sans-serif',
+              fontWeight: 'bold',
+              marginTop: '15px',
+            }}
+            >
+              {isAvailable ? 'Available' : 'Not Available'}
+            </Typography>
+          </Box>
         </Box>
         <Box className="buttonsComp-container">
           <ButtonComponent style={{
             text: 'Request Item',
             icon: 'LocalMall',
             classes: 'btn',
+            disabled: isAvailable,
             handleClick: handleRequest,
           }}
           />

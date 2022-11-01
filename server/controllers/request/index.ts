@@ -1,9 +1,10 @@
 import getAllRequest from './getAllRequest';
 import addRequests from './addRequest';
-import checkFavReq from './checkFavReq';
 import deleteRequest from './deleteRequest';
 import updateRequest from './updateRequest';
+// import checkRequest from './checkRequest';
 
 export {
-  getAllRequest, addRequests, checkFavReq, deleteRequest, updateRequest,
+  getAllRequest, addRequests, deleteRequest, updateRequest,
+  // checkRequest,
 };

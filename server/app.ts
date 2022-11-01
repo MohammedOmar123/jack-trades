@@ -1,12 +1,27 @@
 import { join } from 'path';
+import http from 'http';
+
 import express, { Application } from 'express';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
+import { Server } from 'socket.io';
+
+import handleIoEvents from './IoHandler';
 import router from './routes';
 import { ErrorHandler } from './helpers';
 
 const { NODE_ENV, PORT } = process.env;
 const app: Application = express();
+
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: 'http://localhost:3000',
+  },
+});
+
+handleIoEvents(io);
 
 app.use(compression());
 app.use(cookieParser());
@@ -25,5 +40,4 @@ if (NODE_ENV === 'production') {
 }
 
 app.use(ErrorHandler);
-
-export default app;
+export { server, app };
