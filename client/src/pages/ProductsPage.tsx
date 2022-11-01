@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material';
+import { Box, CircularProgress, Stack } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 // eslint-disable-next-line max-len
@@ -13,14 +13,14 @@ const ProductsPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [type, setType] = useState<string | null>(null);
   const [date, setDate] = useState<string | null>(null);
-  const [search, setSearch] = useState<string | null>(null);
+  const [q, setQ] = useState<string | null>(null);
   const [category, setCategory] = useState<number[]>([]);
 
   const changeOffsetValue = (value: number): void => {
     setOffset(value);
   };
 
-  const changeTypeValue = (value: string): void => {
+  const changeTypeValue = (value: string | null): void => {
     setType(value);
   };
 
@@ -29,7 +29,7 @@ const ProductsPage = () => {
   };
 
   const changeSearchValue = (value: string): void => {
-    setSearch(value);
+    setQ(value);
   };
 
   const changeCategoryValue = (value: number, index:number): void => {
@@ -38,11 +38,11 @@ const ProductsPage = () => {
   };
 
   const getProducts = async (offsetValue: number) => {
-    const productsResponse = await axios.get('/api/v1/products', {
+    const productsResponse = await axios.get('/api/v1/products/filter', {
       params: {
         type,
         date,
-        search,
+        q,
         category,
         limit: 6,
         offset: offsetValue,
@@ -59,9 +59,24 @@ const ProductsPage = () => {
       setLoading(false);
     };
     asyncFuncToSetLoading();
-  }, [offset, type, date, search, category]);
+  }, [offset, type, date, q, category]);
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '50rem',
+        }}
+      >
+        <CircularProgress
+          color="primary"
+        />
+      </Box>
+    );
+  }
 
   return (
     <Stack
@@ -78,7 +93,6 @@ const ProductsPage = () => {
         }}
       >
         <ProductsFilter
-          categories={data.categories}
           category={category}
           changeTypeValue={changeTypeValue}
           changeDateValue={changeDateValue}

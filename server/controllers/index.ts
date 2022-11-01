@@ -4,7 +4,8 @@ import {
 import { getStatistics, getFeedback, addFeedback } from './website';
 import { getUserProducts, getUserProfile, getUserWishList } from './user';
 import {
-  getAllProducts, getProduct, addProduct, deleteProduct, updateProduct, filterProduct,
+  getAllProducts,
+  getProduct, addProduct, deleteProduct, updateProduct, filterProduct, getCategories,
 } from './products';
 import {
   getAllRequest, addRequests, checkFavReq, deleteRequest, updateRequest,
@@ -16,7 +17,8 @@ import { deleteFromWishList, getAllWishListItems, addToWishList } from './wishLi
 export {
   signIn, signup, signOut, getStatistics, getFeedback, addFeedback,
   getUserProducts, getUserProfile, getUserWishList,
-  getAllProducts, getProduct, addProduct, deleteProduct, updateProduct, filterProduct,
+  getAllProducts,
+  getProduct, addProduct, deleteProduct, updateProduct, filterProduct, getCategories,
   getAllRequest, addRequests, checkFavReq, deleteRequest, updateRequest,
   getAllNotifications, viewItemDetails,
   deleteFromWishList, getAllWishListItems, addToWishList, checkAuth,

@@ -1,16 +1,16 @@
 import getProductQuery from './getProduct';
 import deleteProductQuery from './deleteProductQuery';
 import {
-  getAllProductsQuery, getProductsNumberQuery, getAllCategoriesQuery, getProductsTitleQuery,
+  getAllProductsQuery, getAllCategoriesQuery,
 } from './getAllProducts';
+import getCategoriesQuery from './getCategories';
 import updateProductQuery from './updateProductQuery';
 
 export {
   deleteProductQuery,
   getProductQuery,
   getAllProductsQuery,
-  getProductsNumberQuery,
   getAllCategoriesQuery,
   updateProductQuery,
-  getProductsTitleQuery,
+  getCategoriesQuery,
 };
