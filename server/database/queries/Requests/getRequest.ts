@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import { Request } from '../../../models';
 
 interface IRequest {
@@ -9,6 +10,9 @@ const getRequestQuery = ({ product_id, sender_id }:IRequest) => Request.findOne(
   where: {
     product_id,
     sender_id,
+    status: {
+      [Op.not]: 'fail',
+    },
   },
 });
 

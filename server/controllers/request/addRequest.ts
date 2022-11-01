@@ -2,7 +2,9 @@
 import { Response, NextFunction } from 'express';
 import { IRequestPayload } from '../../interfaces';
 import { validateAddRequest } from '../../validation';
-import { addRequestQuery, getProductDetailsQuery, getRequestQuery } from '../../database/queries';
+import {
+  addRequestQuery, getProductDetailsQuery, getRequestQuery, checkSelectedProductQuery,
+} from '../../database/queries';
 import { CustomError } from '../../helpers';
 
 const addRequests = async (req : IRequestPayload, res : Response, next:NextFunction) => {
@@ -11,35 +13,38 @@ const addRequests = async (req : IRequestPayload, res : Response, next:NextFunct
     // validate inputs
     const data = await validateAddRequest.validateAsync({ ...req.body, senderId });
 
-    const queryResult = await getProductDetailsQuery([data.productId]);
-    const { user_id, is_available, type } = queryResult;
-
-    // check if the receiver id is really has this product.>> postman case
-    if (user_id !== data.receiverId) throw new CustomError(400, 'Bad Request');
-
-    // validate Availability
-    if (!is_available) throw new CustomError(400, 'This item is not available right now');
-
-    // if exchange >> check if the user really has these products
-    if (type === 'exchange') {
-      const isProductOwner = await getProductDetailsQuery(data.products);
-      if (isProductOwner.user_id !== senderId) throw new CustomError(400, 'Please check your selected product');
-    }
-
     // validate if the item already requested
     const queryOutput = await getRequestQuery({
       sender_id: data.senderId, product_id: data.productId,
     });
     if (queryOutput) throw new CustomError(400, 'You already requested this item');
+    // validate if the product id is valid
 
-    const result = await addRequestQuery({
+    const queryResult = await getProductDetailsQuery(data.productId);
+
+    if (!queryResult.length) throw new CustomError(400, 'Please request a valid product');
+
+    const { user_id, type } = queryResult[0];
+    // validate if the user requests his own item
+    if (user_id === senderId) throw new CustomError(400, "You can't request your items");
+    // if exchange >> check if the user really has these products
+
+    if (type === 'exchange') {
+      if (!data.products || !data.products.length) throw new CustomError(400, 'Please add products to exchange');
+      const isProductOwner = await checkSelectedProductQuery(data.products, senderId);
+      if (isProductOwner.length !== data.products.length) {
+        throw new CustomError(400, 'Please check your selected product');
+      }
+    }
+
+    await addRequestQuery({
       sender_id: data.senderId,
-      receiver_id: data.receiverId,
+      receiver_id: user_id,
       product_id: data.productId,
       type: type === 'exchange',
       products: data.products || null,
     });
-    res.json(result);
+    res.json({ message: 'Your request made successfully' });
   } catch (error) {
     next(error);
   }

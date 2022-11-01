@@ -1,6 +1,6 @@
 import request from "supertest";
 import sequelize from "../server/database/connection";
-import  {app} from "../server/app";
+import app from "../server/app";
 import buildTables from "../server/database/build";
 
 beforeAll(() => buildTables());

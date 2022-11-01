@@ -1,13 +1,11 @@
-import { Op } from 'sequelize';
 import { Product } from '../../../models';
 
-const getProductDetailsQuery = (ids:number[]) => Product.findOne({
-  attributes: ['user_id', 'type', 'is_available'],
+const getProductDetailsQuery = (id:number[]) => Product.findAll({
+  attributes: ['user_id', 'type'],
   where: {
-    id: {
-      [Op.in]: ids,
-    },
+    id,
   },
+
 });
 
 export default getProductDetailsQuery;

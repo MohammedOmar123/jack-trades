@@ -6,7 +6,7 @@ import {
   addToWishListQuery, getAllWishlistItemsQuery, deleteFromWishListQuery, checkInWishlistQuery,
 } from './wishlist';
 import {
-  getRequestQuery, addRequestQuery, getProductDetailsQuery,
+  getRequestQuery, addRequestQuery, getProductDetailsQuery, checkSelectedProductQuery,
 } from './Requests';
 import {
   deleteProductQuery, getProductQuery, updateProductQuery, addProductQuery,
@@ -30,4 +30,5 @@ export {
   getRequestQuery,
   addRequestQuery,
   getProductDetailsQuery,
+  checkSelectedProductQuery,
 };
