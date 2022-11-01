@@ -208,13 +208,32 @@ describe("deleting a product PUT api/v1/products/:productId", () => {
       .send({
         "title": "new title",
         "description": "new product",
-        "type": "kkkk",
+        "type": "donation",
         "gallery": [
           "https://apollo-singapore.akamaized.net/v1/files/i6c5sdoqjous2-IN/image;s=780x0;q=60"
         ],
         "category_id": 1
       })
-      .expect(200)
+      .expect(201)
+      .expect({
+        "message": "You successfully posted a product"
+      });
+  });
+  
+  test('testing adding a new product when the user added a valid inputs', async () => {
+    await request(app)
+      .post('/api/v1/products/')
+      .set('Cookie', token)
+      .send({
+        "title": "new title",
+        "description": "new product",
+        "type": "exchange",
+        "gallery": [
+          "https://apollo-singapore.akamaized.net/v1/files/i6c5sdoqjous2-IN/image;s=780x0;q=60"
+        ],
+        "category_id": 1
+      })
+      .expect(201)
       .expect({
         "message": "You successfully posted a product"
       });
