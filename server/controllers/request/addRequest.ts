@@ -44,7 +44,7 @@ const addRequests = async (req : IRequestPayload, res : Response, next:NextFunct
       type: type === 'exchange',
       products: data.products || null,
     });
-    res.json({ message: 'Your request made successfully' });
+    res.status(201).json({ message: 'request sent successfully' });
   } catch (error) {
     next(error);
   }

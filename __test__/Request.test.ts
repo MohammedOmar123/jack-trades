@@ -130,7 +130,7 @@ describe("Test Add New Requests", () => {
             });
     });
 
-    it("should return 200 when the user made a success request", async () => {
+    it("should return 201 when the user made a success request", async () => {
         await request(app)
             .post("/api/v1/requests/")
             .send({
@@ -139,14 +139,14 @@ describe("Test Add New Requests", () => {
 
             })
             .set('Cookie', token)
-            .expect(200)
+            .expect(201)
             .expect("Content-Type", /json/)
             .expect({
-                 message: 'Your request made successfully' 
+                 message: 'request sent successfully' 
             });
     });
 
-    it("should return 200 when the user made a success request", async () => {
+    it("should return 400 when the user request the same item again", async () => {
         await request(app)
             .post("/api/v1/requests/")
             .send({
