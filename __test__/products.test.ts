@@ -164,8 +164,8 @@ describe("deleting a product PUT api/v1/products/:productId", () => {
       .expect(400)
       .expect({
         message: "Bad Request, id doesn't exist"
-      })
-  })
+      });
+  });
 
 
   test('testing updating a product for a valid id', async () => {
@@ -179,9 +179,46 @@ describe("deleting a product PUT api/v1/products/:productId", () => {
       .expect(200)
       .expect({
         message: "You updated your product successfully"
+      });
+  });
+
+  test('testing adding a new product', async () => {
+    await request(app)
+      .post('/api/v1/products/')
+      .set('Cookie', token)
+      .send({
+        "title": "new title",
+        "description": "new product",
+        "type": "kkkk",
+        "gallery": [
+          "https://apollo-singapore.akamaized.net/v1/files/i6c5sdoqjous2-IN/image;s=780x0;q=60"
+        ],
+        "category_id": 1
       })
-  })
-})
+      .expect(400)
+      .expect({
+        "message": "\"type\" must be one of [donation, exchange]"
+      });
+  });
+  test('testing adding a new product', async () => {
+    await request(app)
+      .post('/api/v1/products/')
+      .set('Cookie', token)
+      .send({
+        "title": "new title",
+        "description": "new product",
+        "type": "kkkk",
+        "gallery": [
+          "https://apollo-singapore.akamaized.net/v1/files/i6c5sdoqjous2-IN/image;s=780x0;q=60"
+        ],
+        "category_id": 1
+      })
+      .expect(400)
+      .expect({
+        "message": "\"type\" must be one of [donation, exchange]"
+      });
+  });
+});
 
 
 afterAll(() => sequelize.close());
