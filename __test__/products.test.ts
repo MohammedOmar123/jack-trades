@@ -182,7 +182,7 @@ describe("deleting a product PUT api/v1/products/:productId", () => {
       });
   });
 
-  test('testing adding a new product', async () => {
+  test('testing adding new product, should return 400 when added invalid type', async () => {
     await request(app)
       .post('/api/v1/products/')
       .set('Cookie', token)
@@ -200,7 +200,8 @@ describe("deleting a product PUT api/v1/products/:productId", () => {
         "message": "\"type\" must be one of [donation, exchange]"
       });
   });
-  test('testing adding a new product', async () => {
+
+  test('testing adding a new product when the user added a valid inputs', async () => {
     await request(app)
       .post('/api/v1/products/')
       .set('Cookie', token)
@@ -213,9 +214,9 @@ describe("deleting a product PUT api/v1/products/:productId", () => {
         ],
         "category_id": 1
       })
-      .expect(400)
+      .expect(200)
       .expect({
-        "message": "\"type\" must be one of [donation, exchange]"
+        "message": "You successfully posted a product"
       });
   });
 });
