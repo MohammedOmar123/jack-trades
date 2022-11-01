@@ -1,10 +1,14 @@
 export type TStrOrStrArr = string | string[];
 
+export interface Args {
+  title?: TStrOrStrArr;
+  category_id: string[];
+  type: TStrOrStrArr
+}
+
 export interface IArguments {
   limit: number;
   offset: number;
-  category?: any;
-  type?: TStrOrStrArr;
-  date?: string;
-  search?: TStrOrStrArr;
+  date: string;
+  args: Args
 }

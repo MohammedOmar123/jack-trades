@@ -1,6 +1,6 @@
 import IUserInfo from './IUserInfo';
 import { IUserPayload, IRequestPayload } from './IRequestPayload';
-import { TStrOrStrArr, IArguments } from './productsPage';
+import { TStrOrStrArr, IArguments, Args } from './productsPage';
 
 export {
   IUserInfo,
@@ -8,4 +8,5 @@ export {
   IRequestPayload,
   TStrOrStrArr,
   IArguments,
+  Args,
 };

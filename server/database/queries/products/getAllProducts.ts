@@ -2,24 +2,15 @@ import { Product, Category } from '../../../models';
 import { IArguments } from '../../../interfaces';
 
 const getAllProductsQuery = ({
-  limit, offset, category, type, date, search,
+  limit, offset, date, args,
 }: IArguments) => Product.findAndCountAll({
   limit,
   offset: offset * limit,
-  where: {
-    category_id: category,
-    type,
-    title: search,
-  },
+  where: { ...args },
   order: [
     ['createdAt', `${date}`],
   ],
   attributes: ['id', 'title', 'gallery'],
-});
-
-const getProductsNumberQuery = () => Product.count();
-const getProductsTitleQuery = () => Product.findAll({
-  attributes: ['title'],
 });
 
 const getAllCategoriesQuery = () => Category.findAll({
@@ -27,5 +18,5 @@ const getAllCategoriesQuery = () => Category.findAll({
 });
 
 export {
-  getAllProductsQuery, getProductsNumberQuery, getAllCategoriesQuery, getProductsTitleQuery,
+  getAllProductsQuery, getAllCategoriesQuery,
 };
