@@ -9,6 +9,7 @@ import ButtonComponent from '../Button/Button';
 import { IProductDetailsProps } from '../../interfaces';
 import ImagesList from '../ImagesList/ImagesList';
 import './ProductDetails.css';
+import RequestPopup from '../RequestPopup';
 
 const ProductDetailsComponent = ({
   title, description, createdAt, userId,
@@ -18,6 +19,10 @@ const ProductDetailsComponent = ({
   const { id } = useParams();
   const navigate = useNavigate();
   const from = useLocation();
+  const [open, setOpen] = useState<boolean>(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const checkWishList = async () => {
     const response = await axios.get(`/api/v1/requests/checkFavReq/${id}`);
@@ -131,9 +136,9 @@ const ProductDetailsComponent = ({
     }
   };
 
-  const handleRequest = () => {
-    console.log('Hello handle Request !');
-  };
+  // const handleRequest = () => {
+  //   console.log('Hello handle Request !');
+  // };
 
   const handleContactSeller = () => {
     navigate(`/profile/${userId}`);
@@ -171,7 +176,7 @@ const ProductDetailsComponent = ({
             text: 'Request Item',
             icon: 'LocalMall',
             classes: 'btn',
-            handleClick: handleRequest,
+            handleClick: handleOpen,
           }}
           />
           <ButtonComponent style={{
@@ -191,6 +196,7 @@ const ProductDetailsComponent = ({
         </Box>
         <ImagesList />
       </Box>
+      <RequestPopup open={open} handleClose={handleClose} />
     </Box>
   );
 };
