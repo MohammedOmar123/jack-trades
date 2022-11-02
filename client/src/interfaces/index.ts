@@ -14,6 +14,7 @@ import IAccountProps from './IAccountProps';
 import IUserLogin from './IUserLogin';
 import IStatistic from './Statistics';
 import ILoadingProps from './LoadingProps';
+import { IProducts, ICategories, IData } from './ProductsPageInterfaces';
 import IAuthContextProps from './IAuthContextProps';
 import ICategoryProps from './ICategoryRadioProps';
 import ITypeRadioProps from './ITypeRadioProps';
@@ -35,6 +36,9 @@ export {
   IAccountProps,
   IUserLogin,
   ILoadingProps,
+  IProducts,
+  ICategories,
+  IData,
   IAuthContextProps,
   ICategoryProps,
   ITypeRadioProps,

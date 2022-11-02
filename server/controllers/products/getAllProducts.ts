@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
-const getAllProducts = (req : Request, res : Response) => {
-  res.send('Hello from  getAllProducts');
+const filterProduct = async (req: Request, res: Response) => {
+  res.send('hello from all products');
 };
 
-export default getAllProducts;
+export default filterProduct;
