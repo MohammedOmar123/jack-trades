@@ -2,9 +2,12 @@ import { getDonationsQuery, getExchangesQuery, getContributionsQuery } from './w
 import signinQuery from './account/signin';
 import getUserProfileQuery from './user/getUserProfile';
 import getUserProductsQuery from './getUserProductsQuery';
-import getFav from './Requests/checkInWishList';
-import { addToWishListQuery, getAllWishlistItemsQuery, deleteFromWishListQuery } from './wishlist';
-import { checkInWishList } from './Requests';
+import {
+  addToWishListQuery, getAllWishlistItemsQuery, deleteFromWishListQuery, checkInWishlistQuery,
+} from './wishlist';
+import {
+  getRequestQuery, addRequestQuery, getProductDetailsQuery, checkSelectedProductQuery,
+} from './Requests';
 import {
   deleteProductQuery, getProductQuery, updateProductQuery, addProductQuery,
 } from './products';
@@ -18,11 +21,14 @@ export {
   getUserProductsQuery,
   deleteProductQuery,
   getProductQuery,
-  getFav,
+  checkInWishlistQuery,
   addToWishListQuery,
-  checkInWishList,
   updateProductQuery,
   deleteFromWishListQuery,
   getAllWishlistItemsQuery,
   addProductQuery,
+  getRequestQuery,
+  addRequestQuery,
+  getProductDetailsQuery,
+  checkSelectedProductQuery,
 };

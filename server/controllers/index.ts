@@ -7,17 +7,20 @@ import {
   getAllProducts, getProduct, addProduct, deleteProduct, updateProduct, filterProduct,
 } from './products';
 import {
-  getAllRequest, addRequests, checkFavReq, deleteRequest, updateRequest,
+  getAllRequest, addRequests, deleteRequest, updateRequest,
 } from './request';
 import { getAllNotifications, viewItemDetails } from './notifications';
 
-import { deleteFromWishList, getAllWishListItems, addToWishList } from './wishList';
+import {
+  deleteFromWishList, getAllWishListItems, addToWishList, checkWishList,
+} from './wishList';
 
 export {
   signIn, signup, signOut, getStatistics, getFeedback, addFeedback,
   getUserProducts, getUserProfile, getUserWishList,
   getAllProducts, getProduct, addProduct, deleteProduct, updateProduct, filterProduct,
-  getAllRequest, addRequests, checkFavReq, deleteRequest, updateRequest,
+  getAllRequest, addRequests, deleteRequest, updateRequest,
   getAllNotifications, viewItemDetails,
   deleteFromWishList, getAllWishListItems, addToWishList, checkAuth,
+  checkWishList,
 };

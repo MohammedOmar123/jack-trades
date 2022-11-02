@@ -1,6 +1,6 @@
 import { Favorite } from '../../../models';
 
-const checkInWishList = (
+const checkInWishlistQuery = (
   user_id : number,
   product_id : number,
 ) => Favorite.findOne({
@@ -9,4 +9,4 @@ const checkInWishList = (
     product_id,
   },
 });
-export default checkInWishList;
+export default checkInWishlistQuery;

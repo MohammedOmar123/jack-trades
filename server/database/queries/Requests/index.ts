@@ -1,4 +1,9 @@
-import checkInWishList from './checkInWishList';
+import getRequestQuery from './getRequest';
+import getProductDetailsQuery from './getProuctType';
+import addRequestQuery from './addRequest';
+import checkSelectedProductQuery from './checkSelectedQuery';
 
-// eslint-disable-next-line import/prefer-default-export
-export { checkInWishList };
+export {
+  getRequestQuery, addRequestQuery, getProductDetailsQuery,
+  checkSelectedProductQuery,
+};
