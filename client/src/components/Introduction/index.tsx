@@ -10,7 +10,7 @@ const Introduction:FC = () => (
   <Box sx={{ flexGrow: 1, width: '80%', margin: '2rem auto' }}>
     <Grid container spacing={4}>
       {introduction.map((e) => (
-        <Grid item xs={12} md={4}>
+        <Grid key={e.title} item xs={12} md={4}>
           <IntroductionCard data={e} />
         </Grid>
       ))}
