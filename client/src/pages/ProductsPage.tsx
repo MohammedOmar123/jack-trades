@@ -62,7 +62,7 @@ const ProductsPage = () => {
       setLoading(false);
     };
     asyncFuncToSetLoading();
-  }, [offset, type, date, q, category]);
+  }, [offset, type, date, q, category, userId]);
 
   if (!data) {
     return (

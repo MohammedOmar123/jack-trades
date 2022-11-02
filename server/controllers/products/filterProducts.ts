@@ -46,7 +46,6 @@ const getAllProducts = async (req: Request, res: Response, next: NextFunction): 
       products: products.rows,
     });
   } catch (error) {
-    console.log(error.message);
     next(error);
   }
 };
