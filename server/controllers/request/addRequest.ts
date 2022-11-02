@@ -21,10 +21,9 @@ const addRequests = async (req : IRequestPayload, res : Response, next:NextFunct
     // validate if the product id is valid
 
     const queryResult = await getProductDetailsQuery(data.productId);
+    if (!queryResult) throw new CustomError(400, 'Please request a valid product');
 
-    if (!queryResult.length) throw new CustomError(400, 'Please request a valid product');
-
-    const { user_id, type } = queryResult[0];
+    const { user_id, type } = queryResult;
     // validate if the user requests his own item
     if (user_id === senderId) throw new CustomError(400, "You can't request your items");
     // if exchange >> check if the user really has these products
