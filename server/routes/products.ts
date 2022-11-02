@@ -11,7 +11,7 @@ router.get('/', getAllProducts);
 router.get('/filter', filterProduct);
 router.get('/categories', getCategories);
 router.get('/:productId', getProduct);
-router.post('/', addProduct);
+router.post('/', authentication, addProduct);
 router.put('/:productId', authentication, updateProduct);
 router.delete('/:productId', authentication, deleteProduct);
 // Note: the order of the routes matters

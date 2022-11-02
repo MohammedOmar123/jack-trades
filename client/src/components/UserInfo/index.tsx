@@ -48,7 +48,7 @@ const UserInfo:FC<{ info: UserInfoTypes }> = ({ info }) => (
       </Box>
       {/* ====== */}
       <Box>
-        <Link to="test">
+        <Link to="/newProduct">
           <Button style={{
             text: 'Add Product',
             classes: 'userInfoBtn',

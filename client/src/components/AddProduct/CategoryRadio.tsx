@@ -1,49 +1,58 @@
-import { FC } from 'react';
+import { FC, ChangeEvent } from 'react';
 import {
   Radio, RadioGroup, FormControlLabel,
   FormControl, FormLabel,
 } from '@mui/material';
 
-const CategoryRadio:FC = () => (
-  <FormControl className="category">
-    <FormLabel id="demo-row-radio-buttons-group-label">Category</FormLabel>
-    <RadioGroup
-      row
-      aria-labelledby="demo-row-radio-buttons-group-label"
-      name="row-radio-buttons-group"
-    >
-      <FormControlLabel
-        value="Clothes"
-        control={<Radio />}
-        label="Clothes"
-      />
-      <FormControlLabel
-        value="Furniture"
-        control={<Radio />}
-        label="Furniture"
-      />
-      <FormControlLabel
-        value="Books"
-        control={<Radio />}
-        label="Books"
-      />
-      <FormControlLabel
-        value="Accessories"
-        control={<Radio />}
-        label="Accessories"
-      />
-      <FormControlLabel
-        value="Electronics"
-        control={<Radio />}
-        label="Electronics"
-      />
-      <FormControlLabel
-        value="Other"
-        control={<Radio />}
-        label="Other"
-      />
-    </RadioGroup>
-  </FormControl>
-);
+import { ICategoryProps } from '../../interfaces';
+
+const CategoryRadio:FC<ICategoryProps> = ({ setCategory }) => {
+  const handleChange = (e:ChangeEvent) => {
+    setCategory(e.target.id);
+  };
+
+  return (
+    <FormControl className="category">
+      <FormLabel id="demo-row-radio-buttons-group-label">Category</FormLabel>
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+        onChange={handleChange}
+      >
+        <FormControlLabel
+          value="Clothes"
+          control={<Radio id="1" />}
+          label="Clothes"
+        />
+        <FormControlLabel
+          value="Furniture"
+          control={<Radio id="2" />}
+          label="Furniture"
+        />
+        <FormControlLabel
+          value="Books"
+          control={<Radio id="3" />}
+          label="Books"
+        />
+        <FormControlLabel
+          value="Accessories"
+          control={<Radio id="4" />}
+          label="Accessories"
+        />
+        <FormControlLabel
+          value="Electronics"
+          control={<Radio id="5" />}
+          label="Electronics"
+        />
+        <FormControlLabel
+          value="Other"
+          control={<Radio id="6" />}
+          label="Other"
+        />
+      </RadioGroup>
+    </FormControl>
+  );
+};
 
 export default CategoryRadio;

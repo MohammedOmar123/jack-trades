@@ -3,6 +3,7 @@ import {
   Box, ImageList, ImageListItem, ListSubheader, Pagination,
 } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Link } from 'react-router-dom';
 import ProductsCategoryCard from './ProductsCategoryCard';
 // import SpinnerLoading from '../Loading/Loading';
 import { IProducts } from '../../interfaces';
@@ -44,7 +45,9 @@ const ProductsCategory:FC <{ products: IProducts[], totalProducts: number, total
     >
 
       {!loading ? products.map((product) => (
-        <ProductsCategoryCard key={product.id} product={product} />
+        <Link to={`/product/${product.id}/details`} key={product.id}>
+          <ProductsCategoryCard product={product} />
+        </Link>
       )) : (
         // eslint-disable-next-line max-len
         <Box

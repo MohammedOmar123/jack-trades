@@ -1,13 +1,15 @@
 import { Box, CircularProgress, Stack } from '@mui/material';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 // eslint-disable-next-line max-len
 import ProductsCategory from '../components/ProductsCategory/ProductsCategoryList';
 import ProductsFilter from '../components/ProductsFilter/ProductsFilter';
 import ProductsSearch from '../components/ProductsSearch/ProductsSearch';
 import { IData } from '../interfaces';
+import { AuthContext } from '../components/Context/AuthContext';
 
 const ProductsPage = () => {
+  const { userId } = useContext(AuthContext);
   const [data, setData] = useState<IData | null>(null);
   const [offset, setOffset] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
@@ -46,6 +48,7 @@ const ProductsPage = () => {
         category,
         limit: 6,
         offset: offsetValue,
+        userId,
       },
     });
 

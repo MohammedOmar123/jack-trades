@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { Op } from 'sequelize';
 import {
   getAllProductsQuery, getAllCategoriesQuery,
 } from '../../database/queries/products';
@@ -12,6 +13,7 @@ const getAllProducts = async (req: Request, res: Response, next: NextFunction): 
     let type: TStrOrStrArr = req.query.type as TStrOrStrArr;
     let date = req.query.date as string;
     const search: TStrOrStrArr = req.query.q as TStrOrStrArr;
+    const userId = req.query.userId as string;
 
     const categories = await getAllCategoriesQuery();
 
@@ -30,6 +32,11 @@ const getAllProducts = async (req: Request, res: Response, next: NextFunction): 
     if (search) {
       args.title = search;
     }
+    if (userId) {
+      args.user_id = {
+        [Op.ne]: userId,
+      };
+    }
     const products = await getAllProductsQuery({
       limit, offset, date, args,
     });
@@ -39,6 +46,7 @@ const getAllProducts = async (req: Request, res: Response, next: NextFunction): 
       products: products.rows,
     });
   } catch (error) {
+    console.log(error.message);
     next(error);
   }
 };

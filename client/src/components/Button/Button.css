@@ -68,3 +68,6 @@
   width: 170px;
   height: 30px;
 }
+.disabled-button {
+  background-color: red;
+}

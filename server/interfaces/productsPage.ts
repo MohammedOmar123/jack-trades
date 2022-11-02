@@ -1,7 +1,12 @@
+import { Op } from 'sequelize';
+
 export type TStrOrStrArr = string | string[];
 
 export interface Args {
   title?: TStrOrStrArr;
+  user_id?: {
+    [Op.ne]: string
+  };
   category_id: string[];
   type: TStrOrStrArr
 }

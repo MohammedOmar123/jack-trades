@@ -11,7 +11,7 @@ import './Button.css';
 
 const ButtonComponent: FC<ButtonPropsTypes> = ({
   style: {
-    text, icon, classes, handleClick,
+    text, icon, classes, handleClick, disabled,
   },
 }) => {
   // All Icon
@@ -26,7 +26,8 @@ const ButtonComponent: FC<ButtonPropsTypes> = ({
   return (
     <button
       type="button"
-      className={classes}
+      disabled={disabled}
+      className={`${classes} ${disabled === false ? 'disabled-button' : ''}`}
       onClick={handleClick || (() => {})}
     >
       {icon ? iconsList[icon as keyof typeof iconsList] : ''}

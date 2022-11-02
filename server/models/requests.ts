@@ -11,7 +11,7 @@ const Request = sequelize.define<IRequest>('Request', {
   status: {
     type: DataTypes.ENUM,
     values: ['pending', 'success', 'fail'],
-    allowNull: false,
+    defaultValue: 'pending',
   },
   is_exchangable: {
     type: DataTypes.BOOLEAN,
@@ -19,17 +19,15 @@ const Request = sequelize.define<IRequest>('Request', {
   },
   sender_approval: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
     defaultValue: null,
   },
   receiver_approval: {
     type: DataTypes.BOOLEAN,
-    allowNull: false,
     defaultValue: null,
   },
   products: {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
-    allowNull: false,
+    allowNull: true,
   },
 }, { paranoid: true });
 

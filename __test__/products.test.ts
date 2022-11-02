@@ -6,6 +6,138 @@ const token = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOi
 
 beforeAll(() => buildTables());
 
+describe('Check for filters /products/filter', () => {
+  it('test the endpoint without any filter attatched', async () => {
+    await request(app)
+      .get('/api/v1/products/filter')
+      .expect(200)
+      .expect("Content-Type", /json/)
+      .expect((res) => {
+        expect(res.body.totalPages).toBe(2)
+        expect(res.body.products[0]).toEqual({
+          id: 1, title: 'nice sofa', gallery: [
+            'https://apollo-singapore.akamaized.net/v1/files/sh0il57qfjfh3-IN/image;s=780x0;q=60 ',
+            'https://apollo-singapore.akamaized.net/v1/files/zjt3gsd2oobm2-IN/image;s=780x0;q=60'
+          ]
+        })
+      })
+  })
+  it('test the endpoint without any filter attatched with offset', async () => {
+    await request(app)
+      .get('/api/v1/products/filter?offset=1')
+      .expect(200)
+      .expect("Content-Type", /json/)
+      .expect((res) => {
+        expect(res.body.totalPages).toBe(2)
+        expect(res.body.products[0]).toEqual({
+          id: 7, title: 'Jacques Durand', gallery: [
+            'https://cdn.rebelle.com//86/8649492_abd39855c1ac015cf78666200ee770f1.jpeg?width=514&height=510',
+            'https://cdn.rebelle.com//86/8649492_7dbf8f148e0aa18b72c6f77298512ef8.jpeg?width=514&height=510',
+          ]
+        })
+      })
+  })
+  it('test the endpoint without any filter attatched with cateogry', async () => {
+    await request(app)
+      .get('/api/v1/products/filter?category=2')
+      .expect(200)
+      .expect("Content-Type", /json/)
+      .expect((res) => {
+        expect(res.body.totalPages).toBe(0)
+        expect(res.body.products[0]).toEqual({
+          id: 1, title: 'nice sofa', gallery: [
+            'https://apollo-singapore.akamaized.net/v1/files/sh0il57qfjfh3-IN/image;s=780x0;q=60 ',
+            'https://apollo-singapore.akamaized.net/v1/files/zjt3gsd2oobm2-IN/image;s=780x0;q=60'
+          ]
+        })
+      })
+  })
+  it('test the endpoint without any filter attatched with newest', async () => {
+    await request(app)
+      .get('/api/v1/products/filter?date=newest')
+      .expect(200)
+      .expect("Content-Type", /json/)
+      .expect((res) => {
+        expect(res.body.totalPages).toBe(2)
+        expect(res.body.products[0]).toEqual({
+          id: 1, title: 'nice sofa', gallery: [
+            'https://apollo-singapore.akamaized.net/v1/files/sh0il57qfjfh3-IN/image;s=780x0;q=60 ',
+            'https://apollo-singapore.akamaized.net/v1/files/zjt3gsd2oobm2-IN/image;s=780x0;q=60'
+          ]
+        })
+      })
+  })
+  it('test the endpoint without any filter attatched with newest', async () => {
+    await request(app)
+      .get('/api/v1/products/filter?type=donation')
+      .expect(200)
+      .expect("Content-Type", /json/)
+      .expect((res) => {
+        expect(res.body.totalPages).toBe(1)
+        expect(res.body.products[0]).toEqual({
+          id: 1, title: 'nice sofa', gallery: [
+            'https://apollo-singapore.akamaized.net/v1/files/sh0il57qfjfh3-IN/image;s=780x0;q=60 ',
+            'https://apollo-singapore.akamaized.net/v1/files/zjt3gsd2oobm2-IN/image;s=780x0;q=60'
+          ]
+        })
+      })
+  })
+  it('test the endpoint without any filter attatched with type=exchange', async () => {
+    await request(app)
+      .get('/api/v1/products/filter?type=exchange')
+      .expect(200)
+      .expect("Content-Type", /json/)
+      .expect((res) => {
+        expect(res.body.totalPages).toBe(1)
+        expect(res.body.products[0]).toEqual({
+          id: 3, title: 'White Charger', gallery: [
+            "https://apollo-singapore.akamaized.net/v1/files/i6c5sdoqjous2-IN/image;s=780x0;q=60"
+          ]
+        })
+      })
+  })
+  it('test the endpoint without any filter attatched with q=something', async () => {
+    await request(app)
+      .get('/api/v1/products/filter?q=something')
+      .expect(200)
+      .expect("Content-Type", /json/)
+      .expect((res) => {
+        expect(res.body.totalPages).toBe(0)
+        expect(res.body.products[0]).toEqual({
+          id: 2, title: 'something', gallery: [
+            "https://apollo-singapore.akamaized.net/v1/files/hccwzehg6d8u-IN/image;s=1080x1080 "
+          ]
+        })
+      })
+  })
+  it('test the endpoint without any filter attatched with q=wrongcase', async () => {
+    await request(app)
+      .get('/api/v1/products/filter?q=wrongcase')
+      .expect(200)
+      .expect("Content-Type", /json/)
+      .expect((res) => {
+        expect(res.body.totalPages).toBe(0)
+        expect(res.body.products.length).toBe(0)
+      })
+  })
+  it('if all filters is right', async () => {
+    await request(app)
+      .get('/api/v1/products/filter?offset=0&limit=3&date=oldest&type=donation&q=something')
+      .expect(200)
+      .expect("Content-Type", /json/)
+      .expect((res) => {
+        expect(res.body.totalPages).toBe(0)
+        expect(res.body.products[0]).toEqual({
+          id: 2,
+          title: "something",
+          gallery: [
+            "https://apollo-singapore.akamaized.net/v1/files/hccwzehg6d8u-IN/image;s=1080x1080 "
+          ]
+        })
+      })
+  })
+})
+
 describe("Product route must be returned the details of product according to the given id", () => {
   test("must return json file contains product info ", async () => {
     await request(app)

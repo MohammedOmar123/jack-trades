@@ -5,6 +5,7 @@ import {
 } from './getAllProducts';
 import getCategoriesQuery from './getCategories';
 import updateProductQuery from './updateProductQuery';
+import addProductQuery from './addProductQuery';
 
 export {
   deleteProductQuery,
@@ -13,4 +14,5 @@ export {
   getAllCategoriesQuery,
   updateProductQuery,
   getCategoriesQuery,
+  addProductQuery,
 };

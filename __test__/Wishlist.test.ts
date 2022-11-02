@@ -54,7 +54,7 @@ describe("get all wish list route", () => {
 describe("check user wishList route", () => {
     it("Should return true if the product exists in the usr's wishList", async () => {
         await request(app)
-            .get("/api/v1/requests/checkFavReq/1")
+            .get("/api/v1/wishlist/1")
             .expect(200)
             .set("Cookie", token)
             .expect("Content-Type", /json/)
@@ -63,7 +63,7 @@ describe("check user wishList route", () => {
 
     it("Should return false if the product doesn't exist in the usr's wishList", async () => {
         await request(app)
-            .get("/api/v1/requests/checkFavReq/2")
+            .get("/api/v1/wishlist/2")
             .expect(200)
             .set("Cookie", token)
             .expect("Content-Type", /json/)
@@ -72,7 +72,7 @@ describe("check user wishList route", () => {
 
     it("Should return 401 and Unauthorized if the user doesn't signIn", async () => {
         await request(app)
-            .get("/api/v1/requests/checkFavReq/2")
+            .get("/api/v1/wishlist/2")
             .expect(401)
             .set("Cookie", `${token}1`)
             .expect("Content-Type", /json/)

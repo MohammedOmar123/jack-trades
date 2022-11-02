@@ -16,6 +16,8 @@ import IStatistic from './Statistics';
 import ILoadingProps from './LoadingProps';
 import { IProducts, ICategories, IData } from './ProductsPageInterfaces';
 import IAuthContextProps from './IAuthContextProps';
+import ICategoryProps from './ICategoryRadioProps';
+import ITypeRadioProps from './ITypeRadioProps';
 
 export {
   IProduct,
@@ -38,4 +40,6 @@ export {
   ICategories,
   IData,
   IAuthContextProps,
+  ICategoryProps,
+  ITypeRadioProps,
 };

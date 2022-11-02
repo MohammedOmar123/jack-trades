@@ -4,6 +4,7 @@ interface ButtonPropsTypes {
     icon?: string,
     classes?: string,
     handleClick?: () => void
+    disabled?:boolean
   }
 }
 export default ButtonPropsTypes;
