@@ -2,7 +2,7 @@ import { Response, NextFunction } from 'express';
 
 import { IRequestPayload } from '../../interfaces';
 
-import { checkInWishList, deleteFromWishListQuery } from '../../database/queries';
+import { checkInWishlistQuery, deleteFromWishListQuery } from '../../database/queries';
 import { CustomError } from '../../helpers';
 
 const deleteFromWishList = async (req : IRequestPayload, res : Response, next:NextFunction) => {
@@ -10,7 +10,8 @@ const deleteFromWishList = async (req : IRequestPayload, res : Response, next:Ne
   const { id } = req.user;
   try {
     if (!(Number(productId) > 0)) throw new CustomError(400, 'Bad Request');
-    const data = await checkInWishList(id, +(productId));
+    const data = await checkInWishlistQuery(id, +(productId));
+
     if (data) {
       await deleteFromWishListQuery(id, +(productId));
       res.status(200).json({ message: 'You removed the product from the wishlist successfully' });

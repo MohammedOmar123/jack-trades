@@ -1,7 +1,9 @@
 import { join } from 'path';
+
 import express, { Application } from 'express';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
+
 import router from './routes';
 import { ErrorHandler } from './helpers';
 
@@ -25,5 +27,4 @@ if (NODE_ENV === 'production') {
 }
 
 app.use(ErrorHandler);
-
 export default app;
