@@ -13,25 +13,28 @@ import RequestPopup from '../RequestPopup';
 import { ImageContext } from '../Context/ImageContext';
 
 const ProductDetailsComponent = ({
-  id: productId, title, description, createdAt, userId, type, isAvailable,
+  id: productId, title, description, createdAt, userId, type,
 }
 : IProductDetailsProps) => {
   const [FavIcon, setFavIcon] = useState('FavoriteBorder');
   const { id } = useParams();
   const navigate = useNavigate();
   const from = useLocation();
-  const [open, setOpen] = useState<boolean>(false);
+  // const [open, setOpen] = useState<boolean>(false);
 
-  const { setProductId, handleRequest } = useContext(ImageContext);
+  const {
+    setProductId, handleRequest, setOpen, open, setProductArray,
+  } = useContext(ImageContext);
 
   const handleOpen = () => {
     if (type === 'exchange') setOpen(true);
     else handleRequest();
-
-    setProductId(productId);
   };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setProductArray([]);
+  };
 
   const checkWishList = async () => {
     const response = await axios.get(`/api/v1/wishlist/${id}`);
@@ -42,6 +45,7 @@ const ProductDetailsComponent = ({
 
   useEffect(() => {
     checkWishList();
+    setProductId(productId);
   }, []);
 
   const errorMessage = 'Oops...';
@@ -172,28 +176,16 @@ const ProductDetailsComponent = ({
           <Typography className="created-at">
             {convertDate(createdAt)}
           </Typography>
-          <Box>
-            <Typography sx={{
-              color: 'black',
-              fontFamily: 'sans-serif',
-              fontWeight: 'bold',
-              marginTop: '15px',
+          <Typography
+            sx={type === 'donation' ? {
+              backgroundColor: '#8f1d86',
+            } : {
+              backgroundColor: '#c6911f',
             }}
-            >
-              For
-              {' '}
-              {type}
-            </Typography>
-            <Typography sx={{
-              color: 'black',
-              fontFamily: 'sans-serif',
-              fontWeight: 'bold',
-              marginTop: '15px',
-            }}
-            >
-              {isAvailable ? 'Available' : 'Not Available'}
-            </Typography>
-          </Box>
+            className="productType"
+          >
+            {type}
+          </Typography>
         </Box>
         <Box className="buttonsComp-container">
           <ButtonComponent style={{
