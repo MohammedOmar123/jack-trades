@@ -1,5 +1,6 @@
 interface IProductProps {
   attributes: {
+    id: number,
     title: string;
     description: string;
     is_available: boolean;

@@ -17,6 +17,7 @@ import ILoadingProps from './LoadingProps';
 import IAuthContextProps from './IAuthContextProps';
 import ICategoryProps from './ICategoryRadioProps';
 import ITypeRadioProps from './ITypeRadioProps';
+import IProductPopup from './IProductsPopup';
 
 export {
   IProduct,
@@ -38,4 +39,5 @@ export {
   IAuthContextProps,
   ICategoryProps,
   ITypeRadioProps,
+  IProductPopup,
 };
