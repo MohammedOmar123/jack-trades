@@ -18,6 +18,7 @@ import { IProducts, ICategories, IData } from './ProductsPageInterfaces';
 import IAuthContextProps from './IAuthContextProps';
 import ICategoryProps from './ICategoryRadioProps';
 import ITypeRadioProps from './ITypeRadioProps';
+import IUserRequest from './IUserRequest';
 
 export {
   IProduct,
@@ -42,4 +43,5 @@ export {
   IAuthContextProps,
   ICategoryProps,
   ITypeRadioProps,
+  IUserRequest,
 };

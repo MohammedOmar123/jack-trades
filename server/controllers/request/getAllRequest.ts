@@ -5,7 +5,9 @@ import { getAllRequestsQuery } from '../../database/queries';
 const getAllRequest = async (req : IRequestPayload, res : Response, next:NextFunction) => {
   try {
     const { id } = req.user;
-    const allRequests = await getAllRequestsQuery(id);
+    const { offset } = req.query;
+
+    const allRequests = await getAllRequestsQuery(id, +offset);
     if (!allRequests.length) {
       res.json({ message: 'There is no requests yet' });
       return;
