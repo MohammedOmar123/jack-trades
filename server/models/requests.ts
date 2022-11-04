@@ -17,10 +17,7 @@ const Request = sequelize.define<IRequest>('Request', {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
-  sender_approval: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: null,
-  },
+
   receiver_approval: {
     type: DataTypes.BOOLEAN,
     defaultValue: null,
