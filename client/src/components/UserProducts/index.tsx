@@ -24,7 +24,7 @@ const UserProducts:FC = () => {
   const fetchData = async () => {
     try {
       const userProducts = await axios
-        .get(`/api/v1/user/${userId}/products?offset=${offset}`);
+        .get(`/api/v1/user/${userId}/products?offset=${offset}&limit=3`);
 
       setProducts(userProducts.data.rows);
       setCount(userProducts.data.count);
