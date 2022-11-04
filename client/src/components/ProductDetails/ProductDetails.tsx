@@ -17,6 +17,7 @@ const ProductDetailsComponent = ({
 }
 : IProductDetailsProps) => {
   const [FavIcon, setFavIcon] = useState('FavoriteBorder');
+  const [text, setText] = useState<string>('Add to wishlist');
   const { id } = useParams();
   const navigate = useNavigate();
   const from = useLocation();
@@ -40,6 +41,7 @@ const ProductDetailsComponent = ({
     const response = await axios.get(`/api/v1/wishlist/${id}`);
     if (response.data === true) {
       setFavIcon('Favorite');
+      setText('Remove from wishlist');
     }
   };
 
@@ -94,6 +96,7 @@ const ProductDetailsComponent = ({
         'success',
       );
       setFavIcon('Favorite');
+      setText('Remove from wishlist');
     } catch (error) {
       const { message } = error.response.data;
       if (message === 'Unauthorized') {
@@ -196,7 +199,7 @@ const ProductDetailsComponent = ({
           }}
           />
           <ButtonComponent style={{
-            text: 'Add to WishList',
+            text,
             icon: FavIcon,
             classes: 'btn white-btn',
             handleClick: handleIsFav,
