@@ -19,6 +19,7 @@ import IAuthContextProps from './IAuthContextProps';
 import ICategoryProps from './ICategoryRadioProps';
 import ITypeRadioProps from './ITypeRadioProps';
 import IProductPopup from './IProductsPopup';
+import IWishlistItem from './IWishlistItem';
 
 export {
   IProduct,
@@ -44,4 +45,5 @@ export {
   ICategoryProps,
   ITypeRadioProps,
   IProductPopup,
+  IWishlistItem,
 };
