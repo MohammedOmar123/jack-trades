@@ -7,7 +7,7 @@ import {
 } from '../../database/queries';
 import { CustomError } from '../../helpers';
 
-const addRequests = async (req : IRequestPayload, res : Response, next:NextFunction) => {
+const addRequests = async (req: IRequestPayload, res: Response, next: NextFunction) => {
   try {
     const senderId = req.user.id;
     // validate inputs

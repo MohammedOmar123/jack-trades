@@ -1,20 +1,27 @@
 import { FC, useState, useEffect } from 'react';
 import {
-  Box,
+  Box, Typography,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { formatDistance, parseISO } from 'date-fns';
 import { Image, Button } from '../index';
 import { IUserRequest } from '../../interfaces';
 
-const UserProductCard
-:FC<{ product : IUserRequest, fetch:()=>void }> = ({ product, fetch }) => {
-  const [productObj, setProductObj] = useState<IUserRequest | null>(null);
+const UserRequestCard
+: FC<{ request: IUserRequest, fetch: () => void }> = ({ request, fetch }) => {
+  const [requestObj, setRequestObj] = useState<IUserRequest | null>(null);
+
+  const states = {
+    pending: 'pending',
+    fail: 'fail',
+    success: 'success',
+  };
 
   useEffect(() => {
-    setProductObj(product);
-  }, [product]);
+    setRequestObj(request);
+  }, [request]);
 
   const handleDelete = async () => {
     try {
@@ -28,7 +35,7 @@ const UserProductCard
       });
 
       if (alert.isConfirmed) {
-        await axios.delete(`/api/v1/products/${product.id}`);
+        await axios.delete(`/api/v1/requests/${request.id}`);
         fetch();
       }
     } catch (error) {
@@ -36,12 +43,12 @@ const UserProductCard
     }
   };
 
-  if (!productObj) return <p />;
+  if (!requestObj) return <p />;
   return (
     <Box className="request-card">
       <Image attributes={{
-        src: product['productId.gallery'][0],
-        alt: `an image of ${product['productId.title']}`,
+        src: request['productId.gallery'][0],
+        alt: `an image of ${request['productId.title']}`,
         className: 'request-img',
       }}
       />
@@ -50,16 +57,28 @@ const UserProductCard
           className="request-title"
           id="title"
         >
-          {productObj['productId.title']}
+          {requestObj['productId.title']}
         </h3>
         <p
           className="request-description"
           id="description"
         >
-          {productObj['productId.title']}
+          {requestObj['productId.title']}
         </p>
-        <Link to={`/product/${productObj.id}/details`}>View details</Link>
-
+        <Link to={`/product/${requestObj.id}/details`}>View details</Link>
+        <Typography
+            // eslint-disable-next-line max-len
+          className={`${states[requestObj.status as keyof typeof states]} status `}
+        >
+          {requestObj.status}
+        </Typography>
+        <Typography>
+          { formatDistance(
+            parseISO(requestObj.createdAt),
+            new Date(),
+            { addSuffix: true },
+          )}
+        </Typography>
         <Box className="buttons">
           <Button
             style={{
@@ -80,4 +99,4 @@ const UserProductCard
   );
 };
 
-export default UserProductCard;
+export default UserRequestCard;

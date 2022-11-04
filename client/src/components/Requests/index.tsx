@@ -20,7 +20,6 @@ const UserRequest: FC = () => {
   const [count, setCount] = useState<number>(1);
 
   const pageNumber = useRef(1);
-  const { userId } = useParams();
 
   const fetchData = async () => {
     try {
@@ -58,7 +57,7 @@ const UserRequest: FC = () => {
         {message ? <p>{message}</p>
           : products.map((e) => (
             <UserProductCard
-              product={e}
+              request={e}
               key={e.id}
               fetch={fetchData}
             />

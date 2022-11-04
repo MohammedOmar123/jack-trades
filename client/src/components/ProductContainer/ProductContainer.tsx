@@ -8,8 +8,8 @@ import { ImageContext } from '../Context/ImageContext';
 
 const ProductContainer: FC<IProductProps> = ({
   attributes: {
+    id,
     title,
-    is_available,
     description, createdAt,
     'Category.name': categoryName,
     user_id, type,
@@ -23,31 +23,27 @@ const ProductContainer: FC<IProductProps> = ({
       <Typography
         sx={{
           width: '100%',
+          fontSize: '1.1rem',
         }}
         variant="subtitle2"
       >
         {categoryName}
       </Typography>
-      <Box>
-        <Box>
 
-          {/* Here is the left section of the page
+      {/* Here is the left section of the page
       that contains the main Image and the categoryName */}
 
-          <ProductImage
-            image={context.mainImage}
-            title={title}
-          />
-        </Box>
-
-      </Box>
+      <ProductImage
+        image={context.mainImage}
+        title={title}
+      />
 
       {/* Here is the Right section of the page
       that contains title, desc, Product images and the date */}
 
       <ProductDetailsComponent
+        id={id}
         title={title}
-        isAvailable={is_available}
         description={description}
         createdAt={createdAt}
         userId={user_id}
