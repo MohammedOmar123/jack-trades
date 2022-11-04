@@ -21,10 +21,10 @@ Request.belongsTo(User, { as: 'receiver', foreignKey: 'receiver_id' });
 
 // product relations
 Product.hasMany(Request);
-Request.belongsTo(Product, { as: 'productId', foreignKey: 'product_id' });
+Request.belongsTo(Product, { as: 'product', foreignKey: 'product_id' });
 
 Product.hasOne(Request);
-Request.belongsTo(Product, { as: 'exchangedId', foreignKey: 'exchanged_id' });
+Request.belongsTo(Product, { as: 'exchanged', foreignKey: 'exchanged_id' });
 
 Product.hasMany(Favorite, { foreignKey: 'product_id' });
 Favorite.belongsTo(Product, { foreignKey: 'product_id' });

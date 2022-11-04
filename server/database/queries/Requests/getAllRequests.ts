@@ -10,7 +10,7 @@ const getAllRequestsQuery = (sender_id:number) => Request.findAll({
   },
   include: {
     model: Product,
-    as: 'productId',
+    as: 'product',
     attributes: ['title', 'gallery'],
   },
 });
