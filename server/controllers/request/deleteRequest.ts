@@ -5,7 +5,6 @@ import { CustomError } from '../../helpers';
 
 const deleteRequest = async (req : IRequestPayload, res : Response, next:NextFunction) => {
   try {
-    // If the user cancel his request.
     const { requestId } = req.params;
     const { id } = req.user;
     if (!(Number(requestId) > 0)) throw new CustomError(401, 'Bad Request');

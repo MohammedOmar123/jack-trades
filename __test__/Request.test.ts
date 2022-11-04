@@ -257,8 +257,6 @@ describe('Test get all requests route', () => {
     });
 });
 
-
-
 describe('Test get all offered products route', () => {
     it("Should return all products offered by the sender user", async () => {
         await request(app)
@@ -461,6 +459,7 @@ describe('Test update request route', () => {
 
             });
     });
+
     test('should return an error message when the user select one from not offered products', async () => {
         await request(app)
             .put("/api/v1/requests/4")
@@ -493,7 +492,6 @@ describe('Test update request route', () => {
             });
     });
 
-
     test('should return all requests that the user got, and that\'s in the notifications route', async () => {
         await request(app)
             .get("/api/v1/notifications/")
@@ -509,6 +507,7 @@ describe('Test update request route', () => {
                 expect(res.body.message[3].id).toBe(4);
             });
     });
+
     test('should return success message when exchange operation done', async () => {
         await request(app)
             .put("/api/v1/requests/4")
@@ -545,6 +544,7 @@ describe('Test update request route', () => {
                expect(res.body.message[0].status).toBe('fail');
             });
     });
+
     test('should return notification after receiver changed his approval state', async () => {
         await request(app)
             .get("/api/v1/notifications/")
