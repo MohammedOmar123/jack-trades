@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Box, Typography } from '@mui/material';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import axios from 'axios';
 import {
   useParams, useNavigate, useLocation,
@@ -8,9 +9,9 @@ import Swal from 'sweetalert2';
 import ButtonComponent from '../Button/Button';
 import { IProductDetailsProps } from '../../interfaces';
 import ImagesList from '../ImagesList/ImagesList';
-import './ProductDetails.css';
 import RequestPopup from '../RequestPopup';
 import { ImageContext } from '../Context/ImageContext';
+import './ProductDetails.css';
 
 const ProductDetailsComponent = ({
   id: productId, title, description, createdAt, userId, type,
@@ -177,6 +178,7 @@ const ProductDetailsComponent = ({
             {description}
           </Typography>
           <Typography className="created-at">
+            <CalendarMonthIcon />
             {convertDate(createdAt)}
           </Typography>
           <Typography
