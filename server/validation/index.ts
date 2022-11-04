@@ -4,6 +4,7 @@ import validateUpdateData from './updateProduct';
 import validateNewProduct from './newProductValidation';
 import validateCheckRequest from './requestValidation';
 import validateAddRequest from './validateAddRequest';
+import updateRequestValidation from './updateRequest';
 
 export {
   validateSighup,
@@ -12,4 +13,5 @@ export {
   validateNewProduct,
   validateCheckRequest,
   validateAddRequest,
+  updateRequestValidation,
 };
