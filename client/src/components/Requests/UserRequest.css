@@ -48,7 +48,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -110,8 +110,11 @@
 }
 .request-card .request-details .buttons {
   display: flex;
-  justify-content: flex-end;
   margin-left: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
 }
 
 .request-card .request-details .buttons button {

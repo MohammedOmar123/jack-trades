@@ -8,12 +8,12 @@ import Swal from 'sweetalert2';
 import {
   Box, Typography, Pagination, Stack,
 } from '@mui/material';
-import UserProductCard from './UserRequest';
+import UserRequestCard from './UserRequest';
 import { IUserRequest } from '../../interfaces';
 import './UserRequest.css';
 
 const UserRequest: FC = () => {
-  const [products, setProducts] = useState<IUserRequest[]>([]);
+  const [requests, setRequests] = useState<IUserRequest[]>([]);
   const [message, setMessage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [offset, setOffset] = useState<number>(0);
@@ -23,13 +23,13 @@ const UserRequest: FC = () => {
 
   const fetchData = async () => {
     try {
-      const userProducts = await axios
+      const { data } = await axios
         .get(`/api/v1/requests/?offset=${offset}`);
-      if (userProducts.data.message === 'There is no requests yet') {
-        setMessage(userProducts.data.message);
+      if (data.message === 'There is no requests yet') {
+        setMessage(data.message);
       } else {
-        setProducts(userProducts.data.message);
-        setCount(userProducts.data.count);
+        setRequests(data.message.rows);
+        setCount(data.message.count);
       }
       setIsLoading(false);
     } catch (error) {
@@ -41,7 +41,6 @@ const UserRequest: FC = () => {
   const handleChange = (e: React.ChangeEvent<unknown>, value: number) => {
     if (value > pageNumber.current) setOffset(offset + 3);
     else setOffset(offset - 3);
-
     pageNumber.current = value;
   };
 
@@ -49,14 +48,14 @@ const UserRequest: FC = () => {
     fetchData();
   }, [offset]);
 
-  if (isLoading || !products) return <h1>loading..</h1>;
+  if (isLoading || !requests.length) return <h1>loading..</h1>;
   return (
     <Box className="user-requests">
       <Typography variant="h4">Requests</Typography>
       <Box className="requests">
         {message ? <p>{message}</p>
-          : products.map((e) => (
-            <UserProductCard
+          : requests.map((e) => (
+            <UserRequestCard
               request={e}
               key={e.id}
               fetch={fetchData}

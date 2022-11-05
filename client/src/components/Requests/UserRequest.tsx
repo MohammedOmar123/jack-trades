@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { FC, useState, useEffect } from 'react';
 import {
   Box, Typography,
@@ -27,7 +28,7 @@ const UserRequestCard
     try {
       const alert = await Swal.fire({
         title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        text: 'The request will be cancelled',
         showCancelButton: true,
         confirmButtonColor: '#1b4b66',
         cancelButtonColor: '#d33',
@@ -65,33 +66,35 @@ const UserRequestCard
         >
           {requestObj['productId.title']}
         </p>
-        <Link to={`/product/${requestObj.id}/details`}>View details</Link>
+        <Link to={`/product/${requestObj.product_id}/details`}>View details</Link>
         <Typography
             // eslint-disable-next-line max-len
           className={`${states[requestObj.status as keyof typeof states]} status `}
         >
           {requestObj.status}
         </Typography>
-        <Typography>
-          { formatDistance(
-            parseISO(requestObj.createdAt),
-            new Date(),
-            { addSuffix: true },
-          )}
-        </Typography>
+
         <Box className="buttons">
-          <Button
-            style={{
-              text: 'Edit',
-            }}
-          />
+          <Typography sx={
+              {
+                fontSize: '30',
+                marginRight: '17px',
+                fontWeight: 'bold',
+              }
+            }
+          >
+            {formatDistance(
+              parseISO(requestObj.createdAt),
+              new Date(),
+              { addSuffix: true },
+            )}
+          </Typography>
           <Button
             style={{
               text: 'Cancel',
               handleClick: handleDelete,
             }}
           />
-
         </Box>
       </Box>
     </Box>
