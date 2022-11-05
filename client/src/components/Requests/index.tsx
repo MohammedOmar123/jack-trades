@@ -48,7 +48,7 @@ const UserRequest: FC = () => {
     fetchData();
   }, [offset]);
 
-  if (isLoading || !requests.length) return <h1>loading..</h1>;
+  if (isLoading || !count) return <h1>loading..</h1>;
   return (
     <Box className="user-requests">
       <Typography variant="h4">Requests</Typography>
