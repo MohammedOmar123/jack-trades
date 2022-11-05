@@ -11,6 +11,8 @@ import {
 import {
   deleteProductQuery, getProductQuery, updateProductQuery, addProductQuery,
 } from './products';
+import { addFeedbackQuery, getUsername } from './website/addFeedback';
+import getFeedbackQuery from './website/getFeedback';
 
 export {
   getDonationsQuery,
@@ -31,4 +33,7 @@ export {
   addRequestQuery,
   getProductDetailsQuery,
   checkSelectedProductQuery,
+  addFeedbackQuery,
+  getUsername,
+  getFeedbackQuery,
 };
