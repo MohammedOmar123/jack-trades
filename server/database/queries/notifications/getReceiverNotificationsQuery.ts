@@ -1,6 +1,6 @@
 import { Request, User, Product } from '../../../models';
 
-const getReceiverNotificationsQuery = (receiver_id:number) => Request.findAll({
+const getReceiverNotificationsQuery = (receiver_id: number) => Request.findAll({
   attributes: ['id', 'status', 'receiver_approval', 'products', 'createdAt', 'sender_id', 'exchanged_id', 'deletedAt'],
   raw: true,
   nest: false,
@@ -8,13 +8,13 @@ const getReceiverNotificationsQuery = (receiver_id:number) => Request.findAll({
   include: [
     {
       model: User,
-      attributes: ['first_name', 'last_name', 'email'],
+      attributes: ['first_name', 'last_name', 'email', 'image'],
       required: true,
       as: 'sender',
     },
     {
       model: Product,
-      attributes: ['title', 'gallery'],
+      attributes: ['title', 'gallery', 'type'],
       required: true,
       as: 'product',
     },

@@ -1,66 +1,82 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 /* eslint-disable no-lone-blocks */
 import './NotificationCard.css';
-import DoneIcon from '@mui/icons-material/Done';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import DisabledByDefaultIcon from '@mui/icons-material/DisabledByDefault';
+import Avatar from '@mui/material/Avatar';
+import { FC, useState } from 'react';
+import { formatDistance, parseISO } from 'date-fns';
+import { INotificationProps } from '../../interfaces';
 
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-
-import CloseIcon from '@mui/icons-material/Close';
-import { useState } from 'react';
-
-const NotificationCard = () => {
+const NotificationCard:FC<{ item: INotificationProps }> = ({ item }) => {
   const [isShow, setIsShow] = useState<boolean>(false);
-  const [styles, setStyles] = useState<object>();
+
+  console.log(item);
+
   return (
     <div
       className="notifications-card"
-      style={styles}
       onMouseOver={() => {
         setIsShow(true);
-        setStyles({
-          background: 'rgba(216, 208, 208, 0.711)',
-
-        });
       }}
       onFocus={() => {
         setIsShow(true);
       }}
       onMouseLeave={() => {
         setIsShow(false);
-        setStyles({
-          background: '',
-
-        });
       }}
     >
       <div className="user-info-card">
-        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80" alt="" />
-        <div className="notification-info">
-          <p className="name">Aryan</p>
-          <p className="request">Request Your Item</p>
+        <div className="user-img">
+          {
+          item['sender.image'] ? (<Avatar alt="Remy Sharp" src={item['sender.image']} />)
+            : (<Avatar> SD</Avatar>)
+        }
         </div>
+
+        <div className="notification-info">
+          <p className="name">
+            {`${item['sender.first_name']} ${item['sender.last_name']}` }
+          </p>
+          <p className="request">{ item.receiver_approval ? 'approved your request' : 'requested your item'}</p>
+          <p
+            className="status"
+            style={
+              item.status === 'success'
+                ? { backgroundColor: 'green' }
+                : item.status === 'fail'
+                  ? { backgroundColor: 'red' }
+                  : { backgroundColor: 'orange' }
+            }
+          >
+            {item.status}
+
+          </p>
+        </div>
+
       </div>
+      {/* second section */}
       <div className="product-image-container">
-        <img className="notification-product-Image" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZHVjdHxlbnwwfHwwfHw%3D&w=1000&q=80" alt="" />
+        <img className="notification-product-Image" src={item['product.gallery'][0]} alt="" />
         { isShow
           ? (
             <div className="icons">
-              <div>
-                <abbr title="Accept"><DoneIcon /></abbr>
-              </div>
-              <div>
-                <abbr title="Decline"><CloseIcon /></abbr>
-
-              </div>
-              <div>
-                <abbr title="View">
-                  <RemoveRedEyeOutlinedIcon />
-                </abbr>
-
-              </div>
-
+              <abbr title="Decline"><DisabledByDefaultIcon /></abbr>
+              {item['product.type'] === 'exchange'
+                ? <abbr title="View"><VisibilityIcon /></abbr>
+                : <abbr title="Accept"><CheckBoxIcon /></abbr>}
             </div>
-          ) : <p className="notification-date">10 mins ago</p> }
+          ) : (
+            <p className="notification-date">
+              {formatDistance(
+                parseISO(item.createdAt),
+                new Date(),
+                { addSuffix: true },
+              )}
+            </p>
+          ) }
       </div>
     </div>
 

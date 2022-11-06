@@ -1,47 +1,73 @@
 .notifications-card {
-  margin: auto;
-  margin-top: 10px;
-   display: flex;
+  margin: 0 auto;
+  margin-top: 1rem;
+  display: flex;
   justify-content: space-between;
   padding: 10px;
-  height: 100px;
+  height: 120px;
   width: 80%;
   gap: 40px;
   padding-left: 16px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-left: 1px #1B4B66 solid;
   align-items: center;
+  position: relative;
+}
+
+.notifications-card:hover{
+  background-color: rgba(216, 208, 208, 0.711);
 }
 /* user info container */ 
 
 .user-info-card {
   display: flex;
+  align-items: center;
   gap: 15px;
 }
 
  /* user image  */
-.user-info-card img {
+.user-info-card .user-img {
   border-radius: 50%;
   width: 60px;
   height: 60px;
 }
 
+.user-info-card .user-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  object-position: center;
+}
+
 .notification-info {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 10px;
 }
 
 .notification-info .name {
   font-family: "Inter", sans-serif;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 1.2rem;
 }
 
 .notification-info .request {
   font-family: Arial, Helvetica, sans-serif, sans-serif;
   color: rgb(102, 102, 102);
+  font-size: 1rem;
+}
+
+.notification-info .status{
+  font-family: Arial, Helvetica, sans-serif, sans-serif;
+  color: #fff;
   font-size: 12px;
+  padding: 0.3rem 0.5rem;
+  border-radius: 10px;
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
 }
 
 .product-image-container {
@@ -55,13 +81,20 @@
 .notification-product-Image {
   width: 60px;
   height: 60px;
-  border-radius: 10px;
+  border-radius: 1px;
 }
 /* icons container  */
 .icons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  color: #1B4B66;
+  padding-right: 1rem;
+}
+
+.icons abbr > *{
+  font-size: 1.8rem;
+  cursor: pointer;
 }
 
 /*  single icon  */
