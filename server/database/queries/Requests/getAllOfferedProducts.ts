@@ -1,7 +1,7 @@
 import { Op } from 'sequelize';
 import { Request } from '../../../models';
 
-const getAllOfferedProductsQuery = (id:number, user_id:number) => Request.findAll({
+const getAllOfferedProductsQuery = (id:number, user_id:number) => Request.findOne({
   attributes: ['products'],
   where: {
     id,
