@@ -12,7 +12,7 @@ const deleteRequest = async (req : IRequestPayload, res : Response, next:NextFun
     const queryResult = await deleteRequestQuery((+requestId), id);
     if (!queryResult) throw new CustomError(400, 'Please check your selected request again');
 
-    res.json({ message: 'request canceled successfully' });
+    res.json('request canceled successfully');
   } catch (error) {
     next(error);
   }
