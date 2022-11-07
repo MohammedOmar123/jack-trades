@@ -8,9 +8,9 @@ const getAllRequest = async (req : IRequestPayload, res : Response, next:NextFun
     const allRequests = await getAllRequestsQuery(id);
     if (!allRequests.length) {
       res.json({ message: 'There is no requests yet' });
-      return;
+    } else {
+      res.json({ data: allRequests });
     }
-    res.json({ message: allRequests });
   } catch (error) {
     next(error);
   }

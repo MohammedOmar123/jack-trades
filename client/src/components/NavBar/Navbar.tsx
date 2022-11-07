@@ -12,6 +12,7 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Badge from '@mui/material/Badge';
 import ButtonComponent from '../Button/Button';
 import { links } from '../../StaticData';
 import { AuthContext } from '../Context/AuthContext';
@@ -101,11 +102,14 @@ const Navbar: FC = () => {
                 role="button"
                 aria-hidden="true"
               >
-                <NotificationsNone sx={{
-                  color: 'black',
-                  fontSize: '25px',
-                }}
-                />
+                <Badge badgeContent={0} color="primary">
+
+                  <NotificationsNone sx={{
+                    color: 'black',
+                    fontSize: '25px',
+                  }}
+                  />
+                </Badge>
               </div>
 
               <PersonOutline sx={{

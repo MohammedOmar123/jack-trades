@@ -26,7 +26,7 @@ const ProductDetails = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   if (error) {
     return (

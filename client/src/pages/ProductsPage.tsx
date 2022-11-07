@@ -83,7 +83,7 @@ const ProductsPage = () => {
 
   return (
     <Stack
-      mt="8rem"
+      mt="3rem"
       direction="row"
       justifyContent="center"
       sx={{ padding: { xs: '0 1rem', sm: '0 1rem', md: '0 3rem' } }}

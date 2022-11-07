@@ -12,27 +12,32 @@ beforeAll(() => buildTables());
 describe("get all wish list route", () => {
     it("Should return all items in the wishlist for the sigIn user", async () => {
         await request(app)
-            .get("/api/v1/wishlist/")
+            .get("/api/v1/wishlist?offset=0&limit=3")
             .expect(200)
             .set("Cookie", token)
             .expect("Content-Type", /json/)
-            .expect((res) => expect(res.body).toEqual({
-                "message": [
-                    {
-                        "product_id": 1,
-                        "Product.title": "nice sofa",
-                        "Product.gallery": [
-                            "https://apollo-singapore.akamaized.net/v1/files/sh0il57qfjfh3-IN/image;s=780x0;q=60 ",
-                            "https://apollo-singapore.akamaized.net/v1/files/zjt3gsd2oobm2-IN/image;s=780x0;q=60"
-                        ]
-                    }
-                ]
-            }));
+            .expect((res) => {
+                expect(res.body).toEqual({
+                    count: 1,
+                    rows: [
+                        {
+                            "id": 1,
+                            "product_id": 1,
+                            "title": "nice sofa",
+                            "description": "sofa for four people",
+                            "gallery": [
+                                "https://apollo-singapore.akamaized.net/v1/files/sh0il57qfjfh3-IN/image;s=780x0;q=60 ",
+                                "https://apollo-singapore.akamaized.net/v1/files/zjt3gsd2oobm2-IN/image;s=780x0;q=60"
+                            ]
+                        }
+                    ],
+                })
+            });
     });
 
     it("Should return (no items found, message) when the wishlist is empty", async () => {
         await request(app)
-            .get("/api/v1/wishlist/")
+            .get("/api/v1/wishlist?offset=0&limit=3")
             .expect(200)
             .set("Cookie", token2)
             .expect("Content-Type", /json/)
@@ -99,31 +104,39 @@ describe("Add to wishlist route", () => {
     describe("get all wish list route", () => {
         it("Should return all items in the wishlist for the sigIn user", async () => {
             await request(app)
-                .get("/api/v1/wishlist/")
+                .get("/api/v1/wishlist?offset=0&limit=3")
                 .expect(200)
                 .set("Cookie", token)
                 .expect("Content-Type", /json/)
-                .expect((res) => expect(res.body).toEqual({
-                    "message": [
-                        {
-                            "product_id": 1,
-                            "Product.title": "nice sofa",
-                            "Product.gallery": [
-                                "https://apollo-singapore.akamaized.net/v1/files/sh0il57qfjfh3-IN/image;s=780x0;q=60 ",
-                                "https://apollo-singapore.akamaized.net/v1/files/zjt3gsd2oobm2-IN/image;s=780x0;q=60"
-                            ]
-                        },
-                        {
-                            "product_id": 5,
-                            "Product.title": "Earbuds",
-                            "Product.gallery": [
-                                'https://apollo-singapore.akamaized.net/v1/files/t5h1o07v3ziq2-IN/image;s=780x0;q=60',
-                                'https://apollo-singapore.akamaized.net/v1/files/uc39iu95kda51-IN/image;s=780x0;q=60',
-                                'https://apollo-singapore.akamaized.net/v1/files/8sol0kdbo0xz1-IN/image;s=780x0;q=60',
-                            ]
-                        }
-                    ]
-                }));
+                .expect((res) => {
+                    expect(res.body).toEqual({
+                        count: 2,
+                        rows: [
+                            {
+                                id: 1,
+                                product_id: 1,
+                                title: 'nice sofa',
+                                gallery: [
+                                    "https://apollo-singapore.akamaized.net/v1/files/sh0il57qfjfh3-IN/image;s=780x0;q=60 ",
+                                    "https://apollo-singapore.akamaized.net/v1/files/zjt3gsd2oobm2-IN/image;s=780x0;q=60",
+                                ],
+                                description: 'sofa for four people'
+                            },
+                            {
+                                id: 5,
+                                product_id: 5,
+                                title: 'Earbuds',
+                                gallery: [
+                                    "https://apollo-singapore.akamaized.net/v1/files/t5h1o07v3ziq2-IN/image;s=780x0;q=60",
+                                    "https://apollo-singapore.akamaized.net/v1/files/uc39iu95kda51-IN/image;s=780x0;q=60",
+                                    "https://apollo-singapore.akamaized.net/v1/files/8sol0kdbo0xz1-IN/image;s=780x0;q=60",
+                                ],
+                                description: 'Used, perfectly working.Earbuds and charging case.Enjoy uninterrupted, crystal-clear music on the go with the Jabra Elite Active 65t True Wireless EarPods with Mic. With up to 5 hours of battery life from a single charge, and up to 15 hours in total with the pocket-friendly charging case '
+                            }
+                        ]
+                    })
+
+                });
         });
     });
 
@@ -211,6 +224,8 @@ describe("delete from wishlist route", () => {
     });
 });
 // get all wishlist items route
+
+
 
 
 
