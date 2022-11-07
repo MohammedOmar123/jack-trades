@@ -189,7 +189,7 @@ describe('Test get all requests route', () => {
             .expect(200)
             .expect("Content-Type", /json/)
             .expect((res) => {
-                expect(res.body.data).toBe('There is no requests yet');
+                expect(res.body.count).toBe(0);
             });
     });
 

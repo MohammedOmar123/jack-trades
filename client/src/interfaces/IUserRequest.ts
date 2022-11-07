@@ -9,7 +9,7 @@ interface IUserRequest {
   product_id : number,
   exchanged_id:null | number,
 
-  'productId.title':string
-  'productId.gallery':string[],
+  'product.title':string
+  'product.gallery':string[],
 }
 export default IUserRequest;

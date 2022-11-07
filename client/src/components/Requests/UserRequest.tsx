@@ -48,33 +48,19 @@ const UserRequestCard
   return (
     <Box className="request-card">
       <Image attributes={{
-        src: request['productId.gallery'][0],
-        alt: `an image of ${request['productId.title']}`,
+        src: request['product.gallery'][0],
+        alt: `an image of ${request['product.title']}`,
         className: 'request-img',
       }}
       />
       <Box className="request-details">
-        <h3
-          className="request-title"
-          id="title"
-        >
-          {requestObj['productId.title']}
-        </h3>
-        <p
-          className="request-description"
-          id="description"
-        >
-          {requestObj['productId.title']}
-        </p>
-        <Link to={`/product/${requestObj.product_id}/details`}>View details</Link>
-        <Typography
-            // eslint-disable-next-line max-len
-          className={`${states[requestObj.status as keyof typeof states]} status `}
-        >
-          {requestObj.status}
-        </Typography>
-
-        <Box className="buttons">
+        <Box className="title-date-box">
+          <h3
+            className="request-title"
+            id="title"
+          >
+            {requestObj['product.title']}
+          </h3>
           <Typography sx={
               {
                 fontSize: '30',
@@ -89,6 +75,22 @@ const UserRequestCard
               { addSuffix: true },
             )}
           </Typography>
+        </Box>
+        <p
+          className="request-description"
+          id="description"
+        >
+          {requestObj['product.title']}
+        </p>
+        <Link to={`/product/${requestObj.product_id}/details`}>View details</Link>
+        <Typography
+            // eslint-disable-next-line max-len
+          className={`${states[requestObj.status as keyof typeof states]} status `}
+        >
+          {requestObj.status}
+        </Typography>
+
+        <Box className="buttons">
           <Button
             style={{
               text: 'Cancel',

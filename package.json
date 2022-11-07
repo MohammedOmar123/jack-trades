@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/CA-G12/jack-trades#readme",
   "dependencies": {
+    "@babel/core": "^7.20.2",
     "babel-jest": "^27.5.1",
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",

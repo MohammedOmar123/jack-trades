@@ -24,10 +24,9 @@ const UserRequest: FC = () => {
   const fetchData = async () => {
     try {
       const { data } = await axios
-        .get(`/api/v1/requests?offset=${offset}`);
+        .get(`/api/v1/requests/?offset=${offset}`);
       if (data.count === 0) {
         setMessage('no requests yet');
-        console.log(data);
         setIsLoading(false);
       } else {
         setRequests(data.rows);

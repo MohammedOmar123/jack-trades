@@ -16,6 +16,11 @@
   font-weight: 700;
   color: var(--dark-blue);
 }
+.title-date-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .user-requests .requests {
   /* overflow-y: auto; */
