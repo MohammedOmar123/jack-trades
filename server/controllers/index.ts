@@ -9,6 +9,7 @@ import {
 } from './products';
 import {
   getAllRequest, addRequests, deleteRequest, updateRequest,
+  getAllOfferedProducts,
 } from './request';
 import { getAllNotifications, viewItemDetails } from './notifications';
 
@@ -25,4 +26,5 @@ export {
   getAllNotifications, viewItemDetails,
   deleteFromWishList, getAllWishListItems, addToWishList, checkAuth,
   checkWishList,
+  getAllOfferedProducts,
 };
