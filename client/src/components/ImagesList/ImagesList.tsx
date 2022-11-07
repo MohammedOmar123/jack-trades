@@ -12,6 +12,7 @@ const ImagesList = () => {
     context.gallery.map((image) => (
       React.Children.toArray(
         <Image
+          key={image[0]}
           attributes={{
             src: image,
             alt: 'Product Image',
