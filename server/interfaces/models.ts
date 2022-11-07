@@ -48,7 +48,6 @@ interface IRequest extends Model<InferAttributes<IRequest>, InferCreationAttribu
   id: CreationOptional<number>;
   status: 'pending' | 'success' | 'fail';
   is_exchangable: boolean;
-  sender_approval: boolean;
   receiver_approval: boolean;
   products: number[];
   createdAt?: CreationOptional<Date>;

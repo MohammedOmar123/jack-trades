@@ -296,8 +296,8 @@ describe("deleting a product PUT api/v1/products/:productId", () => {
       .expect(400)
       .expect({
         message: "Bad Request, id doesn't exist"
-      })
-  })
+      });
+  });
 
 
   test('testing updating a product for a valid id', async () => {
@@ -311,9 +311,66 @@ describe("deleting a product PUT api/v1/products/:productId", () => {
       .expect(200)
       .expect({
         message: "You updated your product successfully"
+      });
+  });
+
+  test('testing adding new product, should return 400 when added invalid type', async () => {
+    await request(app)
+      .post('/api/v1/products/')
+      .set('Cookie', token)
+      .send({
+        "title": "new title",
+        "description": "new product",
+        "type": "kkkk",
+        "gallery": [
+          "https://apollo-singapore.akamaized.net/v1/files/i6c5sdoqjous2-IN/image;s=780x0;q=60"
+        ],
+        "category_id": 1
       })
-  })
-})
+      .expect(400)
+      .expect({
+        "message": "\"type\" must be one of [donation, exchange]"
+      });
+  });
+
+  test('testing adding a new product when the user added a valid inputs', async () => {
+    await request(app)
+      .post('/api/v1/products/')
+      .set('Cookie', token)
+      .send({
+        "title": "new title",
+        "description": "new product",
+        "type": "donation",
+        "gallery": [
+          "https://apollo-singapore.akamaized.net/v1/files/i6c5sdoqjous2-IN/image;s=780x0;q=60"
+        ],
+        "category_id": 1
+      })
+      .expect(201)
+      .expect({
+        "message": "You successfully posted a product"
+      });
+  });
+  
+  test('testing adding a new product when the user added a valid inputs', async () => {
+    await request(app)
+      .post('/api/v1/products/')
+      .set('Cookie', token)
+      .send({
+        "title": "new title",
+        "description": "new product",
+        "type": "exchange",
+        "gallery": [
+          "https://apollo-singapore.akamaized.net/v1/files/i6c5sdoqjous2-IN/image;s=780x0;q=60"
+        ],
+        "category_id": 1
+      })
+      .expect(201)
+      .expect({
+        "message": "You successfully posted a product"
+      });
+  });
+});
 
 
 afterAll(() => sequelize.close());

@@ -3,21 +3,7 @@
   /* border: 2px solid black; */
   margin-top: 1rem;
   border-radius: 5px;
-  height: 450px;
+  /* height: 450px; */
   /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;    */
 }
-.images-gallery {
-  width: 100px;
-  height: 100px;
-  cursor: pointer;
-  display: block;
-  border-radius: 3px;
-  transform: scale(1);
-  transition: 0.3s ease-in-out;
-  /* border: 1px solid; */
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-.images-gallery:hover {
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
-}
+

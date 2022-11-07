@@ -13,18 +13,18 @@ Product.belongsTo(User, { foreignKey: 'user_id' });
 User.hasMany(Favorite, { foreignKey: 'user_id' });
 Favorite.belongsTo(User, { foreignKey: 'user_id' });
 
-User.hasMany(Request, { foreignKey: 'sender_id' });
-Request.belongsTo(User, { foreignKey: 'sender_id' });
+User.hasMany(Request);
+Request.belongsTo(User, { as: 'sender', foreignKey: 'sender_id' });
 
-User.hasMany(Request, { foreignKey: 'receiver_id' });
-Request.belongsTo(User, { foreignKey: 'receiver_id' });
+User.hasMany(Request);
+Request.belongsTo(User, { as: 'receiver', foreignKey: 'receiver_id' });
 
 // product relations
-Product.hasMany(Request, { foreignKey: 'product_id' });
-Request.belongsTo(Product, { foreignKey: 'product_id' });
+Product.hasMany(Request);
+Request.belongsTo(Product, { as: 'product', foreignKey: 'product_id' });
 
-Product.hasOne(Request, { foreignKey: 'exchanged_id' });
-Request.belongsTo(Product, { foreignKey: 'exchanged_id' });
+Product.hasOne(Request);
+Request.belongsTo(Product, { as: 'exchanged', foreignKey: 'exchanged_id' });
 
 Product.hasMany(Favorite, { foreignKey: 'product_id' });
 Favorite.belongsTo(Product, { foreignKey: 'product_id' });

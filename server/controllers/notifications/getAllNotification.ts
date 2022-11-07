@@ -1,7 +1,25 @@
-import { Request, Response } from 'express';
+import { Response, NextFunction } from 'express';
+import { IRequestPayload } from '../../interfaces';
 
-const getAllNotifications = (req : Request, res : Response) => {
-  res.send('Hello getAllNotifications');
+import { getReceiverNotificationsQuery, getSenderNotificationsQuery } from '../../database/queries';
+
+const getAllNotifications = async (req: IRequestPayload, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.user;
+
+    const receiverNotifications = await getReceiverNotificationsQuery(+id);
+
+    const senderNotifications = await getSenderNotificationsQuery(id);
+
+    const allNotifications = [...receiverNotifications, ...senderNotifications];
+    if (!allNotifications.length) {
+      res.json({ message: 'There is no notifications yet' });
+    } else {
+      res.json({ data: allNotifications });
+    }
+  } catch (error) {
+    next(error);
+  }
 };
 
 export default getAllNotifications;
