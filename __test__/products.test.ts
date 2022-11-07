@@ -43,7 +43,7 @@ describe('Check for filters /products/filter', () => {
       .expect(200)
       .expect("Content-Type", /json/)
       .expect((res) => {
-        expect(res.body.totalPages).toBe(0)
+        expect(res.body.totalPages).toBe(1)
         expect(res.body.products[0]).toEqual({
           id: 1, title: 'nice sofa', gallery: [
             'https://apollo-singapore.akamaized.net/v1/files/sh0il57qfjfh3-IN/image;s=780x0;q=60 ',
@@ -102,7 +102,7 @@ describe('Check for filters /products/filter', () => {
       .expect(200)
       .expect("Content-Type", /json/)
       .expect((res) => {
-        expect(res.body.totalPages).toBe(0)
+        expect(res.body.totalPages).toBe(1)
         expect(res.body.products[0]).toEqual({
           id: 2, title: 'something', gallery: [
             "https://apollo-singapore.akamaized.net/v1/files/hccwzehg6d8u-IN/image;s=1080x1080 "
@@ -126,7 +126,7 @@ describe('Check for filters /products/filter', () => {
       .expect(200)
       .expect("Content-Type", /json/)
       .expect((res) => {
-        expect(res.body.totalPages).toBe(0)
+        expect(res.body.totalPages).toBe(1)
         expect(res.body.products[0]).toEqual({
           id: 2,
           title: "something",
@@ -351,7 +351,7 @@ describe("deleting a product PUT api/v1/products/:productId", () => {
         "message": "You successfully posted a product"
       });
   });
-  
+
   test('testing adding a new product when the user added a valid inputs', async () => {
     await request(app)
       .post('/api/v1/products/')
