@@ -2,6 +2,7 @@
 interface IProductPopup {
     open: boolean,
     handleClose: () => void
+    receiverId:number
 }
 
 export default IProductPopup;
