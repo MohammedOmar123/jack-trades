@@ -12,7 +12,7 @@ const NotificationContainer:FC = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get('/api/v1/notifications');
-      setNotifications(response.data.message);
+      setNotifications(response.data.data);
     } catch (error) {
       console.log(error, 'error in requesting the notifications');
     }
