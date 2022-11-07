@@ -42,7 +42,7 @@ const getAllProducts = async (req: Request, res: Response, next: NextFunction): 
     });
 
     res.json({
-      totalPages: Math.floor(products.count / +limit),
+      totalPages: Math.ceil(products.count / +limit),
       products: products.rows,
     });
   } catch (error) {
