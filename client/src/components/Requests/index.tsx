@@ -24,17 +24,19 @@ const UserRequest: FC = () => {
   const fetchData = async () => {
     try {
       const { data } = await axios
-        .get(`/api/v1/requests/?offset=${offset}`);
-      if (data.message === 'There is no requests yet') {
-        setMessage(data.message);
+        .get(`/api/v1/requests?offset=${offset}`);
+      if (data.count === 0) {
+        setMessage('no requests yet');
+        console.log(data);
+        setIsLoading(false);
       } else {
-        setRequests(data.message.rows);
-        setCount(data.message.count);
+        setRequests(data.rows);
+        setCount(data.count);
+        setIsLoading(false);
       }
-      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      Swal.fire(error.response.data.message);
+      Swal.fire(error.message);
     }
   };
 
@@ -48,7 +50,7 @@ const UserRequest: FC = () => {
     fetchData();
   }, [offset]);
 
-  if (isLoading || !count) return <h1>loading..</h1>;
+  if (isLoading) return <h1>loading..</h1>;
   return (
     <Box className="user-requests">
       <Typography variant="h4">Requests</Typography>

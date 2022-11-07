@@ -13,9 +13,9 @@ const getAllNotifications = async (req: IRequestPayload, res: Response, next: Ne
 
     const allNotifications = [...receiverNotifications, ...senderNotifications];
     if (!allNotifications.length) {
-      res.json({ message: 'There is no notifications yet' });
+      res.json({ data: 'There is no notifications yet' });
     } else {
-      res.json({ message: [...receiverNotifications, ...senderNotifications] });
+      res.json(allNotifications);
     }
   } catch (error) {
     next(error);

@@ -13,7 +13,7 @@ const getAllRequestsQuery = (sender_id:number, offset: number) => Request.findAn
   limit: 3,
   include: {
     model: Product,
-    as: 'productId',
+    as: 'product',
     attributes: ['title', 'gallery'],
   },
 

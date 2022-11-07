@@ -16,7 +16,7 @@ const getReceiverNotificationsQuery = (receiver_id:number) => Request.findAll({
       model: Product,
       attributes: ['title', 'gallery'],
       required: true,
-      as: 'productId',
+      as: 'product',
     },
   ],
 

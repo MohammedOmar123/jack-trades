@@ -10,10 +10,10 @@ const getAllRequest = async (req : IRequestPayload, res : Response, next:NextFun
     const allRequests = await getAllRequestsQuery(id, +offset || 0);
 
     if (!allRequests.count) {
-      res.json({ message: 'There is no requests yet' });
-      return;
+      res.json({ data: 'There is no requests yet' });
+    } else {
+      res.json(allRequests);
     }
-    res.json({ message: allRequests });
   } catch (error) {
     next(error);
   }

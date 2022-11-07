@@ -1,7 +1,7 @@
 import { Response, NextFunction } from 'express';
 import { IRequestPayload } from '../../interfaces';
 import {
-  updateRequestQuery, getIsExchangeableQuery,
+  updateRequestQuery,
   declineAllOtherRequests, checkRequestQuery,
   deleteSuccessRequestQuery,
 } from '../../database/queries';
@@ -10,7 +10,7 @@ import { CustomError } from '../../helpers';
 
 const updateRequest = async (req: IRequestPayload, res: Response, next: NextFunction) => {
   try {
-    const { id } = req.user;
+    const { id: userId } = req.user;
     const { requestId } = req.params;
     const { receiverApproval, productId } = req.body;
 
@@ -18,25 +18,23 @@ const updateRequest = async (req: IRequestPayload, res: Response, next: NextFunc
     await updateRequestValidation.validateAsync({ receiverApproval });
 
     // check if the request still valid and for the current user
-    const queryResult = await checkRequestQuery(+requestId, +id);
+    const queryResult = await checkRequestQuery(+requestId, +userId);
     if (!queryResult) throw new CustomError(400, 'This request does\'nt exist anymore');
     if (!receiverApproval) {
       await updateRequestQuery(+requestId, false, null, 'fail');
-      res.json({ message: 'You decline the request' });
+      res.json('You decline the request');
       return;
     }
-
-    const queryOutput = await getIsExchangeableQuery(+requestId);
-    if (!queryOutput.is_exchangable) {
+    if (!queryResult.is_exchangable) {
       updateRequestQuery(+requestId, true, null, 'success');
     } else {
       if (!queryResult.products.includes(productId)) throw new CustomError(400, 'Choose one of the offered products');
       await updateRequestQuery(+requestId, true, productId, 'success');
     }
 
-    await declineAllOtherRequests(+requestId, (+queryOutput.product_id));
-    await deleteSuccessRequestQuery(+requestId, id);
-    res.json({ message: 'Operation done successfully' });
+    await declineAllOtherRequests(+requestId, (+queryResult.product_id));
+    await deleteSuccessRequestQuery(+requestId, userId);
+    res.json('Operation done successfully');
   } catch (error) {
     next(error);
   }

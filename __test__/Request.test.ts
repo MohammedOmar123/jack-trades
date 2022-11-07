@@ -174,11 +174,11 @@ describe('Test get all requests route', () => {
             .expect(200)
             .expect("Content-Type", /json/)
             .expect((res) => {
-                expect(res.body.message.count).toBe(1);
-                expect(res.body.message.rows[0].status).toBe('pending');
-                expect(res.body.message.rows[0].id).toBe(1);
-                expect(res.body.message.rows[0].receiver_id).toBe(3);
-                expect(res.body.message.rows[0].product_id).toBe(7);
+                expect(res.body.count).toBe(1);
+                expect(res.body.rows[0].status).toBe('pending');
+                expect(res.body.rows[0].id).toBe(1);
+                expect(res.body.rows[0].receiver_id).toBe(3);
+                expect(res.body.rows[0].product_id).toBe(7);
             });
     });
 
@@ -189,7 +189,7 @@ describe('Test get all requests route', () => {
             .expect(200)
             .expect("Content-Type", /json/)
             .expect((res) => {
-                expect(res.body.message).toBe('There is no requests yet');
+                expect(res.body.data).toBe('There is no requests yet');
             });
     });
 
@@ -218,12 +218,12 @@ describe('Test get all requests route', () => {
             .expect("Content-Type", /json/)
             .expect((res) => {
                 // length is 2 now
-                expect(res.body.message.count).toBe(2);
-                expect(res.body.message.rows[1].status).toBe('pending');
-                expect(res.body.message.rows[1].products.length).toBe(3);
-                expect(res.body.message.rows[1].id).toBe(2);
-                expect(res.body.message.rows[1].receiver_id).toBe(5);
-                expect(res.body.message.rows[1].product_id).toBe(8);
+                expect(res.body.count).toBe(2);
+                expect(res.body.rows[1].status).toBe('pending');
+                expect(res.body.rows[1].products.length).toBe(3);
+                expect(res.body.rows[1].id).toBe(2);
+                expect(res.body.rows[1].receiver_id).toBe(5);
+                expect(res.body.rows[1].product_id).toBe(8);
 
             });
     });
@@ -355,7 +355,7 @@ describe('Test delete request route', () => {
             .expect(200)
             .expect("Content-Type", /json/)
             .expect((res) => {
-                expect(res.body.message).toBe('request canceled successfully');
+                expect(res.body).toBe('request canceled successfully');
             });
     });
 
@@ -367,8 +367,8 @@ describe('Test delete request route', () => {
             .expect(200)
             .expect("Content-Type", /json/)
             .expect((res) => {
-                expect(res.body.message.count).toBe(1);
-                expect(res.body.message.rows[0].id).toBe(2);
+                expect(res.body.count).toBe(1);
+                expect(res.body.rows[0].id).toBe(2);
             });
     });
 
@@ -411,7 +411,7 @@ describe('Test update request route', () => {
             .expect(200)
             .expect("Content-Type", /json/)
             .expect((res) => {
-                expect(res.body.message).toBe('You decline the request');
+                expect(res.body).toBe('You decline the request');
             });
     });
 
@@ -423,7 +423,7 @@ describe('Test update request route', () => {
             .expect(200)
             .expect("Content-Type", /json/)
             .expect((res) => {
-                expect(res.body.message.rows[0].status).toBe('fail');
+                expect(res.body.rows[0].status).toBe('fail');
             });
     });
 
@@ -451,11 +451,11 @@ describe('Test update request route', () => {
             .expect("Content-Type", /json/)
             .expect((res) => {
                 // the old request 
-                expect(res.body.message.rows[0].status).toBe('fail');
-                expect(res.body.message.rows[0].receiver_approval).toBe(false);
-                // the new request
-                expect(res.body.message.rows[1].status).toBe('pending');
-                expect(res.body.message.rows[1].receiver_approval).toBe(null);
+                expect(res.body.rows[0].status).toBe('fail');
+                expect(res.body.rows[0].receiver_approval).toBe(false);
+                // the new requestconsole.log(res.body)
+                expect(res.body.rows[1].status).toBe('pending');
+                expect(res.body.rows[1].receiver_approval).toBe(null);
 
             });
     });
@@ -498,12 +498,13 @@ describe('Test update request route', () => {
             .set('Cookie', token3)
             .expect(200)
             .expect("Content-Type", /json/)
-            .expect((res) => {
-                expect(res.body.message.length).toBe(4);
-                expect(res.body.message[0].id).toBe(1);
-                expect(res.body.message[0].deletedAt).toBeTruthy(); // request canceled before
-                expect(res.body.message[1].id).toBe(5);
-                expect(res.body.message[3].id).toBe(4);
+            .expect((res) => {      
+                console.log(res.body.length)
+                expect(res.body.length).toBe(4);
+                expect(res.body[0].id).toBe(1);
+                expect(res.body[0].deletedAt).toBeTruthy(); // request canceled before
+                expect(res.body[1].id).toBe(5);
+                expect(res.body[3].id).toBe(4);
             });
     });
 
@@ -515,7 +516,7 @@ describe('Test update request route', () => {
                 receiverApproval: true,
                 productId: 8,
             })
-            .expect({ message: 'Operation done successfully' });
+            .expect( '"Operation done successfully"' );
     });
 
     test('All requests must be returned with their new status', async () => {
@@ -526,9 +527,9 @@ describe('Test update request route', () => {
             .expect("Content-Type", /json/)
             .expect((res) => {
                 // all other requests failed automatically 
-                expect(res.body.message[1].status).toBe('fail');
-                expect(res.body.message[2].status).toBe('fail');
-                expect(res.body.message[3].status).toBe('success'); // id = 4
+                expect(res.body[1].status).toBe('fail');
+                expect(res.body[2].status).toBe('fail');
+                expect(res.body[3].status).toBe('success'); // id = 4
 
             });
     });
@@ -540,7 +541,7 @@ describe('Test update request route', () => {
             .expect(200)
             .expect("Content-Type", /json/)
             .expect((res) => {
-               expect(res.body.message[0].status).toBe('fail');
+               expect(res.body[0].status).toBe('fail');
             });
     });
 
@@ -551,8 +552,8 @@ describe('Test update request route', () => {
             .expect(200)
             .expect("Content-Type", /json/)
             .expect((res) => {
-               expect(res.body.message[2].status).toBe('success');
-               expect(res.body.message[2].receiver_approval).toBe(true);
+               expect(res.body[2].status).toBe('success');
+               expect(res.body[2].receiver_approval).toBe(true);
 
             });
     });
