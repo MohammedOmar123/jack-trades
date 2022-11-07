@@ -21,6 +21,7 @@ import ITypeRadioProps from './ITypeRadioProps';
 import IProductPopup from './IProductsPopup';
 import INotificationProps from './INotificationProps';
 import IWishlistItem from './IWishlistItem';
+import IOfferedProducts from './IOfferedProducts';
 
 export {
   IProduct,
@@ -48,4 +49,5 @@ export {
   IProductPopup,
   INotificationProps,
   IWishlistItem,
+  IOfferedProducts,
 };
