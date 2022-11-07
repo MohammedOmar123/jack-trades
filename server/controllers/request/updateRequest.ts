@@ -1,7 +1,7 @@
 import { Response, NextFunction } from 'express';
 import { IRequestPayload } from '../../interfaces';
 import {
-  updateRequestQuery, getIsExchangeableQuery,
+  updateRequestQuery,
   declineAllOtherRequests, checkRequestQuery,
   deleteSuccessRequestQuery,
 } from '../../database/queries';
@@ -22,7 +22,7 @@ const updateRequest = async (req: IRequestPayload, res: Response, next: NextFunc
     if (!queryResult) throw new CustomError(400, 'This request does\'nt exist anymore');
     if (!receiverApproval) {
       await updateRequestQuery(+requestId, false, null, 'fail');
-      res.json({ message: 'You decline the request' });
+      res.json('You decline the request');
       return;
     }
     if (!queryResult.is_exchangable) {
@@ -34,7 +34,7 @@ const updateRequest = async (req: IRequestPayload, res: Response, next: NextFunc
 
     await declineAllOtherRequests(+requestId, (+queryResult.product_id));
     await deleteSuccessRequestQuery(+requestId, userId);
-    res.json({ message: 'Operation done successfully' });
+    res.json('Operation done successfully');
   } catch (error) {
     next(error);
   }
