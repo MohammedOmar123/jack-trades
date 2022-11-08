@@ -7,6 +7,7 @@ import productsRouter from './products';
 import requestRouter from './request';
 import notificationRouter from './notifications';
 import wishListRouter from './wishlist';
+import ChatRouter from './chat';
 
 const router = express.Router();
 router.use('/account', accountRouter);
@@ -16,4 +17,5 @@ router.use('/products', productsRouter);
 router.use('/requests', requestRouter);
 router.use('/notifications', notificationRouter);
 router.use('/wishlist', wishListRouter);
+router.use('/chat', ChatRouter);
 export default router;

@@ -5,6 +5,7 @@ import Product from './Product';
 import Favorite from './favorites';
 import Feedback from './feedback';
 import Request from './requests';
+import Chat from './Chat';
 
 // user relations
 User.hasMany(Product, { foreignKey: 'user_id' });
@@ -12,6 +13,12 @@ Product.belongsTo(User, { foreignKey: 'user_id' });
 
 User.hasMany(Favorite, { foreignKey: 'user_id' });
 Favorite.belongsTo(User, { foreignKey: 'user_id' });
+
+User.hasMany(Chat);
+Chat.belongsTo(User, { as: 'sender', foreignKey: 'sender_id' });
+
+User.hasMany(Chat);
+Chat.belongsTo(User, { as: 'receiver', foreignKey: 'receiver_id' });
 
 User.hasMany(Request);
 Request.belongsTo(User, { as: 'sender', foreignKey: 'sender_id' });
@@ -40,4 +47,5 @@ export {
   Favorite,
   Feedback,
   Request,
+  Chat,
 };
