@@ -39,7 +39,7 @@ const RequestPopup:FC<IProductPopup> = ({ open, handleClose, receiverId }) => {
   const checkArrayOfIds = () => {
     if (productArray.length) {
       setShowMessage(false);
-      handleRequest(receiverId, senderName);
+      if (receiverId) handleRequest(receiverId, senderName);
     } else {
       setShowMessage(true);
     }

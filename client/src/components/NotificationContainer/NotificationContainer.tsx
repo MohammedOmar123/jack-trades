@@ -2,6 +2,7 @@ import { HorizontalRule } from '@mui/icons-material';
 import { Typography } from '@mui/material';
 import axios from 'axios';
 import { FC, useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import NotificationCard from '../NotificationCard/NotificationCard';
 import { INotificationProps } from '../../interfaces';
 import './notificationContainer.css';
@@ -12,9 +13,9 @@ const NotificationContainer:FC = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get('/api/v1/notifications');
-      setNotifications(response.data.data);
+      setNotifications(response.data);
     } catch (error) {
-      console.log(error, 'error in requesting the notifications');
+      Swal.fire(error.response.data.message);
     }
   };
 
@@ -22,6 +23,7 @@ const NotificationContainer:FC = () => {
     fetchData();
   }, []);
 
+  if (!notifications) return <h1>No data</h1>;
   return (
     <div className="notifications-container">
       <div className="notification-header">
@@ -37,7 +39,15 @@ const NotificationContainer:FC = () => {
           />
         </div>
       </div>
-      {notifications.map((e) => <NotificationCard item={e} key={e.id} />)}
+      {notifications.length ? (notifications.map((e) => (
+        <NotificationCard
+          item={e}
+          key={e.id}
+          fetchData={fetchData}
+        />
+      ))) : (
+        <h1>No notifications</h1>
+      )}
     </div>
   );
 };

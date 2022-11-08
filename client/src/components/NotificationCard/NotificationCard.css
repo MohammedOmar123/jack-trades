@@ -129,10 +129,7 @@
 .icons div{
   display: flex;
   gap: 1.2rem;
-  /* background-color: rgba(0, 0, 0, 0.905); */
   color: white;
-  /* cursor: pointer; */
-  /* padding: 0.5rem 1rem; */
 }
  /* the date */
 .notification-date {

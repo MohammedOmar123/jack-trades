@@ -1,31 +1,54 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  FC, useState, useContext, useEffect,
-} from 'react';
+import { FC, useState, useEffect } from 'react';
 import {
   Button, Modal, ImageList, ListSubheader, ImageListItem, Typography,
 } from '@mui/material';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { IProductPopup, UserProduct } from '../../interfaces';
-// import './Popup.css';
+import { IProductPopup, IOfferedProducts } from '../../interfaces';
+import PopupCard from './PopupCard';
 
-const NotificationPopUp:FC<IProductPopup> = ({ open, handleClose }) => {
-  const [products, setProducts] = useState< UserProduct[]>([]);
+const NotificationPopUp:FC<IProductPopup> = ({
+  open, handleClose, id, fetchData,
+}) => {
+  const [products, setProducts] = useState<IOfferedProducts[]>([]);
   const [showMessage, setShowMessage] = useState<boolean>(false);
+  const [productId, setProductId] = useState<number>(0);
 
   const fetchOfferedProducts = async () => {
-    // try {
-    //   const response = await axios
-    // .get(`/api/v1/requests/products/${item.id}`);
-    //   console.log(response.data);
-    // } catch (error) {
-    //   console.log(error, 'error in fetching offered data');
-    // }
+    try {
+      const response = await axios
+        .get(`/api/v1/requests/products/${id}`);
+      setProducts(response.data.message);
+    } catch (error) {
+      Swal.fire(error.response.data.message);
+    }
+  };
+
+  const handleExchange = async () => {
+    try {
+      if (productId) {
+        setShowMessage(false);
+        const response = await axios
+          .put(`/api/v1/requests/${id}`, {
+            receiverApproval: true,
+            productId,
+          });
+
+        const alert = await Swal.fire({
+          title: response.data,
+          confirmButtonColor: '#1b4b66',
+        });
+        handleClose();
+        if (fetchData) fetchData();
+      } else setShowMessage(true);
+    } catch (error) {
+      Swal.fire(error.response.data.message);
+    }
   };
 
   useEffect(() => {
-    fetchOfferedProducts();
+    if (open) fetchOfferedProducts();
   }, [open]);
 
   return (
@@ -55,15 +78,14 @@ const NotificationPopUp:FC<IProductPopup> = ({ open, handleClose }) => {
             </ListSubheader>
           </ImageListItem>
           {products.map((item) => (
-            <h1>Hello</h1>
-            // <PopupCard item={item} key={item.id} />
+            <PopupCard item={item} key={item.id} setProductId={setProductId} />
           ))}
           <ImageListItem cols={3}>
             {showMessage
-            && <Typography variant="h5">Choose at least one item</Typography>}
+            && <Typography variant="h5">Choose one item</Typography>}
             <Button
               variant="contained"
-              onClick={() => console.log('clickeddd')}
+              onClick={handleExchange}
             >
               confirm
 
