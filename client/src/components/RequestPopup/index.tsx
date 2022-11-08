@@ -13,10 +13,10 @@ import { AuthContext } from '../Context/AuthContext';
 import { ImageContext } from '../Context/ImageContext';
 import './Popup.css';
 
-const RequestPopup:FC<IProductPopup> = ({ open, handleClose }) => {
+const RequestPopup:FC<IProductPopup> = ({ open, handleClose, receiverId }) => {
   const [products, setProducts] = useState< UserProduct[]>([]);
   const [showMessage, setShowMessage] = useState<boolean>(false);
-  const { userId } = useContext(AuthContext);
+  const { userId, fullName: senderName } = useContext(AuthContext);
   const { handleRequest, productArray } = useContext(ImageContext);
 
   const fetchData = async () => {
@@ -39,7 +39,7 @@ const RequestPopup:FC<IProductPopup> = ({ open, handleClose }) => {
   const checkArrayOfIds = () => {
     if (productArray.length) {
       setShowMessage(false);
-      handleRequest();
+      handleRequest(receiverId, senderName);
     } else {
       setShowMessage(true);
     }
