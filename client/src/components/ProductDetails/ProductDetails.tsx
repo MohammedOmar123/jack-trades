@@ -11,6 +11,7 @@ import { IProductDetailsProps } from '../../interfaces';
 import ImagesList from '../ImagesList/ImagesList';
 import RequestPopup from '../RequestPopup';
 import { ImageContext } from '../Context/ImageContext';
+import { AuthContext } from '../Context/AuthContext';
 import './ProductDetails.css';
 
 const ProductDetailsComponent = ({
@@ -23,14 +24,14 @@ const ProductDetailsComponent = ({
   const navigate = useNavigate();
   const from = useLocation();
   // const [open, setOpen] = useState<boolean>(false);
-
+  const { fullName: senderName } = useContext(AuthContext);
   const {
     setProductId, handleRequest, setOpen, open, setProductArray,
   } = useContext(ImageContext);
 
   const handleOpen = () => {
     if (type === 'exchange') setOpen(true);
-    else handleRequest();
+    else handleRequest(userId, senderName);
   };
 
   const handleClose = () => {
@@ -217,7 +218,7 @@ const ProductDetailsComponent = ({
         </Box>
         <ImagesList />
       </Box>
-      <RequestPopup open={open} handleClose={handleClose} />
+      <RequestPopup open={open} handleClose={handleClose} receiverId={userId} />
     </Box>
   );
 };

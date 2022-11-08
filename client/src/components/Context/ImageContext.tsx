@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { io } from 'socket.io-client';
 import { IImageContext, IProviderProps } from '../../interfaces';
 
 export const ImageContext = createContext<IImageContext>({
@@ -23,8 +24,8 @@ export const ImageContextProvider: React.FC<IProviderProps> = ({
   const [productArray, setProductArray] = useState<number[]>([]);
   const [productId, setProductId] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
-
-  const handleRequest = async () => {
+  const socket = io('http://localhost:8000');
+  const handleRequest = async (receiverId:number, senderName:string) => {
     try {
       const alert = await Swal.fire({
         title: 'Confirm request?',
@@ -43,6 +44,7 @@ export const ImageContextProvider: React.FC<IProviderProps> = ({
         if (res.isConfirmed) {
           setProductArray([]);
           setOpen(false);
+          socket.emit('requests', { receiverId, senderName });
         }
       }
     } catch (error) {

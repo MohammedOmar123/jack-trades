@@ -1,6 +1,6 @@
 import request from "supertest";
 import sequelize from "../server/database/connection";
-import app from "../server/app";
+import {app} from "../server/app";
 import buildTables from "../server/database/build";
 const token = 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJKZW5uaWVAZ21haWwuY29tIiwiaWF0IjoxNjY2Nzg5MDg4fQ.ayqLDkuNwgfbQZGd5spE1F0KbfxuAa_wPpkt34AKHN4'
 

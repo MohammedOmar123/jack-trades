@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/indent */
 interface IProductPopup {
     open: boolean,
-    handleClose: () => void,
     id?: number,
+    receiverId?: number,
+    handleClose: () => void
 }
 
 export default IProductPopup;

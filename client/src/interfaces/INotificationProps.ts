@@ -1,20 +1,22 @@
 /* eslint-disable @typescript-eslint/indent */
 interface INotificationProps {
-    createdAt: string,
-    deletedAt: string | null,
-    exchanged_id: number | null,
     id: number,
-    'product.gallery': string[],
-    'product.title': string,
-    products: number[],
+    createdAt?: string,
+    updatedAt?: string,
+    date: string,
+    exchanged_id: number | null,
+    first_name: string,
+    last_name: string,
+    gallery: string[],
+    image: string | null
+    product_id: number,
+    products: number[] | null,
     receiver_approval: boolean | null,
-    'sender.email': string,
-    'sender.first_name': string,
-    'sender.last_name': string,
+    receiver_id: number,
     sender_id: number,
     status: string,
-    'sender.image': string | null,
-    'product.type': string,
+    title: string,
+    type: string,
 }
 
 export default INotificationProps;

@@ -1,6 +1,11 @@
 import { getDonationsQuery, getExchangesQuery, getContributionsQuery } from './website/getStatistics';
 
-import signinQuery from './account/signin';
+import {
+  signinQuery,
+  signupQuery,
+  checkUserExist,
+  getNameQuery,
+} from './account';
 import getUserProfileQuery from './user/getUserProfile';
 import getUserProductsQuery from './getUserProductsQuery';
 
@@ -57,4 +62,7 @@ export {
   deleteSuccessRequestQuery,
   getAllOfferedProductsQuery,
   getOfferedProductsDetailsQuery,
+  signupQuery,
+  checkUserExist,
+  getNameQuery,
 };
