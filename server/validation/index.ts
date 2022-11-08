@@ -5,6 +5,7 @@ import validateNewProduct from './newProductValidation';
 import validateCheckRequest from './requestValidation';
 import validateAddRequest from './validateAddRequest';
 import updateRequestValidation from './updateRequest';
+import validateChat from './chatValidation';
 
 export {
   validateSighup,
@@ -13,5 +14,6 @@ export {
   validateNewProduct,
   validateCheckRequest,
   validateAddRequest,
+  validateChat,
   updateRequestValidation,
 };
