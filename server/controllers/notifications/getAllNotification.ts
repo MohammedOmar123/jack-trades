@@ -13,7 +13,9 @@ const getAllNotifications = async (req: IRequestPayload, res: Response, next: Ne
 
     const allNotifications = [...receiverNotifications, ...senderNotifications];
 
-    const test = allNotifications.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const test = allNotifications.sort((a, b) => (
+      new Date(b.date).valueOf() - new Date(a.date).valueOf()
+    ));
 
     if (!test.length) {
       res.json({ data: 'There is no notifications yet' });
