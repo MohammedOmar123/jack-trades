@@ -53,6 +53,7 @@ interface IRequest extends Model<InferAttributes<IRequest>, InferCreationAttribu
   createdAt?: CreationOptional<Date>;
   updatedAt?: CreationOptional<Date>;
   deletedAt?: CreationOptional<Date>;
+  date?: CreationOptional<Date>;
   sender_id?: ForeignKey<IUser['id']>
   receiver_id?: ForeignKey<IUser['id']>
   product_id?: ForeignKey<IProduct['id']>

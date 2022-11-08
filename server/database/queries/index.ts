@@ -27,7 +27,7 @@ import {
 } from './Requests';
 
 import {
-  deleteProductQuery, getProductQuery, updateProductQuery, addProductQuery,
+  deleteProductQuery, getProductQuery, updateProductQuery, addProductQuery, deleteExchangedProducts,
 } from './products';
 
 import { getReceiverNotificationsQuery, getSenderNotificationsQuery } from './notifications';
@@ -65,4 +65,5 @@ export {
   signupQuery,
   checkUserExist,
   getNameQuery,
+  deleteExchangedProducts,
 };
