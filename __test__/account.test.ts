@@ -458,7 +458,7 @@ describe("check Auth route tests", () => {
       .set('Cookie', token)
       .expect(200)
       .expect((res) => {
-        expect(res.text).toEqual("{\"id\":1,\"lastName\":\"John\",\"firstName\":\"Smith\"}");
+        expect(res.text).toEqual("{\"id\":1,\"lastName\":\"John\",\"firstName\":\"Smith\",\"userImage\":\"https://randomuser.me/api/portraits/lego/8.jpg\"}");
       });
   });
   test("Should return 401 and the Unauthorized if the user doesn't signIn", async () => {
