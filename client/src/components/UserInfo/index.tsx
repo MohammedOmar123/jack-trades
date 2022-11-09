@@ -88,21 +88,3 @@ const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void }> = ({ info, 
 };
 
 export default UserInfo;
-
-// export default function ColorTabs() {
-//   return (
-//     <Box sx={{ width: '100%' }}>
-//       <Tabs
-//         value={value}
-//         onChange={handleChange}
-//         textColor="secondary"
-//         indicatorColor="secondary"
-//         aria-label="secondary tabs example"
-//       >
-//         <Tab value="one" label="Item One" />
-//         <Tab value="two" label="Item Two" />
-//         <Tab value="three" label="Item Three" />
-//       </Tabs>
-//     </Box>
-//   );
-// }
