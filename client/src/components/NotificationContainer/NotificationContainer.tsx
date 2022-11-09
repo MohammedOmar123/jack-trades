@@ -12,7 +12,7 @@ import './notificationContainer.css';
 
 const NotificationContainer:FC = () => {
   const [notifications, setNotifications] = useState<INotificationProps[]>([]);
-  const [isSend, setIsSend] = useState<boolean>(false);
+  const [isSend, setIsSend] = useState<number>(0);
   const { socket } = useContext(AuthContext);
   const fetchData = async () => {
     try {
@@ -25,8 +25,8 @@ const NotificationContainer:FC = () => {
 
   useEffect(() => {
     fetchData();
-    socket.on('sendNotification', (value:boolean) => {
-      setIsSend(value);
+    socket.on('sendNotification', () => {
+      setIsSend((prev) => prev + 1);
     });
   }, [socket, isSend]);
 
