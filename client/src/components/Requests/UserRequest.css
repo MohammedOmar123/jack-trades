@@ -149,3 +149,8 @@
 .request-card .request-details a {
   color: #2fc1ed;
 }
+
+
+.user-requests .loading {
+      height: 300px;
+}

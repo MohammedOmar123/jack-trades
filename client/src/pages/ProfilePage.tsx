@@ -26,7 +26,7 @@ const ProfilePage:FC = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [userId]);
 
   if (isLoading || (!info)) return <Loading className="loading" />;
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import './UserProducts.css';
 import {
@@ -10,10 +11,12 @@ import {
   Box, Typography, Pagination, Stack,
 } from '@mui/material';
 import UserProductCard from './UserProductCard';
+import NoData from '../NoData';
+import Loading from '../Loading/Loading';
 import { UserProduct } from '../../interfaces';
 
 const UserProducts:FC = () => {
-  const [products, setProducts] = useState< UserProduct[] | null>(null);
+  const [products, setProducts] = useState< UserProduct[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [offset, setOffset] = useState<number>(0);
   const [count, setCount] = useState<number>(1);
@@ -43,24 +46,32 @@ const UserProducts:FC = () => {
 
   useEffect(() => {
     fetchData();
-  }, [offset]);
+  }, [offset, userId]);
 
-  if (isLoading || !products) return <h1>loading..</h1>;
   return (
     <Box className="user-products">
       <Typography variant="h4">Products</Typography>
-      <Box className="products">
-        {products.map((e) => (
-          <UserProductCard
-            product={e}
-            key={e.id}
-            fetch={fetchData}
-          />
-        ))}
-      </Box>
-      <Stack spacing={2}>
-        <Pagination count={Math.ceil(count / 3)} onChange={handleChange} />
-      </Stack>
+      { isLoading ? <Loading className="loading" />
+        : !products.length ? <NoData />
+          : (
+            <>
+              <Box className="products">
+                {products.map((e) => (
+                  <UserProductCard
+                    product={e}
+                    key={e.id}
+                    fetch={fetchData}
+                  />
+                ))}
+              </Box>
+              <Stack spacing={2}>
+                <Pagination
+                  count={Math.ceil(count / 3)}
+                  onChange={handleChange}
+                />
+              </Stack>
+            </>
+          )}
     </Box>
   );
 };

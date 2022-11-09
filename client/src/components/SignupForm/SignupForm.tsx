@@ -25,7 +25,7 @@ const SignupForm = () => {
   // validation
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state;
+  const from = location.state || '/';
 
   const [loading, setLoading] = useState<boolean>(false);
   const validationSchema = yup.object({

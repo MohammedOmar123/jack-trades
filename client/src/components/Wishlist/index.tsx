@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   FC, useState, useEffect, useRef,
@@ -9,6 +10,8 @@ import {
   Box, Typography, Pagination, Stack,
 } from '@mui/material';
 import WishlistCard from './WishlistCard';
+import Loading from '../Loading/Loading';
+import NoData from '../NoData';
 import { IWishlistItem } from '../../interfaces';
 
 const Wishlist:FC = () => {
@@ -24,7 +27,6 @@ const Wishlist:FC = () => {
     try {
       const userWishlist = await axios
         .get(`/api/v1/wishlist?offset=${offset}&limit=3`);
-
       setWishlist(userWishlist.data.rows);
       setCount(userWishlist.data.count);
       setIsLoading(false);
@@ -44,22 +46,30 @@ const Wishlist:FC = () => {
     pageNumber.current = value;
   };
 
-  if (isLoading || !wishlist) return <h1>loading..</h1>;
   return (
     <Box className="user-products">
       <Typography variant="h4">Wishlist</Typography>
-      <Box className="products">
-        {wishlist.map((e) => (
-          <WishlistCard
-            product={e}
-            key={e.id}
-            fetch={fetchData}
-          />
-        ))}
-      </Box>
-      <Stack spacing={2}>
-        <Pagination count={Math.ceil(count / 3)} onChange={handleChange} />
-      </Stack>
+      { isLoading ? <Loading className="loading" />
+        : !wishlist.length ? <NoData />
+          : (
+            <>
+              <Box className="products">
+                {wishlist.map((e) => (
+                  <WishlistCard
+                    product={e}
+                    key={e.id}
+                    fetch={fetchData}
+                  />
+                ))}
+              </Box>
+              <Stack spacing={2}>
+                <Pagination
+                  count={Math.ceil(count / 3)}
+                  onChange={handleChange}
+                />
+              </Stack>
+            </>
+          ) }
     </Box>
   );
 };

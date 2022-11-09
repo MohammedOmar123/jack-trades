@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import {app} from "../server/app";
+import { app } from "../server/app";
 import sequelize from "../server/database/connection";
 import buildTables from "../server/database/build";
 
@@ -41,7 +41,7 @@ describe("get all wish list route", () => {
             .expect(200)
             .set("Cookie", token2)
             .expect("Content-Type", /json/)
-            .expect((res) => expect(res.body).toEqual({ message: 'There is no items in your wishlist' }
+            .expect((res) => expect(res.body).toEqual({ count: 0, rows: [] }
             ));
     });
 
