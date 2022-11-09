@@ -17,7 +17,9 @@ import {
   deleteFromWishList, getAllWishListItems, addToWishList, checkWishList,
 } from './wishList';
 
-import { addMessage, getAllMessages } from './chat';
+import {
+  addMessage, getAllMessages, getUnSeenMessages, updateUnseenMessages,
+} from './chat';
 
 export {
   signIn, signup, signOut, getStatistics, getFeedback, addFeedback,
@@ -31,4 +33,6 @@ export {
   getAllOfferedProducts,
   addMessage,
   getAllMessages,
+  getUnSeenMessages,
+  updateUnseenMessages,
 };

@@ -6,11 +6,13 @@ import { addMessageQuery } from '../../database/queries';
 const addMessage = async (req: IRequestPayload, res: Response, next: NextFunction) => {
   try {
     const { id: senderId } = req.user;
-    const { receiverId, message } = req.body;
-    await validateChat.validateAsync({ receiverId, message });
-    const result = await addMessageQuery(senderId, receiverId, message);
+    const { receiverId } = req.params;
+    const { message } = req.body;
+    await validateChat.validateAsync({ receiverId: +receiverId, message });
+    const result = await addMessageQuery(senderId, +receiverId, message);
     res.json(result);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };

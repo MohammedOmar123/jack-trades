@@ -23,6 +23,8 @@ import IProductPopup from './IProductsPopup';
 import INotificationProps from './INotificationProps';
 import IWishlistItem from './IWishlistItem';
 import IOfferedProducts from './IOfferedProducts';
+import IChatData from './IChatData';
+import IAllMessages from './IAllMessages';
 
 export {
   IProduct,
@@ -52,4 +54,6 @@ export {
   INotificationProps,
   IWishlistItem,
   IOfferedProducts,
+  IChatData,
+  IAllMessages,
 };

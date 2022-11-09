@@ -10,7 +10,7 @@ import { UserInfoTypes } from '../../interfaces';
 import { Image, Button } from '../index';
 import { AuthContext } from '../Context/AuthContext';
 
-const UserInfo:FC<{ info: UserInfoTypes }> = ({ info }) => {
+const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void }> = ({ info, handleIsOpen }) => {
   const [value, setValue] = useState('products');
   const navigate = useNavigate();
   const { userId } = useContext(AuthContext);
@@ -79,11 +79,7 @@ const UserInfo:FC<{ info: UserInfoTypes }> = ({ info }) => {
         )}
         {userId !== +info.id && (
         <Box className="profile-btn">
-          <Button style={{
-            text: 'Send Message',
-            classes: 'userInfoBtn',
-          }}
-          />
+          <button type="button" onClick={handleIsOpen}>Send message</button>
         </Box>
         )}
       </Box>
@@ -92,21 +88,3 @@ const UserInfo:FC<{ info: UserInfoTypes }> = ({ info }) => {
 };
 
 export default UserInfo;
-
-// export default function ColorTabs() {
-//   return (
-//     <Box sx={{ width: '100%' }}>
-//       <Tabs
-//         value={value}
-//         onChange={handleChange}
-//         textColor="secondary"
-//         indicatorColor="secondary"
-//         aria-label="secondary tabs example"
-//       >
-//         <Tab value="one" label="Item One" />
-//         <Tab value="two" label="Item Two" />
-//         <Tab value="three" label="Item Three" />
-//       </Tabs>
-//     </Box>
-//   );
-// }
