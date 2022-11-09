@@ -7,6 +7,6 @@ interface IImageContext {
   setProductId: (value: number) => void,
   setOpen: (value: boolean) => void,
   open: boolean,
-  handleRequest: (receiverId:number, senderName:string) => void,
+  handleRequest: (receiverId: number, senderName: string) => void,
 }
 export default IImageContext;

@@ -1,49 +1,55 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  FC, useState, useContext, useEffect,
-} from 'react';
+import { FC, useState, useEffect } from 'react';
 import {
   Button, Modal, ImageList, ListSubheader, ImageListItem, Typography,
 } from '@mui/material';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { IProductPopup, IOfferedProducts } from '../../interfaces';
 import PopupCard from './PopupCard';
-import { IProductPopup, UserProduct } from '../../interfaces';
-import { AuthContext } from '../Context/AuthContext';
-import { ImageContext } from '../Context/ImageContext';
-import './Popup.css';
 
-const RequestPopup:FC<IProductPopup> = ({ open, handleClose, receiverId }) => {
-  const [products, setProducts] = useState< UserProduct[]>([]);
+const NotificationPopUp:FC<IProductPopup> = ({
+  open, handleClose, id, fetchData,
+}) => {
+  const [products, setProducts] = useState<IOfferedProducts[]>([]);
   const [showMessage, setShowMessage] = useState<boolean>(false);
-  const { userId, fullName: senderName } = useContext(AuthContext);
-  const { handleRequest, productArray } = useContext(ImageContext);
+  const [productId, setProductId] = useState<number>(0);
 
-  const fetchData = async () => {
+  const fetchOfferedProducts = async () => {
     try {
-      const userProducts = await axios
-        .get(`/api/v1/user/${userId}/products`);
+      const response = await axios
+        .get(`/api/v1/requests/products/${id}`);
+      setProducts(response.data.message);
+    } catch (error) {
+      Swal.fire(error.response.data.message);
+    }
+  };
 
-      setProducts(userProducts.data.rows);
+  const handleExchange = async () => {
+    try {
+      if (productId) {
+        setShowMessage(false);
+        const response = await axios
+          .put(`/api/v1/requests/${id}`, {
+            receiverApproval: true,
+            productId,
+          });
+
+        const alert = await Swal.fire({
+          title: response.data,
+          confirmButtonColor: '#1b4b66',
+        });
+        handleClose();
+        if (fetchData) fetchData();
+      } else setShowMessage(true);
     } catch (error) {
       Swal.fire(error.response.data.message);
     }
   };
 
   useEffect(() => {
-    if (open) {
-      fetchData();
-    }
+    if (open) fetchOfferedProducts();
   }, [open]);
-
-  const checkArrayOfIds = () => {
-    if (productArray.length) {
-      setShowMessage(false);
-      if (receiverId) handleRequest(receiverId, senderName);
-    } else {
-      setShowMessage(true);
-    }
-  };
 
   return (
     <Modal
@@ -72,14 +78,14 @@ const RequestPopup:FC<IProductPopup> = ({ open, handleClose, receiverId }) => {
             </ListSubheader>
           </ImageListItem>
           {products.map((item) => (
-            <PopupCard item={item} key={item.id} />
+            <PopupCard item={item} key={item.id} setProductId={setProductId} />
           ))}
           <ImageListItem cols={3}>
             {showMessage
-            && <Typography variant="h5">Choose at least one item</Typography>}
+            && <Typography variant="h5">Choose one item</Typography>}
             <Button
               variant="contained"
-              onClick={checkArrayOfIds}
+              onClick={handleExchange}
             >
               confirm
 
@@ -93,4 +99,4 @@ const RequestPopup:FC<IProductPopup> = ({ open, handleClose, receiverId }) => {
   );
 };
 
-export default RequestPopup;
+export default NotificationPopUp;

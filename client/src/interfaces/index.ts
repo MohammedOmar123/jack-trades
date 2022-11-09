@@ -20,7 +20,9 @@ import ICategoryProps from './ICategoryRadioProps';
 import ITypeRadioProps from './ITypeRadioProps';
 import IUserRequest from './IUserRequest';
 import IProductPopup from './IProductsPopup';
+import INotificationProps from './INotificationProps';
 import IWishlistItem from './IWishlistItem';
+import IOfferedProducts from './IOfferedProducts';
 
 export {
   IProduct,
@@ -47,5 +49,7 @@ export {
   ITypeRadioProps,
   IUserRequest,
   IProductPopup,
+  INotificationProps,
   IWishlistItem,
+  IOfferedProducts,
 };
