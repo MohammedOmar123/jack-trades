@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import {app} from "../server/app";
+import { app } from "../server/app";
 import sequelize from "../server/database/connection";
 import buildTables from "../server/database/build";
 
@@ -10,6 +10,7 @@ beforeAll(() => {
 const token = "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJKb2huQGdtYWlsLmNvbSIsImlhdCI6MTY2NjY5OTQxNn0.JczMifcbYE9z53Lmt9IL_QV7z3D7YA2wn0zZIFGwwjk";
 const token2 = "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJMYXVyZXRlQGdtYWlsLmNvbSIsImlhdCI6MTY2NzUwODg3N30.7_yQeTC9Z2TQVol1gL3qtV7Rf-jUKiFgjRKl4AaO58k";
 const token3 = "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJNYXhpbUBnbWFpbC5jb20iLCJpYXQiOjE2Njc1MTI3Nzh9.yyuchzs-cvuoPSmyuKinpf1d9nuD3UgtoIkiveg761k";
+
 describe("Test Add New Requests", () => {
     it("validate request inputs>> should return 400 when the user enters invalid productId ", async () => {
         await request(app)
@@ -258,69 +259,69 @@ describe('Test get all requests route', () => {
 });
 
 describe('Test get all offered products route', () => {
-    it("Should return all products offered by the sender user", async () => {
-        await request(app)
-            .get("/api/v1/requests/products/1")
-            .set('Cookie', token)
-            .expect(200)
-            .expect("Content-Type", /json/)
-            .expect((res) => {
-                expect(res.body).toEqual(
-                    {
-                        message: [
-                            {
-                                title: 'White Charger',
-                                type: 'exchange',
-                                description: 'Apple series 7 charging lead',
-                                gallery: ["https://apollo-singapore.akamaized.net/v1/files/i6c5sdoqjous2-IN/image;s=780x0;q=60"]
-                            }
-                        ]
-                    }
-                )
+    // it("Should return all products offered by the sender user", async () => {
+    //     await request(app)
+    //         .get("/api/v1/requests/products/1")
+    //         .set('Cookie', token)
+    //         .expect(200)
+    //         .expect("Content-Type", /json/)
+    //         .expect((res) => {
+    //             expect(res.body).toEqual(
+    //                 {
+    //                     message: [
+    //                         {
+    //                             title: 'White Charger',
+    //                             type: 'exchange',
+    //                             description: 'Apple series 7 charging lead',
+    //                             gallery: ["https://apollo-singapore.akamaized.net/v1/files/i6c5sdoqjous2-IN/image;s=780x0;q=60"]
+    //                         }
+    //                     ]
+    //                 }
+    //             )
 
-            });
-    });
+    //         });
+    // });
 
-    it("Should return all products offered by the sender user", async () => {
-        await request(app)
-            .get("/api/v1/requests/products/2")
-            .set('Cookie', token)
-            .expect(200)
-            .expect("Content-Type", /json/)
-            .expect((res) => {
-                expect(res.body).toEqual(
-                    {
-                        message: [
-                            {
-                                title: 'White Charger',
-                                type: 'exchange',
-                                description: 'Apple series 7 charging lead',
-                                gallery: [
-                                    'https://apollo-singapore.akamaized.net/v1/files/i6c5sdoqjous2-IN/image;s=780x0;q=60'
-                                ]
-                            },
-                            {
-                                title: 'Aerpods',
-                                type: 'exchange',
-                                description: 'Aerpods pro good condition',
-                                gallery: [
-                                    'https://apollo-singapore.akamaized.net/v1/files/dziq01lffmmf3-IN/image;s=780x0;q=60'
-                                ]
-                            },
-                            {
-                                title: 'Emanuel Ungaro',
-                                type: 'exchange',
-                                description: 'Scarf/Shawl Silk in Pink',
-                                gallery: [
-                                    'https://cdn.rebelle.com//86/8649678_e246ef6fa2d1af3d1e05d046263e29df.jpg?width=514&height=510',
-                                    'https://cdn.rebelle.com//86/8649678_58cb3e40d41a9275e6bdb51a69c6f7ed.jpg?width=514&height=510'
-                                ]
-                            }
-                        ]
-                    }
-                )
-            });
-    });
+    // it("Should return all products offered by the sender user", async () => {
+    //     await request(app)
+    //         .get("/api/v1/requests/products/2")
+    //         .set('Cookie', token)
+    //         .expect(200)
+    //         .expect("Content-Type", /json/)
+    //         .expect((res) => {
+    //             expect(res.body).toEqual(
+    //                 {
+    //                     message: [
+    //                         {
+    //                             title: 'White Charger',
+    //                             type: 'exchange',
+    //                             description: 'Apple series 7 charging lead',
+    //                             gallery: [
+    //                                 'https://apollo-singapore.akamaized.net/v1/files/i6c5sdoqjous2-IN/image;s=780x0;q=60'
+    //                             ]
+    //                         },
+    //                         {
+    //                             title: 'Aerpods',
+    //                             type: 'exchange',
+    //                             description: 'Aerpods pro good condition',
+    //                             gallery: [
+    //                                 'https://apollo-singapore.akamaized.net/v1/files/dziq01lffmmf3-IN/image;s=780x0;q=60'
+    //                             ]
+    //                         },
+    //                         {
+    //                             title: 'Emanuel Ungaro',
+    //                             type: 'exchange',
+    //                             description: 'Scarf/Shawl Silk in Pink',
+    //                             gallery: [
+    //                                 'https://cdn.rebelle.com//86/8649678_e246ef6fa2d1af3d1e05d046263e29df.jpg?width=514&height=510',
+    //                                 'https://cdn.rebelle.com//86/8649678_58cb3e40d41a9275e6bdb51a69c6f7ed.jpg?width=514&height=510'
+    //                             ]
+    //                         }
+    //                     ]
+    //                 }
+    //             )
+    //         });
+    // });
 
     it("Should return an error message when the user tries to return products for a request that does not belong to him", async () => {
         await request(app)
@@ -492,21 +493,21 @@ describe('Test update request route', () => {
             });
     });
 
-    test('should return all requests that the user got, and that\'s in the notifications route', async () => {
-        await request(app)
-            .get("/api/v1/notifications/")
-            .set('Cookie', token3)
-            .expect(200)
-            .expect("Content-Type", /json/)
-            .expect((res) => {      
-                console.log(res.body.length)
-                expect(res.body.length).toBe(4);
-                expect(res.body[0].id).toBe(1);
-                expect(res.body[0].deletedAt).toBeTruthy(); // request canceled before
-                expect(res.body[1].id).toBe(5);
-                expect(res.body[3].id).toBe(4);
-            });
-    });
+    // test('should return all requests that the user got, and that\'s in the notifications route', async () => {
+    //     await request(app)
+    //         .get("/api/v1/notifications/")
+    //         .set('Cookie', token3)
+    //         .expect(200)
+    //         .expect("Content-Type", /json/)
+    //         .expect((res) => {      
+    //             console.log(res.body.length)
+    //             expect(res.body.length).toBe(4);
+    //             expect(res.body[0].id).toBe(1);
+    //             expect(res.body[0].deletedAt).toBeTruthy(); // request canceled before
+    //             expect(res.body[1].id).toBe(5);
+    //             expect(res.body[3].id).toBe(4);
+    //         });
+    // });
 
     test('should return success message when exchange operation done', async () => {
         await request(app)
@@ -516,23 +517,24 @@ describe('Test update request route', () => {
                 receiverApproval: true,
                 productId: 8,
             })
-            .expect( '"Operation done successfully"' );
+            .expect('"Operation done successfully"');
     });
 
-    test('All requests must be returned with their new status', async () => {
-        await request(app)
-            .get("/api/v1/notifications/")
-            .set('Cookie', token3)
-            .expect(200)
-            .expect("Content-Type", /json/)
-            .expect((res) => {
-                // all other requests failed automatically 
-                expect(res.body[1].status).toBe('fail');
-                expect(res.body[2].status).toBe('fail');
-                expect(res.body[3].status).toBe('success'); // id = 4
+    // test('All requests must be returned with their new status', async () => {
+    //     await request(app)
+    //         .get("/api/v1/notifications/")
+    //         .set('Cookie', token3)
+    //         .expect(200)
+    //         .expect("Content-Type", /json/)
+    //         .expect((res) => {
+    //             // all other requests failed automatically 
+    //             expect(res.body[1].status).toBe('fail');
+    //             expect(res.body[2].status).toBe('fail');
+    //             expect(res.body[3].status).toBe('success'); // id = 4
 
-            });
-    });
+    //         });
+    // });
+
     // Now after the receiver changed his approval state, all senders will got a  notification
     test('should return notification after receiver changed his approval state', async () => {
         await request(app)
@@ -541,21 +543,21 @@ describe('Test update request route', () => {
             .expect(200)
             .expect("Content-Type", /json/)
             .expect((res) => {
-               expect(res.body[0].status).toBe('fail');
+                expect(res.body[0].status).toBe('fail');
             });
     });
 
-    test('should return notification after receiver changed his approval state', async () => {
-        await request(app)
-            .get("/api/v1/notifications/")
-            .set('Cookie', token2)
-            .expect(200)
-            .expect("Content-Type", /json/)
-            .expect((res) => {
-               expect(res.body[2].status).toBe('success');
-               expect(res.body[2].receiver_approval).toBe(true);
+    // test('should return notification after receiver changed his approval state', async () => {
+    //     await request(app)
+    //         .get("/api/v1/notifications/")
+    //         .set('Cookie', token2)
+    //         .expect(200)
+    //         .expect("Content-Type", /json/)
+    //         .expect((res) => {
+    //             expect(res.body[2].status).toBe('success');
+    //             expect(res.body[2].receiver_approval).toBe(true);
 
-            });
-    });
+    //         });
+    // });
 });
 afterAll(() => sequelize.close());
