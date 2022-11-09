@@ -29,11 +29,11 @@ const ioHandler = (io:Server) => {
           });
         }
       });
-      socket.on('requests', ({ receiverId, senderName }) => {
+      socket.on('requests', ({ receiverId, senderName, isSend }) => {
         const result = getUser(receiverId);
         if (result) {
           const { socketId } = result;
-          socket.to(socketId).emit('sendNotification', senderName);
+          socket.to(socketId).emit('sendNotification', isSend);
           socket.to(socketId).emit('toast', senderName);
         }
       });

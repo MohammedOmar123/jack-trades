@@ -37,7 +37,6 @@ const Navbar: FC = () => {
       socket?.emit('newUser', userId);
     }
     socket?.on('sendNotification', () => {
-      console.log('sendNotification in the nav bar ');
       setNotification((prev) => prev + 1);
     });
     socket?.on('toast', (senderName) => {
