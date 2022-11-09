@@ -63,6 +63,7 @@ interface IRequest extends Model<InferAttributes<IRequest>, InferCreationAttribu
 interface IChat extends Model<InferAttributes<IChat>, InferCreationAttributes<IChat>> {
   id: CreationOptional<number>;
   message: string,
+  seen:boolean
   sender_id?: ForeignKey<IUser['id']>
   receiver_id?: ForeignKey<IUser['id']>
 }

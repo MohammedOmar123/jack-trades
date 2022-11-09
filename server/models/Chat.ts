@@ -12,6 +12,11 @@ const Chat = sequelize.define<IChat>('Chat', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  seen: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
 }, { paranoid: true });
 
 export default Chat;

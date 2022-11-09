@@ -14,7 +14,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 import { ToastContainer, toast } from 'react-toastify';
 import ButtonComponent from '../Button/Button';
 import { links } from '../../StaticData';
@@ -22,15 +22,17 @@ import { AuthContext } from '../Context/AuthContext';
 
 const Navbar: FC = () => {
   const navigate = useNavigate();
-  const { userId, setUserId } = useContext(AuthContext);
+  const { userId, setUserId, socket } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement >();
   const [open, setOpen] = useState<boolean>(false);
   const [notification, setNotification] = useState<number>(0);
 
   // start socket
-  const socket = io('http://localhost:8000');
 
   useEffect(() => {
+    socket.on('connect', () => {
+      console.log(`in the navbar ${socket.id}`);
+    });
     if (userId) {
       socket?.emit('newUser', userId);
     }

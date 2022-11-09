@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Image, Button } from '../index';
 import { UserInfoTypes } from '../../interfaces';
 
-const UserInfo:FC<{ info: UserInfoTypes }> = ({ info }) => (
+const UserInfo: FC<{ info: UserInfoTypes, handleIsOpen: (openChat: boolean) => void }> = ({ info, handleIsOpen }) => (
   <Box className="user-info">
     <Image attributes={{
       src: info.image,
@@ -48,6 +48,7 @@ const UserInfo:FC<{ info: UserInfoTypes }> = ({ info }) => (
       </Box>
       {/* ====== */}
       <Box>
+        <button type="button" onClick={() => handleIsOpen(true)}>chat me</button>
         <Link to="/newProduct">
           <Button style={{
             text: 'Add Product',

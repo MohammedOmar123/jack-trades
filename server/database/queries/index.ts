@@ -31,7 +31,9 @@ import {
 } from './products';
 
 import { getReceiverNotificationsQuery, getSenderNotificationsQuery } from './notifications';
-import { addMessageQuery, getAllMessagesQuery } from './chat';
+import {
+  addMessageQuery, getAllMessagesQuery, getUnSeenMessagesQuery, updateUnseenMessagesQuery,
+} from './chat';
 
 export {
   getDonationsQuery,
@@ -69,4 +71,6 @@ export {
   deleteExchangedProducts,
   addMessageQuery,
   getAllMessagesQuery,
+  getUnSeenMessagesQuery,
+  updateUnseenMessagesQuery,
 };
