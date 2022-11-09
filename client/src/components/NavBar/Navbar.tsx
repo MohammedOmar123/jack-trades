@@ -36,14 +36,15 @@ const Navbar: FC = () => {
     if (userId) {
       socket?.emit('newUser', userId);
     }
+    socket?.on('sendNotification', () => {
+      console.log('sendNotification in the nav bar ');
+      setNotification((prev) => prev + 1);
+    });
+    socket?.on('toast', (senderName) => {
+      toast(`${senderName} requested your item`);
+    });
   }, [userId]);
 
-  socket?.on('sendNotification', () => {
-    setNotification((prev) => prev + 1);
-  });
-  socket?.on('toast', (senderName) => {
-    toast(`${senderName} requested your item`);
-  });
   // end socket
 
   const handleClose = () => {
