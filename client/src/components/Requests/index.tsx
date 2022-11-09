@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   FC, useState, useEffect, useRef,
@@ -9,12 +10,13 @@ import {
   Box, Typography, Pagination, Stack,
 } from '@mui/material';
 import UserRequestCard from './UserRequest';
+import Loading from '../Loading/Loading';
+import NoData from '../NoData';
 import { IUserRequest } from '../../interfaces';
 import './UserRequest.css';
 
 const UserRequest: FC = () => {
   const [requests, setRequests] = useState<IUserRequest[]>([]);
-  const [message, setMessage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [offset, setOffset] = useState<number>(0);
   const [count, setCount] = useState<number>(1);
@@ -25,14 +27,9 @@ const UserRequest: FC = () => {
     try {
       const { data } = await axios
         .get(`/api/v1/requests/?offset=${offset}`);
-      if (data.count === 0) {
-        setMessage('no requests yet');
-        setIsLoading(false);
-      } else {
-        setRequests(data.rows);
-        setCount(data.count);
-        setIsLoading(false);
-      }
+      setRequests(data.rows);
+      setCount(data.count);
+      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
       Swal.fire(error.message);
@@ -49,23 +46,30 @@ const UserRequest: FC = () => {
     fetchData();
   }, [offset]);
 
-  if (isLoading) return <h1>loading..</h1>;
   return (
     <Box className="user-requests">
       <Typography variant="h4">Requests</Typography>
-      <Box className="requests">
-        {message ? <p>{message}</p>
-          : requests.map((e) => (
-            <UserRequestCard
-              request={e}
-              key={e.id}
-              fetch={fetchData}
-            />
-          ))}
-      </Box>
-      <Stack spacing={2}>
-        <Pagination count={Math.ceil(count / 3)} onChange={handleChange} />
-      </Stack>
+      { isLoading ? <Loading className="loading" />
+        : !requests.length ? <NoData />
+          : (
+            <>
+              <Box className="requests">
+                {requests.map((e) => (
+                  <UserRequestCard
+                    request={e}
+                    key={e.id}
+                    fetch={fetchData}
+                  />
+                ))}
+              </Box>
+              <Stack spacing={2}>
+                <Pagination
+                  count={Math.ceil(count / 3)}
+                  onChange={handleChange}
+                />
+              </Stack>
+            </>
+          )}
     </Box>
   );
 };

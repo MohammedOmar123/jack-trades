@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState, useEffect } from 'react';
+import {
+  FC, useState, useEffect, useContext,
+} from 'react';
 import {
   Box, InputBase, TextareaAutosize,
 } from '@mui/material';
@@ -9,12 +11,15 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { Image, Button } from '../index';
 import { UserProduct } from '../../interfaces';
+import { AuthContext } from '../Context/AuthContext';
 
 const UserProductCard
 :FC<{ product : UserProduct, fetch:()=>void }> = ({ product, fetch }) => {
   const [readOnly, setReadOnly] = useState<boolean>(true);
   const [productObj, setProductObj] = useState<UserProduct | null>(null);
   const [className, setClassName] = useState<string>('');
+
+  const { userId } = useContext(AuthContext);
 
   useEffect(() => {
     setProductObj(product);
@@ -101,6 +106,7 @@ const UserProductCard
         />
         <Link to={`/product/${productObj.id}/details`}>View details</Link>
 
+        {+productObj.user_id === userId && (
         <Box className="buttons">
           {
           readOnly ? (
@@ -128,6 +134,7 @@ const UserProductCard
           />
 
         </Box>
+        )}
       </Box>
     </Box>
 
