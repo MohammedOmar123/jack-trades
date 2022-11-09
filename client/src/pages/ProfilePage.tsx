@@ -29,12 +29,12 @@ const ProfilePage:FC = () => {
     }
   };
 
-  const handleIsOpen = (chatOpen: boolean) => {
-    setIsOpen(chatOpen);
+  const handleIsOpen = () => {
+    setIsOpen(!isOpen);
   };
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [userId]);
 
   if (isLoading || (!info)) return <Loading className="loading" />;
   return (

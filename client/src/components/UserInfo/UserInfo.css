@@ -52,8 +52,16 @@
 }
 
 .user-info .user-img{
-    width: 10%;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;   
+}
+
+.user-info .user-img{
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--dark-blue);
 }
 
 .user-info > * {
@@ -61,8 +69,9 @@
 }
 
 .user-info h4 {
-    font-weight: 600;
-    font-size: 2rem;
+    font-weight: 700;
+    font-size: 2.5rem;
+    text-transform: capitalize;
 }
 
 .user-info p {
@@ -74,23 +83,16 @@
  width: 90%;
  display: flex;
  justify-content: space-between;
- /* padding: 0rem 5rem; */
- /* border: solid var(--dark-blue) 0.5px; */
  padding: 0.5rem;
  text-decoration: none;
  color: #fff;
 }
 
-
-.user-info .user-nav .list{
-    color: var(--dark-blue);
-    padding: 0.5rem;
-    background: transparent;
-    width: 110px;
-    border-bottom: solid var(--dark-blue);
+.user-info .user-nav a {
+    text-decoration: none;
 }
 
-.user-info button{
+.user-info .profile-btn button{
     margin:  0 0.5rem;
     height: 2.5rem;
     width: 150px;
@@ -98,4 +100,12 @@
     color: #fff;
     cursor: pointer;
     font-size: 1rem;
+    border-radius: 5px;
+}
+
+.user-info .profile-btn button:hover{
+  background-color: white;
+  border: 1px solid #1b4b66;
+  color: #1b4b66;
+  transition: ease-in-out 0.2s;
 }

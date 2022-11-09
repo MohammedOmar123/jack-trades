@@ -29,6 +29,8 @@ import {
 import {
   deleteProductQuery, getProductQuery, updateProductQuery, addProductQuery, deleteExchangedProducts,
 } from './products';
+import { addFeedbackQuery, getUsername } from './website/addFeedback';
+import getFeedbackQuery from './website/getFeedback';
 
 import { getReceiverNotificationsQuery, getSenderNotificationsQuery } from './notifications';
 import {
@@ -54,6 +56,9 @@ export {
   addRequestQuery,
   getProductDetailsQuery,
   checkSelectedProductQuery,
+  addFeedbackQuery,
+  getUsername,
+  getFeedbackQuery,
   getAllRequestsQuery,
   deleteRequestQuery,
   declineAllOtherRequests,

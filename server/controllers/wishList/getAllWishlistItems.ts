@@ -9,11 +9,7 @@ const getAllWishListItems = async (req: IRequestPayload, res: Response, next: Ne
 
   try {
     const data = await getAllWishlistItemsQuery(+id, +offset, +limit);
-    if (data.rows.length) {
-      res.json(data);
-    } else {
-      res.json({ message: 'There is no items in your wishlist' });
-    }
+    res.json(data);
   } catch (err) {
     next(err);
   }
