@@ -91,12 +91,7 @@ const ProductDetailsComponent = ({
 
   const addToWishList = async () => {
     try {
-      const res = await axios.post(`/api/v1/wishlist/${id}`);
-      handleWishListRequests(
-        'Added Successfully',
-        res.data.message,
-        'success',
-      );
+      await axios.post(`/api/v1/wishlist/${id}`);
       setFavIcon('Favorite');
       setText('Remove from wishlist');
     } catch (error) {
@@ -111,31 +106,8 @@ const ProductDetailsComponent = ({
 
   const deleteFromWishList = async () => {
     try {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: 'Remove this product from your wishlist !',
-        showCancelButton: true,
-        confirmButtonColor: '#1b4b66',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!',
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          const res = await axios.delete(`/api/v1/wishlist/${id}`);
-          handleWishListRequests(
-            'Deleted Successfully',
-            res.data.message,
-            'success',
-          );
-          setFavIcon('FavoriteBorder');
-        }
-      }).catch((err) => {
-        const { message } = err.response.data;
-        if (message === 'Unauthorized') {
-          handleUnauthorizedRequests();
-        } else {
-          handleWishListRequests(errorMessage, message, 'error');
-        }
-      });
+      await axios.delete(`/api/v1/wishlist/${id}`);
+      setFavIcon('FavoriteBorder');
     } catch (error) {
       const { message } = error.response.data;
       handleWishListRequests(errorMessage, message, 'error');

@@ -1,26 +1,30 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-  FC, ChangeEvent, useState, FormEvent,
+  FC, ChangeEvent, useState, FormEvent, useContext,
 } from 'react';
 import {
   TextField, IconButton, Box, Typography, Button,
 } from '@mui/material';
+
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import './AddProduct.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 import TypeRadio from './TypeRadio';
 import CategoryRadio from './CategoryRadio';
 import { validateProduct } from '../../validation';
+import { AuthContext } from '../Context/AuthContext';
 
 const AddProduct:FC = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [gallery, setGallery] = useState<(string | File)[]>([]);
   const [type, setType] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   const [errMessage, setErrMessage] = useState<string>('');
-
+  const { userId } = useContext(AuthContext);
   const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'title') setTitle(e.target.value);
     else setDescription(e.target.value);
@@ -55,6 +59,7 @@ const AddProduct:FC = () => {
         title: response.data.message,
         confirmButtonColor: '#1b4b66',
       });
+      navigate(`/profile/${userId}`);
     } catch (error) {
       if (error.name === 'ValidationError') {
         await Swal.fire({

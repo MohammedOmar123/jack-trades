@@ -14,6 +14,7 @@ import {
   getAllWishlistItemsQuery,
   deleteFromWishListQuery,
   checkInWishlistQuery,
+  deleteProductFromAllWishList,
 } from './wishlist';
 
 import {
@@ -108,4 +109,5 @@ export {
   getUnseenSenderNotificationsQuery,
   updateReceiverNotifications,
   updateSenderNotifications,
+  deleteProductFromAllWishList,
 };

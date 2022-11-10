@@ -10,10 +10,9 @@ const signinValidationSchema = ({
       'string.empty': 'Email is required',
       'string.email': 'Invalid Email',
     }),
-    password: Joi.string().pattern(/^(?!.*[\s])(?=.*[0-9])(?=.*\W)[a-zA-Z0-9\W]{6,15}$/).required().messages({
+    password: Joi.string().required().messages({
       'any.required': 'Password is required',
       'string.empty': 'Password is required',
-      'string.pattern.base': 'Password must be at least 6 characters, and contain letters, digits and special characters only.',
     }),
   });
   return schema.validateAsync({

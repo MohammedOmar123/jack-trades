@@ -387,10 +387,10 @@ describe('SIGNIN// TESTS', () => {
         email: "hk1@hotmail.com",
         password: "wrongpassword",
       })
-      .expect(400)
+      .expect(401)
       .expect((res) => {
         expect(res.body.message).toEqual(
-          "Password must be at least 6 characters, and contain letters, digits and special characters only."
+          "You entered a wrong password"
         );
       });
   });
@@ -402,10 +402,10 @@ describe('SIGNIN// TESTS', () => {
         email: "hk1@hotmail.com",
         password: "password123",
       })
-      .expect(400)
+      .expect(401)
       .expect((res) => {
         expect(res.body.message).toEqual(
-          "Password must be at least 6 characters, and contain letters, digits and special characters only."
+          "You entered a wrong password"
         );
       });
   });
@@ -417,10 +417,10 @@ describe('SIGNIN// TESTS', () => {
         email: "hk1@hotmail.com",
         password: "password$",
       })
-      .expect(400)
+      .expect(401)
       .expect((res) => {
         expect(res.body.message).toEqual(
-          "Password must be at least 6 characters, and contain letters, digits and special characters only."
+          "You entered a wrong password"
         );
       });
   });
