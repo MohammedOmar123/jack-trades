@@ -59,10 +59,10 @@ const Navbar: FC = () => {
           toast(`${senderName} requested your item`);
           break;
         case 'decline':
-          toast(`${senderName} decline your item`);
+          toast(`${senderName} decline your Request`);
           break;
         case 'approve':
-          toast(`${senderName} approved your item`);
+          toast(`${senderName} approved your Request`);
           break;
         default: toast('you have new notification');
           break;

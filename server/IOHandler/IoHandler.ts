@@ -16,8 +16,9 @@ const ioHandler = (io:Server) => {
     // add new user
       socket.on('newUser', (userId:number) => {
         addNewUser(userId, socket.id);
-        console.log(onlineUsers);
+        // console.log(onlineUsers);
       });
+      // chatting
       socket.on('sendTextMessage', (data) => {
         const { receiverId, senderId, message } = data;
         const result = getUser(+receiverId);
@@ -29,6 +30,7 @@ const ioHandler = (io:Server) => {
           });
         }
       });
+      // Requests
       socket.on('requests', ({ receiverId, senderName, type }) => {
         const result = getUser(receiverId);
 
