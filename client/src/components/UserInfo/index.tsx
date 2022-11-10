@@ -1,11 +1,13 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable max-len */
 import './UserInfo.css';
-import { FC, useState, useContext } from 'react';
+import {
+  FC, useState, useContext, useEffect,
+} from 'react';
 import {
   Box, Typography, Avatar, Tab, Tabs,
 } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { UserInfoTypes } from '../../interfaces';
 import { Image, Button } from '../index';
 import { AuthContext } from '../Context/AuthContext';
@@ -14,12 +16,18 @@ const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void }> = ({ info, 
   const [value, setValue] = useState('products');
   const navigate = useNavigate();
   const { userId } = useContext(AuthContext);
+  const location = useLocation().pathname.split('/');
+  const endpoint = location[location.length - 1];
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
     if (newValue === 'products') navigate(`/profile/${info.id}`);
     else navigate(newValue);
   };
+
+  useEffect(() => {
+    if (endpoint !== 'products') setValue(endpoint);
+  }, []);
 
   return (
     <Box className="user-info">
