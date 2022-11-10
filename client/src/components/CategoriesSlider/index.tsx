@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import './CategoriesSlider.css';
 import { FC } from 'react';
 import { Box, Grid, Typography } from '@mui/material';

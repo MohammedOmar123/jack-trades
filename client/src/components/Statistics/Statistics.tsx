@@ -1,14 +1,9 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import {
-  Box,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { FC, useEffect, useState } from 'react';
 import './Statistics.css';
 import { IStatistic } from '../../interfaces';
 
-const Statistics = () => {
+const Statistics: FC = () => {
   const [statistics, setStatistics] = useState<IStatistic | null>(null);
 
   const getStatistics = async () => {
@@ -25,78 +20,23 @@ const Statistics = () => {
   }, []);
 
   return (
-    <Box
-      bgcolor="#1B4B66"
-      color="#E2E8EB"
-      width="100%"
-    >
-      <Stack
-        direction="row"
-        justifyContent="center"
-        textAlign="center"
-        mt="5rem"
-      >
-        <Box padding="4rem 0" flex={1}>
-          <Typography
-            variant="h3"
-            fontWeight="bolder"
-          >
-            {statistics?.exchangeTimes}
-
-          </Typography>
-          <Typography
-            variant="subtitle2"
-            fontSize="1.3rem"
-            fontWeight="bold"
-            mt=".5rem"
-          >
-            Exchanges
-
-          </Typography>
-        </Box>
-        <Box
-          className="addingSelectors"
-          position="relative"
-          padding="4rem 0"
-          flex={1}
-        >
-          <Typography
-            variant="h3"
-            fontWeight="bolder"
-          >
-            {statistics?.contributeTimes}
-
-          </Typography>
-          <Typography
-            variant="subtitle2"
-            fontSize="1.3rem"
-            fontWeight="bold"
-            mt=".5rem"
-          >
-            Contributions
-
-          </Typography>
-        </Box>
-        <Box padding="4rem 0" flex={1}>
-          <Typography
-            variant="h3"
-            fontWeight="bolder"
-          >
-            {statistics?.donateTimes}
-
-          </Typography>
-          <Typography
-            variant="subtitle2"
-            fontSize="1.3rem"
-            fontWeight="bold"
-            mt=".5rem"
-          >
-            Donations
-
-          </Typography>
-        </Box>
-      </Stack>
-    </Box>
+    <div className="statistics">
+      <h1>Statistics</h1>
+      <div className="circle-container">
+        <div className="circle">
+          <h1>{statistics?.exchangeTimes}</h1>
+          <h2>Statistics</h2>
+        </div>
+        <div className="circle">
+          <h1>{statistics?.contributeTimes}</h1>
+          <h2>Contribute</h2>
+        </div>
+        <div className="circle">
+          <h1>{statistics?.donateTimes}</h1>
+          <h2>Donate</h2>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -12,25 +12,42 @@
 }
 
 .slider-container {
-    background-color: var(--dark-blue);
+    background-color: #eee;
     margin: 2rem auto;
-    padding: 3rem 0;
+    padding: 2rem 2rem;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 15px;
+    border: 0.3px solid rgb(213, 213, 213);
+    /* box-shadow: 0 0 4px 0 #cfcfcf; */
 }
 
 .slider{
     flex-grow: 1; 
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
 }
 
 .slider h4{
-    color: #fff;
-    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    color: var(--dark-blue);
+    font-size: 2rem;
     font-weight: 600;
 }
 
-
-/* ==== child component ==== */
+.slider > h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1rem;
+    width: 100%;
+    height: 2px;
+    background-color: var(--dark-blue);
+  }
 
 .category{
     text-decoration: none;
