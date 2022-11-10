@@ -4,7 +4,12 @@ import {
 import './Navbar.css';
 import {
   Badge,
-  Toolbar, AppBar, Typography, Box, Menu, MenuItem,
+  Toolbar,
+  AppBar,
+  Typography,
+  Box,
+  Menu,
+  MenuItem,
 } from '@mui/material';
 import {
   NotificationsNone,
@@ -15,9 +20,11 @@ import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 import { ToastContainer, toast } from 'react-toastify';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import ButtonComponent from '../Button/Button';
 import { links } from '../../StaticData';
 import { AuthContext } from '../Context/AuthContext';
+import MessageNotification from './MessageNotification';
 
 const Navbar: FC = () => {
   const navigate = useNavigate();
@@ -27,20 +34,35 @@ const Navbar: FC = () => {
   const [notification, setNotification] = useState<number>(0);
   const [dataObj, setDataObj] = useState({});
 
+  const [anchor, setAnchor] = useState < SVGSVGElement | null>(null);
+  const [openMessage, setOpenMessage] = useState<boolean>(false);
+  const [messageNum, setMessageNum] = useState<number>(0);
   // start socket
 
   const fetchNotifications = async () => {
     try {
-      const { data } = await axios.get('/api/v1/notifications/unseen');
-      const { received, sent } = data;
-      setDataObj(data);
-      setNotification([...received, ...sent].length);
+      if (userId) {
+        const { data } = await axios.get('/api/v1/notifications/unseen');
+        const { received, sent } = data;
+        setDataObj(data);
+        setNotification([...received, ...sent].length);
+      }
     } catch (error) {
       Swal.fire(error.response.data.message);
     }
   };
 
+  const fetchMessageNotifications = async () => {
+    try {
+      const { data } = await axios.get('/api/v1/chat/getUnseenMessages');
+      setMessageNum(data.length);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
+    fetchMessageNotifications();
     fetchNotifications();
   }, []);
 
@@ -68,6 +90,19 @@ const Navbar: FC = () => {
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
     setOpen(true);
+  };
+
+  const handleOpenMessages = (event:
+  React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    setMessageNum(0);
+    setAnchor(event.currentTarget);
+    setOpenMessage(true);
+    setMessageNum(0);
+  };
+
+  const handleCloseMessage = () => {
+    setAnchor(null);
+    setOpenMessage(false);
   };
 
   const handleSignOut = async () => {
@@ -129,6 +164,16 @@ const Navbar: FC = () => {
               gap: '6px',
             }}
             >
+              <Badge badgeContent={messageNum} color="primary">
+                <EmailOutlinedIcon
+                  sx={{
+                    color: 'black',
+                    fontSize: '25px',
+                    cursor: 'pointer',
+                  }}
+                  onClick={handleOpenMessages}
+                />
+              </Badge>
               <div
                 onClick={() => {
                   setNotification(0);
@@ -152,22 +197,22 @@ const Navbar: FC = () => {
                 </Badge>
               </div>
 
-              <PersonOutline sx={{
-                color: 'black',
-                fontSize: '25px',
-                cursor: 'pointer',
-              }}
-              />
-
               <div
                 onClick={handleOpen}
                 style={{
-                  width: '20px',
+                  width: '40px',
                   cursor: 'pointer',
+                  display: 'flex',
                 }}
                 role="button"
                 aria-hidden="true"
               >
+                <PersonOutline sx={{
+                  color: 'black',
+                  fontSize: '25px',
+                  cursor: 'pointer',
+                }}
+                />
                 <KeyboardArrowDown sx={{
                   color: 'black',
                   fontSize: '25px',
@@ -207,6 +252,11 @@ const Navbar: FC = () => {
                   Logout
                 </MenuItem>
               </Menu>
+              <MessageNotification
+                openMessage={openMessage}
+                anchor={anchor}
+                handleCloseMessage={handleCloseMessage}
+              />
             </Box>
           )
 

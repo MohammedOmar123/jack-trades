@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   FC, useState, useContext, useEffect,
@@ -7,10 +8,12 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 import PopupCard from './PopupCard';
 import { IProductPopup, UserProduct } from '../../interfaces';
 import { AuthContext } from '../Context/AuthContext';
 import { ImageContext } from '../Context/ImageContext';
+import Loading from '../Loading/Loading';
 import './Popup.css';
 
 const RequestPopup:FC<IProductPopup> = ({ open, handleClose, receiverId }) => {
@@ -18,13 +21,16 @@ const RequestPopup:FC<IProductPopup> = ({ open, handleClose, receiverId }) => {
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const { userId, fullName: senderName } = useContext(AuthContext);
   const { handleRequest, productArray } = useContext(ImageContext);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fetchData = async () => {
     try {
+      setIsLoading(true);
       const userProducts = await axios
         .get(`/api/v1/user/${userId}/products`);
 
       setProducts(userProducts.data.rows);
+      setIsLoading(false);
     } catch (error) {
       Swal.fire(error.response.data.message);
     }
@@ -58,37 +64,50 @@ const RequestPopup:FC<IProductPopup> = ({ open, handleClose, receiverId }) => {
         alignItems: 'center',
       }}
     >
-      {products.length ? (
-        <ImageList
-          sx={{
-            width: 700, height: 550, backgroundColor: '#fff', padding: '1rem',
-          }}
-          cols={3}
-          gap={13}
-        >
-          <ImageListItem key="Subheader" cols={3}>
-            <ListSubheader component="div">
-              Choose products for exchange
-            </ListSubheader>
-          </ImageListItem>
-          {products.map((item) => (
-            <PopupCard item={item} key={item.id} />
-          ))}
-          <ImageListItem cols={3}>
-            {showMessage
-            && <Typography variant="h5">Choose at least one item</Typography>}
-            <Button
-              variant="contained"
-              onClick={checkArrayOfIds}
+      {
+        isLoading ? <Loading className="loading" />
+          : products.length ? (
+            <ImageList
+              sx={{
+                width: 700,
+                height: 550,
+                backgroundColor: '#fff',
+                padding: '1rem',
+              }}
+              cols={3}
+              gap={13}
             >
-              confirm
+              <ImageListItem key="Subheader" cols={3}>
+                <ListSubheader component="div">
+                  Choose products for exchange
+                </ListSubheader>
+              </ImageListItem>
+              {products.map((item) => (
+                <PopupCard item={item} key={item.id} />
+              ))}
+              <ImageListItem cols={3}>
+                {showMessage
+            && <Typography variant="h5">Choose at least one item</Typography>}
+                <Button
+                  variant="contained"
+                  onClick={checkArrayOfIds}
+                >
+                  confirm
 
-            </Button>
-          </ImageListItem>
+                </Button>
+              </ImageListItem>
 
-        </ImageList>
+            </ImageList>
 
-      ) : (<h1>Loading ...</h1>)}
+          ) : (
+            <div className="add-data-pop">
+              <h3>You need to add products first</h3>
+              <Link to="/newProduct">
+                <button type="button">Add product</button>
+              </Link>
+            </div>
+          )
+}
     </Modal>
   );
 };

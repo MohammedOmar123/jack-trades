@@ -6,7 +6,7 @@ import {
 import { Box } from '@mui/material';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { UserInfo, Loading } from '../components';
 import { UserProduct, UserInfoTypes } from '../interfaces';
 import { AuthContext } from '../components/Context/AuthContext';
@@ -16,8 +16,10 @@ const ProfilePage:FC = () => {
   const [info, setInfo] = useState<UserInfoTypes | null >(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { userId } = useParams();
-  const [isOpen, setIsOpen] = useState <boolean>(true);
+  const [isOpen, setIsOpen] = useState <boolean>(false);
   const { userId: authUserId } = useContext(AuthContext);
+  const open = !!useLocation().state;
+
   const fetchData = async () => {
     try {
       const userInfo = await axios.get(`/api/v1/user/${userId}`);
@@ -33,6 +35,7 @@ const ProfilePage:FC = () => {
     setIsOpen(!isOpen);
   };
   useEffect(() => {
+    setIsOpen(open);
     fetchData();
   }, [userId]);
 
