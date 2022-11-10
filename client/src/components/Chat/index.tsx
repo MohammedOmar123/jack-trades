@@ -45,7 +45,6 @@ const ChatBox: FC<{
 }) => {
   const bottomRef = useRef<HTMLInputElement | null >(null);
   const [inputValue, setInputValue] = useState<string>('');
-  const [error, setError] = useState<string>();
   const [allMessages, setAllMessages] = useState<[IAllMessages] | null>(null);
   const {
     userId: authUserId, image, fullName, socket,
@@ -66,7 +65,7 @@ const ChatBox: FC<{
         }]);
       });
     } catch (err) {
-      setError('something went wrong, please try again later');
+      console.log(err);
     }
   }, [socket]);
 
@@ -75,7 +74,7 @@ const ChatBox: FC<{
       const response = await axios.get(`/api/v1/chat/${userId}`);
       setAllMessages(response.data);
     } catch (err) {
-      setError('something went wrong, please try again later');
+      console.log(err);
     }
   };
 
@@ -110,10 +109,9 @@ const ChatBox: FC<{
       }]);
       setInputValue('');
     } catch (err) {
-      setError('something went wrong, please try again later');
+      console.log(err);
     }
   };
-  if (error) return <div>{error}</div>;
   return isOpen ? (
 
     <section id="chat">

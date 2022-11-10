@@ -24,33 +24,10 @@ const ProductDetailsComponent = ({
   const navigate = useNavigate();
   const from = useLocation();
   // const [open, setOpen] = useState<boolean>(false);
-  const { fullName: senderName } = useContext(AuthContext);
+  const { fullName: senderName, userId: authUserId } = useContext(AuthContext);
   const {
     setProductId, handleRequest, setOpen, open, setProductArray,
   } = useContext(ImageContext);
-
-  const handleOpen = () => {
-    if (type === 'exchange') setOpen(true);
-    else handleRequest(userId, senderName);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    setProductArray([]);
-  };
-
-  const checkWishList = async () => {
-    const response = await axios.get(`/api/v1/wishlist/${id}`);
-    if (response.data === true) {
-      setFavIcon('Favorite');
-      setText('Remove from wishlist');
-    }
-  };
-
-  useEffect(() => {
-    checkWishList();
-    setProductId(productId);
-  }, []);
 
   const errorMessage = 'Oops...';
 
@@ -73,6 +50,33 @@ const ProductDetailsComponent = ({
       }
     });
   };
+
+  const handleOpen = () => {
+    if (authUserId) {
+      if (type === 'exchange') setOpen(true);
+      else handleRequest(userId, senderName);
+    } else {
+      handleUnauthorizedRequests();
+    }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setProductArray([]);
+  };
+
+  const checkWishList = async () => {
+    const response = await axios.get(`/api/v1/wishlist/${id}`);
+    if (response.data === true) {
+      setFavIcon('Favorite');
+      setText('Remove from wishlist');
+    }
+  };
+
+  useEffect(() => {
+    checkWishList();
+    setProductId(productId);
+  }, []);
 
   const handleWishListRequests = (
     titleSwl:string,
