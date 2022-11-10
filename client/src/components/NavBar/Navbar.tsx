@@ -25,12 +25,27 @@ const Navbar: FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement >();
   const [open, setOpen] = useState<boolean>(false);
   const [notification, setNotification] = useState<number>(0);
+  const [dataObj, setDataObj] = useState({});
 
   // start socket
 
+  const fetchNotifications = async () => {
+    try {
+      const { data } = await axios.get('/api/v1/notifications/unseen');
+      const { received, sent } = data;
+      setDataObj(data);
+      setNotification([...received, ...sent].length);
+    } catch (error) {
+      Swal.fire(error.response.data.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchNotifications();
+  }, []);
+
   useEffect(() => {
     socket.on('connect', () => {
-      console.log(`in the navbar ${socket.id}`);
     });
     if (userId) {
       socket?.emit('newUser', userId);
@@ -116,7 +131,10 @@ const Navbar: FC = () => {
             >
               <div
                 onClick={() => {
-                  navigate('notifications');
+                  setNotification(0);
+                  navigate('/notifications', {
+                    state: dataObj,
+                  });
                 }}
                 style={{
                   cursor: 'pointer',

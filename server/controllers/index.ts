@@ -11,7 +11,9 @@ import {
   getAllRequest, addRequests, deleteRequest, updateRequest,
   getAllOfferedProducts,
 } from './request';
-import { getAllNotifications, viewItemDetails } from './notifications';
+import {
+  getAllNotifications, viewItemDetails, getUnseenNotifications, updateNotifications,
+} from './notifications';
 
 import {
   deleteFromWishList, getAllWishListItems, addToWishList, checkWishList,
@@ -22,17 +24,38 @@ import {
 } from './chat';
 
 export {
-  signIn, signup, signOut, getStatistics, getFeedback, addFeedback,
-  getUserProducts, getUserProfile, getUserWishList,
+  signIn,
+  signup,
+  signOut,
+  getStatistics,
+  getFeedback,
+  addFeedback,
+  getUserProducts,
+  getUserProfile,
+  getUserWishList,
   getAllProducts,
-  getProduct, addProduct, deleteProduct, updateProduct, filterProduct, getCategories,
-  getAllRequest, addRequests, deleteRequest, updateRequest,
-  getAllNotifications, viewItemDetails,
-  deleteFromWishList, getAllWishListItems, addToWishList, checkAuth,
+  getProduct,
+  addProduct,
+  deleteProduct,
+  updateProduct,
+  filterProduct,
+  getCategories,
+  getAllRequest,
+  addRequests,
+  deleteRequest,
+  updateRequest,
+  getAllNotifications,
+  viewItemDetails,
+  deleteFromWishList,
+  getAllWishListItems,
+  addToWishList,
+  checkAuth,
   checkWishList,
   getAllOfferedProducts,
   addMessage,
   getAllMessages,
   getUnSeenMessages,
   updateUnseenMessages,
+  getUnseenNotifications,
+  updateNotifications,
 };

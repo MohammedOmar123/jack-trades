@@ -15,7 +15,7 @@ const app: Application = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: process.env.JACK_TRADES,
   },
 });
 app.use(compression());
@@ -23,7 +23,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 ioHandler(io);
-// eslint-disable-next-line max-len
 
 app.use('/api/v1', router);
 app.set('port', PORT || 8000);

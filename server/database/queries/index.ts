@@ -10,11 +10,17 @@ import getUserProfileQuery from './user/getUserProfile';
 import getUserProductsQuery from './getUserProductsQuery';
 
 import {
-  addToWishListQuery, getAllWishlistItemsQuery, deleteFromWishListQuery, checkInWishlistQuery,
+  addToWishListQuery,
+  getAllWishlistItemsQuery,
+  deleteFromWishListQuery,
+  checkInWishlistQuery,
 } from './wishlist';
 
 import {
-  getRequestQuery, addRequestQuery, getProductDetailsQuery, checkSelectedProductQuery,
+  getRequestQuery,
+  addRequestQuery,
+  getProductDetailsQuery,
+  checkSelectedProductQuery,
   getAllRequestsQuery,
   deleteRequestQuery,
   declineAllOtherRequests,
@@ -27,14 +33,34 @@ import {
 } from './Requests';
 
 import {
-  deleteProductQuery, getProductQuery, updateProductQuery, addProductQuery, deleteExchangedProducts,
+  deleteProductQuery,
+  getProductQuery,
+  updateProductQuery,
+  addProductQuery,
+  deleteExchangedProducts,
 } from './products';
-import { addFeedbackQuery, getUsername } from './website/addFeedback';
+
+import {
+  addFeedbackQuery,
+  getUsername,
+} from './website/addFeedback';
+
 import getFeedbackQuery from './website/getFeedback';
 
-import { getReceiverNotificationsQuery, getSenderNotificationsQuery } from './notifications';
 import {
-  addMessageQuery, getAllMessagesQuery, getUnSeenMessagesQuery, updateUnseenMessagesQuery,
+  getReceiverNotificationsQuery,
+  getSenderNotificationsQuery,
+  getUnseenReceiverNotificationsQuery,
+  getUnseenSenderNotificationsQuery,
+  updateReceiverNotifications,
+  updateSenderNotifications,
+} from './notifications';
+
+import {
+  addMessageQuery,
+  getAllMessagesQuery,
+  getUnSeenMessagesQuery,
+  updateUnseenMessagesQuery,
 } from './chat';
 
 export {
@@ -78,4 +104,8 @@ export {
   getAllMessagesQuery,
   getUnSeenMessagesQuery,
   updateUnseenMessagesQuery,
+  getUnseenReceiverNotificationsQuery,
+  getUnseenSenderNotificationsQuery,
+  updateReceiverNotifications,
+  updateSenderNotifications,
 };
