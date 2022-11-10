@@ -1,8 +1,9 @@
 import { HorizontalRule } from '@mui/icons-material';
 import { Typography } from '@mui/material';
 import axios from 'axios';
-import { FC, useState, useEffect, useContext } from 'react';
-
+import {
+  FC, useState, useEffect, useContext,
+} from 'react';
 import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import NotificationCard from '../NotificationCard/NotificationCard';
