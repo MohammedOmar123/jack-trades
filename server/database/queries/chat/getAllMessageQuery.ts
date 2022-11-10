@@ -3,8 +3,8 @@ import { Chat } from '../../../models';
 import User from '../../../models/users';
 
 const getAllMessagesQuery = (
-  sender_id:number,
-  receiver_id:number,
+  sender_id: number,
+  receiver_id: number,
 ) => Chat.findAll({
   attributes: ['message', 'sender_id', 'receiver_id'],
   raw: true,
