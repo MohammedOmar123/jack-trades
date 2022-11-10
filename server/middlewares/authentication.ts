@@ -4,6 +4,7 @@ import { IUserPayload, IRequestPayload } from '../interfaces';
 
 const authentication = async (req:IRequestPayload, res:Response, next:NextFunction) => {
   const { token } = req.cookies;
+
   try {
     const payload: IUserPayload = await verifyToken(token);
     req.user = payload;

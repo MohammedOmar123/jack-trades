@@ -12,8 +12,12 @@ const Statistics = () => {
   const [statistics, setStatistics] = useState<IStatistic | null>(null);
 
   const getStatistics = async () => {
-    const res = await axios.get('/api/v1/website/statistics');
-    setStatistics(res.data);
+    try {
+      const res = await axios.get('/api/v1/website/statistics');
+      setStatistics(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect((): void => {

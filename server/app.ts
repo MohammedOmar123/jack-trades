@@ -15,7 +15,7 @@ const app: Application = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.JACK_TRADES,
+    origin: '*',
   },
 });
 app.use(compression());

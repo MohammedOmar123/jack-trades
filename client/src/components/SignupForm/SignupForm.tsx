@@ -15,8 +15,6 @@ import Loading from '../Loading/Loading';
 
 import IUser from '../../interfaces/Iuser';
 
-import google from '../../assets/google.png';
-
 import Button from '../Button/Button';
 
 import './SignupForm.css';
@@ -217,20 +215,11 @@ const SignupForm = () => {
                   Create my account
                 </button>
               )}
-              <Typography className="or">or</Typography>
-              <button
-                type="submit"
-                className="google"
-                style={{ cursor: 'pointer' }}
-              >
-                <img className="img-google" src={google} alt="" />
-                <Typography className="p-google">
-                  sign up with Google
-                </Typography>
-              </button>
+
               <Typography
                 className="terms"
                 sx={{
+                  marginTop: '16px',
                   fontSize: '12px',
                 }}
               >

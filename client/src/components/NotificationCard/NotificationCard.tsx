@@ -44,7 +44,7 @@ const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void
         confirmButtonColor: '#1b4b66',
       });
       fetchData();
-      socket.emit('requests', { receiverId: item.sender_id, senderName: fullName });
+      socket.emit('requests', { receiverId: item.sender_id, senderName: fullName, type: 'approve' });
     } catch (error) {
       Swal.fire(error.response.data.message);
     }
@@ -57,7 +57,7 @@ const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void
           receiverApproval: false,
           productId: null,
         });
-      socket.emit('requests', { receiverId: item.sender_id, senderName: fullName });
+      socket.emit('requests', { receiverId: item.sender_id, senderName: fullName, type: 'decline' });
 
       const alert = await Swal.fire({
         title: response.data,

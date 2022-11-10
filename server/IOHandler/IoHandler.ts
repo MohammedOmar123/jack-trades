@@ -29,13 +29,15 @@ const ioHandler = (io:Server) => {
           });
         }
       });
-      socket.on('requests', ({ receiverId, senderName }) => {
+      socket.on('requests', ({ receiverId, senderName, type }) => {
         const result = getUser(receiverId);
 
         if (result) {
           const { socketId } = result;
           socket.to(socketId).emit('sendNotification');
-          socket.to(socketId).emit('toast', senderName);
+          if (type) {
+            socket.to(socketId).emit('toast', { senderName, type });
+          }
         }
       });
       socket.on('disconnect', () => {

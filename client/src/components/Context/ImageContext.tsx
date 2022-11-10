@@ -44,7 +44,9 @@ export const ImageContextProvider: React.FC<IProviderProps> = ({
         if (res.isConfirmed) {
           setProductArray([]);
           setOpen(false);
-          socket.emit('requests', { receiverId, senderName, isSend: true });
+          socket.emit('requests', {
+            receiverId, senderName, isSend: true, type: 'request',
+          });
         }
       }
     } catch (error) {
