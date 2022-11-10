@@ -5,6 +5,7 @@ interface IProductPopup {
     receiverId?: number,
     handleClose: () => void
     fetchData?: () => void
+    senderId?:number,
 }
 
 export default IProductPopup;

@@ -14,7 +14,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
-// import { io } from 'socket.io-client';
 import { ToastContainer, toast } from 'react-toastify';
 import ButtonComponent from '../Button/Button';
 import { links } from '../../StaticData';

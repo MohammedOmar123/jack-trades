@@ -1,17 +1,22 @@
 import { HorizontalRule } from '@mui/icons-material';
 import { Typography } from '@mui/material';
 import axios from 'axios';
-import { FC, useState, useEffect } from 'react';
+import {
+  FC, useState, useEffect, useContext,
+} from 'react';
 import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import NotificationCard from '../NotificationCard/NotificationCard';
 import NoData from '../NoData';
 import Loading from '../Loading/Loading';
 import { INotificationProps } from '../../interfaces';
+import { AuthContext } from '../Context/AuthContext';
 import './notificationContainer.css';
 
 const NotificationContainer:FC = () => {
   const [notifications, setNotifications] = useState<INotificationProps[]>([]);
+  const [isSend, setIsSend] = useState<number>(0);
+  const { socket } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const { state } = useLocation();
@@ -40,7 +45,10 @@ const NotificationContainer:FC = () => {
   useEffect(() => {
     updateRequestSeen();
     fetchData();
-  }, []);
+    socket.on('sendNotification', () => {
+      setIsSend((prev) => prev + 1);
+    });
+  }, [socket, isSend]);
 
   if (isLoading) return <Loading className="loading" />;
   return (
