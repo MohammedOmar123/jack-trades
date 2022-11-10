@@ -58,12 +58,14 @@ interface IRequest extends Model<InferAttributes<IRequest>, InferCreationAttribu
   receiver_id?: ForeignKey<IUser['id']>
   product_id?: ForeignKey<IProduct['id']>
   exchanged_id?: ForeignKey<IProduct['id']>
+  receiver_seen: boolean,
+  sender_seen: boolean
 }
 
 interface IChat extends Model<InferAttributes<IChat>, InferCreationAttributes<IChat>> {
   id: CreationOptional<number>;
   message: string,
-  seen:boolean
+  seen: boolean
   sender_id?: ForeignKey<IUser['id']>
   receiver_id?: ForeignKey<IUser['id']>
 }

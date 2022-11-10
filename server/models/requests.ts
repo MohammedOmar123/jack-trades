@@ -26,6 +26,14 @@ const Request = sequelize.define<IRequest>('Request', {
     type: DataTypes.ARRAY(DataTypes.INTEGER),
     allowNull: true,
   },
+  sender_seen: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  receiver_seen: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }, { paranoid: true });
 
 export default Request;
