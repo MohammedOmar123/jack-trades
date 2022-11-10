@@ -8,10 +8,6 @@ const links = [{
   content: 'About Us',
 }, {
   id: 3,
-  path: '/contact',
-  content: 'contact Us',
-}, {
-  id: 4,
   path: '/products',
   content: 'Browse',
 }];

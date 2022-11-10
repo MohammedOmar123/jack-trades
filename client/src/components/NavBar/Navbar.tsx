@@ -253,7 +253,11 @@ const Navbar: FC = () => {
                   Profile
                 </MenuItem>
 
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={() => {
+                  handleClose();
+                  navigate(`/profile/${userId}/requests`);
+                }}
+                >
                   My Requests
                 </MenuItem>
                 <MenuItem onClick={() => {
