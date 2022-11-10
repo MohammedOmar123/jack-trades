@@ -19,12 +19,15 @@ import { INotificationProps } from '../../interfaces';
 import NotificationPopUp from './NotificationPopUp';
 import { AuthContext } from '../Context/AuthContext';
 
-const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void }> = ({ item, fetchData }) => {
+const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void
+}> = ({
+  item, fetchData,
+}) => {
   const [isShow, setIsShow] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
 
-  const { userId } = useContext(AuthContext);
+  const { userId, socket, fullName } = useContext(AuthContext);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -41,6 +44,7 @@ const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void }> =
         confirmButtonColor: '#1b4b66',
       });
       fetchData();
+      socket.emit('requests', { receiverId: item.sender_id, senderName: fullName });
     } catch (error) {
       Swal.fire(error.response.data.message);
     }
@@ -53,6 +57,8 @@ const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void }> =
           receiverApproval: false,
           productId: null,
         });
+      socket.emit('requests', { receiverId: item.sender_id, senderName: fullName });
+
       const alert = await Swal.fire({
         title: response.data,
         confirmButtonColor: '#1b4b66',
@@ -160,7 +166,7 @@ const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void }> =
         </div>
       </div>
       )}
-      <NotificationPopUp open={open} handleClose={handleClose} id={item.id} fetchData={fetchData} />
+      <NotificationPopUp senderId={item.sender_id} open={open} handleClose={handleClose} id={item.id} fetchData={fetchData} />
     </div>
   );
 };

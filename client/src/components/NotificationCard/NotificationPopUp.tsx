@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState, useEffect } from 'react';
+import {
+  FC, useState, useEffect, useContext,
+} from 'react';
 import {
   Button, Modal, ImageList, ListSubheader, ImageListItem, Typography,
 } from '@mui/material';
@@ -7,14 +9,15 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { IProductPopup, IOfferedProducts } from '../../interfaces';
 import PopupCard from './PopupCard';
+import { AuthContext } from '../Context/AuthContext';
 
 const NotificationPopUp:FC<IProductPopup> = ({
-  open, handleClose, id, fetchData,
+  open, handleClose, id, fetchData, senderId,
 }) => {
   const [products, setProducts] = useState<IOfferedProducts[]>([]);
   const [showMessage, setShowMessage] = useState<boolean>(false);
   const [productId, setProductId] = useState<number>(0);
-
+  const { socket, fullName } = useContext(AuthContext);
   const fetchOfferedProducts = async () => {
     try {
       const response = await axios
@@ -40,6 +43,11 @@ const NotificationPopUp:FC<IProductPopup> = ({
           confirmButtonColor: '#1b4b66',
         });
         handleClose();
+        socket.emit('requests', {
+          receiverId: senderId,
+          senderName: fullName,
+        });
+
         if (fetchData) fetchData();
       } else setShowMessage(true);
     } catch (error) {

@@ -31,6 +31,7 @@ const ioHandler = (io:Server) => {
       });
       socket.on('requests', ({ receiverId, senderName }) => {
         const result = getUser(receiverId);
+
         if (result) {
           const { socketId } = result;
           socket.to(socketId).emit('sendNotification');
