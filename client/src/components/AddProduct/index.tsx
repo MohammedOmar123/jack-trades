@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-  FC, ChangeEvent, useState, FormEvent, useContext,
+  FC, ChangeEvent, useState, FormEvent, useContext, useEffect,
 } from 'react';
 import {
   TextField, IconButton, Box, Typography, Button,
@@ -10,7 +10,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import './AddProduct.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import TypeRadio from './TypeRadio';
 import CategoryRadio from './CategoryRadio';
 import { validateProduct } from '../../validation';
@@ -24,6 +24,7 @@ const AddProduct:FC = () => {
   const [type, setType] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   const [errMessage, setErrMessage] = useState<string>('');
+  const from = useLocation();
   const { userId } = useContext(AuthContext);
   const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'title') setTitle(e.target.value);
@@ -50,6 +51,26 @@ const AddProduct:FC = () => {
   const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      if (!userId) {
+        await Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'SignIn first to be able to add an item',
+          showConfirmButton: true,
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, SigIn',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate('/signin', {
+              state: { from },
+              replace: true,
+            });
+          }
+        });
+      }
+
       const data = await validateProduct.validate({
         title, description, type, gallery, category_id: +category,
       });
