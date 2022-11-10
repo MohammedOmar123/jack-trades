@@ -1,4 +1,3 @@
-import { FavoriteBorder } from '@mui/icons-material';
 import { IconButton, ImageListItem, ImageListItemBar } from '@mui/material';
 import { FC } from 'react';
 import { IProducts } from '../../interfaces';
@@ -35,9 +34,7 @@ const ProductsCategoryCard:FC <{ product: IProducts }> = ({ product }) => (
         <IconButton
           sx={{ color: 'white' }}
           aria-label="star sadfasd"
-        >
-          <FavoriteBorder />
-        </IconButton>
+        />
         )}
     />
   </ImageListItem>

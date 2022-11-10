@@ -16,7 +16,7 @@ const ProfilePage:FC = () => {
   const [info, setInfo] = useState<UserInfoTypes | null >(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { userId } = useParams();
-  const [isOpen, setIsOpen] = useState <boolean>(true);
+  const [isOpen, setIsOpen] = useState <boolean>(false);
   const { userId: authUserId } = useContext(AuthContext);
   const fetchData = async () => {
     try {

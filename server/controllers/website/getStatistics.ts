@@ -1,7 +1,7 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { getDonationsQuery, getExchangesQuery, getContributionsQuery } from '../../database/queries';
 
-const getStatistics = async (req : Request, res : Response) => {
+const getStatistics = async (req : Request, res : Response, next: NextFunction) => {
   try {
     const response = await Promise.all(
       [getDonationsQuery(), getExchangesQuery(), getContributionsQuery(),
@@ -13,7 +13,7 @@ const getStatistics = async (req : Request, res : Response) => {
 
     res.json({ donateTimes, exchangeTimes, contributeTimes });
   } catch (error) {
-    res.status(500).json({ error: error.msg });
+    next(error);
   }
 };
 

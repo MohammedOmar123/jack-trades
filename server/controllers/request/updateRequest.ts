@@ -3,7 +3,7 @@ import { IRequestPayload } from '../../interfaces';
 import {
   updateRequestQuery,
   declineAllOtherRequests, checkRequestQuery,
-  deleteSuccessRequestQuery, deleteExchangedProducts,
+  deleteSuccessRequestQuery, deleteExchangedProducts, deleteProductFromAllWishList,
 } from '../../database/queries';
 import { updateRequestValidation } from '../../validation';
 import { CustomError } from '../../helpers';
@@ -34,6 +34,7 @@ const updateRequest = async (req: IRequestPayload, res: Response, next: NextFunc
 
     await declineAllOtherRequests(+requestId, (+queryResult.product_id));
     await deleteSuccessRequestQuery(+requestId, userId);
+    await deleteProductFromAllWishList([+productId, queryResult.product_id]);
     await deleteExchangedProducts([productId, queryResult.product_id]);
     res.json('Operation done successfully');
   } catch (error) {

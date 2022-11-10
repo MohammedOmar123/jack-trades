@@ -53,8 +53,20 @@ const Navbar: FC = () => {
     socket?.on('sendNotification', () => {
       setNotification((prev) => prev + 1);
     });
-    socket?.on('toast', (senderName) => {
-      toast(`${senderName} requested your item`);
+    socket?.on('toast', ({ senderName, type }) => {
+      switch (type) {
+        case 'request':
+          toast(`${senderName} requested your item`);
+          break;
+        case 'decline':
+          toast(`${senderName} decline your Request`);
+          break;
+        case 'approve':
+          toast(`${senderName} approved your Request`);
+          break;
+        default: toast('you have new notification');
+          break;
+      }
     });
   }, [userId]);
 

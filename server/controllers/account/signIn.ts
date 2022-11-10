@@ -16,7 +16,7 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
 
     const isPasswordTrue = await compare(password, user.hashedPassword);
 
-    if (!isPasswordTrue) throw new CustomError(401, 'You enterd a wrong password');
+    if (!isPasswordTrue) throw new CustomError(401, 'You entered a wrong password');
 
     const token = await generateToken(user.id, email);
     res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' }).json({ message: 'logged successfully' });

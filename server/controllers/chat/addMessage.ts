@@ -12,7 +12,6 @@ const addMessage = async (req: IRequestPayload, res: Response, next: NextFunctio
     const result = await addMessageQuery(senderId, +receiverId, message);
     res.json(result);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
