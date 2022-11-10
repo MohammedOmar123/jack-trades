@@ -7,7 +7,7 @@ import IntroductionCard from './IntroductionCard';
 import { introduction } from '../../StaticData';
 
 const Introduction:FC = () => (
-  <Box sx={{ flexGrow: 1, width: '80%', margin: '2rem auto' }}>
+  <Box sx={{ flexGrow: 1, width: '90%', margin: '5rem auto' }}>
     <Grid container spacing={4}>
       {introduction.map((e) => (
         <Grid key={e.title} item xs={12} md={4}>

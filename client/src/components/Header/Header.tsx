@@ -1,6 +1,7 @@
 import './Header.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 
 const Header = () => (
@@ -18,17 +19,19 @@ const Header = () => (
         }}
       >
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        amet consectetur adipisicing elit
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
         amet consectetur adipisicing elit.
       </Typography>
-
-      <Button
-        style={{
-          text: 'See more',
-          icon: 'ArrowForward',
-          classes: 'btn headerBtn',
-        }}
-      />
-
+      <Link to="/products" style={{ textDecoration: 'none' }}>
+        <Button
+          style={{
+            text: 'See more',
+            icon: 'ArrowForward',
+            classes: 'btn headerBtn',
+          }}
+        />
+      </Link>
     </Box>
   </Box>
 );
