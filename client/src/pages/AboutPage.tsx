@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { FormatQuote } from '@mui/icons-material';
 import {
   Stack, Typography, styled, Container, Box, Avatar,
 } from '@mui/material';
+import axios from 'axios';
+import { FC, useEffect, useState } from 'react';
 
 const CustomTypeograph = styled(Typography)(({ theme }) => ({
   fontFamily: "'Cairo', sans-serif",
@@ -38,13 +41,18 @@ const CustomBox = styled(Box)({
   marginBottom: '2rem',
 });
 
-const FeedbackCard = () => (
+interface IFeedback__ {
+  nickname: string,
+  message: string,
+  createdAt: string
+}
+
+const FeedbackCard: FC <{ feedback: IFeedback__ }> = ({ feedback }) => (
   <CustomBox>
     <Box sx={{ width: '70%' }}>
       <FormatQuote fontSize="large" />
       <Typography variant="subtitle1" fontWeight="bold">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Fugit rerum omnis vitae error quis ea itaque.
+        {feedback.message}
       </Typography>
       <Typography
         variant="h6"
@@ -52,7 +60,7 @@ const FeedbackCard = () => (
         fontWeight="bolder"
         fontFamily="'Cairo', sans-serif"
       >
-        Jhon Doe
+        {feedback.nickname}
 
       </Typography>
     </Box>
@@ -64,20 +72,31 @@ const FeedbackCard = () => (
   </CustomBox>
 );
 
-const AboutPage = () => (
-  <Container>
-    <Stack alignItems="center" p="3rem">
-      <CustomTypeograph variant="h4">
-        What our little friends say about us
-      </CustomTypeograph>
-    </Stack>
-    <Stack direction="row" flexWrap="wrap" justifyContent="space-around">
-      <FeedbackCard />
-      <FeedbackCard />
-      <FeedbackCard />
-      <FeedbackCard />
-    </Stack>
-  </Container>
-);
+const AboutPage = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [data, setData] = useState<Array<IFeedback__> | null>();
+
+  const fetchFeedbacks = async () => {
+    const response = await axios.get('/api/v1/website/feedback');
+    setData(response.data.feedbacks);
+  };
+
+  useEffect(() => {
+    fetchFeedbacks();
+  }, []);
+
+  return (
+    <Container>
+      <Stack alignItems="center" p="3rem">
+        <CustomTypeograph variant="h4">
+          What our little friends say about us
+        </CustomTypeograph>
+      </Stack>
+      <Stack direction="row" flexWrap="wrap" justifyContent="space-around">
+        {data && data.map((feedback) => <FeedbackCard feedback={feedback} />)}
+      </Stack>
+    </Container>
+  );
+};
 
 export default AboutPage;
