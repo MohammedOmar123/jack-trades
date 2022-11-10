@@ -76,3 +76,8 @@
   overflow: hidden;
   width: 100px;
 }
+
+.messages .no-msgs{
+  width: 150px;
+  padding: 1rem;
+}

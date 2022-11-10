@@ -52,6 +52,7 @@ const MessageNotification:FC<{
               state={{ open: true }}
               key={e['sender.id']}
               style={{ textDecoration: 'none', color: '#333' }}
+              onClick={handleCloseMessage}
             >
               <MenuItem
                 sx={{ borderBottom: 'solid #CCC 1px' }}
@@ -73,7 +74,7 @@ const MessageNotification:FC<{
               </MenuItem>
             </Link>
           ))
-          : <p> No messages</p>
+          : <p className="no-msgs"> No messages</p>
     }
     </Menu>
   );
