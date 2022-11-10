@@ -31,11 +31,12 @@ const ProductDetailsComponent = ({
 
   const errorMessage = 'Oops...';
 
-  const handleUnauthorizedRequests = () => {
+  const handleUnauthorizedRequests = (textMessage:string) => {
     Swal.fire({
       icon: 'error',
+      // 'SignIn first to be able to add the item into the wishlist'
       title: errorMessage,
-      text: 'SignIn first to be able to add the item into the wishlist',
+      text: textMessage,
       showConfirmButton: true,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -56,7 +57,7 @@ const ProductDetailsComponent = ({
       if (type === 'exchange') setOpen(true);
       else handleRequest(userId, senderName);
     } else {
-      handleUnauthorizedRequests();
+      handleUnauthorizedRequests('SignIn first to be able to send a request');
     }
   };
 
@@ -101,7 +102,8 @@ const ProductDetailsComponent = ({
     } catch (error) {
       const { message } = error.response.data;
       if (message === 'Unauthorized') {
-        handleUnauthorizedRequests();
+        // eslint-disable-next-line max-len
+        handleUnauthorizedRequests('SignIn first to be able to add the item into the wishlist');
       } else {
         handleWishListRequests(errorMessage, message, 'error');
       }
