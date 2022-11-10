@@ -9,7 +9,6 @@ const updateUnseenMessages = async (req: IRequestPayload, res: Response, next: N
     const result = await updateUnseenMessagesQuery(receiverId, +senderId);
     res.json(result);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };

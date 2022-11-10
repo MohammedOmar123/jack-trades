@@ -30,6 +30,7 @@ const getAllMessagesQuery = (
     as: 'receiver',
   },
   ],
+  order: [['createdAt', 'ASC']],
 });
 
 export default getAllMessagesQuery;
