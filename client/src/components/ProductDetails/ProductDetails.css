@@ -35,6 +35,12 @@
 .box-desc .created-at {
   margin-top: 30px;
   color : rgba(68, 68, 68, 1);
+  display: flex;
+  align-items: center;
+}
+
+.box-desc .created-at svg{
+  margin-right: 0.5rem;
 }
 
 .description {

@@ -1,8 +1,9 @@
 import {
-  FC, useState, useContext,
+  FC, useState, useContext, useEffect,
 } from 'react';
 import './Navbar.css';
 import {
+  Badge,
   Toolbar, AppBar, Typography, Box, Menu, MenuItem,
 } from '@mui/material';
 import {
@@ -11,7 +12,10 @@ import {
 } from '@mui/icons-material/';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
+import { io } from 'socket.io-client';
+import { ToastContainer, toast } from 'react-toastify';
 import ButtonComponent from '../Button/Button';
 import { links } from '../../StaticData';
 import { AuthContext } from '../Context/AuthContext';
@@ -21,6 +25,24 @@ const Navbar: FC = () => {
   const { userId, setUserId } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement >();
   const [open, setOpen] = useState<boolean>(false);
+  const [notification, setNotification] = useState<number>(0);
+
+  // start socket
+  const socket = io('http://localhost:8000');
+
+  useEffect(() => {
+    if (userId) {
+      socket?.emit('newUser', userId);
+    }
+  }, [userId]);
+
+  socket?.on('sendNotification', () => {
+    setNotification((prev) => prev + 1);
+  });
+  socket?.on('toast', (senderName) => {
+    toast(`${senderName} requested your item`);
+  });
+  // end socket
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -101,11 +123,14 @@ const Navbar: FC = () => {
                 role="button"
                 aria-hidden="true"
               >
-                <NotificationsNone sx={{
-                  color: 'black',
-                  fontSize: '25px',
-                }}
-                />
+                <Badge badgeContent={notification} color="primary">
+
+                  <NotificationsNone sx={{
+                    color: 'black',
+                    fontSize: '25px',
+                  }}
+                  />
+                </Badge>
               </div>
 
               <PersonOutline sx={{
@@ -130,6 +155,10 @@ const Navbar: FC = () => {
                 }}
                 />
               </div>
+              <ToastContainer style={{
+                marginTop: '40px',
+              }}
+              />
               <Menu
                 onClose={handleClose}
                 anchorEl={anchorEl}

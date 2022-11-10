@@ -1,19 +1,29 @@
 import { join } from 'path';
+import http from 'http';
 
 import express, { Application } from 'express';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
+import { Server } from 'socket.io';
 
 import router from './routes';
 import { ErrorHandler } from './helpers';
+import ioHandler from './IOHandler/IoHandler';
 
 const { NODE_ENV, PORT } = process.env;
 const app: Application = express();
-
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: 'http://localhost:3000',
+  },
+});
 app.use(compression());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+ioHandler(io);
+// eslint-disable-next-line max-len
 
 app.use('/api/v1', router);
 app.set('port', PORT || 8000);
@@ -27,4 +37,4 @@ if (NODE_ENV === 'production') {
 }
 
 app.use(ErrorHandler);
-export default app;
+export { app, server };

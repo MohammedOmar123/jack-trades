@@ -13,7 +13,7 @@ const CategoriesSlider:FC = () => (
       </Typography>
       <Grid container spacing={4}>
         {categories.map((e) => (
-          <Grid item xs={12} md={3}>
+          <Grid key={e.name} item xs={12} md={3}>
             <CategoriesCard category={e} />
           </Grid>
         ))}

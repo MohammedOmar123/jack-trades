@@ -12,7 +12,8 @@
     "heroku-postbuild": "npm run build && cd client/ && npm i && npm run build",
     "eslint:fix": "eslint --fix",
     "lint": "eslint --ext .ts server/ && eslint --ext .tsx client/src/",
-    "db:seed": "cross-env SEED=true NODE_ENV=development ts-node server/database/build.ts"
+    "db:seed": "cross-env SEED=true NODE_ENV=development ts-node server/database/build.ts",
+    "db:seed:production": "cross-env SEED=true NODE_ENV=production ts-node server/database/build.ts"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/CA-G12/jack-trades#readme",
   "dependencies": {
+    "@babel/core": "^7.20.2",
     "babel-jest": "^27.5.1",
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",

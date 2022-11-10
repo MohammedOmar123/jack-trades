@@ -1,10 +1,7 @@
 .notifications-container {
-  width: 70%;
-  height: 90vh;
-  margin: auto;
-  margin-top: 130px;
-  display: flex;
-  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 2rem;
 }
 
 .notification-header .notification {

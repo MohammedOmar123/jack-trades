@@ -48,18 +48,24 @@ interface IRequest extends Model<InferAttributes<IRequest>, InferCreationAttribu
   id: CreationOptional<number>;
   status: 'pending' | 'success' | 'fail';
   is_exchangable: boolean;
-  sender_approval: boolean;
   receiver_approval: boolean;
   products: number[];
   createdAt?: CreationOptional<Date>;
   updatedAt?: CreationOptional<Date>;
   deletedAt?: CreationOptional<Date>;
+  date?: CreationOptional<Date>;
   sender_id?: ForeignKey<IUser['id']>
   receiver_id?: ForeignKey<IUser['id']>
   product_id?: ForeignKey<IProduct['id']>
   exchanged_id?: ForeignKey<IProduct['id']>
 }
 
+interface IChat extends Model<InferAttributes<IChat>, InferCreationAttributes<IChat>> {
+  id: CreationOptional<number>;
+  message: string,
+  sender_id?: ForeignKey<IUser['id']>
+  receiver_id?: ForeignKey<IUser['id']>
+}
 interface IUser extends Model<InferAttributes<IUser>, InferCreationAttributes<IUser>> {
   id: CreationOptional<number>;
   first_name: string;
@@ -80,4 +86,5 @@ export {
   IProduct,
   IRequest,
   IUser,
+  IChat,
 };

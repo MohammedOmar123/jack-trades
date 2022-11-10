@@ -1,18 +1,39 @@
 import { getDonationsQuery, getExchangesQuery, getContributionsQuery } from './website/getStatistics';
-import signinQuery from './account/signin';
+
+import {
+  signinQuery,
+  signupQuery,
+  checkUserExist,
+  getNameQuery,
+} from './account';
 import getUserProfileQuery from './user/getUserProfile';
 import getUserProductsQuery from './getUserProductsQuery';
+
 import {
   addToWishListQuery, getAllWishlistItemsQuery, deleteFromWishListQuery, checkInWishlistQuery,
 } from './wishlist';
+
 import {
   getRequestQuery, addRequestQuery, getProductDetailsQuery, checkSelectedProductQuery,
+  getAllRequestsQuery,
+  deleteRequestQuery,
+  declineAllOtherRequests,
+  updateRequestQuery,
+  getIsExchangeableQuery,
+  checkRequestQuery,
+  deleteSuccessRequestQuery,
+  getAllOfferedProductsQuery,
+  getOfferedProductsDetailsQuery,
 } from './Requests';
+
 import {
-  deleteProductQuery, getProductQuery, updateProductQuery, addProductQuery,
+  deleteProductQuery, getProductQuery, updateProductQuery, addProductQuery, deleteExchangedProducts,
 } from './products';
 import { addFeedbackQuery, getUsername } from './website/addFeedback';
 import getFeedbackQuery from './website/getFeedback';
+
+import { getReceiverNotificationsQuery, getSenderNotificationsQuery } from './notifications';
+import { addMessageQuery, getAllMessagesQuery } from './chat';
 
 export {
   getDonationsQuery,
@@ -36,4 +57,21 @@ export {
   addFeedbackQuery,
   getUsername,
   getFeedbackQuery,
+  getAllRequestsQuery,
+  deleteRequestQuery,
+  declineAllOtherRequests,
+  updateRequestQuery,
+  getIsExchangeableQuery,
+  getReceiverNotificationsQuery,
+  getSenderNotificationsQuery,
+  checkRequestQuery,
+  deleteSuccessRequestQuery,
+  getAllOfferedProductsQuery,
+  getOfferedProductsDetailsQuery,
+  signupQuery,
+  checkUserExist,
+  getNameQuery,
+  deleteExchangedProducts,
+  addMessageQuery,
+  getAllMessagesQuery,
 };

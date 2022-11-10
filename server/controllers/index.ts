@@ -9,12 +9,15 @@ import {
 } from './products';
 import {
   getAllRequest, addRequests, deleteRequest, updateRequest,
+  getAllOfferedProducts,
 } from './request';
 import { getAllNotifications, viewItemDetails } from './notifications';
 
 import {
   deleteFromWishList, getAllWishListItems, addToWishList, checkWishList,
 } from './wishList';
+
+import { addMessage, getAllMessages } from './chat';
 
 export {
   signIn, signup, signOut, getStatistics, getFeedback, addFeedback,
@@ -25,4 +28,7 @@ export {
   getAllNotifications, viewItemDetails,
   deleteFromWishList, getAllWishListItems, addToWishList, checkAuth,
   checkWishList,
+  getAllOfferedProducts,
+  addMessage,
+  getAllMessages,
 };

@@ -18,7 +18,11 @@ import { IProducts, ICategories, IData } from './ProductsPageInterfaces';
 import IAuthContextProps from './IAuthContextProps';
 import ICategoryProps from './ICategoryRadioProps';
 import ITypeRadioProps from './ITypeRadioProps';
+import IUserRequest from './IUserRequest';
 import IProductPopup from './IProductsPopup';
+import INotificationProps from './INotificationProps';
+import IWishlistItem from './IWishlistItem';
+import IOfferedProducts from './IOfferedProducts';
 
 export {
   IProduct,
@@ -43,5 +47,9 @@ export {
   IAuthContextProps,
   ICategoryProps,
   ITypeRadioProps,
+  IUserRequest,
   IProductPopup,
+  INotificationProps,
+  IWishlistItem,
+  IOfferedProducts,
 };
