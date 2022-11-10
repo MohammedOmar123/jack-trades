@@ -1,8 +1,9 @@
 import { Chat } from '../../../models';
 
 const updateUnseenMessagesQuery = (
-  receiver_id:number,
-  sender_id:number,
+  receiver_id: number,
+  sender_id: number,
+
 ) => Chat.update(
 
   { seen: true },

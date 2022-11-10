@@ -6,6 +6,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
 import { IChatData, IAllMessages } from '../../interfaces';
 import './style.css';
@@ -50,24 +51,7 @@ const ChatBox: FC<{
     userId: authUserId, image, fullName, socket,
   } = useContext(AuthContext);
 
-  useEffect(() => {
-    // socket
-    try {
-      socket.on('sendMessage', (data) => {
-        setAllMessages((prev: any): any => [...prev, {
-          message: data.message,
-          'receiver.first_name': userName.split(' ')[0],
-          'receiver.image': userImage,
-          'receiver.id': userId,
-          'sender.first_name': fullName.split(' ')[0],
-          'sender.image': image,
-          sender_id: data.senderId,
-        }]);
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  }, [socket]);
+  const { userId: senderId } = useParams();
 
   const getAllMessages = async () => {
     try {
@@ -77,17 +61,6 @@ const ChatBox: FC<{
       console.log(err);
     }
   };
-
-  useEffect(() => {
-    getAllMessages();
-  }, []);
-
-  useEffect(() => {
-    bottomRef.current?.addEventListener('DOMNodeInserted', (event: any) => {
-      const { currentTarget: target } = event;
-      target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
-    });
-  }, [allMessages]);
 
   const handleSubmit = async () => {
     try {
@@ -112,6 +85,46 @@ const ChatBox: FC<{
       console.log(err);
     }
   };
+
+  const updateMessages = async () => {
+    try {
+      await axios.put(`/api/v1/chat/${senderId}/updateUnseenMessages`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllMessages();
+    if (isOpen) updateMessages();
+  }, [isOpen]);
+
+  useEffect(() => {
+    // socket
+    try {
+      socket.on('sendMessage', (data) => {
+        setAllMessages((prev: any): any => [...prev, {
+          message: data.message,
+          'receiver.first_name': userName.split(' ')[0],
+          'receiver.image': userImage,
+          'receiver.id': userId,
+          'sender.first_name': fullName.split(' ')[0],
+          'sender.image': image,
+          sender_id: data.senderId,
+        }]);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    bottomRef.current?.addEventListener('DOMNodeInserted', (event: any) => {
+      const { currentTarget: target } = event;
+      target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+    });
+  }, [allMessages]);
+
   return isOpen ? (
 
     <section id="chat">
