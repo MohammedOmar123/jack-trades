@@ -105,8 +105,8 @@ const SignupForm = () => {
 
         {/* Form section */}
         <main>
+          <Typography variant="h2">Create free account</Typography>
           <Box className="content-2">
-            <Typography variant="h2">Create free account</Typography>
             <Box className="inputs-names-container">
               <Box>
                 <TextField
