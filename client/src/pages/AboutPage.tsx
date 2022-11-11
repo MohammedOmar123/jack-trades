@@ -1,10 +1,13 @@
-/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable react/no-array-index-key */
 import { FormatQuote } from '@mui/icons-material';
 import {
-  Stack, Typography, styled, Container, Box, Avatar,
+  Stack, Typography, styled, Container, Box, Avatar, Button, Modal, TextField,
 } from '@mui/material';
 import axios from 'axios';
-import { FC, useEffect, useState } from 'react';
+import {
+  FC, useContext, useEffect, useState,
+} from 'react';
+import { AuthContext } from '../components/Context/AuthContext';
 
 const CustomTypeograph = styled(Typography)(({ theme }) => ({
   fontFamily: "'Cairo', sans-serif",
@@ -41,16 +44,16 @@ const CustomBox = styled(Box)({
   marginBottom: '2rem',
 });
 
-interface IFeedback__ {
+interface IFeedback {
   nickname: string,
   message: string,
   createdAt: string
 }
 
-const FeedbackCard: FC <{ feedback: IFeedback__ }> = ({ feedback }) => (
+const FeedbackCard: FC <{ feedback: IFeedback }> = ({ feedback }) => (
   <CustomBox>
-    <Box sx={{ width: '70%' }}>
-      <FormatQuote fontSize="large" />
+    <Box sx={{ width: '80%', paddingRight: '3px' }}>
+      <FormatQuote fontSize="large" sx={{ color: '#377ba1' }} />
       <Typography variant="subtitle1" fontWeight="bold">
         {feedback.message}
       </Typography>
@@ -59,22 +62,40 @@ const FeedbackCard: FC <{ feedback: IFeedback__ }> = ({ feedback }) => (
         mt={0.6}
         fontWeight="bolder"
         fontFamily="'Cairo', sans-serif"
+        color="#377ba1"
       >
         {feedback.nickname}
 
       </Typography>
     </Box>
     <Avatar
-      sx={{ margin: '0 auto', width: 80, height: 80 }}
-      alt="Remy Sharp"
-      src="/static/images/avatar/1.jpg"
+      sx={{
+        margin: '0 auto', width: 60, height: 60, backgroundColor: '#377ba1',
+      }}
+      alt={feedback.nickname}
+      src="http://www.google.com"
     />
   </CustomBox>
 );
 
 const AboutPage = () => {
+  const [data, setData] = useState<Array<IFeedback> | null>();
+  const [open, setOpen] = useState(false);
+  const [feedback, setFeedback] = useState('');
+  const [newItem, setNewItem] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [data, setData] = useState<Array<IFeedback__> | null>();
+  const { userId, setUserId } = useContext(AuthContext);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    if (feedback !== '') {
+      axios.post('/api/v1/website/feedback', {
+        message: feedback,
+      });
+      setNewItem(!newItem);
+      setFeedback('');
+      setOpen(false);
+    }
+  };
 
   const fetchFeedbacks = async () => {
     const response = await axios.get('/api/v1/website/feedback');
@@ -83,19 +104,93 @@ const AboutPage = () => {
 
   useEffect(() => {
     fetchFeedbacks();
-  }, []);
+  }, [newItem]);
 
   return (
-    <Container>
-      <Stack alignItems="center" p="3rem">
-        <CustomTypeograph variant="h4">
-          What our little friends say about us
-        </CustomTypeograph>
-      </Stack>
-      <Stack direction="row" flexWrap="wrap" justifyContent="space-around">
-        {data && data.map((feedback) => <FeedbackCard feedback={feedback} />)}
-      </Stack>
-    </Container>
+    <>
+      <Container>
+        <Stack alignItems="center" p="3rem">
+          <CustomTypeograph variant="h4">
+            What our little friends say about us
+          </CustomTypeograph>
+        </Stack>
+        <Stack direction="row" flexWrap="wrap" justifyContent="space-around">
+          {data
+          && data.map(
+            // eslint-disable-next-line max-len
+            (feed, i) => <FeedbackCard key={(new Date()).toString() + i} feedback={feed} />,
+          )}
+        </Stack>
+      </Container>
+      {userId && (
+      <Container>
+        <Button
+          sx={{
+            fontWeight: 'bold',
+            position: 'fixed',
+            bottom: '4rem',
+            right: '4rem',
+            backgroundColor: '#1B4B66',
+            color: '#FFF',
+            padding: '.3rem .5rem',
+            '&:hover': {
+              color: '#1B4B66',
+            },
+          }}
+          onClick={handleOpen}
+        >
+          Add Feedback
+        </Button>
+        <Modal
+          open={open}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box
+            sx={{
+              borderRadius: '1rem',
+              position: 'absolute' as const,
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              bgcolor: 'background.paper',
+              width: { sm: '80%', md: '60%' },
+              boxShadow: 24,
+              p: 4,
+              paddingBottom: '1rem',
+              display: 'flex',
+              flexDirection: 'column',
+              border: feedback === '' ? '2px solid red' : '1px solid white',
+            }}
+          >
+            <TextField
+              fullWidth
+              label="Feedback"
+              multiline
+              rows={4}
+              placeholder="Enter Your Feedback"
+              onChange={(e) => setFeedback(e.currentTarget.value)}
+            />
+            <Button
+              sx={{
+                fontWeight: 'bold',
+                marginTop: '1.5rem',
+                backgroundColor: '#1B4B66',
+                color: '#FFF',
+                padding: '.3rem .5rem',
+                '&:hover': {
+                  color: '#1B4B66',
+                },
+              }}
+              onClick={handleClose}
+            >
+              Submit
+            </Button>
+          </Box>
+        </Modal>
+      </Container>
+      )}
+    </>
   );
 };
 
