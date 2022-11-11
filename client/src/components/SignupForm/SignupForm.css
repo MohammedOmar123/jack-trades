@@ -5,38 +5,85 @@
   width: 52%;
   box-shadow: 0px 8px 32px 16px rgba(68, 170, 238, 0.19);
 }
-/* header container >> login button and already sign up text */
-.header-2 {
+
+.account-part form {
+  height: 100%;
+  width: 100%;
+  padding: 2rem 4rem;
   display: flex;
-  margin-top:30px;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+.header-2 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 10px;
 }
+
+.header-2 p {
+  margin: 0;
+}
+
+.header-2 a {
+  width: auto;
+  height: 100%;
+}
+
+.header-2 a button{
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 1.5rem;
+}
+
+.account-part form main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.account-part form main h2 {
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: rgba(51, 51, 51, 1);
+  text-align: center;
+}
+
 /* Form container */
 .content-2 {
   display: flex;
   flex-direction: column;
-  gap: 30px;
   align-items: center;
-  height: 90%;
-  margin-top: 40px;
-  padding-right: 70px;
+  height: 100%;
+  width: 100%;
+  gap: 1.5rem;
 }
-/* create free account header */
-.content-2 h2 {
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 25px;
-  color: rgba(51, 51, 51, 1);
+
+.content-2 > div {
+  width: 100%;
 }
+
 /* names input container  */
 .inputs-names-container {
-  width: 80%;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 }
 
+.inputs-names-container > div {
+  width: calc(95% / 2);
+}
+
+.inputs-names-container > div > div {
+  width: 100%;
+}
 /* All other inputs  */
 .css-1x51dt5-MuiInputBase-input-MuiInput-input{
   padding: 0px;
