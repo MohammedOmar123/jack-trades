@@ -4,8 +4,8 @@ interface IProductPopup {
     id?: number,
     receiverId?: number,
     handleClose: () => void
-    fetchData?: () => void
-    senderId?:number,
+    setStatus?: (e: string) => void
+    senderId?: number,
 }
 
 export default IProductPopup;

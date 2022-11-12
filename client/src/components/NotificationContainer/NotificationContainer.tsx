@@ -70,7 +70,6 @@ const NotificationContainer:FC = () => {
         <NotificationCard
           item={e}
           key={e.id}
-          fetchData={fetchData}
         />
       ))) : (
         <NoData />

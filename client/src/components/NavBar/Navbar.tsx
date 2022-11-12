@@ -54,8 +54,10 @@ const Navbar: FC = () => {
 
   const fetchMessageNotifications = async () => {
     try {
-      const { data } = await axios.get('/api/v1/chat/getUnseenMessages');
-      setMessageNum(data.length);
+      if (userId) {
+        const { data } = await axios.get('/api/v1/chat/getUnseenMessages');
+        setMessageNum(data.length);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +66,7 @@ const Navbar: FC = () => {
   useEffect(() => {
     fetchMessageNotifications();
     fetchNotifications();
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     socket.on('connect', () => {
