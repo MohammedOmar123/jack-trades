@@ -15,6 +15,7 @@ import {
 import { formatDistance, parseISO } from 'date-fns';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 import { INotificationProps } from '../../interfaces';
 import NotificationPopUp from './NotificationPopUp';
 import { AuthContext } from '../Context/AuthContext';
@@ -99,10 +100,11 @@ const NotificationCard:FC<{ item: INotificationProps
             : (<Avatar>{`${item.first_name[0]} ${item.last_name[0]}` }</Avatar>)
         }
         </div>
-
-        <p className="name">
-          {`${item.first_name} ${item.last_name}` }
-        </p>
+        <Link to={`/profile/${item.receiver_id === userId ? item.sender_id : item.receiver_id}`}>
+          <p className="name">
+            {`${item.first_name} ${item.last_name}` }
+          </p>
+        </Link>
         <p
           className="status"
           style={
