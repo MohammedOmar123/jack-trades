@@ -19,13 +19,14 @@ import { INotificationProps } from '../../interfaces';
 import NotificationPopUp from './NotificationPopUp';
 import { AuthContext } from '../Context/AuthContext';
 
-const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void
+const NotificationCard:FC<{ item: INotificationProps
 }> = ({
-  item, fetchData,
+  item,
 }) => {
   const [isShow, setIsShow] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
+  const [status, setStatus] = useState<string>('');
 
   const { userId, socket, fullName } = useContext(AuthContext);
 
@@ -43,7 +44,7 @@ const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void
         title: response.data,
         confirmButtonColor: '#1b4b66',
       });
-      fetchData();
+      setStatus('success');
       socket.emit('requests', { receiverId: item.sender_id, senderName: fullName, type: 'approve' });
     } catch (error) {
       Swal.fire(error.response.data.message);
@@ -63,16 +64,20 @@ const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void
         title: response.data,
         confirmButtonColor: '#1b4b66',
       });
-      fetchData();
+      setStatus('fail');
     } catch (error) {
       Swal.fire(error.response.data.message);
     }
   };
 
   useEffect(() => {
-    if (item.status === 'success') setMessage('Approved your request');
-    else if (item.status === 'fail') setMessage('Declined your request');
-  }, []);
+    setStatus(item.status);
+  }, [item]);
+
+  useEffect(() => {
+    if (status === 'success') setMessage('Approved your request');
+    else if (status === 'fail') setMessage('Declined your request');
+  }, [status]);
 
   return (
     <div
@@ -101,19 +106,19 @@ const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void
         <p
           className="status"
           style={
-              item.status === 'success'
+              status === 'success'
                 ? { backgroundColor: 'green' }
-                : item.status === 'fail'
+                : status === 'fail'
                   ? { backgroundColor: 'red' }
                   : { backgroundColor: 'orange' }
             }
         >
-          {item.status}
+          {status}
 
         </p>
       </div>
       {/* middle */}
-      { (isShow && item.status === 'pending') || (
+      { (isShow && status === 'pending') || (
       <div className="notification-info">
         <p className="request">{ item.receiver_id !== userId ? message : 'requested your item'}</p>
       </div>
@@ -133,7 +138,7 @@ const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void
       </div>
 
       {/* icons */}
-      { isShow && item.status === 'pending' && (
+      { isShow && status === 'pending' && (
       <div className="icons">
         <div>
           <abbr
@@ -166,7 +171,7 @@ const NotificationCard:FC<{ item: INotificationProps, fetchData: () => void
         </div>
       </div>
       )}
-      <NotificationPopUp senderId={item.sender_id} open={open} handleClose={handleClose} id={item.id} fetchData={fetchData} />
+      <NotificationPopUp senderId={item.sender_id} open={open} handleClose={handleClose} id={item.id} setStatus={setStatus} />
     </div>
   );
 };

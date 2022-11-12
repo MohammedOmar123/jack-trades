@@ -12,7 +12,7 @@ import PopupCard from './PopupCard';
 import { AuthContext } from '../Context/AuthContext';
 
 const NotificationPopUp:FC<IProductPopup> = ({
-  open, handleClose, id, fetchData, senderId,
+  open, handleClose, id, setStatus, senderId,
 }) => {
   const [products, setProducts] = useState<IOfferedProducts[]>([]);
   const [showMessage, setShowMessage] = useState<boolean>(false);
@@ -48,7 +48,7 @@ const NotificationPopUp:FC<IProductPopup> = ({
           senderName: fullName,
         });
 
-        if (fetchData) fetchData();
+        if (setStatus) setStatus('success');
       } else setShowMessage(true);
     } catch (error) {
       Swal.fire(error.response.data.message);
