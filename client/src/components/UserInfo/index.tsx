@@ -26,7 +26,7 @@ const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void }> = ({ info, 
   };
 
   useEffect(() => {
-    if (endpoint !== 'products') setValue(endpoint);
+    if (endpoint === 'wishlist' || endpoint === 'requests') setValue(endpoint);
   }, []);
 
   return (
