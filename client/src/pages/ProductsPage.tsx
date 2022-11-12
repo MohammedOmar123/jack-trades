@@ -56,7 +56,8 @@ const ProductsPage = () => {
 
   useEffect(() => {
     if (!category.length && endpoint !== 'all'
-    && endpoint !== 'and%20more' && categories !== null) {
+    && endpoint !== 'and%20more'
+    && endpoint !== 'and more' && categories !== null) {
       const [defaultCategory] = categories.filter((ele) => {
         if (ele.name.toLowerCase() === endpoint.toLowerCase()) {
           return true;
