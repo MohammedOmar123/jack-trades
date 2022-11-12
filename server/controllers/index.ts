@@ -4,7 +4,6 @@ import {
 import { getStatistics, getFeedback, addFeedback } from './website';
 import { getUserProducts, getUserProfile, getUserWishList } from './user';
 import {
-  getAllProducts,
   getProduct, addProduct, deleteProduct, updateProduct, filterProduct, getCategories,
 } from './products';
 import {
@@ -33,7 +32,6 @@ export {
   getUserProducts,
   getUserProfile,
   getUserWishList,
-  getAllProducts,
   getProduct,
   addProduct,
   deleteProduct,

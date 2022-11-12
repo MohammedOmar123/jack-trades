@@ -23,7 +23,6 @@ const ProductDetailsComponent = ({
   const { id } = useParams();
   const navigate = useNavigate();
   const from = useLocation();
-  // const [open, setOpen] = useState<boolean>(false);
   const { fullName: senderName, userId: authUserId } = useContext(AuthContext);
   const {
     setProductId, handleRequest, setOpen, open, setProductArray,
@@ -34,7 +33,6 @@ const ProductDetailsComponent = ({
   const handleUnauthorizedRequests = (textMessage:string) => {
     Swal.fire({
       icon: 'error',
-      // 'SignIn first to be able to add the item into the wishlist'
       title: errorMessage,
       text: textMessage,
       showConfirmButton: true,

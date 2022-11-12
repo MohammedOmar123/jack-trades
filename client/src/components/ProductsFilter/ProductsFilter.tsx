@@ -1,26 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable max-len */
 import {
   Box, Checkbox, FormControlLabel, FormGroup, Radio, RadioGroup, Typography,
 } from '@mui/material';
-import axios from 'axios';
-import { FC, useEffect, useState } from 'react';
-import { ICategories } from '../../interfaces';
+import { FC } from 'react';
+import { useLocation } from 'react-router-dom';
+import { IProductsFilterProps } from '../../interfaces';
 
-const ProductsFilter: FC<{ category: number[], changeTypeValue: (value: string | null) => void, changeDateValue: (value: string) => void, changeCategoryValue: (value: number, index:number) => void }> = ({
-  category, changeTypeValue, changeDateValue, changeCategoryValue,
+const ProductsFilter: FC<IProductsFilterProps> = ({
+  category, changeTypeValue, changeDateValue, changeCategoryValue, categories,
 }) => {
-  const [categories, setCategories] = useState<Array<ICategories> | null>(null);
-
-  const getCategories = async () => {
-    const { data } = await axios.get('/api/v1/products/categories');
-    setCategories(data.categories);
-  };
-
-  useEffect(() => {
-    getCategories();
-  }, []);
-
+  const location = useLocation().pathname.split('/');
+  const endpoint = location[location.length - 1];
   return (
     <Box
       sx={{
@@ -63,7 +52,9 @@ const ProductsFilter: FC<{ category: number[], changeTypeValue: (value: string |
             <FormControlLabel
               control={(
                 <Checkbox
-                  onChange={(e) => {
+                  defaultChecked={cat.name.toLowerCase()
+                    === endpoint.toLowerCase()}
+                  onChange={() => {
                     const index = category.indexOf(cat.id);
                     changeCategoryValue(cat.id, index);
                   }}
@@ -93,8 +84,20 @@ const ProductsFilter: FC<{ category: number[], changeTypeValue: (value: string |
             marginLeft: '1rem',
           }}
         >
-          <FormControlLabel value="newest" control={<Radio onChange={(e) => changeDateValue(e.currentTarget.value)} />} label="newest" />
-          <FormControlLabel value="oldest" control={<Radio onChange={(e) => changeDateValue(e.currentTarget.value)} />} label="oldest" />
+          <FormControlLabel
+            value="newest"
+            control={(
+              <Radio onChange={(e) => changeDateValue(e.currentTarget.value)} />
+              )}
+            label="newest"
+          />
+          <FormControlLabel
+            value="oldest"
+            control={(
+              <Radio onChange={(e) => changeDateValue(e.currentTarget.value)} />
+)}
+            label="oldest"
+          />
         </RadioGroup>
       </Box>
       <Box sx={{
@@ -115,9 +118,30 @@ const ProductsFilter: FC<{ category: number[], changeTypeValue: (value: string |
             marginLeft: '1rem',
           }}
         >
-          <FormControlLabel value="donation" control={<Radio onChange={(e) => changeTypeValue(e.currentTarget.value)} />} label="donation" />
-          <FormControlLabel value="exchange" control={<Radio onChange={(e) => changeTypeValue(e.currentTarget.value)} />} label="exchange" />
-          <FormControlLabel value="all" control={<Radio onChange={(e) => changeTypeValue(null)} />} label="all" />
+          <FormControlLabel
+            value="donation"
+            control={
+              <Radio onChange={(e) => changeTypeValue(e.currentTarget.value)} />
+            }
+            label="donation"
+          />
+          <FormControlLabel
+            value="exchange"
+            control={(
+              <Radio onChange={(e) => changeTypeValue(e.currentTarget.value)} />
+         )}
+            label="exchange"
+          />
+          <FormControlLabel
+            value="all"
+            control={(
+              <Radio onChange={
+              () => changeTypeValue(null)
+}
+              />
+)}
+            label="all"
+          />
         </RadioGroup>
       </Box>
     </Box>

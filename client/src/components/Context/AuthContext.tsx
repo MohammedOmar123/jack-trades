@@ -10,6 +10,8 @@ export const AuthContext = createContext<IAuthContextProps>({
   fullName: '',
   image: '',
   socket: io(''),
+  category: '',
+  setCategory: () => {},
 });
 
 interface IChildrenProps {
@@ -20,6 +22,7 @@ export const AuthContextProvider = ({ children } : IChildrenProps) => {
   const [userId, setUserId] = useState<number>(0);
   const [fullName, setFullName] = useState<string>('');
   const [image, setImage] = useState<string>('');
+  const [category, setCategory] = useState<string>('');
   const socket = io('http://localhost:8000');
   useEffect(() => {
     axios.get('/api/v1/account/').then((response) => {
@@ -44,7 +47,13 @@ export const AuthContextProvider = ({ children } : IChildrenProps) => {
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     <AuthContext.Provider value={{
-      userId, setUserId, fullName, image, socket,
+      userId,
+      setUserId,
+      fullName,
+      image,
+      socket,
+      category,
+      setCategory,
     }}
     >
       {children}

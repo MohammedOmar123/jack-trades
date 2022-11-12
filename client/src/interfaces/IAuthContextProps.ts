@@ -5,6 +5,8 @@ interface IAuthContextProps {
   userId: number,
   fullName: string,
   image:string
-  socket :Socket
+  socket :Socket,
+  category:string
+  setCategory:(category:string) => void,
 }
 export default IAuthContextProps;
