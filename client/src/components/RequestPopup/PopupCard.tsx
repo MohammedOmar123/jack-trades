@@ -2,6 +2,7 @@ import { FC, useState, useContext } from 'react';
 import {
   ImageListItem, ImageListItemBar,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { UserProduct } from '../../interfaces';
 import { ImageContext } from '../Context/ImageContext';
 import './Popup.css';
@@ -32,6 +33,7 @@ const PopupCard:FC<{ item : UserProduct }> = ({ item }) => {
       />
       <ImageListItemBar
         title={item.title}
+        subtitle={<Link to={`/product/${item.id}/details`}>See Details</Link>}
       />
     </ImageListItem>
   );

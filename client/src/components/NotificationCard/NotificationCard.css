@@ -124,6 +124,11 @@
   width: 33%;
 }
 
+.user-info-card a{
+  text-decoration: none;
+  color: var(--dark-blue)
+}
+
 /*  single icon  */
 
 .icons div{

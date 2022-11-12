@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, {
+  createContext, useContext, useEffect, useState,
+} from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { IImageContext, IProviderProps } from '../../interfaces';
@@ -20,11 +22,12 @@ export const ImageContextProvider: React.FC<IProviderProps> = ({
   children,
   gallery,
 }: IProviderProps) => {
-  const [mainImage, setMainImage] = useState(gallery[0]);
+  const [mainImage, setMainImage] = useState<string>('');
   const [productArray, setProductArray] = useState<number[]>([]);
   const [productId, setProductId] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
   const { socket } = useContext(AuthContext);
+
   const handleRequest = async (receiverId:number, senderName:string) => {
     try {
       const alert = await Swal.fire({
@@ -53,6 +56,11 @@ export const ImageContextProvider: React.FC<IProviderProps> = ({
       await Swal.fire(error.response.data.message);
     }
   };
+
+  useEffect(() => {
+    setMainImage(gallery[0]);
+    setOpen(false);
+  }, [gallery]);
 
   return (
   // eslint-disable-next-line react/jsx-no-constructed-context-values

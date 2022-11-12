@@ -65,7 +65,7 @@ const RequestPopup:FC<IProductPopup> = ({ open, handleClose, receiverId }) => {
       }}
     >
       {
-        isLoading ? <Loading className="loading" />
+        isLoading ? <div><Loading className="loading" /></div>
           : products.length ? (
             <ImageList
               sx={{
@@ -79,7 +79,7 @@ const RequestPopup:FC<IProductPopup> = ({ open, handleClose, receiverId }) => {
             >
               <ImageListItem key="Subheader" cols={3}>
                 <ListSubheader component="div">
-                  Choose products for exchange
+                  Choose at least one of your products for exchange
                 </ListSubheader>
               </ImageListItem>
               {products.map((item) => (

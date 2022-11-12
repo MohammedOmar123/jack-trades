@@ -194,7 +194,11 @@ const ProductDetailsComponent = ({
         </Box>
         <ImagesList />
       </Box>
-      <RequestPopup open={open} handleClose={handleClose} receiverId={userId} />
+      <RequestPopup
+        open={open}
+        handleClose={handleClose}
+        receiverId={userId}
+      />
     </Box>
   );
 };

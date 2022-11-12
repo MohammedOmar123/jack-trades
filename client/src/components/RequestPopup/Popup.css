@@ -43,3 +43,9 @@
     cursor: pointer;
     border-radius: 5px;
 }
+
+.popupModal a{
+    color: rgb(105, 146, 234);
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}

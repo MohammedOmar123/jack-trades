@@ -8,6 +8,7 @@ import './NotificationCard.css';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import PersonIcon from '@mui/icons-material/Person';
 import Avatar from '@mui/material/Avatar';
 import {
   FC, useState, useContext, useEffect,
@@ -15,6 +16,7 @@ import {
 import { formatDistance, parseISO } from 'date-fns';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 import { INotificationProps } from '../../interfaces';
 import NotificationPopUp from './NotificationPopUp';
 import { AuthContext } from '../Context/AuthContext';
@@ -99,10 +101,12 @@ const NotificationCard:FC<{ item: INotificationProps
             : (<Avatar>{`${item.first_name[0]} ${item.last_name[0]}` }</Avatar>)
         }
         </div>
+        <Link to={`/profile/${item.receiver_id === userId ? item.sender_id : item.receiver_id}`}>
+          <p className="name">
+            {`${item.first_name} ${item.last_name}` }
+          </p>
+        </Link>
 
-        <p className="name">
-          {`${item.first_name} ${item.last_name}` }
-        </p>
         <p
           className="status"
           style={
@@ -141,6 +145,18 @@ const NotificationCard:FC<{ item: INotificationProps
       { isShow && status === 'pending' && (
       <div className="icons">
         <div>
+          <Link to={`/profile/${item.receiver_id === userId ? item.sender_id : item.receiver_id}`}>
+
+            <abbr
+              title="Visit Profile"
+              role="button"
+            >
+              <PersonIcon />
+
+            </abbr>
+
+          </Link>
+
           <abbr
             title="Decline"
             role="button"
