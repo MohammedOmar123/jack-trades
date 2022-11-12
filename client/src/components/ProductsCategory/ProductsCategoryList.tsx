@@ -5,16 +5,14 @@ import {
 import CircularProgress from '@mui/material/CircularProgress';
 import { Link } from 'react-router-dom';
 import ProductsCategoryCard from './ProductsCategoryCard';
-// import SpinnerLoading from '../Loading/Loading';
-import { IProducts } from '../../interfaces';
+import { IProductsCategoryProps } from '../../interfaces';
 
-// eslint-disable-next-line max-len
-const ProductsCategory:FC <{ products: IProducts[], totalProducts: number, totalPages: number, loading: boolean, changeOffsetValue: (value: number) => void }> = ({
+const ProductsCategory:FC <IProductsCategoryProps> = ({
   products,
-  totalProducts,
   totalPages,
   loading,
   changeOffsetValue,
+  productsCount,
 }) => (
   <Box
     sx={{
@@ -32,7 +30,7 @@ const ProductsCategory:FC <{ products: IProducts[], totalProducts: number, total
       <ListSubheader sx={{ fontWeight: '600' }} component="p">
         {products.length === 0
           ? 'No Item Found'
-          : `Showing 6 of ${totalProducts} items`}
+          : `Showing ${products.length} of ${productsCount} items`}
       </ListSubheader>
     </ImageListItem>
     <ImageList
@@ -49,7 +47,6 @@ const ProductsCategory:FC <{ products: IProducts[], totalProducts: number, total
           <ProductsCategoryCard product={product} />
         </Link>
       )) : (
-        // eslint-disable-next-line max-len
         <Box
           sx={{
             display: 'flex',

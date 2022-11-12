@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable max-len */
 import {
   FC, useEffect, useRef, useState, useContext,
 } from 'react';
@@ -8,7 +7,7 @@ import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
-import { IChatData, IAllMessages } from '../../interfaces';
+import { IChatData, IAllMessages, IChatBoxProps } from '../../interfaces';
 import './style.css';
 
 // handle message
@@ -31,18 +30,8 @@ const ChatMessage = ({
 );
 
 // start FC
-const ChatBox: FC<{
-  isOpen: boolean,
-  handleIsOpen: (chatOpen: boolean) => void,
-  userId: string | undefined,
-  userImage: string,
-  userName: string,
-}> = ({
-  isOpen,
-  handleIsOpen,
-  userId,
-  userImage,
-  userName,
+const ChatBox: FC<IChatBoxProps> = ({
+  isOpen, handleIsOpen, userId, userImage, userName,
 }) => {
   const bottomRef = useRef<HTMLInputElement | null >(null);
   const [inputValue, setInputValue] = useState<string>('');
@@ -65,7 +54,10 @@ const ChatBox: FC<{
   const handleSubmit = async () => {
     try {
       if (!inputValue) throw new Error('input is required');
-      await axios.post(`/api/v1/chat/${userId}/addMessage`, { message: inputValue });
+      await axios.post(
+        `/api/v1/chat/${userId}/addMessage`,
+        { message: inputValue },
+      );
       socket.emit('sendTextMessage', {
         senderId: authUserId,
         receiverId: userId,
@@ -160,7 +152,12 @@ const ChatBox: FC<{
           handleSubmit();
         }}
       >
-        <input type="text" placeholder="Aa" value={inputValue} onChange={(e) => { setInputValue(e.target.value); }} />
+        <input
+          type="text"
+          placeholder="Aa"
+          value={inputValue}
+          onChange={(e) => { setInputValue(e.target.value); }}
+        />
         <button
           type="submit"
         >

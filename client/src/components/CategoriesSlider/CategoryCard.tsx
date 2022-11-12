@@ -6,7 +6,7 @@ import { CategoriesTypes } from '../../interfaces';
 import { Image } from '../index';
 
 const CategoriesCard:FC<{ category: CategoriesTypes }> = ({ category }) => (
-  <Link to="/products" className="category">
+  <Link to={`/products/${category.name}`} className="category">
     <Box
       sx={{
         backgroundImage: `url(${category.image})`,

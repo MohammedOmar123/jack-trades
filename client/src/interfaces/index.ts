@@ -25,6 +25,9 @@ import IWishlistItem from './IWishlistItem';
 import IOfferedProducts from './IOfferedProducts';
 import IChatData from './IChatData';
 import IAllMessages from './IAllMessages';
+import IProductsCategoryProps from './ProductsCategory';
+import IProductsFilterProps from './IProductsFilterProps';
+import IChatBoxProps from './IChatBoxProps';
 
 export {
   IProduct,
@@ -56,4 +59,7 @@ export {
   IOfferedProducts,
   IChatData,
   IAllMessages,
+  IProductsCategoryProps,
+  IProductsFilterProps,
+  IChatBoxProps,
 };

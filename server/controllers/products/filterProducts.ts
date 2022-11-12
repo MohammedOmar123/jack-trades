@@ -40,10 +40,10 @@ const getAllProducts = async (req: Request, res: Response, next: NextFunction): 
     const products = await getAllProductsQuery({
       limit, offset, date, args,
     });
-
     res.json({
       totalPages: Math.ceil(products.count / +limit),
       products: products.rows,
+      productsCount: products.count,
     });
   } catch (error) {
     next(error);

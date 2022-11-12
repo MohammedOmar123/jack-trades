@@ -14,4 +14,5 @@ export interface IData {
   totalPages: number;
   products: IProducts[];
   categories: ICategories[];
+  productsCount:number,
 }
