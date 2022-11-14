@@ -10,7 +10,7 @@ const authentication = async (req: IRequestPayload, res: Response, next: NextFun
       const payload: IUserPayload = await verifyToken(token);
       req.user = payload;
       next();
-    }
+    } else throw new Error();
   } catch (error) {
     const err = new CustomError(401, 'Unauthorized');
     next(err);
