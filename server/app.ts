@@ -24,14 +24,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 ioHandler(io);
 
-app.use('/api/v1', router);
 app.set('port', PORT || 8000);
+app.use('/api/v1', router);
 
 if (NODE_ENV === 'production') {
   app.use(express.static(join(__dirname, '..', 'client', 'build')));
 
-  app.get('*', (req, res) => {
-    res.sendFile(join(__dirname, '..', 'client', 'build'));
+  app.get('/*', (req, res) => {
+    res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
   });
 }
 
