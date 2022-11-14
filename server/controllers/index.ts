@@ -2,7 +2,9 @@ import {
   signIn, signup, signOut, checkAuth,
 } from './account';
 import { getStatistics, getFeedback, addFeedback } from './website';
-import { getUserProducts, getUserProfile, getUserWishList } from './user';
+import {
+  getUserProducts, getUserProfile, getUserWishList, updateUserProfile,
+} from './user';
 import {
   getProduct, addProduct, deleteProduct, updateProduct, filterProduct, getCategories,
 } from './products';
@@ -56,4 +58,5 @@ export {
   updateUnseenMessages,
   getUnseenNotifications,
   updateNotifications,
+  updateUserProfile,
 };

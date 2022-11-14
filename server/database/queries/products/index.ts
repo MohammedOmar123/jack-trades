@@ -7,6 +7,7 @@ import getCategoriesQuery from './getCategories';
 import updateProductQuery from './updateProductQuery';
 import addProductQuery from './addProductQuery';
 import deleteExchangedProducts from './deleteExhchangedQuery';
+import updateUserProfileQuery from '../user/updateUserProfileQuery';
 
 export {
   deleteProductQuery,
@@ -17,4 +18,5 @@ export {
   getCategoriesQuery,
   addProductQuery,
   deleteExchangedProducts,
+  updateUserProfileQuery,
 };
