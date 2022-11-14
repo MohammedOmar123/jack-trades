@@ -6,7 +6,7 @@ import {
   checkUserExist,
   getNameQuery,
 } from './account';
-import getUserProfileQuery from './user/getUserProfile';
+import { getUserProfileQuery, updateUserProfileQuery } from './user';
 import getUserProductsQuery from './getUserProductsQuery';
 
 import {
@@ -110,4 +110,5 @@ export {
   updateReceiverNotifications,
   updateSenderNotifications,
   deleteProductFromAllWishList,
+  updateUserProfileQuery,
 };
