@@ -6,6 +6,7 @@ import validateCheckRequest from './requestValidation';
 import validateAddRequest from './validateAddRequest';
 import updateRequestValidation from './updateRequest';
 import validateChat from './chatValidation';
+import updateUserprofileValidation from './updateUserProfileValidation';
 
 export {
   validateSighup,
@@ -16,4 +17,5 @@ export {
   validateAddRequest,
   validateChat,
   updateRequestValidation,
+  updateUserprofileValidation,
 };
