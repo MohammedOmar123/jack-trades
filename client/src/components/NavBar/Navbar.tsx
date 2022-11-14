@@ -15,7 +15,9 @@ import {
   NotificationsNone,
   PersonOutline, KeyboardArrowDown,
 } from '@mui/icons-material/';
-import { Link, useNavigate } from 'react-router-dom';
+import {
+  Link, useNavigate,
+} from 'react-router-dom';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
@@ -23,7 +25,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import ButtonComponent from '../Button/Button';
 import { links } from '../../StaticData';
-import { AuthContext } from '../Context/AuthContext';
+import { AuthContext } from '../Context';
 import MessageNotification from './MessageNotification';
 
 const Navbar: FC = () => {
@@ -38,7 +40,6 @@ const Navbar: FC = () => {
   const [openMessage, setOpenMessage] = useState<boolean>(false);
   const [messageNum, setMessageNum] = useState<number>(0);
   // start socket
-
   const fetchNotifications = async () => {
     try {
       if (userId) {
@@ -91,6 +92,10 @@ const Navbar: FC = () => {
         default: toast('you have new notification');
           break;
       }
+    });
+
+    socket.on('sendMessage', () => {
+      setMessageNum(messageNum + 1);
     });
   }, [userId]);
 

@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children } : IChildrenProps) => {
   const [userId, setUserId] = useState<number>(0);
   const [fullName, setFullName] = useState<string>('');
   const [image, setImage] = useState<string>('');
-  const socket = io('http://localhost:8000');
+  const socket = io(`${process.env.REACT_APP_BASE_URL}`);
   useEffect(() => {
     axios.get('/api/v1/account/').then((response) => {
       if (response.status === 200) {
