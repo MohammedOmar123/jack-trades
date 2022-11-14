@@ -28,10 +28,10 @@ app.use('/api/v1', router);
 app.set('port', PORT || 8000);
 
 if (NODE_ENV === 'production') {
-  app.use(express.static(join(__dirname, '..', 'client', 'build')));
+  app.use(express.static(join(__dirname, '..', 'client', 'build', 'index.html')));
 
   app.get('*', (req, res) => {
-    res.sendFile(join(__dirname, '..', 'client', 'build'));
+    res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
   });
 }
 
