@@ -5,8 +5,9 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import axios from 'axios';
+import { Avatar } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import { AuthContext } from '../Context/AuthContext';
+import { AuthContext } from '../Context';
 import { IChatData, IAllMessages, IChatBoxProps } from '../../interfaces';
 import './style.css';
 
@@ -16,18 +17,36 @@ const ChatMessage = ({
   receiverImage,
   userId,
   senderId,
-  senderName,
   receiverName,
   message,
-}: IChatData) => (
-  <div className={userId === senderId ? 'chatMessage' : 'chatMessage active'}>
-    <img
-      src={userId === senderId ? senderImage : receiverImage}
-      alt={userId === senderId ? senderName : receiverName}
-    />
-    <p className="message">{message}</p>
-  </div>
-);
+}: IChatData) => {
+  const { fullName } = useContext(AuthContext);
+  return (
+    <div className={userId === senderId ? 'chatMessage' : 'chatMessage active'}>
+      {
+    // eslint-disable-next-line no-nested-ternary
+    userId === senderId ? senderImage
+      ? <img src={senderImage} alt="senderImage" />
+      : (
+        <Avatar sx={{ bgcolor: '#B9E0FF' }} className="user-img">
+          {fullName[0]}
+          {fullName.split(' ')[1][0]}
+
+        </Avatar>
+      )
+      : receiverImage ? <img src={receiverImage} alt="receiverImage" />
+        : (
+          <Avatar sx={{ bgcolor: '#B9E0FF' }} className="user-img">
+            {receiverName[0]}
+            { receiverName.split(' ')[1][0] }
+          </Avatar>
+        )
+  }
+
+      <p className="message">{message}</p>
+    </div>
+  );
+};
 
 // start FC
 const ChatBox: FC<IChatBoxProps> = ({
@@ -36,12 +55,12 @@ const ChatBox: FC<IChatBoxProps> = ({
   const bottomRef = useRef<HTMLInputElement | null >(null);
   const [inputValue, setInputValue] = useState<string>('');
   const [allMessages, setAllMessages] = useState<[IAllMessages] | null>(null);
+
   const {
     userId: authUserId, image, fullName, socket,
   } = useContext(AuthContext);
 
   const { userId: senderId } = useParams();
-
   const getAllMessages = async () => {
     try {
       const response = await axios.get(`/api/v1/chat/${userId}`);
@@ -122,10 +141,17 @@ const ChatBox: FC<IChatBoxProps> = ({
     <section id="chat">
       <div className="header">
         <div className="user-info-chat">
-          <img
-            src={userImage}
-            alt={userName}
-          />
+          {userImage ? (
+            <img
+              src={userImage}
+              alt={userName}
+            />
+          ) : (
+            <Avatar sx={{ bgcolor: '#B9E0FF' }} className="user-img">
+              {userName[0]}
+              {userName.split(' ')[1][0]}
+            </Avatar>
+          )}
           <h3>{userName}</h3>
         </div>
         <CloseIcon onClick={() => handleIsOpen(false)} />
