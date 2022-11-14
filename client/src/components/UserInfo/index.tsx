@@ -9,13 +9,15 @@ import {
 } from '@mui/material';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { UserInfoTypes } from '../../interfaces';
-import { Image, Button } from '../index';
+import { Image, Button, Popup } from '../index';
 import { AuthContext } from '../Context/AuthContext';
 
 const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void }> = ({ info, handleIsOpen }) => {
   const [value, setValue] = useState('products');
   const navigate = useNavigate();
   const { userId } = useContext(AuthContext);
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+
   const location = useLocation().pathname.split('/');
   const endpoint = location[location.length - 1];
 
@@ -24,7 +26,9 @@ const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void }> = ({ info, 
     if (newValue === 'products') navigate(`/profile/${info.id}`);
     else navigate(newValue);
   };
-
+  const OpenPopup = () => {
+    setIsPopupOpen(true);
+  };
   useEffect(() => {
     if (endpoint === 'wishlist' || endpoint === 'requests') setValue(endpoint);
   }, []);
@@ -55,7 +59,7 @@ const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void }> = ({ info, 
       </Typography>
       <Box className="user-nav">
         <Box>
-
+          <Popup isOpen={isPopupOpen} />
           <Tabs
             value={value}
             onChange={handleChange}
@@ -80,7 +84,9 @@ const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void }> = ({ info, 
           </Link>
           <Button style={{
             text: 'Edit Profile',
+            handleClick: OpenPopup,
             classes: 'userInfoBtn',
+
           }}
           />
         </Box>

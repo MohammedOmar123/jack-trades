@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import {
   FC, useState, useEffect, useContext,
 } from 'react';
@@ -8,7 +8,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { UserInfo, Loading } from '../components';
-import { UserProduct, UserInfoTypes } from '../interfaces';
+import { UserInfoTypes } from '../interfaces';
 import { AuthContext } from '../components/Context/AuthContext';
 import ChatBox from '../components/Chat';
 
