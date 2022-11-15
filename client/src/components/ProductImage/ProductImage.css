@@ -8,3 +8,7 @@
     height: 100%;
     object-fit: contain;
 }
+
+.swal2-container {
+  z-index: 1000000;
+}

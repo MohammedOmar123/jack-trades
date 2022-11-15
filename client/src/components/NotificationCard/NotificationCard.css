@@ -142,3 +142,7 @@
   color: rgb(102, 102, 102);
   font-size: 13px;
 }
+
+.swal2-container {
+  z-index: 1000000;
+}
