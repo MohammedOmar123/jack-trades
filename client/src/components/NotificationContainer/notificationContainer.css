@@ -2,6 +2,7 @@
   width: 80%;
   margin: 0 auto;
   margin-top: 2rem;
+  min-height: 500px;
 }
 
 .notification-header .notification {
