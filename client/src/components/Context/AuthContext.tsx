@@ -21,25 +21,30 @@ export const AuthContextProvider = ({ children } : IChildrenProps) => {
   const [fullName, setFullName] = useState<string>('');
   const [image, setImage] = useState<string>('');
   const socket = io(`${process.env.REACT_APP_BASE_URL}`);
-  useEffect(() => {
-    axios.get('/api/v1/account/').then((response) => {
-      if (response.status === 200) {
+
+  const fetchUserData = async () => {
+    try {
+      const { data: { user } } = await axios.get('/api/v1/account/');
+      if (user) {
         const {
           id, firstName, lastName, userImage,
-        } = response.data;
+        } = user;
         setUserId(id);
         setFullName(`${firstName} ${lastName}`);
         setImage(userImage);
       }
-    }).catch((error) => {
+    } catch (error) {
       if (error.response.status !== 401) {
         Swal.fire({
-          icon: 'error',
           title: 'Oops...',
           text: 'Something went wrong!',
         });
       }
-    });
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
   }, []);
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values

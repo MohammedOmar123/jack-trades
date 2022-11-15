@@ -28,16 +28,15 @@ const ProductDetailsComponent = ({
     setProductId, handleRequest, setOpen, open, setProductArray,
   } = useContext(ImageContext);
 
-  const errorMessage = 'Oops...';
+  const errorMessage = 'Nope 😡';
 
   const handleUnauthorizedRequests = (textMessage:string) => {
     Swal.fire({
-      icon: 'error',
       title: errorMessage,
       text: textMessage,
       showConfirmButton: true,
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#1B4B66',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, SigIn',
     }).then((result) => {
@@ -47,6 +46,19 @@ const ProductDetailsComponent = ({
           replace: true,
         });
       }
+    });
+  };
+
+  const handleWishListRequests = (
+    titleSwl:string,
+    message:string,
+  ) => {
+    Swal.fire({
+      title: titleSwl,
+      text: message,
+      showConfirmButton: false,
+      timer: 1500,
+      position: 'center',
     });
   };
 
@@ -65,10 +77,12 @@ const ProductDetailsComponent = ({
   };
 
   const checkWishList = async () => {
-    const response = await axios.get(`/api/v1/wishlist/${id}`);
-    if (response.data === true) {
-      setFavIcon('Favorite');
-      setText('Remove from wishlist');
+    if (authUserId) {
+      const response = await axios.get(`/api/v1/wishlist/${id}`);
+      if (response.data === true) {
+        setFavIcon('Favorite');
+        setText('Remove from wishlist');
+      }
     }
   };
 
@@ -77,33 +91,21 @@ const ProductDetailsComponent = ({
     setProductId(productId);
   }, []);
 
-  const handleWishListRequests = (
-    titleSwl:string,
-    message:string,
-    icon:'success' | 'error',
-  ) => {
-    Swal.fire({
-      title: titleSwl,
-      text: message,
-      icon,
-      showConfirmButton: false,
-      timer: 1500,
-      position: 'center',
-    });
-  };
-
   const addToWishList = async () => {
     try {
-      await axios.post(`/api/v1/wishlist/${id}`);
-      setFavIcon('Favorite');
-      setText('Remove from wishlist');
+      if (authUserId) {
+        await axios.post(`/api/v1/wishlist/${id}`);
+        setFavIcon('Favorite');
+        setText('Remove from wishlist');
+      } else {
+        handleUnauthorizedRequests(
+          'SignIn first to be able to add the item into the wishlist',
+        );
+      }
     } catch (error) {
       const { message } = error.response.data;
       if (message === 'Unauthorized') {
-        // eslint-disable-next-line max-len
-        handleUnauthorizedRequests('SignIn first to be able to add the item into the wishlist');
-      } else {
-        handleWishListRequests(errorMessage, message, 'error');
+        handleWishListRequests(errorMessage, message);
       }
     }
   };
@@ -114,7 +116,7 @@ const ProductDetailsComponent = ({
       setFavIcon('FavoriteBorder');
     } catch (error) {
       const { message } = error.response.data;
-      handleWishListRequests(errorMessage, message, 'error');
+      handleWishListRequests(errorMessage, message);
     }
   };
 

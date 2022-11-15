@@ -1,6 +1,6 @@
 import request from "supertest";
 import sequelize from "../server/database/connection";
-import {app} from "../server/app";
+import { app } from "../server/app";
 import buildTables from "../server/database/build";
 
 beforeAll(() => buildTables());
@@ -458,15 +458,15 @@ describe("check Auth route tests", () => {
       .set('Cookie', token)
       .expect(200)
       .expect((res) => {
-        expect(res.text).toEqual("{\"id\":1,\"lastName\":\"John\",\"firstName\":\"Smith\",\"userImage\":\"https://randomuser.me/api/portraits/lego/8.jpg\"}");
+        expect(res.text).toEqual("{\"user\":{\"id\":1,\"lastName\":\"Smith\",\"firstName\":\"John\",\"userImage\":\"https://randomuser.me/api/portraits/lego/8.jpg\"}}");
       });
   });
   test("Should return 401 and the Unauthorized if the user doesn't signIn", async () => {
     await request(app)
       .get("/api/v1/account/")
-      .set('Cookie', token+"Mohammed")
-      .expect(401)
-      .expect({ message: "Unauthorized" })
+      .set('Cookie', token + "Mohammed")
+      .expect(200)
+      .expect({ user: null })
   });
 });
 

@@ -22,3 +22,7 @@ font-size: 25px;
   margin-bottom: 15px;
   margin: auto;
 }
+
+.swal2-container {
+  z-index: 1000000;
+}
