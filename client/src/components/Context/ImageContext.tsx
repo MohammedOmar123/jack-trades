@@ -5,6 +5,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { IImageContext, IProviderProps } from '../../interfaces';
 import { AuthContext } from './AuthContext';
+import './swal.css';
 
 export const ImageContext = createContext<IImageContext>({
   setMainImage: () => {},
