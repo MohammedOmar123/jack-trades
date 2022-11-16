@@ -58,3 +58,70 @@
   font-size: 1.2rem;
   color: #d0d0d0;
 }
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .signup-container {
+    width: 80%;
+  }
+
+  .content h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .signup-container {
+    width: 90%;
+  }
+
+  .content h1 {
+    font-size: 2rem;
+    width: 100%;
+  }
+  
+  .content p {
+    font-size: 1rem;
+  }
+
+  .link-home p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .signup-container {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .welcome-part {
+    width: 100%;
+    gap: 2rem;
+    height: auto;
+    padding: 1rem 2.5rem;
+  }
+
+  .content {
+    display: none;
+  }
+
+  .content h1 {
+    font-size: 2rem;
+    width: 100%;
+  }
+  
+  .content p {
+    font-size: 1rem;
+  }
+
+  .link-home {
+    padding: 0;
+  }
+
+  .link-home p {
+    font-size: 1.2rem;
+  }
+}

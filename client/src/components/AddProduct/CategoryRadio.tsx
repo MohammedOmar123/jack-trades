@@ -1,58 +1,58 @@
-import { FC, ChangeEvent } from 'react';
+import { FC } from 'react';
 import {
   Radio, RadioGroup, FormControlLabel,
-  FormControl, FormLabel,
+  FormControl, FormLabel, FormHelperText,
 } from '@mui/material';
 
 import { ICategoryProps } from '../../interfaces';
 
-const CategoryRadio:FC<ICategoryProps> = ({ setCategory }) => {
-  const handleChange = (e:ChangeEvent) => {
-    setCategory(e.target.id);
-  };
-
-  return (
-    <FormControl className="category">
-      <FormLabel id="demo-row-radio-buttons-group-label">Category</FormLabel>
-      <RadioGroup
-        row
-        aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
-        onChange={handleChange}
-      >
-        <FormControlLabel
-          value="Clothes"
-          control={<Radio id="1" />}
-          label="Clothes"
-        />
-        <FormControlLabel
-          value="Furniture"
-          control={<Radio id="2" />}
-          label="Furniture"
-        />
-        <FormControlLabel
-          value="Books"
-          control={<Radio id="3" />}
-          label="Books"
-        />
-        <FormControlLabel
-          value="Accessories"
-          control={<Radio id="4" />}
-          label="Accessories"
-        />
-        <FormControlLabel
-          value="Electronics"
-          control={<Radio id="5" />}
-          label="Electronics"
-        />
-        <FormControlLabel
-          value="Other"
-          control={<Radio id="6" />}
-          label="Other"
-        />
-      </RadioGroup>
-    </FormControl>
-  );
-};
-
+const CategoryRadio:FC<ICategoryProps> = ({ formik }) => (
+  <FormControl
+    className="category"
+    error={formik.touched.category_id && !!formik.errors.category_id}
+  >
+    <FormLabel id="demo-row-radio-buttons-group-label">Category</FormLabel>
+    <RadioGroup
+      row
+      aria-labelledby="demo-row-radio-buttons-group-label"
+      name="category_id"
+      onChange={formik.handleChange}
+      value={formik.values.category_id}
+    >
+      <FormControlLabel
+        value="1"
+        control={<Radio id="1" />}
+        label="Clothes"
+      />
+      <FormControlLabel
+        value="2"
+        control={<Radio id="2" />}
+        label="Furniture"
+      />
+      <FormControlLabel
+        value="3"
+        control={<Radio id="3" />}
+        label="Books"
+      />
+      <FormControlLabel
+        value="4"
+        control={<Radio id="4" />}
+        label="Accessories"
+      />
+      <FormControlLabel
+        value="5"
+        control={<Radio id="5" />}
+        label="Electronics"
+      />
+      <FormControlLabel
+        value="6"
+        control={<Radio id="6" />}
+        label="Other"
+      />
+    </RadioGroup>
+    {formik.touched.category_id && formik.errors.category_id ? (
+      <FormHelperText>{formik.errors.category_id}</FormHelperText>
+    ) : null}
+  </FormControl>
+);
 export default CategoryRadio;
