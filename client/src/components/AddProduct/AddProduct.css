@@ -45,6 +45,7 @@
 .newProduct .images{
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
     flex-wrap: wrap;
     width: 80%;
     margin: 2rem auto;
@@ -54,13 +55,14 @@
 
 .newProduct .upload-img{
     border: solid var(--dark-blue) 0.5px;
-    width: 15%;
-    height: 5.5rem;
+    width: 17%;
+    height: 6rem;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     background-size: cover;
+    margin-bottom: 1rem;
 }
 
 .newProduct button {

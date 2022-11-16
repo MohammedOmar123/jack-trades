@@ -18,7 +18,6 @@
 }
 
 .buttonsComp-container {
-  width: fit-content;
   margin-bottom: 50px;
   display: flex;
   gap: 10px;

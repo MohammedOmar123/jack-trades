@@ -75,53 +75,41 @@ const Signin:FC = () => {
       </Box>
 
       {/* Form section */}
-      <Box className="form-container-signin">
+      <main>
         <Typography variant="h3">
-          SignIn
+          Login
         </Typography>
         <form onSubmit={(e) => formik.handleSubmit(e)}>
-          <Box className="inputs-container">
-            <TextField
-              className="inputs"
-              InputProps={{
-                style: {
-                  padding: '10px',
-                },
-              }}
-              id="email"
-              name="email"
-              label="Email"
-              variant="standard"
-              onChange={formik.handleChange}
-              error={formik.touched.email
+          <TextField
+            className="inputs"
+            id="email"
+            name="email"
+            label="Email"
+            variant="standard"
+            onChange={formik.handleChange}
+            error={formik.touched.email
                     && Boolean(formik.errors.email)}
-              helperText={formik.touched.email
+            helperText={formik.touched.email
                     && formik.errors.email}
-            />
-            <TextField
-              className="inputs"
-              InputProps={{
-                style: {
-                  padding: '10px',
-                },
-              }}
-              type="password"
-              id="password"
-              name="password"
-              label="Password"
-              variant="standard"
-              onChange={formik.handleChange}
-              error={formik.touched.password
+          />
+          <TextField
+            className="inputs"
+            type="password"
+            id="password"
+            name="password"
+            label="Password"
+            variant="standard"
+            onChange={formik.handleChange}
+            error={formik.touched.password
                     && Boolean(formik.errors.password)}
-              helperText={formik.touched.password
+            helperText={formik.touched.password
                     && formik.errors.password}
-            />
-            { loading ? <Loading className="loading" />
-              : <button type="submit" className="submit-login"> Login </button>}
+          />
+          { loading ? <Loading className="loading" />
+            : <button type="submit" className="submit-login"> Login </button>}
 
-          </Box>
         </form>
-      </Box>
+      </main>
     </Box>
   );
 };

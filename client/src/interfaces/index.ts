@@ -29,6 +29,8 @@ import IProductsCategoryProps from './ProductsCategory';
 import IProductsFilterProps from './IProductsFilterProps';
 import IChatBoxProps from './IChatBoxProps';
 import IProfilePopupProps from './IProfilePopupProps';
+import IFormik from './IFormik';
+import IImages from './IImages';
 
 export {
   IProduct,
@@ -64,4 +66,6 @@ export {
   IProductsFilterProps,
   IChatBoxProps,
   IProfilePopupProps,
+  IFormik,
+  IImages,
 };
