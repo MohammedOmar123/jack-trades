@@ -18,3 +18,4 @@ export { default as NotificationCard }
   from './NotificationCard/NotificationCard';
 export { default as NotificationContainer }
   from './NotificationContainer/NotificationContainer';
+export { default as Popup } from './userProfilePopup/popup';

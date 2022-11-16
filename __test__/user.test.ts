@@ -17,6 +17,7 @@ describe("Testing user profile informations", () => {
         last_name: "da Cunha",
         image: "https://randomuser.me/api/portraits/lego/4.jpg",
         bio: "hello from the hell",
+        email: 'Laurete@gmail.com'
       });
   });
 
