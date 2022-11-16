@@ -28,7 +28,6 @@ import IAllMessages from './IAllMessages';
 import IProductsCategoryProps from './ProductsCategory';
 import IProductsFilterProps from './IProductsFilterProps';
 import IChatBoxProps from './IChatBoxProps';
-import IPopup from './IPopup';
 import IProfilePopupProps from './IProfilePopupProps';
 
 export {
@@ -64,6 +63,5 @@ export {
   IProductsCategoryProps,
   IProductsFilterProps,
   IChatBoxProps,
-  IPopup,
   IProfilePopupProps,
 };
