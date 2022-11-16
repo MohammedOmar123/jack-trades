@@ -84,10 +84,12 @@
 .inputs-names-container > div > div {
   width: 100%;
 }
+
 /* All other inputs  */
 .css-1x51dt5-MuiInputBase-input-MuiInput-input{
   padding: 0px;
 }
+
 .inputs {
   width: 80%;
   display: flex;
@@ -95,9 +97,11 @@
   margin-left: 16%;
   padding: 0px !important;
 }
+
 .lastName {
   margin-left: 20px;
 }
+
 ::placeholder {
   color: rgba(204, 204, 204, 1);
 }
@@ -149,4 +153,34 @@ background-color:#1b4b66;
 
 .terms {
   color: rgb(102, 102, 102);
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .account-part form {
+    padding: 1rem 2rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .account-part form {
+    padding: 1rem 2rem;
+  }
+
+  .header-2 a button{
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem 1.2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .account-part {
+    width: 100%;
+    height: 100%;
+  }
+
+  .account-part form {
+    padding: 2rem 2.5rem;
+    justify-content: center;
+  }
 }
