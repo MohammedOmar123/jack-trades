@@ -42,7 +42,7 @@ const ProfilePage:FC = () => {
   if (isLoading || (!info)) return <Loading className="loading" />;
   return (
     <Box className="user-profile">
-      <UserInfo info={info} handleIsOpen={handleIsOpen} />
+      <UserInfo info={info} handleIsOpen={handleIsOpen} setInfo={setInfo} />
       {(+info.id) !== authUserId
         ? <ChatBox isOpen={isOpen} handleIsOpen={handleIsOpen} userId={userId} userImage={info.image} userName={`${info.first_name} ${info.last_name}`} /> : <div />}
       <Outlet />
