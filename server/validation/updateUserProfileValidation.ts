@@ -8,10 +8,10 @@ const updateUserProfileValidation = Joi.object({
   last_name: Joi.string().pattern(/^[a-zA-z]{2,20}$/).required().messages({
     'string.pattern.base': 'Last name must be 2-20 characters long, and contain only letters.',
   }),
-  bio: Joi.string().allow(''),
+  bio: Joi.string().allow('').max(100),
   image: Joi.string().allow(null).pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpeg|jpg|gif|png)/i).messages({
     'string.pattern.base': 'Please add a valid URL and only these extensions [jpeg,jpg,git,png] are allowed',
   }),
-}).or('bio', 'image');
+});
 
 export default updateUserProfileValidation;
