@@ -4,6 +4,7 @@ interface UserInfoTypes {
   last_name: string,
   image: string,
   bio: string
+  email:string
 }
 
 export default UserInfoTypes;

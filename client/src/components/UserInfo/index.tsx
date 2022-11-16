@@ -9,19 +9,23 @@ import {
 } from '@mui/material';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { UserInfoTypes } from '../../interfaces';
-import { Image, Button } from '../index';
+import { Image, Button, Popup } from '../index';
 import { AuthContext } from '../Context/AuthContext';
 
-const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void }> = ({ info, handleIsOpen }) => {
+const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void, setInfo:(info:UserInfoTypes | null) => void, }> = ({ info, handleIsOpen, setInfo }) => {
   const [value, setValue] = useState('products');
   const navigate = useNavigate();
   const { userId } = useContext(AuthContext);
+  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+
   const location = useLocation().pathname.split('/');
   const endpoint = location[location.length - 1];
-
+  const {
+    id, first_name: firstName, last_name: lastName, image, bio,
+  } = info;
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
-    if (newValue === 'products') navigate(`/profile/${info.id}`);
+    if (newValue === 'products') navigate(`/profile/${id}`);
     else navigate(newValue);
   };
 
@@ -31,7 +35,7 @@ const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void }> = ({ info, 
 
   return (
     <Box className="user-info">
-      {info.image ? (
+      {image ? (
         <Image attributes={{
           src: info.image,
           alt: `An image of ${info.first_name} ${info.last_name}`,
@@ -40,22 +44,30 @@ const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void }> = ({ info, 
         />
       ) : (
         <Avatar sx={{ bgcolor: '#B9E0FF' }} className="user-img">
-          {info.first_name[0]}
-          {info.last_name[0]}
+          {firstName[0]}
+          {lastName[0]}
         </Avatar>
       )}
 
       <Typography variant="h4">
-        {info.first_name}
+        {firstName}
         {' '}
-        {info.last_name}
+        {lastName}
       </Typography>
       <Typography>
-        {info.bio}
+        {bio}
       </Typography>
       <Box className="user-nav">
         <Box>
-
+          {isPopupOpen
+            && (
+              <Popup
+                info={info}
+                isPopupOpen={isPopupOpen}
+                setIsPopupOpen={setIsPopupOpen}
+                setInfo={setInfo}
+              />
+            )}
           <Tabs
             value={value}
             onChange={handleChange}
@@ -78,11 +90,13 @@ const UserInfo:FC<{ info: UserInfoTypes, handleIsOpen: () => void }> = ({ info, 
             }}
             />
           </Link>
-          <Button style={{
-            text: 'Edit Profile',
-            classes: 'userInfoBtn',
-          }}
-          />
+          <button
+            type="button"
+            className="userInfoBtn"
+            onClick={() => setIsPopupOpen(true)}
+          >
+            Edit Profile
+          </button>
         </Box>
         )}
         {userId !== +info.id && (
