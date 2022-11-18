@@ -1,12 +1,12 @@
-/* eslint-disable max-len */
-
 import {
   FC, useState, useEffect, useContext,
 } from 'react';
 import { Box } from '@mui/material';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useParams, Outlet, useLocation } from 'react-router-dom';
+import {
+  useParams, Outlet, useLocation,
+} from 'react-router-dom';
 import { UserInfo, Loading } from '../components';
 import { UserInfoTypes } from '../interfaces';
 import { AuthContext } from '../components/Context/AuthContext';
@@ -19,7 +19,6 @@ const ProfilePage:FC = () => {
   const [isOpen, setIsOpen] = useState <boolean>(false);
   const { userId: authUserId } = useContext(AuthContext);
   const open = !!useLocation().state;
-
   const fetchData = async () => {
     try {
       const userInfo = await axios.get(`/api/v1/user/${userId}`);
@@ -44,7 +43,15 @@ const ProfilePage:FC = () => {
     <Box className="user-profile">
       <UserInfo info={info} handleIsOpen={handleIsOpen} setInfo={setInfo} />
       {(+info.id) !== authUserId
-        ? <ChatBox isOpen={isOpen} handleIsOpen={handleIsOpen} userId={userId} userImage={info.image} userName={`${info.first_name} ${info.last_name}`} /> : <div />}
+        ? (
+          <ChatBox
+            isOpen={isOpen}
+            handleIsOpen={handleIsOpen}
+            userId={userId}
+            userImage={info.image}
+            userName={`${info.first_name} ${info.last_name}`}
+          />
+        ) : <div />}
       <Outlet />
     </Box>
   );

@@ -1,9 +1,5 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-nested-ternary */
-/* eslint-disable max-len */
-/* eslint-disable no-lone-blocks */
 import './NotificationCard.css';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -16,7 +12,7 @@ import {
 import { formatDistance, parseISO } from 'date-fns';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { INotificationProps } from '../../interfaces';
 import NotificationPopUp from './NotificationPopUp';
 import { AuthContext } from '../Context/AuthContext';
@@ -29,7 +25,8 @@ const NotificationCard:FC<{ item: INotificationProps
   const [open, setOpen] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
   const [status, setStatus] = useState<string>('');
-
+  const navigate = useNavigate();
+  const from = useLocation();
   const { userId, socket, fullName } = useContext(AuthContext);
 
   const handleOpen = () => setOpen(true);
@@ -42,12 +39,16 @@ const NotificationCard:FC<{ item: INotificationProps
           receiverApproval: true,
           productId: null,
         });
-      const alert = await Swal.fire({
+      await Swal.fire({
         title: response.data,
         confirmButtonColor: '#1b4b66',
       });
       setStatus('success');
-      socket.emit('requests', { receiverId: item.sender_id, senderName: fullName, type: 'approve' });
+      socket.emit('requests', {
+        receiverId: item.sender_id,
+        senderName: fullName,
+        type: 'approve',
+      });
     } catch (error) {
       Swal.fire(error.response.data.message);
     }
@@ -60,9 +61,12 @@ const NotificationCard:FC<{ item: INotificationProps
           receiverApproval: false,
           productId: null,
         });
-      socket.emit('requests', { receiverId: item.sender_id, senderName: fullName, type: 'decline' });
+      socket.emit(
+        'requests',
+        { receiverId: item.sender_id, senderName: fullName, type: 'decline' },
+      );
 
-      const alert = await Swal.fire({
+      await Swal.fire({
         title: response.data,
         confirmButtonColor: '#1b4b66',
       });
@@ -101,12 +105,24 @@ const NotificationCard:FC<{ item: INotificationProps
             : (<Avatar>{`${item.first_name[0]} ${item.last_name[0]}` }</Avatar>)
         }
         </div>
-        <Link to={`/profile/${item.receiver_id === userId ? item.sender_id : item.receiver_id}`}>
-          <p className="name">
-            {`${item.first_name} ${item.last_name}` }
-          </p>
-        </Link>
-
+        <p
+          style={{
+            cursor: 'pointer',
+          }}
+          role="button"
+          aria-hidden="true"
+          className="name"
+          onClick={() => {
+            const id = item.receiver_id === userId
+              ? item.sender_id : item.receiver_id;
+            navigate(`/profile/${id}`, {
+              state: { from },
+              replace: true,
+            });
+          }}
+        >
+          {`${item.first_name} ${item.last_name}` }
+        </p>
         <p
           className="status"
           style={
@@ -124,7 +140,11 @@ const NotificationCard:FC<{ item: INotificationProps
       {/* middle */}
       { (isShow && status === 'pending') || (
       <div className="notification-info">
-        <p className="request">{ item.receiver_id !== userId ? message : 'requested your item'}</p>
+        <p className="request">
+          {
+         item.receiver_id !== userId ? message : 'requested your item'
+}
+        </p>
       </div>
       )}
       {/* second section */}
@@ -145,21 +165,20 @@ const NotificationCard:FC<{ item: INotificationProps
       { isShow && status === 'pending' && (
       <div className="icons">
         <div>
-          <Link to={`/profile/${item.receiver_id === userId ? item.sender_id : item.receiver_id}`}>
-
+          <Link to={`/profile/${item.receiver_id === userId
+            ? item.sender_id : item.receiver_id}`}
+          >
             <abbr
               title="Visit Profile"
               role="button"
             >
               <PersonIcon />
-
             </abbr>
-
           </Link>
-
           <abbr
             title="Decline"
             role="button"
+            aria-hidden="true"
             onClick={handleDecline}
           >
             <CloseOutlinedIcon />
@@ -170,6 +189,7 @@ const NotificationCard:FC<{ item: INotificationProps
               <abbr
                 title="View"
                 role="button"
+                aria-hidden="true"
                 onClick={handleOpen}
               >
                 <VisibilityIcon />
@@ -178,6 +198,7 @@ const NotificationCard:FC<{ item: INotificationProps
             : (
               <abbr
                 title="Accept"
+                aria-hidden="true"
                 role="button"
                 onClick={handleApproval}
               >
@@ -187,7 +208,13 @@ const NotificationCard:FC<{ item: INotificationProps
         </div>
       </div>
       )}
-      <NotificationPopUp senderId={item.sender_id} open={open} handleClose={handleClose} id={item.id} setStatus={setStatus} />
+      <NotificationPopUp
+        senderId={item.sender_id}
+        open={open}
+        handleClose={handleClose}
+        id={item.id}
+        setStatus={setStatus}
+      />
     </div>
   );
 };
