@@ -28,4 +28,3 @@ if (process.env.SEED) {
 }
 
 export default buildTables;
-// test
